@@ -1,0 +1,21 @@
+name: "COVIDregressions"
+output_dir: "_site"
+exclude: ["*.Rda","*.R, *.gz, *.csv", "counterfactuals.Rmd"]
+navbar:
+  title: "COVID policies, behavior, and infection growth"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Data summary"
+      href: datasummary.html
+    - text: "Regresssions"
+      href: regressionsWithPlots.html
+    - text: "Counterfactuals (without national information)"
+      href: counterfactuals.html
+    - text: "Counterfactuals (with national information)"
+      href: counterfactuals_national.html
+output:
+  html_document:
+    theme: journal
+    toc: true
+    highlight: textmate

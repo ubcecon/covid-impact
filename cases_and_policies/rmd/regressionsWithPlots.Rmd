@@ -1,0 +1,485 @@
+---
+title       : "Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S."
+subtitle    : "Tables and Figures"
+author      :  Victor Chernozhukov, Paul Schrimpf, Hiro Kasahara
+job         :
+date        : "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: "covid.bib"
+link-citations: true
+always_allow_html: true
+output      :
+    html_document :
+        toc : true
+        toc_depth : 3
+        toc_float : true
+        number_sections : true
+        #theme : journal
+        #css : 628notes.css
+        code_folding: hide
+        #lib_dir : deps
+        self_cononontained : true
+        fig_width: 8
+        fig_height: 6
+---
+
+ <!-- To create html files from this, in R enter  -->
+ <!-- library(rmarkdown) -->
+ <!-- rmarkdown::render("regressionsWithPlots.Rmd") -->
+ <!-- To create tex files from this, in R enter ` -->
+ <!-- library(rmarkdown) -->
+ <!-- rmarkdown::render("regressionsWithPlots.Rmd", output_format=latex_fragment()) -->
+
+
+ <!-- to create the gh-pages hosted website in R enter -->
+ <!-- rmarkdown::render_site() -->
+
+ <!-- Then in a shell  -->
+ <!-- $ ghp-import -p -n -m "$(date)" _site -->
+
+
+```{r, include=FALSE}
+options(knitr.table.format = function() {
+  if (knitr::is_latex_output()) 'latex' else 'pandoc'
+})
+if (knitr::is_latex_output()) {
+  knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo=FALSE)
+}
+```
+
+This file creates the figures and tables in Chernozhukov, Kasahara and
+Schrimpf (2020) "Causal Impact of Masks, Policies, Behavior on Early
+Covid-19 Pandemic in the U.S."
+
+# Data Preparation
+```{r setup, cache=FALSE, warning=FALSE, include=FALSE}
+
+library(lfe)
+library(stargazer)
+library(knitr)
+library(plm)
+library(latex2exp)
+library(ggplot2)
+library(ggthemes)
+library(estimatr)
+library(gridExtra)
+library(grid)
+library(mvtnorm)
+library(kableExtra)
+library(data.table)
+library(reshape2)
+
+sgtype <- opts_knit$get("rmarkdown.pandoc.to")
+sgstyle <- 'default'
+colors <-  scale_color_solarized
+colors_fill <- scale_fill_solarized
+rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
+source(paste(rootdir,"cases_and_policies/R/exploratory.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/R/dataprep.R",sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/regprep.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/generatetables.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
+```
+
+# Empirical Results
+
+## Correlations
+
+```{r corr, cache=TRUE}
+cmat <-  cor(df[,c(bvars,pols)], use="pairwise.complete.obs")
+scmat <-
+  matrix(sprintf("%.2f",cmat),nrow=(length(bvars)+length(pols)))
+
+rownames(scmat) <- getlabel(rownames(cmat))
+colnames(scmat) <- getlabel(colnames(cmat))
+scmat[upper.tri(cmat)] <- ""
+
+
+ltbl <- knitr::kable(scmat, format="latex", booktabs=TRUE, escape=FALSE,
+              align=(rep("c",ncol(scmat)))) %>%
+  row_spec(0, angle = 90)
+cat(ltbl, file=paste(rootdir,"tex/tables_and_figures/corr.tex",sep="/"))
+
+knitr::kable(scmat)
+```
+
+## Test Smoothing
+
+We rearrange and linearly interpolate constant test counts, but do not
+apply any additional smoothing.
+
+```{r testsmooth, cache=FALSE}
+rearrange <- function(x, id) {
+  for (i in unique(id)) {
+    xi <- x[id==i]
+    xi[!is.na(xi)] <- sort(xi[!is.na(xi)])
+    x[id==i] <- xi
+  }
+  return(x)
+}
+
+
+dropnotincreasing <- function(x, id, t) {
+  const <- (x <= panellag(x, id, t))
+  const[is.na(const)] <- FALSE
+  x[const & x>0] <- NA
+  return(x)
+}
+
+lininterp <- function(x, id, t) {
+  for (i in unique(id)) {
+    xi <- x[id==i]
+    ti <- t[id==i]
+    xi[is.na(xi)] <- approx(ti[!is.na(xi)], xi[!is.na(xi)], ti[is.na(xi)])$y
+    x[id==i] <- xi
+  }
+  return(x)
+}
+
+
+smoothtests <- function(x, id, t) {
+  x[is.na(x)] <- 0
+  return(lininterp(dropnotincreasing(rearrange(x,id),id,t),id,t))
+}
+
+df$neg.interp <- smoothtests(df$negative, df$state, df$date)
+df$pos.interp <- df$cases #smoothtests(df$positive, df$state, df$date)
+df$tot.interp <- df$neg.interp + df$pos.interp
+
+L <- 7
+df$tests <- paneldiff(df$tot.interp, df$state, df$date, lag=L)
+df$testrate  <- df$tests/df$Population.2018*1000
+df$testrate[df$testrate<0] <- NA
+df$dlogtests <- paneldiff(log(sapply(df$testrate, function(x)
+  max(x,exp(-1)))), df$state, df$date, lag=L)
+df$testratedc <- df$ddeath/df$dcases*df$testrate
+df$testratedc[df$dcases==0] <- 0
+
+df$tests.ma <- paneldiff(panelma(df$neg.interp, df$state, df$date, 7) + df$cases,
+                         df$state, df$date, lag=L)
+df$testrate.ma  <- df$tests.ma/df$Population.2018*1000
+df$testrate.ma[df$testrate.ma<0] <- NA
+df$dlogtests.ma <- paneldiff(log(sapply(df$testrate.ma, function(x)
+  max(x,exp(-1)))), df$state, df$date, lag=L)
+df$testratedc.ma <- df$ddeath/df$dcases*df$testrate.ma
+df$testratedc.ma[df$dcases==0] <- 0
+```
+
+## Cases
+
+```{r caseregs, cache=TRUE, warning=FALSE, results='hide'}
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national")) #,
+#c("dlogdc", "logdc"))
+#infovars2 <- list(c( "logdc"))
+tvars <- "dlogtests"
+xlist <-list("", "")
+interactions <-list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0") #,"(testratedc ~ lag(testratedc,14))")
+
+L <- 14
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+regs <- mainregressions(sdf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+```
+
+```{r casetables, cache=TRUE, warning=FALSE, results='asis'}
+showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy)
+savetextables(regs$pib[[1]], NULL, NULL, prefix="behavior")
+savetextables(c(regs$pib[[1]][1:4], regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-NI")
+
+savetextables(c(regs$pib[[1]][1:4]), NULL, NULL, prefix="behavior-cases-stateinfo")
+savetextables(c(regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-cases-nationinfo")
+savetextables(NULL, regs$pbiy, regs$piy, prefix="cases")
+savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="cases-nosplit")
+```
+
+```{r casedieff, cache=TRUE, warning=FALSE, results='asis'}
+for (use.national in c(TRUE,FALSE)) {
+  sb <- ifelse(use.national, 2, 1)
+  sy <- ifelse(use.national, 3, 1)
+  pib <- lapply(regs$pib[[sb]][1:4], function(x) x$reg)
+  pbiy <- regs$pbiy[[sy]]$reg
+  piy <- regs$piy[[sy]]$reg
+
+  S <- 999
+  bs <- bootstrap_felm(sdf, c(pib,list(pbiy,piy)), S=S)
+
+  addse <- function(di, bdi) {
+    se <- di*NA
+    for (i in 1:length(se)) {
+      se[i] <- sd(sapply(bdi, function(b) b[i]))
+    }
+
+    tbl <- matrix(NA, nrow=2*nrow(di), ncol=ncol(di))
+    for (i in 1:nrow(di)) {
+      tbl[2*(i-1) + 1,] <- sapply(1:ncol(di), function(j) printstars(di[i,j], se[i,j]))
+      tbl[2*i,] <- sprintf("(%.3f)", se[i,])
+    }
+    colnames(tbl) <- colnames(di)
+    rownames(tbl) <- rep("", nrow(tbl))
+    rownames(tbl)[seq(1,nrow(tbl),by=2)] <- relabel(rownames(di))
+  return(tbl)
+  }
+
+  diall <- dieff_table(lapply(regs$pib[[sb]][1:4], function(x) x$reg$coef[,1]),
+                       regs$pbiy[[sy]]$reg$coef[,1],
+                       regs$piy[[sy]]$reg$coef[,1],
+                       policies=c(pols, infovars[[sb]]), nsum=length(pols))
+
+  bdiall <- lapply(1:S, function(i)
+    dieff_table(lapply(1:4, function(j) bs[[j]][,i]),
+                bs[[5]][,i], bs[[6]][,i],
+                policies=c(pols, infovars[[sb]]), nsum=length(pols))
+    )
+
+  tbl <- addse(diall, bdiall)
+
+  #tbl <- tbl[-c(nrow(tbl), nrow(tbl)-1),]
+
+  ltbl <- kable(tbl, digits=2, format="latex", booktabs=TRUE, escape=FALSE,
+                linesep="",
+                align=(rep("c",ncol(tbl))))  %>%
+    column_spec(column=ncol(tbl)+1, border_left=TRUE)
+  cat(ltbl, file=paste(rootdir,
+                       sprintf("tex/tables_and_figures/dieff-cases-%s.tex",ifelse(use.national, "NI","SI")),
+                       sep="/"))
+
+  kable(tbl)
+}
+```
+
+## Deaths (with cases as information)
+
+```{r deathtables, cache=TRUE, warning=FALSE, results='asis'}
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national")) #,
+df$zero <- 0
+L <- 21
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+regs <- mainregressions(sdf,
+                        "dlogdd", pols, bvars, infovars, "zero", xlist, ilist, iv, L=L)
+showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy);
+savetextables(NULL, regs$pbiy, regs$piy, prefix="deaths-casesinfo")
+```
+
+## Deaths (with deaths as information)
+
+```{r deathtablesd, cache=TRUE, warning=FALSE, results='asis'}
+df$zero <- 0
+infovarsd <- list(c("dlogdd", "logdd"),
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
+# infovarsd <- list(c("logdd")
+L <- 21
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+regs <- mainregressions(sdf,
+                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L)
+
+showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy);
+savetextables(regs$pib[[1]], NULL, NULL, prefix="behavior-deathsinfo")
+savetextables(c(regs$pib[[1]][1:4], regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-NI")
+savetextables(c(regs$pib[[1]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-stateinfo")
+savetextables(c(regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-nationinfo")
+savetextables(NULL, regs$pbiy, regs$piy, prefix="deaths-deathsinfo")
+savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="deaths-deathsinfo-nosplit")
+
+
+```
+
+```{r dieff-deaths, cache=TRUE, results='asis', warning=FALSE}
+for (use.national in c(TRUE,FALSE)) {
+  sb <- ifelse(use.national, 2, 1)
+  sy <- ifelse(use.national, 3, 1)
+  pib <- lapply(regs$pib[[sb]][1:4], function(x) x$reg)
+  pbiy <- regs$pbiy[[sy]]$reg
+  piy <- regs$piy[[sy]]$reg
+
+  S <- 999
+  bs <- bootstrap_felm(sdf, c(pib,list(pbiy,piy)), S=S)
+
+  diall <- dieff_table(lapply(regs$pib[[sb]][1:4], function(x) x$reg$coef[,1]),
+                       regs$pbiy[[sy]]$reg$coef[,1],
+                       regs$piy[[sy]]$reg$coef[,1],
+                       policies=c(pols, infovarsd[[sb]]),
+                       nsum=length(pols)
+                       )
+
+  bdiall <- lapply(1:S, function(i)
+    dieff_table(lapply(1:4, function(j) bs[[j]][,i]),
+                bs[[5]][,i], bs[[6]][,i],
+                policies=c(pols, infovarsd[[sb]]),
+                nsum=length(pols)
+                ))
+
+  tbl <- addse(diall, bdiall)
+
+  #tbl <- tbl[-c(nrow(tbl), nrow(tbl)-1),]
+
+  ltbl <- kable(tbl, digits=2, format="latex", booktabs=TRUE, escape=FALSE,
+                linesep="",
+                align=(rep("c",ncol(tbl))))  %>%
+    column_spec(column=ncol(tbl)+1, border_left=TRUE)
+  cat(ltbl, file=paste(rootdir,
+                       sprintf("tex/tables_and_figures/dieff-deaths-deathsinfo-%s.tex",ifelse(use.national, "NI","SI")),
+                       sep="/"))
+  kable(tbl)
+}
+```
+
+<!-- ## $\log(\Delta D/\Delta C)$ -->
+
+<!-- ```{r logdddc, cache=TRUE, warning=FALSE, results='asis'} -->
+<!-- df$logdddc <- log(df$ddeath/panellag(df$cases, df$state, df$date, 7)) -->
+<!-- df$logdddc[df$ddeath<=0] <- NA -->
+<!-- df$logdddc[is.infinite(df$logdddc)] <- NA -->
+<!-- df$logtestrate <- log(df$testrate) -->
+<!-- df$logtestrate[df$testrate<=0] <- NA -->
+<!-- regs <- mainregressions(df, "logdddc", pols, bvars, infovars, "lag(logtestrate,7)", xlist[1], ilist[1], list("0"), L=21) -->
+
+<!-- showhtmltables(NULL, regs$pbiy, regs$piy); -->
+<!-- ``` -->
+
+# Figures
+
+## Policy
+
+The following plot illustrates the effect of mandatory masks for
+employees.  The lighter line is the average across states that did not
+have mask policy 14 days ago of case growth rate. The darker line is
+the average across states that did have a mask policy 14 days
+ago. (It's actually the fit from regressing dlogdc on date dummies
+interacted with the 14 day lagged, 7 day moving average of a mask
+policy indicator). Light points are the state observations without a
+mask policy. Dark points are states with a mask policy 14 days ago.
+
+```{r fig, cache=TRUE,  fig_width=10, fig_height=6, warning=FALSE}
+pfigure <- function(df, pol, stlab=1, outcome="dlogdc", L=14) {
+  df$p <- panellag(df[,pol],df$state, df$date, L)
+  df$p <- ceiling(df$p)
+  df$y <- df[,outcome]
+  df$week <- week(df$date)
+  m <- lm(y ~ as.factor(date) + as.factor(date):p, data=df)
+  adf <- rbind(data.frame(date=m$xlevels$`as.factor(date)`, p=0),
+               data.frame(date=m$xlevels$`as.factor(date)`, p=1))
+  adf$week <- week(as.Date(adf$date))
+  pred <- predict(m, newdata=adf, interval="confidence")
+  adf$hat <- pred[,"fit"]
+  adf$lo <- pred[,"lwr"]
+  adf$hi <- pred[,"upr"]
+  adf$date <- as.Date(adf$date)
+  if (stlab==1) {
+    pdf <- subset(df, df$p<=0.01)
+    ldf <- subset(df, df$p>0.01)
+  } else if (stlab==0) {
+    pdf <- subset(df, df$p>=0.99)
+    ldf <- subset(df, df$p<0.99)
+  } else {
+    pdf <- df
+    ldf <- NULL #data.frame(date=NA,y=NA,ST=NA,p=NA)
+  }
+  clrs <- solarized_pal(2)(2)
+  fig <- ggplot(df,aes(color=p)) +
+    geom_point(data=pdf,aes(x=date, y=y, color=p),alpha=0.3, size=0.5) +
+    xlim(c(as.Date("2020-04-10"), max(df$date))) +
+    geom_line(data=adf, aes(x=date, y=hat, group=p), size=2) +
+    figtheme + scale_color_gradient(low=clrs[1], high=clrs[2]) + #colors_grad(palette="Green-Gold") +
+    theme(legend.position="none") +
+    xlab("") +
+    ylim(c(-1.2,1.2))
+  if (!is.null(ldf))
+    fig <- fig +
+      geom_text(data=ldf,
+                aes(x=date, y=y, label=ST, color=p), alpha=1.0, size=5)
+  return(fig)
+}
+fig <- pfigure(df, "pmaskbus", stlab=-1) + ggtitle(TeX(relabel("dlogdc given pmaskbus"))) + ylab(TeX(relabel("dlogdc")))
+
+p <- "pmaskbus"
+figdev(sprintf("%s/tex/tables_and_figures/%s-cases.pdf", rootdir, p), width=4, height=3)
+print(fig)
+dev.off()
+fig
+```
+
+We now look at similar figures for other policies.
+
+```{r polplots, cache=TRUE, fig_width=10, fig_height=6}
+fig <- pfigure(df, "pk12", stlab=-1) +
+  ggtitle(TeX(relabel("dlogdc given pk12"))) +
+  xlim(c(as.Date("2020-03-15"), max(df$date))) +
+  ylim(c(-1,3)) + ylab(TeX(relabel("dlogdc")))
+
+p <- "pk12"
+figdev(sprintf("%s/tex/tables_and_figures/%s-cases.pdf", rootdir, p), width=4, height=3)
+print(fig)
+dev.off()
+fig
+
+for (p in pols[3:length(pols)]) {
+  fig <- pfigure(df, p, stlab=-1) +
+    ggtitle(TeX(relabel(sprintf("dlogdc given %s",p)))) +
+    xlim(c(as.Date("2020-04-01"), max(df$date))) +
+    ylim(c(-1,1)) + ylab(TeX(relabel("dlogdc")))
+  figdev(sprintf("%s/tex/tables_and_figures/%s-cases.pdf", rootdir, p), width=4, height=3)
+  print(fig)
+  dev.off()
+}
+```
+
+# Death Growth Plots
+
+```{r poldeathsplots, cache=TRUE, fig_width=10, fig_height=6, warning=FALSE}
+fig <- pfigure(df, "pmaskbus", stlab=-1, outcome="dlogdd", L=21) +
+  ggtitle(TeX(relabel("dlogdd given pmaskbus"))) +
+  ylab(TeX(relabel("dlogdd")))
+
+p <- "pmaskbus"
+figdev(sprintf("%s/tex/tables_and_figures/%s-deaths.pdf", rootdir, p),width=4, height=3)
+print(fig)
+dev.off()
+fig
+
+# fig <- pfigure(df, "pmaskbus", stlab=-1, outcome="dlogdd", L=14) +
+#   ggtitle(TeX(relabel("dlogdd given pmaskbus"))) +
+#   ylab(TeX(relabel("dlogdd")))
+# p <- "pmaskbus"
+# figdev(sprintf("%s/tex/tables_and_figures/%s-deaths.pdf", rootdir, p),width=4, height=3)
+# print(fig)
+# dev.off()
+# fig
+
+
+
+fig <- pfigure(df, "pk12", stlab=-1, outcome="dlogdd", L=21) +
+  ggtitle(TeX(relabel("dlogdd given pk12"))) +
+  xlim(c(as.Date("2020-03-15"), max(df$date))) +
+  ylim(c(-1,3)) + ylab(TeX(relabel("dlogdd")))
+
+p <- "pk12"
+figdev(sprintf("%s/tex/tables_and_figures/%s-deaths.pdf", rootdir, p),width=4, height=3)
+print(fig)
+dev.off()
+
+for (p in pols[3:length(pols)]) {
+  fig <- pfigure(df, p, stlab=-1, outcome="dlogdd", L=21) +
+    ggtitle(TeX(relabel(sprintf("dlogdd given %s",p)))) +
+    xlim(c(as.Date("2020-04-01"), max(df$date))) +
+    ylim(c(-1,1)) + ylab(TeX(relabel("dlogdd")))
+  figdev(sprintf("%s/tex/tables_and_figures/%s-deaths.pdf", rootdir, p), width=4, height=3)
+  print(fig)
+  dev.off()
+}
+```
+
+
+
+```{r, results='asis', echo=FALSE}
+if (!knitr::is_latex_output()) {
+  cat("
+[![](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike
+4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
+") }
+```
