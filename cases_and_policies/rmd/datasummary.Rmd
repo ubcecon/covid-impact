@@ -354,10 +354,8 @@ grid.arrange(grobs=figs[2:7], nrow=3, ncol=2)
 
 ```{r, warning=FALSE}
 gv <- dataguide$name[dataguide$source=="Google Mobility Reports"]
+gv <- gv[grep("_change_from_baseline",gv)]
 hv <- dataguide$name[dataguide$source=="Homebase"]
-uv <- c("daily_distance_diff", "daily_visitation_diff",
-        "encounters_rate", "log_encounters_rate")
-cs$log_encounters_rate <- log(1+cs$encounters_rate)
 ```
 
 ## Google Mobility Reports
