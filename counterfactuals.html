@@ -488,7 +488,7 @@ cfnop &lt;- do.call(rbind, lapply(cfnoplist, function(x) x$edf))</code></pre>
 \]</span></p>
 <p>where <span class="math inline">\(Y_{it} = \log \Delta C_{it}\)</span>, <span class="math inline">\(P_{it}\)</span> are policies, and <span class="math inline">\(X_{it}\)</span> are controls. Each counterfactual involves changing <span class="math inline">\(P_{it}\)</span> to some other value, <span class="math inline">\(P_{it}^\ast\)</span>. We then generate counterfactual paths for cases by in state <span class="math inline">\(i\)</span> conditional on <span class="math inline">\(Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast \}_{t=1}^T, \theta=(\alpha, \beta, \rho)\)</span> by setting:</p>
 <p><span class="math display">\[
-  Y_{it}^{\ast,r} = P_{it}^\ast&#39;\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}&#39;\beta + \hat{\epsilon}_{it}^{\ast,r}
+  Y_{it}^{\ast,r} = {P_{it}^\ast}&#39;\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}&#39;\beta + \hat{\epsilon}_{it}^{\ast,r}
 \]</span></p>
 <p>where <span class="math inline">\(\hat{\epsilon}_{it}^{\ast,r}\)</span> are resampled with replacement from <span class="math inline">\(\{\hat{\epsilon}_{it}\}_{i=1,t=1}^{N,T}\)</span>. We do resample the residuals <span class="math inline">\(R\)</span> times, repeating the above each time. We then compute</p>
 <p><span class="math display">\[
@@ -854,7 +854,7 @@ figs$r</code></pre>
 <h3 number="2.3.1"><span class="header-section-number">2.3.1</span> Holding Residuals fixed</h3>
 <p>In this subsection, instead of resampling residuals, we condition on them. That is we look at</p>
 <p><span class="math display">\[
-  Y_{it}^{\ast} = P_{it}^\ast&#39;\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}&#39;\beta + \hat{\epsilon}_{it}
+  Y_{it}^{\ast} = {P_{it}^\ast}&#39;\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}&#39;\beta + \hat{\epsilon}_{it}
 \]</span></p>
 <p>instead of</p>
 <p><span class="math display">\[
