@@ -391,7 +391,7 @@ div.tocify {
 <h1 class="title toc-ignore">Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S.</h1>
 <h3 class="subtitle">Counterfactuals</h3>
 <h4 class="author">Victor Chernozhukov, Paul Schrimpf, Hiro Kasahara</h4>
-<h4 class="date">21 July, 2020</h4>
+<h4 class="date">22 July, 2020</h4>
 
 </div>
 
@@ -480,7 +480,31 @@ load(&quot;cfnop.Rda&quot;)
 cfnop &lt;- do.call(rbind, lapply(cfnoplist, function(x) x$edf))</code></pre>
 <div id="removing-policies" class="section level3" number="2.0.1">
 <h3 number="2.0.1"><span class="header-section-number">2.0.1</span> Removing Policies</h3>
-<p>We now examine the impact changing from the observed policies to none. For illustrative purpose, we being by focusing on Washington. Figure  shows the observed, estimated average, and counterfactual without policies average of <span class="math inline">\(\Delta \log \Delta C\)</span> in Washington. To compute the estimated and counterfactual paths we use the estimates from column 2 of table . We set initial <span class="math inline">\(\Delta \log \Delta C\)</span> and <span class="math inline">\(\log \Delta C\)</span> to their values first observed in the state we are simulating. We hold all other regressors at their observed values. Error terms are drawn with replacement from the residuals. We do this many times and report the average over draws of the residuals. To calculate confidence intervals, we repeat the above with coefficients drawn randomly from their asymptotic distribution. The shaded region is a pointwise 90% confidence interval.</p>
+<p>We now examine the impact changing from the observed policies to none. For illustrative purpose, we being by focusing on Washington. Figure  shows the observed, estimated average, and counterfactual without policies average of <span class="math inline">\(\Delta \log \Delta C\)</span> in Washington.</p>
+<p>To compute the estimated and counterfactual paths we use the estimates from column 2 of table . We set initial <span class="math inline">\(\Delta \log \Delta C\)</span> and <span class="math inline">\(\log \Delta C\)</span> to their values first observed in the state we are simulating. We hold all other regressors at their observed values. Error terms are drawn with replacement from the residuals. We do this many times and report the average over draws of the residuals. To calculate confidence intervals, we repeat the above with coefficients drawn randomly from their asymptotic distribution. The shaded region is a pointwise 90% confidence interval.</p>
+<p>To be more precise, we can rewrite our regression model as:</p>
+<p><span class="math display">\[
+  Y_{it} = P_{it}&#39;\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}&#39;\beta + \epsilon_{it}
+\]</span></p>
+<p>where <span class="math inline">\(Y_{it} = \log \Delta C_{it}\)</span>, <span class="math inline">\(P_{it}\)</span> are policies, and <span class="math inline">\(X_{it}\)</span> are controls. Each counterfactual involves changing <span class="math inline">\(P_{it}\)</span> to some other value, <span class="math inline">\(P_{it}^\ast\)</span>. We then generate counterfactual paths for cases by in state <span class="math inline">\(i\)</span> conditional on <span class="math inline">\(Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast \}_{t=1}^T, \theta=(\alpha, \beta, \rho)\)</span> by setting:</p>
+<p><span class="math display">\[
+  Y_{it}^{\ast,r} = P_{it}^\ast&#39;\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}&#39;\beta + \hat{\epsilon}_{it}^{\ast,r}
+\]</span></p>
+<p>where <span class="math inline">\(\hat{\epsilon}_{it}^{\ast,r}\)</span> are resampled with replacement from <span class="math inline">\(\{\hat{\epsilon}_{it}\}_{i=1,t=1}^{N,T}\)</span>. We do resample the residuals <span class="math inline">\(R\)</span> times, repeating the above each time. We then compute</p>
+<p><span class="math display">\[
+\hat{E}[Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r}
+\]</span></p>
+<p>Finally, we repeatedly draw <span class="math inline">\(\theta\)</span> from its asymptotic distribution and repeat all of the above to compute confidence intervals.</p>
+<p>For case growth, the same procedure is used, but with <span class="math inline">\(\Delta Y_{it} = \Delta \log \Delta C_{it}\)</span> in place of <span class="math inline">\(Y_{it}\)</span>. The top panel of the following figure shows</p>
+<p><span class="math display">\[
+E[\Delta Y_{it} | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}\}_{t=1}^T]
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+E[\Delta Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T]
+\]</span></p>
+<p>along with the observed <span class="math inline">\(Y_{it}\)</span>, and the bottom panel shows the difference.</p>
 <pre class="r"><code>st &lt;- &quot;Washington&quot;
 f &lt;- cfplots(st, cfnop, data=df)</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
@@ -494,6 +518,11 @@ f &lt;- cfplots(st, cfnop, data=df)</code></pre>
 Case growth without policies in Washington 
 </p>
 </div>
+<p>To look at cases we instead compute,</p>
+<p><span class="math display">\[
+\hat{E}[\exp(Y_{it}^\ast) | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r})
+\]</span></p>
 <pre class="r"><code>grid.arrange(f$figl, f$figp, nrow=2) #,</code></pre>
 <div class="figure">
 <img src="counterfactuals_files/figure-html/WA-nop-cases-1.png" alt="Cases without policies in Washington \label{fig:WA-nop-cases}" width="768" />
@@ -621,61 +650,22 @@ for(st in states) {
 <div id="national" class="section level2" number="2.1">
 <h2 number="2.1"><span class="header-section-number">2.1</span> National</h2>
 <p>These figures show the average effect on <span class="math inline">\(\Delta \log \Delta C\)</span> across states, and the total national effect on cases in past week.</p>
+<p>That is for the first figure, we take:</p>
+<p><span class="math display">\[
+\hat{E}[\Delta Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\frac{1}{N} \sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \Delta Y_{it}^{\ast,r}
+\]</span></p>
+<p>and plot the difference of the above between two different values of <span class="math inline">\(P_{it}^\ast\)</span></p>
+<p>The second figure shows the total change in cases, that is the change in:</p>
+<p><span class="math display">\[
+\hat{E}[\exp(Y_{it}^\ast) | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r}).
+\]</span></p>
+<p>The final figure shows <span class="math display">\[
+\frac{\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r}) - \sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it})} {\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r})}
+\]</span> that is, the (average over residual draws) change in national cases relative to (average over residual draws) national cases.</p>
 <pre class="r"><code>abbrv &lt;- unique(df[,c(&quot;state&quot;,&quot;ST&quot;)])
 cfnop &lt;- merge(cfnop, abbrv, by=&quot;state&quot;)
-
-nationalplots &lt;- function(alldf,cfdf, cfname, yvar=&quot;cases&quot;) {
-  alldf[order(state, sidx, date), dlog1:=c(rep(NA,7),diff(meanlog1,7)), by=.(state, sidx)]
-  alldf[order(state, sidx, date),dlog0:=c(rep(NA,7),diff(meanlog0,7)), by=.(state, sidx)]
-  national &lt;- alldf[ , .(diff=sum(meany1-meany0), y0=sum(meany0), dlog=mean(dlog1-dlog0)), by=.(date, sidx)]
-
-  adf &lt;- national[, .(mp=mean(diff),
-                      clo=quantile(diff, 0.05),
-                      chi=quantile(diff, 0.95),
-                      rel=mean(diff/y0),
-                      rlo=quantile(diff/y0, 0.05),
-                      rhi=quantile(diff/y0, 0.95),
-                      mlog=mean(dlog, na.rm=TRUE),
-                      llo=quantile(dlog, 0.025, na.rm=TRUE),
-                      lhi=quantile(dlog, 0.975, na.rm=TRUE)
-                      ),
-                  keyby=.(date)]
-
-  figdlog &lt;- ggplot(cfdf, aes(x=date)) +
-    #geom_text(aes(y=mdp, label=ST),alpha=0.2) +
-    geom_point(aes(y=mdp),alpha=0.2, size=0.5) +
-    xlim(datelims) +
-    geom_line(data=adf,  aes(x=date, y=mlog, color=&quot;&quot;), size=2) + figtheme +
-    geom_ribbon(data=adf, aes(ymin=llo, ymax=lhi, fill=&quot;&quot;),alpha=0.3) +
-    colors() + theme(legend.position=&quot;none&quot;) +
-    ylab(TeX(sprintf(&quot;Change in $\\Delta \\log \\Delta %s$&quot;,
-                     toupper(substring(yvar,1,1))
-                     ))) +
-    colors_fill() +
-     ggtitle(sprintf(&quot;Effect of %s on %s growth&quot;,cfname, substring(yvar,1,nchar(yvar)-1)))
-
-  figc &lt;- ggplot(cfdf, aes(x=date)) +
-    #geom_text(aes(y=mp, label=ST),alpha=0.5) +
-    geom_point(aes(y=mp),alpha=0.2, size=0.5) +
-    xlim(datelims) +
-    geom_line(data=adf, aes(x=date, y=mp, color=&quot;&quot;), size=2) +
-    figtheme +
-    geom_ribbon(data=adf, aes(ymin=clo, ymax=chi, fill=&quot;&quot;),alpha=0.3) +
-    colors() + theme(legend.position=&quot;none&quot;) +
-    ylab(sprintf(&quot;%s in the past week&quot;, yvar)) +
-    colors_fill() +
-    ggtitle(sprintf(&quot;Effect of %s on %s&quot;,cfname, yvar))
-
-  figr &lt;- ggplot(adf, aes(x=date, y=rel)) +
-    xlim(datelims) +
-    geom_line(aes(color=&quot;&quot;), size=2) + figtheme +
-    geom_ribbon(data=adf, aes(ymin=rlo, ymax=rhi, fill=&quot;&quot;),alpha=0.3) +
-    colors() + theme(legend.position=&quot;none&quot;) +
-    ylab(sprintf(&quot;relative increase in %s&quot;,yvar)) +
-    colors_fill() +
-    ggtitle(sprintf(&quot;Relative effect of %s&quot;,cfname))
-  return(list(g=figdlog, c=figc, r=figr))
-}
 
 figs &lt;- nationalplots(allmeans,cfnop, &quot;removing policies&quot;)
 
@@ -862,6 +852,14 @@ figs$r</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-3-6.png" width="768" /></p>
 <div id="holding-residuals-fixed" class="section level3" number="2.3.1">
 <h3 number="2.3.1"><span class="header-section-number">2.3.1</span> Holding Residuals fixed</h3>
+<p>In this subsection, instead of resampling residuals, we condition on them. That is we look at</p>
+<p><span class="math display">\[
+  Y_{it}^{\ast} = P_{it}^\ast&#39;\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}&#39;\beta + \hat{\epsilon}_{it}
+\]</span></p>
+<p>instead of</p>
+<p><span class="math display">\[
+  \frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r}.
+\]</span></p>
 <pre class="r"><code>simmodel1 &lt;- function(st, samplecoefs=FALSE, nsim=1)
   simmodel(st, samplecoefs=samplecoefs, nsim=nsim,
            shockgen=NULL)
@@ -869,7 +867,7 @@ maskmodel1 &lt;- function(st, samplecoefs=FALSE, nsim=1)
   maskmodel(st, samplecoefs=samplecoefs, nsim=nsim,
             shockgen=NULL)
 
-rerunsim &lt;- TRUE
+rerunsim &lt;- FALSE
 if (!file.exists(&quot;cfmask1.Rda&quot;) || rerunsim) {
   cfmasklist1 &lt;- lapply(unique(df$state),
                         function(s) nopstatesim(s,simobs=simmodel1,simcf=maskmodel1, data=sdf, nresid=1))
