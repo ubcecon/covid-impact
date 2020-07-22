@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Victor Chernozhukov, Paul Schrimpf, Hiro Kasahara" />
+
+
+<title>Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S.</title>
+
+<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">COVID policies, behavior, and infection growth</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="datasummary.html">Data summary</a>
+</li>
+<li>
+  <a href="regressionsWithPlots.html">Regresssions</a>
+</li>
+<li>
+  <a href="counterfactuals.html">Counterfactuals (without national information)</a>
+</li>
+<li>
+  <a href="counterfactuals_national.html">Counterfactuals (with national information)</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S.</h1>
+<h3 class="subtitle">Counterfactuals</h3>
+<h4 class="author">Victor Chernozhukov, Paul Schrimpf, Hiro Kasahara</h4>
+<h4 class="date">17 July, 2020</h4>
+
+</div>
+
+
+<p><!-- To create html files from this, in R enter  --> <!-- library(rmarkdown) --> <!-- rmarkdown::render("regressionsWithPlots.Rmd") --> <!-- To create tex files from this, in R enter ` --> <!-- library(rmarkdown) --> <!-- rmarkdown::render("regressionsWithPlots.Rmd", output_format=latex_fragment()) --></p>
+<p><!-- to create the gh-pages hosted website in R enter --> <!-- rmarkdown::render_site() --></p>
+<p><!-- Then in a shell  --> <!-- $ ghp-import -p -n -m "$(date)" _site --></p>
+<div id="data-preparation" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Data Preparation</h1>
+</div>
+<div id="counterfactuals" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Counterfactuals</h1>
+<pre class="r"><code>#&#39; Given an estimated felm model with lags and differences, returns a
+#&#39; function that simulates the model.
+#&#39;
+#&#39; @param m estimated felm model
+#&#39; @param df Data
+#&#39; @param dvar Name of variable repressenting differences in the
+#&#39; model. dvar should be a difference of length difflag.
+#&#39; @param var Name of varaible representing levels in the model.
+#&#39; @param difflag difference length for dvar
+#&#39; @param lhsdiff if true the outcome is also dvar with the same
+#&#39; difflag, if not the outcome is var
+#&#39;
+#&#39; @return A function with arguments idvar==value of identifier for
+#&#39;   which to simulate and shockgen=function(n) that generates values
+#&#39;   for residuals. The default value of shockgen is to resample model
+#&#39;   residuals with replacement. The function returns a simulated path
+#&#39;   var beginning from the initial values for id==idvar and using the
+#&#39;   exogenous covariates of id==idvar.
+#&#39;
+#&#39; Example:
+#&#39; df &lt;- df[order(df$id,$df$t),]
+#&#39; df$dy &lt;- paneldiff(df$y, df$id, df$t, lag=2)
+#&#39; fmla &lt;- dy ~ lag(y,3) + lag(dy,1) + x
+#&#39; # hack to get get id
+#&#39;
+#&#39; sim &lt;- createforwardsim(fmla, df, &quot;dy&quot;, &quot;y&quot;, 2, TRUE)
+#&#39; # simulate with errors set to 0&#39;s
+#&#39; yhat &lt;- sim(df$id[1], function(n) fill(0, n))
+#&#39; #&#39; # simulate sampling residuals with replacement
+#&#39; yhat &lt;- sim(df$id[1])
+createforwardsim &lt;- function(m, df, id=&quot;state&quot;,
+                             dvar=&quot;dlogdc&quot;, var=&quot;logdc&quot;,
+                             difflag=7, lhsdiff=TRUE) {
+  m$coef[is.nan(m$coef)] &lt;- 0
+
+  # get index of observations used in mdl
+  df$idxcfs &lt;- 1:nrow(df)
+  mid &lt;- felm(update.felm.formula(m$formula, idxcfs ~ .), data=df, keepX=TRUE)
+  idx &lt;- mid$response
+
+  # This  regexp will match dvar if preceded by start of string or (
+  # and followed by end of string or ,
+  di &lt;- grepl(sprintf(&quot;(^|\\()%s(,|$)&quot;,dvar), rownames(m$coef))
+  li &lt;- grepl(sprintf(&quot;(^|\\()%s(,|$)&quot;,var), rownames(m$coef))
+  dc &lt;- m$coef[di]
+  names(dc) &lt;- rownames(m$coef)[di]
+  lc &lt;- m$coef[li]
+  names(lc) &lt;- rownames(m$coef)[li]
+  # exogenous part of model
+  if (!is.null(getfe(m))) {
+    stop(&quot;createforwardsim not implemented with fixed effects. Include factors in the formula instead&quot;)
+  }
+
+  xt &lt;- mid$X %*% (m$coef * as.numeric(!(di | li)))
+  #xtold &lt;- m$fitted.values - m$X %*% (m$coef * as.numeric(di | li))
+
+  ## convert into AR model
+  llags &lt;- as.numeric(gsub(&quot;lag\\(.+, (\\d+)\\)&quot;,&quot;\\1&quot;, names(lc)))
+  dlags &lt;- as.numeric(gsub(&quot;lag\\(.+, (\\d+)\\)&quot;,&quot;\\1&quot;, names(dc)))
+  maxlags &lt;- max(c(llags, dlags+difflag, ifelse(lhsdiff, difflag, 0)))
+  ar &lt;- rep(0, maxlags)
+  if (lhsdiff) ar[difflag]  &lt;- ar[difflag] + 1
+  ar[llags]  &lt;- ar[llags] + lc
+  ar[dlags] &lt;- ar[dlags] +dc
+  ar[dlags+difflag] &lt;- ar[dlags+difflag]-dc
+
+  if (!is(df, &quot;pdata.frame&quot;)) {
+    warning(&quot;df is not a pdata.frame. This function assumes df is sorted by id, time, and within each id, time is consecutive. Results will be incorrect if these assumptions are false.&quot;)
+  } else {
+    stopifnot(all(is.pconsecutive(df)))
+  }
+
+  sim &lt;- function(idvar, shockgen=function(n=1) { sample(m$residuals, size=n,
+                                                         replace=TRUE)},
+                  samplecoefs=FALSE, nsim=100) {
+    ids &lt;- df[idx,id]
+    if (samplecoefs) {
+      V &lt;- vcov(m)
+      nac &lt;- is.na(m$coefficients)
+      e &lt;- rep(0,nrow(V))
+      Vnona &lt;- V[!nac,!nac]
+      e[!nac] &lt;- t(rmvnorm(1, mean=rep(0, nrow(Vnona)), sigma=Vnona))
+
+      dc &lt;- m$coef[di] + e[di]
+      lc &lt;- m$coef[li] + e[li]
+      ## convert into AR model
+      ar &lt;- rep(0, maxlags)
+      if (lhsdiff) ar[difflag]  &lt;- ar[difflag] + 1
+      ar[llags]  &lt;- ar[llags] + lc
+      ar[dlags] &lt;- ar[dlags] +dc
+      ar[dlags+difflag] &lt;- ar[dlags+difflag]-dc
+
+      x &lt;- xt[ids==idvar] + (mid$X[ids==idvar,] %*% (e * as.numeric(!(di | li))))
+    } else {
+      x &lt;- xt[ids==idvar]
+    }
+
+    date &lt;- df$date[idx[df[idx,id]==idvar]]
+    names(date) &lt;- NULL
+    it0 &lt;- which(df$date==date[1] &amp; df[,id]==idvar)
+    Y0 &lt;- as.vector(sapply(1:(maxlags), function(k) lag(df[,var], k)[it0]))
+    dY0 &lt;- as.vector(sapply(1:(maxlags), function(k) lag(df[,dvar], k)[it0]))
+    lagy0 &lt;- Y0-dY0
+    check &lt;- lagy0[1:(length(Y0)-difflag)]- Y0[(difflag+1):length(Y0)]
+    stopifnot(all(abs(check)&lt;1e-8, na.rm=TRUE))
+    na0 &lt;- is.na(Y0[(difflag+1):length(Y0)])
+    Y0[(difflag+1):length(Y0)][na0] &lt;- lagy0[1:(length(Y0)-difflag)][na0]
+
+    yt &lt;- matrix(0,nrow=nsim,ncol=length(x))
+    e &lt;- matrix(shockgen(length(x)*nsim),nrow=nsim)
+    Y0 &lt;- t(matrix(rep(Y0,nsim),ncol=nsim))
+    Y &lt;- Y0
+    for (t in 1:length(x)) {
+      yt[,t] &lt;- x[t] + Y %*% ar + e[,t]
+      #Y &lt;- c(yt[t], Y[-length(Y)])
+      Y[,2:ncol(Y)] &lt;- Y[,1:(ncol(Y)-1)]
+      Y[,1] &lt;- yt[,t]
+    }
+    return(list(y=cbind(Y0[, ncol(Y0):1],yt),
+                date=c(date[1]-((maxlags):1),date)))
+  }
+}
+
+meanandci &lt;- function(yi, cfyi, date, p=0.9, difflag=7) {
+
+  y &lt;- colMeans(yi)
+  cfy &lt;- colMeans(cfyi)
+  dy &lt;- matrix(NA,nrow=nrow(y),ncol=ncol(y))
+  dy[(difflag+1):nrow(y),]  &lt;- diff(y,difflag)
+
+  dcfy &lt;- matrix(NA,nrow=nrow(cfy),ncol=ncol(cfy))
+  dcfy[(difflag+1):nrow(cfy),]  &lt;- diff(cfy,difflag)
+  statframe &lt;- function(y,suffix) {
+    d &lt;- data.frame(m=rowMeans(y, na.rm=TRUE),
+                    cl=apply(y, 1, function(x) quantile(x, (1-p)/2,na.rm=TRUE)),
+                    ch=apply(y, 1, function(x) quantile(x,1-(1-p)/2,na.rm=TRUE)))
+    names(d) &lt;- paste(names(d), suffix, sep=&quot;&quot;)
+    d
+  }
+
+  cbind(data.frame(date=date),
+        statframe(colMeans(exp(yi)),&quot;y&quot;), statframe(dy,&quot;dy&quot;), statframe(colMeans(exp(cfyi)),&quot;cf&quot;),
+        statframe(dcfy,&quot;dcf&quot;), statframe(colMeans(exp(cfyi)-exp(yi)),&quot;p&quot;),
+        statframe(dcfy-dy,&quot;dp&quot;))
+
+}
+
+nopstatesim &lt;- function(st, nsim=200, simobs, simcf, data, var=&quot;logdc&quot;, dvar=&quot;dlogdc&quot;) {
+  seed &lt;- .Random.seed
+  set.seed(seed)
+  yi &lt;- replicate(nsim, simobs(st, samplecoefs=TRUE, nsim=nsim/2)$y)
+  set.seed(seed)
+  cfyi &lt;- replicate(nsim, simcf(st, samplecoefs=TRUE, nsim=nsim/2)$y)
+  date &lt;- simobs(st, samplecoefs=TRUE, nsim=2)$date
+  est &lt;- meanandci(yi,cfyi, date)
+  est &lt;- merge(est, data.frame(state=st,
+                        obs=exp(data[data$state==st, var]),
+                        dobs=data[data$state==st, dvar],
+                        date=data[data$state==st,]$date),
+               by=&quot;date&quot;, all=TRUE)
+  return(list(edf=est, y=yi, cfy=cfyi))
+}
+
+
+cfplots &lt;- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
+                    yvar=&quot;cases&quot;, data) {
+  xlims &lt;- datelims
+  pds &lt;-
+    c(&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;,
+      &quot;Date.closed.K.12.schools&quot;,
+      &quot;Stay.at.home..shelter.in.place&quot;,
+      &quot;Closed.movie.theaters&quot;,
+      &quot;Closed.restaurants.except.take.out&quot;,
+      &quot;Closed.non.essential.businesses&quot;)
+  if (is.null(cfdata)) {
+    est &lt;- nopstatesim(st, simobs=simobs, simcf=simcf, data=data)
+  } else {
+    est &lt;- subset(cfdata, cfdata$state==st)
+  }
+
+  dt  &lt;- c()
+  labels &lt;- c()
+  for (lbl in pds) {
+    d &lt;- unique(data[data$state==st,lbl])
+    i &lt;- which(dt==d)
+    if (length(i)==0) {
+      if (length(dt)==0)
+        dt &lt;- d
+      else
+        dt &lt;- c(dt,d)
+      labels &lt;- c(labels,lbl)
+    } else {
+      labels[i]  &lt;- paste(labels[i],lbl,sep=&quot;, &quot;)
+    }
+  }
+  labels &lt;- labels[!is.na(dt)]
+  dt &lt;- dt[!is.na(dt)]
+
+  figl &lt;-
+    ggplot(data=est, aes(x=date, y=obs)) +
+    geom_line(aes(color=&quot;Observed&quot;, fill=&quot;Observed&quot;), size=1.5) +
+    geom_line(aes(y=my,color=&quot;Estimated&quot;), size=1.2) +
+    #geom_ribbon(aes(ymin=cly, ymax=chy, fill=&quot;Estimated&quot;),
+    #            alpha=0.3, show.legend=FALSE) +
+    geom_line(aes(y=mcf, color=&quot;Counterfactual&quot;), size=1.2) +
+    #geom_ribbon(aes(ymin=clcf, ymax=chcf, fill=&quot;Without Policies&quot;),
+    #            alpha=0.3, show.legend=FALSE) +
+    figtheme + colors() + colors_fill() +
+    ylab(sprintf(&quot;%s in past week&quot;,yvar)) + labs(color=&quot;&quot;)  +
+    theme(legend.position=c(0.2, 0.8)) +
+    ggtitle(TeX(sprintf(&quot;%s in past week&quot;,yvar))) + xlim(xlims)
+
+  figp &lt;- ggplot(data=est, aes(x=date, y=mp)) +
+    geom_line(size=1.2) +
+    geom_ribbon(aes(ymin=clp, ymax=chp), alpha=0.3) +
+    ylab(sprintf(&quot;Change in %s in past week&quot;, yvar)) + figtheme + colors() + colors_fill() +
+    ggtitle(TeX(sprintf(&quot;Change in %s&quot;,yvar))) +
+    xlim(xlims) +
+    annotate(&quot;text&quot;,x=dt, y=rep(0.01,length(dt)),
+             label=gsub(&quot;\\.&quot;,&quot; &quot;, labels), size=4, angle=90, hjust=0)
+
+
+  figd &lt;- ggplot(data=est, aes(x=date, y=dobs)) +
+    geom_line(aes(y=mdcf, color=&quot;Counterfactual&quot;), size=1.5) +
+    geom_line(aes(color=&quot;Observed&quot;, fill=&quot;Observed&quot;), size=1.5) +
+    geom_line(aes(y=mdy,color=&quot;Estimated&quot;), size=1.5) +
+    #geom_ribbon(aes(ymin=cldy, ymax=chdy, fill=&quot;Estimated&quot;),
+    #            alpha=0.3, show.legend=FALSE) +
+    #geom_ribbon(aes(ymin=cldcf, ymax=chdcf, fill=&quot;Without Policies&quot;),
+    #            alpha=0.3, show.legend=FALSE) +
+    figtheme + colors() + colors_fill() +
+    ylab(TeX(sprintf(&quot;$\\Delta \\log \\Delta %s$&quot;,toupper(substring(yvar,1,1))))) +
+    labs(color=&quot;&quot;)  +
+    theme(legend.position=c(0.8, 0.8)) +
+    ggtitle(TeX(sprintf(&quot;$\\Delta \\log \\Delta %s$&quot;,toupper(substring(yvar,1,1))))) +
+    xlim(xlims)
+
+  figdp &lt;- ggplot(data=est, aes(x=date, y=mdp)) +
+    geom_line(size=1.2) +
+    geom_ribbon(aes(ymin=cldp, ymax=chdp), alpha=0.3) +
+    ylab(TeX(sprintf(&quot;Change in $\\Delta \\log \\Delta %s$&quot;,toupper(substring(yvar,1,1))))) +
+    figtheme + colors() + colors_fill() +
+    ggtitle(TeX(sprintf(&quot;Change in $\\Delta \\log \\Delta %s$&quot;,toupper(substring(yvar,1,1))))) +
+    xlim(xlims) +
+    annotate(&quot;text&quot;,x=dt, y=rep(0.01,length(dt)),
+             label=gsub(&quot;\\.&quot;,&quot; &quot;, labels), size=4, angle=90, hjust=0)
+
+  return(list(figd=figd, figdp=figdp, figl=figl, figp=figp))
+}
+
+# Extract E[log(dc) |state, t, parameters] with parameters ~ N(m$coef, vcov(m))
+getmeans &lt;- function(sl) {
+  date &lt;- sl$edf$date[!is.na(sl$edf$my)]
+  state &lt;- sl$edf$state[!is.na(sl$edf$state)]
+  stopifnot(length(unique(state))==1)
+  y0 &lt;- apply(exp(sl$y), c(2,3), mean)
+  long &lt;- melt(y0)
+  names(long)[names(long)==&quot;value&quot;] &lt;- &quot;meany0&quot;
+
+  log0 &lt;- apply(sl$y, c(2,3), mean)
+  long1 &lt;- melt(log0)
+  names(long1)[names(long1)==&quot;value&quot;] &lt;- &quot;meanlog0&quot;
+  long &lt;- merge(long, long1, by=c(&quot;Var1&quot;,&quot;Var2&quot;))
+
+  y1 &lt;- apply(exp(sl$cf), c(2,3), mean)
+  long1 &lt;- melt(y1)
+  names(long1)[names(long1)==&quot;value&quot;] &lt;- &quot;meany1&quot;
+  long &lt;- merge(long,long1, by=c(&quot;Var1&quot;,&quot;Var2&quot;))
+
+  log1 &lt;- apply(sl$cf, c(2,3), mean)
+  long1 &lt;- melt(log1)
+  names(long1)[names(long1)==&quot;value&quot;] &lt;- &quot;meanlog1&quot;
+  long &lt;- merge(long, long1, by=c(&quot;Var1&quot;,&quot;Var2&quot;))
+
+  long$date &lt;- date[long$Var1]
+  long$state &lt;- unique(state)
+  long$sidx &lt;- long$Var2
+  long$Var1 &lt;- NULL
+  long$Var2 &lt;- NULL
+  return(long)
+}</code></pre>
+<pre class="r"><code>infovars &lt;- list(c(&quot;dlogdc&quot;, &quot;logdc&quot;, &quot;dlogdc.national&quot;, &quot;logdc.national&quot;)) #,
+#c(&quot;dlogdc&quot;, &quot;logdc&quot;))
+#infovars2 &lt;- list(c( &quot;logdc&quot;))
+tvars &lt;- &quot;dlogtests&quot;
+xlist &lt;-list(&quot;&quot;)
+interactions &lt;-list(&quot;month&quot;, statevars)
+ilist &lt;- list(interactions) #, interactions)
+iv &lt;- list(&quot;0&quot;) #,&quot;(testratedc ~ lag(testratedc,14))&quot;)
+
+L &lt;- 14
+sdf &lt;- subset(df, df$date&gt;=datelims[1]) #+L)
+regs &lt;- mainregressions(sdf,
+                        &quot;dlogdc&quot;, pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+m &lt;- regs$piy[[1]]$reg
+cnames &lt;- c(pols, infovars[[1]])
+di &lt;- dieff_table(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
+                  regs$pbiy[[1]]$reg$coef[,1],
+                  regs$piy[[1]]$reg$coef[,1],
+                  policies=cnames)
+
+pib &lt;- lapply(regs$pib[[1]][1:4], function(x) x$reg)
+pbiy &lt;- regs$pbiy[[1]]$reg
+piy &lt;- regs$piy[[1]]$reg
+
+S &lt;- 999
+bs &lt;- bootstrap_felm(sdf, c(pib,list(pbiy,piy)), S=S)
+bdi &lt;- lapply(1:S, function(i)
+  dieff_table(lapply(1:4, function(j) bs[[j]][,i]),
+              bs[[5]][,i], bs[[6]][,i],
+              policies=cnames)
+  )
+
+subcoefs &lt;- function(di, coef) {
+  for (r in 1:(nrow(di)-1)) {
+    i &lt;- grep(rownames(di)[r] , rownames(coef))
+    coef[i,1] &lt;- di[r,&quot;Average&quot;]
+  }
+  return(coef)
+}
+
+bcoefs &lt;- t(do.call(cbind, lapply(1:S, function(i) {
+  coef &lt;- matrix(bs[[6]][,i],ncol=1)
+  rownames(coef) &lt;- rownames(bs[[6]])
+  return(subcoefs(bdi[[i]],coef ))
+})))
+
+V &lt;- cov(bcoefs)
+m$coefficients &lt;- subcoefs(di, m$coefficients)
+m$vcv &lt;- V
+m$clustervcv &lt;- V
+m$robustvcv &lt;- V
+
+simmodel &lt;- createforwardsim(m, sdf)
+
+# remove policies
+cf &lt;- sdf
+cf[,pols] &lt;- 0
+nopmodel &lt;- createforwardsim(m, cf)</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
+<pre class="r"><code>rerunsim=FALSE
+if (!file.exists(&quot;cfnop_NI.Rda&quot;) || rerunsim) {
+  cfnoplist &lt;- lapply(unique(sdf$state), function(s)
+    nopstatesim(s,simobs=simmodel,simcf=nopmodel,data=sdf))
+  allmeans &lt;- rbindlist(lapply(cfnoplist, getmeans))
+  save(cfnoplist,allmeans, file=&quot;cfnop_NI.Rda&quot;)
+}
+load(&quot;cfnop_NI.Rda&quot;)
+cfnop &lt;- do.call(rbind, lapply(cfnoplist, function(x) x$edf))</code></pre>
+<div id="removing-policies" class="section level3" number="2.0.1">
+<h3 number="2.0.1"><span class="header-section-number">2.0.1</span> Removing Policies</h3>
+<p>We now examine the impact changing from the observed policies to none. For illustrative purpose, we being by focusing on Washington. Figure  shows the observed, estimated average, and counterfactual without policies average of <span class="math inline">\(\Delta \log \Delta C\)</span> in Washington. To compute the estimated and counterfactual paths we use the estimates from column 2 of table . We set initial <span class="math inline">\(\Delta \log \Delta C\)</span> and <span class="math inline">\(\log \Delta C\)</span> to their values first observed in the state we are simulating. We hold all other regressors at their observed values. Error terms are drawn with replacement from the residuals. We do this many times and report the average over draws of the residuals. To calculate confidence intervals, we repeat the above with coefficients drawn randomly from their asymptotic distribution. The shaded region is a pointwise 90% confidence interval.</p>
+<pre class="r"><code>st &lt;- &quot;Washington&quot;
+f &lt;- cfplots(st, cfnop, data=df)</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<pre class="r"><code>grid.arrange(f$figd, f$figdp, nrow=2, top =
+                                        textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/WA-nop-dlogdc-1.png" alt="Case growth without policies in Washington \label{fig:WA-nop-dlogdc}" width="768" />
+<p class="caption">
+Case growth without policies in Washington 
+</p>
+</div>
+<pre class="r"><code>grid.arrange(f$figl, f$figp, nrow=2) #,</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/WA-nop-cases-1.png" alt="Cases without policies in Washington \label{fig:WA-nop-cases}" width="768" />
+<p class="caption">
+Cases without policies in Washington 
+</p>
+</div>
+<pre class="r"><code>#top = textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
+<pre class="r"><code>if (!knitr::is_latex_output()) {
+  for( st in c(&quot;New York&quot;, &quot;Florida&quot;, &quot;Michigan&quot;, &quot;Georgia&quot;, &quot;Massachusetts&quot;)) {
+    f &lt;- cfplots(st, cfnop, data=df)
+    grid.arrange(f$figd, f$figdp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2)))
+    grid.arrange(f$figl, f$figp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2)))
+  }
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-1.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-2.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-3.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-4.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-5.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-6.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Removed 3 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 row(s) containing missing values (geom_path).
+
+## Warning: Removed 3 row(s) containing missing values (geom_path).</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-7.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Removed 3 row(s) containing missing values (geom_path).
+
+## Warning: Removed 3 row(s) containing missing values (geom_path).
+
+## Warning: Removed 3 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-8.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 row(s) containing missing values (geom_path).
+
+## Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-9.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-10.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre class="r"><code>states &lt;- c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)
+for(st in states) {
+  f &lt;- cfplots(st, cfnop, data=df)
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-dgrowth.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-growth.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figd + ylim(c(-1,5)))
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-cases.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figl)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-dcases.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+</div>
+<div id="national" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> National</h2>
+<p>These figures show the average effect on <span class="math inline">\(\Delta \log \Delta C\)</span> across states, and the total national effect on cases in past week.</p>
+<pre class="r"><code>abbrv &lt;- unique(df[,c(&quot;state&quot;,&quot;ST&quot;)])
+cfnop &lt;- merge(cfnop, abbrv, by=&quot;state&quot;)
+
+nationalplots &lt;- function(alldf,cfdf, cfname, yvar=&quot;cases&quot;) {
+  alldf[order(state, sidx, date), dlog1:=c(rep(NA,7),diff(meanlog1,7)), by=.(state, sidx)]
+  alldf[order(state, sidx, date),dlog0:=c(rep(NA,7),diff(meanlog0,7)), by=.(state, sidx)]
+  national &lt;- alldf[ , .(diff=sum(meany1-meany0), y0=sum(meany0), dlog=mean(dlog1-dlog0)), by=.(date, sidx)]
+
+  adf &lt;- national[, .(mp=mean(diff),
+                      clo=quantile(diff, 0.05),
+                      chi=quantile(diff, 0.95),
+                      rel=mean(diff/y0),
+                      rlo=quantile(diff/y0, 0.05),
+                      rhi=quantile(diff/y0, 0.95),
+                      mlog=mean(dlog, na.rm=TRUE),
+                      llo=quantile(dlog, 0.025, na.rm=TRUE),
+                      lhi=quantile(dlog, 0.975, na.rm=TRUE)
+                      ),
+                  keyby=.(date)]
+
+  figdlog &lt;- ggplot(cfdf, aes(x=date)) +
+    #geom_text(aes(y=mdp, label=ST),alpha=0.2) +
+    geom_point(aes(y=mdp),alpha=0.2, size=0.5) +
+    xlim(datelims) +
+    geom_line(data=adf,  aes(x=date, y=mlog, color=&quot;&quot;), size=2) + figtheme +
+    geom_ribbon(data=adf, aes(ymin=llo, ymax=lhi, fill=&quot;&quot;),alpha=0.3) +
+    colors() + theme(legend.position=&quot;none&quot;) +
+    ylab(TeX(sprintf(&quot;Change in $\\Delta \\log \\Delta %s$&quot;,
+                     toupper(substring(yvar,1,1))
+                     ))) +
+    colors_fill() +
+    ggtitle(sprintf(&quot;Effect of %s on %s growth&quot;,cfname, substring(yvar,1,nchar(yvar)-1)))
+
+  figc &lt;- ggplot(cfdf, aes(x=date)) +
+    #geom_text(aes(y=mp, label=ST),alpha=0.5) +
+    geom_point(aes(y=mp),alpha=0.2, size=0.5) +
+    xlim(datelims) +
+    geom_line(data=adf, aes(x=date, y=mp, color=&quot;&quot;), size=2) +
+    figtheme +
+    geom_ribbon(data=adf, aes(ymin=clo, ymax=chi, fill=&quot;&quot;),alpha=0.3) +
+    colors() + theme(legend.position=&quot;none&quot;) +
+    ylab(sprintf(&quot;%s in the past week&quot;, yvar)) +
+    colors_fill() +
+    ggtitle(sprintf(&quot;Effect of %s on %s&quot;,cfname, yvar))
+
+  figr &lt;- ggplot(adf, aes(x=date, y=rel)) +
+    xlim(datelims) +
+    geom_line(aes(color=&quot;&quot;), size=2) + figtheme +
+    geom_ribbon(data=adf, aes(ymin=rlo, ymax=rhi, fill=&quot;&quot;),alpha=0.3) +
+    colors() + theme(legend.position=&quot;none&quot;) +
+    ylab(sprintf(&quot;relative increase in %s&quot;,yvar)) +
+    colors_fill() +
+    ggtitle(sprintf(&quot;Relative effect of %s&quot;,cfname))
+  return(list(g=figdlog, c=figc, r=figr))
+}
+
+figs &lt;- nationalplots(allmeans,cfnop, &quot;removing policies&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-dgrowth.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-dcases.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-rel.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/nop-all-1.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/nop-all-2.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/nop-all-3.png" width="768" /></p>
+</div>
+<div id="non-essential-business-closures" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> Non-Essential Business Closures</h2>
+<pre class="r"><code># remove non-essential business closure
+cf &lt;- sdf
+cf[,&quot;pnonessential&quot;] &lt;- 0
+nobmodel &lt;- createforwardsim(m, cf)</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
+<pre class="r"><code>if (!file.exists(&quot;cfnb_NI.Rda&quot;) || rerunsim) {
+  cfnblist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf))
+  nball &lt;- rbindlist(lapply(cfnblist, getmeans))
+  save(cfnblist,nball, file=&quot;cfnb_NI.Rda&quot;)
+}
+load(&quot;cfnb_NI.Rda&quot;)
+cfnb &lt;- do.call(rbind, lapply(cfnblist, function(x) x$edf))</code></pre>
+<pre class="r"><code>cfnb &lt;- merge(cfnb, abbrv, by=&quot;state&quot;)
+for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
+  f &lt;- cfplots(st, cfnb, data=df)
+  f$figp + ggtitle(sprintf(&quot;Effect of never shutting down non-essential businesses in %s&quot;,st))
+  #grid.arrange(f$figd + ggtitle(), f$figdp + ggtitle(), nrow=2, top =
+  #textGrob(st,gp=gpar(fontsize=20,font=2)))
+
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nb-dgrowth.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nb-dcases.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<pre><code>## Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>figs &lt;- nationalplots(nball, cfnb,
+                      &quot;never shutting down non-essential\nbusinesses&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nb-dgrowth.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nb-dcases.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nb-rel.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-2-2.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-2-3.png" width="768" /></p>
+</div>
+<div id="masks" class="section level2" number="2.3">
+<h2 number="2.3"><span class="header-section-number">2.3</span> Masks</h2>
+<p>We now look at what happens when all states impose a mask mandate on April 1st.</p>
+<pre class="r"><code>cf &lt;- df
+cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-04-01&quot;)
+cf[,&quot;pmaskbus&quot;] &lt;-
+  smoothedpolicy(cf,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;,type=&quot;ma&quot;,bw=6)
+cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
+maskmodel &lt;- createforwardsim(m, cf)
+
+if (!file.exists(&quot;cfmask_NI.Rda&quot;) || rerunsim) {
+  cfmasklist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf))
+  maskall &lt;- rbindlist(lapply(cfmasklist, getmeans))
+  save(cfmasklist, maskall, file=&quot;cfmask_NI.Rda&quot;)
+}
+load(&quot;cfmask_NI.Rda&quot;)
+cfmask &lt;- do.call(rbind, lapply(cfmasklist, function(x) x$edf))</code></pre>
+<pre class="r"><code>cfmask &lt;- merge(cfmask, abbrv, by=&quot;state&quot;)
+for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
+  f &lt;- cfplots(st, cfmask, data=df)
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of mandating masks on April 1st in %s&quot;,st)))
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-growth.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figd + ylim(c(-1,5)))
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dgrowth.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dcases.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-3-2.png" width="768" /></p>
+<pre><code>## Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 row(s) containing missing values (geom_path).
+
+## Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-3-3.png" width="768" /></p>
+<pre class="r"><code>figs &lt;- nationalplots(maskall, cfmask, &quot;mandating masks on April 1st\n&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-dgrowth.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-dcases.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-rel.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-3-4.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-3-5.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-3-6.png" width="768" /></p>
+</div>
+<div id="stay-at-home" class="section level2" number="2.4">
+<h2 number="2.4"><span class="header-section-number">2.4</span> Stay at home</h2>
+<p>We now look at what happens if stay at home orders were never issued.</p>
+<pre class="r"><code>cf &lt;- df
+cf[,&quot;pshelter&quot;] &lt;- 0
+cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
+noshelter &lt;- createforwardsim(m, cf)</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
+<pre class="r"><code>if (!file.exists(&quot;cfshelter_NI.Rda&quot;) || rerunsim) {
+  cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
+  shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
+  save(cfshelterlist, shelterall, file=&quot;cfshelter_NI.Rda&quot;)
+}
+load(&quot;cfshelter_NI.Rda&quot;)
+cfshelter &lt;- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))</code></pre>
+<pre class="r"><code>cfshelter &lt;- merge(cfshelter, abbrv, by=&quot;state&quot;)
+for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
+  f &lt;- cfplots(st, cfshelter, data=df)
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of no stay at home order in %s&quot;,st)))
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dgrowth.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcases.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-4-2.png" width="768" /></p>
+<pre><code>## Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-4-3.png" width="768" /></p>
+<pre class="r"><code>figs &lt;- nationalplots(shelterall, cfshelter, &quot;no stay at home orders&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dgrowth.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dcases.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-rel.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-4-4.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-4-5.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-4-6.png" width="768" /></p>
+</div>
+</div>
+<div id="deaths" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Deaths</h1>
+<pre class="r"><code>infovars &lt;- list(c(&quot;dlogdd&quot;, &quot;logdd&quot;, &quot;dlogdd.national&quot;, &quot;logdd.national&quot;)) #,
+#c(&quot;dlogdc&quot;, &quot;logdc&quot;))
+#infovars2 &lt;- list(c( &quot;logdc&quot;))
+tvars &lt;- NULL
+xlist &lt;-list(&quot;&quot;)
+interactions &lt;-list(&quot;month&quot;, statevars)
+ilist &lt;- list(interactions) #, interactions)
+iv &lt;- list(&quot;0&quot;) #,&quot;(testratedc ~ lag(testratedc,14))&quot;)
+
+L &lt;- 21
+sdf &lt;- subset(df, df$date&gt;=datelims[1]) #+L)
+regs &lt;- mainregressions(sdf,
+                        &quot;dlogdd&quot;, pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+
+m &lt;- regs$piy[[1]]$reg
+
+cnames &lt;- c(pols, infovars[[1]])
+di &lt;- dieff_table(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
+                  regs$pbiy[[1]]$reg$coef[,1],
+                  regs$piy[[1]]$reg$coef[,1],
+                  policies=cnames)
+
+pib &lt;- lapply(regs$pib[[1]][1:4], function(x) x$reg)
+pbiy &lt;- regs$pbiy[[1]]$reg
+piy &lt;- regs$piy[[1]]$reg
+
+S &lt;- 999
+bs &lt;- bootstrap_felm(sdf, c(pib,list(pbiy,piy)), S=S)
+bdi &lt;- lapply(1:S, function(i)
+  dieff_table(lapply(1:4, function(j) bs[[j]][,i]),
+              bs[[5]][,i], bs[[6]][,i],
+              policies=cnames)
+  )
+
+bcoefs &lt;- t(do.call(cbind, lapply(1:S, function(i) {
+  coef &lt;- matrix(bs[[6]][,i],ncol=1)
+  rownames(coef) &lt;- rownames(bs[[6]])
+  return(subcoefs(bdi[[i]],coef ))
+})))
+V &lt;- cov(bcoefs)
+m$coefficients &lt;- subcoefs(di, m$coefficients)
+m$vcv &lt;- V
+m$clustervcv &lt;- V
+m$robustvcv &lt;- V
+
+simmodel &lt;- createforwardsim(m, sdf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)
+
+# remove policies
+cf &lt;- sdf
+cf[,pols] &lt;- 0
+nopmodel &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
+<pre class="r"><code>rerunsim=FALSE
+if (!file.exists(&quot;cfnop_deaths_NI.Rda&quot;) || rerunsim) {
+  cfnoplist &lt;- lapply(unique(df$state), function(s)
+    nopstatesim(s,simobs=simmodel,simcf=nopmodel, data=sdf, var=&quot;logdd&quot;, dvar=&quot;dlogdd&quot;))
+  allmeans &lt;- rbindlist(lapply(cfnoplist, getmeans))
+  save(cfnoplist,allmeans, file=&quot;cfnop_deaths_NI.Rda&quot;)
+}
+load(&quot;cfnop_deaths_NI.Rda&quot;)
+cfnop &lt;- do.call(rbind, lapply(cfnoplist, function(x) x$edf))</code></pre>
+<div id="removing-policies-1" class="section level3" number="3.0.1">
+<h3 number="3.0.1"><span class="header-section-number">3.0.1</span> Removing Policies</h3>
+<pre class="r"><code>st &lt;- &quot;Washington&quot;
+f &lt;- cfplots(st, cfnop, yvar=&quot;deaths&quot;, data=df)</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<pre class="r"><code>grid.arrange(f$figd, f$figdp, nrow=2, top =
+                                        textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/WA-nop-dlogdd-1.png" alt="Case growth without policies in Washington \label{fig:WA-nop-dlogdc}" width="768" />
+<p class="caption">
+Case growth without policies in Washington 
+</p>
+</div>
+<pre class="r"><code>grid.arrange(f$figl, f$figp, nrow=2) #,</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/WA-nop-deaths-1.png" alt="Cases without policies in Washington \label{fig:WA-nop-cases}" width="768" />
+<p class="caption">
+Cases without policies in Washington 
+</p>
+</div>
+<pre class="r"><code>#top = textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
+<pre class="r"><code>if (!knitr::is_latex_output()) {
+  for( st in c(&quot;New York&quot;, &quot;Florida&quot;, &quot;Michigan&quot;, &quot;Georgia&quot;, &quot;Massachusetts&quot;)) {
+    f &lt;- cfplots(st, cfnop, yvar=&quot;deaths&quot;, data=df)
+    grid.arrange(f$figd, f$figdp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2)))
+    grid.arrange(f$figl, f$figp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2)))
+  }
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-1.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-2.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-3.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-4.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-5.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-6.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-7.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-8.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-9.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<div class="figure">
+<img src="counterfactuals_national_files/figure-html/otherstates-deaths-10.png" alt="Effect of Removing Policies" width="768" />
+<p class="caption">
+Effect of Removing Policies
+</p>
+</div>
+<pre class="r"><code>states &lt;- c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)
+for(st in states) {
+  f &lt;- cfplots(st, cfnop, yvar=&quot;deaths&quot;, data=df)
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-dgrowth_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-growth_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figd + ylim(c(-1,5)))
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-cases_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figl)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nop-dcases_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+</div>
+<div id="national-1" class="section level2" number="3.1">
+<h2 number="3.1"><span class="header-section-number">3.1</span> National</h2>
+<pre class="r"><code>abbrv &lt;- unique(df[,c(&quot;state&quot;,&quot;ST&quot;)])
+cfnop &lt;- merge(cfnop, abbrv, by=&quot;state&quot;)
+
+figs &lt;- nationalplots(allmeans,cfnop, &quot;removing policies&quot;, yvar=&quot;deaths&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-dgrowth_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-dcases_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-rel_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/nop-all-deaths-1.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/nop-all-deaths-2.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/nop-all-deaths-3.png" width="768" /></p>
+</div>
+<div id="non-essential-business-closures-1" class="section level2" number="3.2">
+<h2 number="3.2"><span class="header-section-number">3.2</span> Non-Essential Business Closures</h2>
+<pre class="r"><code># remove non-essential business closure
+cf &lt;- sdf
+cf[,&quot;pnonessential&quot;] &lt;- 0
+nobmodel &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
+<pre class="r"><code>if (!file.exists(&quot;cfnb_deaths_NI.Rda&quot;) || rerunsim) {
+  cfnblist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf, var=&quot;logdd&quot;, dvar=&quot;dlogdd&quot;))
+  nball &lt;- rbindlist(lapply(cfnblist, getmeans))
+  save(cfnblist,nball, file=&quot;cfnb_deaths_NI.Rda&quot;)
+}
+load(&quot;cfnb_deaths_NI.Rda&quot;)
+cfnb &lt;- do.call(rbind, lapply(cfnblist, function(x) x$edf))</code></pre>
+<pre class="r"><code>cfnb &lt;- merge(cfnb, abbrv, by=&quot;state&quot;)
+for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
+  f &lt;- cfplots(st, cfnb, yvar=&quot;deaths&quot;, data=df)
+  f$figp + ggtitle(sprintf(&quot;Effect of never shutting down non-essential businesses in %s&quot;,st))
+  #grid.arrange(f$figd + ggtitle(), f$figdp + ggtitle(), nrow=2, top =
+  #textGrob(st,gp=gpar(fontsize=20,font=2)))
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nb-dgrowth_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-nb-dcases_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<pre class="r"><code>figs &lt;- nationalplots(nball, cfnb,
+                      &quot;never shutting down non-essential\nbusinesses&quot;, yvar=&quot;deaths&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nb-dgrowth_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nb-dcases_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nb-rel_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-5-2.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-5-3.png" width="768" /></p>
+</div>
+<div id="masks-1" class="section level2" number="3.3">
+<h2 number="3.3"><span class="header-section-number">3.3</span> Masks</h2>
+<p>We now look at what happens when all states impose a mask mandate on April 1st.</p>
+<pre class="r"><code>cf &lt;- df
+cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-04-01&quot;)
+cf[,&quot;pmaskbus&quot;] &lt;-
+  smoothedpolicy(cf,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;,type=&quot;ma&quot;,bw=6)
+cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
+maskmodel &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)
+
+if (!file.exists(&quot;cfmask_deaths_NI.Rda&quot;) || rerunsim) {
+  cfmasklist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf, var=&quot;logdd&quot;, dvar=&quot;dlogdd&quot;))
+  maskall &lt;- rbindlist(lapply(cfmasklist, getmeans))
+  save(cfmasklist, maskall, file=&quot;cfmask_deaths_NI.Rda&quot;)
+}
+load(&quot;cfmask_deaths_NI.Rda&quot;)
+cfmask &lt;- do.call(rbind, lapply(cfmasklist, function(x) x$edf))</code></pre>
+<pre class="r"><code>cfmask &lt;- merge(cfmask, abbrv, by=&quot;state&quot;)
+for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
+  f &lt;- cfplots(st, cfmask, yvar=&quot;deaths&quot;, data=df)
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of mandating masks on April 1st in %s&quot;,st)))
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-growth_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figd + ylim(c(-1,5)))
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dgrowth_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dcases_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-6-2.png" width="768" /><img src="counterfactuals_national_files/figure-html/unnamed-chunk-6-3.png" width="768" /></p>
+<pre class="r"><code>figs &lt;- nationalplots(maskall, cfmask, &quot;mandating masks on April 1st\n&quot;, yvar=&quot;deaths&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-dgrowth_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-dcases_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-rel_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-6-4.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-6-5.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-6-6.png" width="768" /></p>
+</div>
+<div id="stay-at-home-1" class="section level2" number="3.4">
+<h2 number="3.4"><span class="header-section-number">3.4</span> Stay at home</h2>
+<p>We now look at what happens if stay at home orders were never issued.</p>
+<pre class="r"><code>cf &lt;- df
+cf[,&quot;pshelter&quot;] &lt;- 0
+cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
+noshelter &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
+<pre class="r"><code>if (!file.exists(&quot;cfshelter_deaths_NI.Rda&quot;) || rerunsim) {
+  cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
+  shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
+  save(cfshelterlist, shelterall, file=&quot;cfshelter_deaths_NI.Rda&quot;)
+}
+load(&quot;cfshelter_deaths_NI.Rda&quot;)
+cfshelter &lt;- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))</code></pre>
+<pre class="r"><code>cfshelter &lt;- merge(cfshelter, abbrv, by=&quot;state&quot;)
+for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
+  f &lt;- cfplots(st, cfshelter, data=df, yvar=&quot;deaths&quot;)
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of no stay at home order in %s&quot;,st)))
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dgrowth_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcases_deaths.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-7-2.png" width="768" /><img src="counterfactuals_national_files/figure-html/unnamed-chunk-7-3.png" width="768" /></p>
+<pre class="r"><code>figs &lt;- nationalplots(shelterall, cfshelter, &quot;no stay at home orders&quot;, yvar=&quot;deaths&quot;)
+
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dgrowth_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dcases_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-rel_deaths.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>for (f in figs) print(f)</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-7-4.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-7-5.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="counterfactuals_national_files/figure-html/unnamed-chunk-7-6.png" width="768" /></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
