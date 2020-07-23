@@ -82,288 +82,7 @@ datelims <- c(as.Date("2020-03-07"), max(df$date))
 
 
 ```{r cffuncs, cache=FALSE}
-#' Given an estimated felm model with lags and differences, returns a
-#' function that simulates the model.
-#'
-#' @param m estimated felm model
-#' @param df Data
-#' @param dvar Name of variable repressenting differences in the
-#' model. dvar should be a difference of length difflag.
-#' @param var Name of varaible representing levels in the model.
-#' @param difflag difference length for dvar
-#' @param lhsdiff if true the outcome is also dvar with the same
-#' difflag, if not the outcome is var
-#'
-#' @return A function with arguments idvar==value of identifier for
-#'   which to simulate and shockgen=function(n) that generates values
-#'   for residuals. The default value of shockgen is to resample model
-#'   residuals with replacement. The function returns a simulated path
-#'   var beginning from the initial values for id==idvar and using the
-#'   exogenous covariates of id==idvar.
-#'
-#' Example:
-#' df <- df[order(df$id,$df$t),]
-#' df$dy <- paneldiff(df$y, df$id, df$t, lag=2)
-#' fmla <- dy ~ lag(y,3) + lag(dy,1) + x
-#' # hack to get get id
-#'
-#' sim <- createforwardsim(fmla, df, "dy", "y", 2, TRUE)
-#' # simulate with errors set to 0's
-#' yhat <- sim(df$id[1], function(n) fill(0, n))
-#' #' # simulate sampling residuals with replacement
-#' yhat <- sim(df$id[1])
-createforwardsim <- function(m, df, id="state",
-                             dvar="dlogdc", var="logdc",
-                             difflag=7, lhsdiff=TRUE) {
-  m$coef[is.nan(m$coef)] <- 0
-
-  # get index of observations used in mdl
-  df$idxcfs <- 1:nrow(df)
-  mid <- felm(update.felm.formula(m$formula, idxcfs ~ .), data=df, keepX=TRUE)
-  idx <- mid$response
-
-  # This  regexp will match dvar if preceded by start of string or (
-  # and followed by end of string or ,
-  di <- grepl(sprintf("(^|\\()%s(,|$)",dvar), rownames(m$coef))
-  li <- grepl(sprintf("(^|\\()%s(,|$)",var), rownames(m$coef))
-  dc <- m$coef[di]
-  names(dc) <- rownames(m$coef)[di]
-  lc <- m$coef[li]
-  names(lc) <- rownames(m$coef)[li]
-  # exogenous part of model
-  if (!is.null(getfe(m))) {
-    stop("createforwardsim not implemented with fixed effects. Include factors in the formula instead")
-  }
-
-  xt <- mid$X %*% (m$coef * as.numeric(!(di | li)))
-  #xtold <- m$fitted.values - m$X %*% (m$coef * as.numeric(di | li))
-
-  ## convert into AR model
-  llags <- as.numeric(gsub("lag\\(.+, (\\d+)\\)","\\1", names(lc)))
-  dlags <- as.numeric(gsub("lag\\(.+, (\\d+)\\)","\\1", names(dc)))
-  maxlags <- max(c(llags, dlags+difflag, ifelse(lhsdiff, difflag, 0)))
-  ar <- rep(0, maxlags)
-  if (lhsdiff) ar[difflag]  <- ar[difflag] + 1
-  ar[llags]  <- ar[llags] + lc
-  ar[dlags] <- ar[dlags] +dc
-  ar[dlags+difflag] <- ar[dlags+difflag]-dc
-
-  if (!is(df, "pdata.frame")) {
-    warning("df is not a pdata.frame. This function assumes df is sorted by id, time, and within each id, time is consecutive. Results will be incorrect if these assumptions are false.")
-  } else {
-    stopifnot(all(is.pconsecutive(df)))
-  }
-
-  sim <- function(idvar, shockgen=function(n=1) { sample(m$residuals, size=n,
-                                                         replace=TRUE)},
-                  samplecoefs=FALSE, nsim=100) {
-    ids <- df[idx,id]
-    if (samplecoefs) {
-      V <- vcov(m)
-      nac <- is.na(m$coefficients)
-      e <- rep(0,nrow(V))
-      Vnona <- V[!nac,!nac]
-      e[!nac] <- t(rmvnorm(1, mean=rep(0, nrow(Vnona)), sigma=Vnona))
-
-      dc <- m$coef[di] + e[di]
-      lc <- m$coef[li] + e[li]
-      ## convert into AR model
-      ar <- rep(0, maxlags)
-      if (lhsdiff) ar[difflag]  <- ar[difflag] + 1
-      ar[llags]  <- ar[llags] + lc
-      ar[dlags] <- ar[dlags] +dc
-      ar[dlags+difflag] <- ar[dlags+difflag]-dc
-
-      x <- xt[ids==idvar] + (mid$X[ids==idvar,] %*% (e * as.numeric(!(di | li))))
-    } else {
-      x <- xt[ids==idvar]
-    }
-
-    date <- df$date[idx[df[idx,id]==idvar]]
-    names(date) <- NULL
-    it0 <- which(df$date==date[1] & df[,id]==idvar)
-    Y0 <- as.vector(sapply(1:(maxlags), function(k) lag(df[,var], k)[it0]))
-    dY0 <- as.vector(sapply(1:(maxlags), function(k) lag(df[,dvar], k)[it0]))
-    lagy0 <- Y0-dY0
-    check <- lagy0[1:(length(Y0)-difflag)]- Y0[(difflag+1):length(Y0)]
-    stopifnot(all(abs(check)<1e-8, na.rm=TRUE))
-    na0 <- is.na(Y0[(difflag+1):length(Y0)])
-    Y0[(difflag+1):length(Y0)][na0] <- lagy0[1:(length(Y0)-difflag)][na0]
-
-    yt <- matrix(0,nrow=nsim,ncol=length(x))
-    e <- matrix(shockgen(length(x)*nsim),nrow=nsim)
-    Y0 <- t(matrix(rep(Y0,nsim),ncol=nsim))
-    Y <- Y0
-    for (t in 1:length(x)) {
-      yt[,t] <- x[t] + Y %*% ar + e[,t]
-      #Y <- c(yt[t], Y[-length(Y)])
-      Y[,2:ncol(Y)] <- Y[,1:(ncol(Y)-1)]
-      Y[,1] <- yt[,t]
-    }
-    return(list(y=cbind(Y0[, ncol(Y0):1],yt),
-                date=c(date[1]-((maxlags):1),date)))
-  }
-}
-
-meanandci <- function(yi, cfyi, date, p=0.9, difflag=7) {
-
-  y <- colMeans(yi)
-  cfy <- colMeans(cfyi)
-  dy <- matrix(NA,nrow=nrow(y),ncol=ncol(y))
-  dy[(difflag+1):nrow(y),]  <- diff(y,difflag)
-
-  dcfy <- matrix(NA,nrow=nrow(cfy),ncol=ncol(cfy))
-  dcfy[(difflag+1):nrow(cfy),]  <- diff(cfy,difflag)
-  statframe <- function(y,suffix) {
-    d <- data.frame(m=rowMeans(y, na.rm=TRUE),
-                    cl=apply(y, 1, function(x) quantile(x, (1-p)/2,na.rm=TRUE)),
-                    ch=apply(y, 1, function(x) quantile(x,1-(1-p)/2,na.rm=TRUE)))
-    names(d) <- paste(names(d), suffix, sep="")
-    d
-  }
-
-  cbind(data.frame(date=date),
-        statframe(colMeans(exp(yi)),"y"), statframe(dy,"dy"), statframe(colMeans(exp(cfyi)),"cf"),
-        statframe(dcfy,"dcf"), statframe(colMeans(exp(cfyi)-exp(yi)),"p"),
-        statframe(dcfy-dy,"dp"))
-
-}
-
-nopstatesim <- function(st, nsim=200, simobs, simcf, data, var="logdc", dvar="dlogdc") {
-  seed <- .Random.seed
-  set.seed(seed)
-  yi <- replicate(nsim, simobs(st, samplecoefs=TRUE, nsim=nsim/2)$y)
-  set.seed(seed)
-  cfyi <- replicate(nsim, simcf(st, samplecoefs=TRUE, nsim=nsim/2)$y)
-  date <- simobs(st, samplecoefs=TRUE, nsim=2)$date
-  est <- meanandci(yi,cfyi, date)
-  est <- merge(est, data.frame(state=st,
-                        obs=exp(data[data$state==st, var]),
-                        dobs=data[data$state==st, dvar],
-                        date=data[data$state==st,]$date),
-               by="date", all=TRUE)
-  return(list(edf=est, y=yi, cfy=cfyi))
-}
-
-
-cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
-                    yvar="cases", data) {
-  xlims <- datelims
-  pds <-
-    c("Mandate.face.mask.use.by.employees.in.public.facing.businesses",
-      "Date.closed.K.12.schools",
-      "Stay.at.home..shelter.in.place",
-      "Closed.movie.theaters",
-      "Closed.restaurants.except.take.out",
-      "Closed.non.essential.businesses")
-  if (is.null(cfdata)) {
-    est <- nopstatesim(st, simobs=simobs, simcf=simcf, data=data)
-  } else {
-    est <- subset(cfdata, cfdata$state==st)
-  }
-
-  dt  <- c()
-  labels <- c()
-  for (lbl in pds) {
-    d <- unique(data[data$state==st,lbl])
-    i <- which(dt==d)
-    if (length(i)==0) {
-      if (length(dt)==0)
-        dt <- d
-      else
-        dt <- c(dt,d)
-      labels <- c(labels,lbl)
-    } else {
-      labels[i]  <- paste(labels[i],lbl,sep=", ")
-    }
-  }
-  labels <- labels[!is.na(dt)]
-  dt <- dt[!is.na(dt)]
-
-  figl <-
-    ggplot(data=est, aes(x=date, y=obs)) +
-    geom_line(aes(color="Observed", fill="Observed"), size=1.5) +
-    geom_line(aes(y=my,color="Estimated"), size=1.2) +
-    #geom_ribbon(aes(ymin=cly, ymax=chy, fill="Estimated"),
-    #            alpha=0.3, show.legend=FALSE) +
-    geom_line(aes(y=mcf, color="Counterfactual"), size=1.2) +
-    #geom_ribbon(aes(ymin=clcf, ymax=chcf, fill="Without Policies"),
-    #            alpha=0.3, show.legend=FALSE) +
-    figtheme + colors() + colors_fill() +
-    ylab(sprintf("%s in past week",yvar)) + labs(color="")  +
-    theme(legend.position=c(0.2, 0.8)) +
-    ggtitle(TeX(sprintf("%s in past week",yvar))) + xlim(xlims)
-
-  figp <- ggplot(data=est, aes(x=date, y=mp)) +
-    geom_line(size=1.2) +
-    geom_ribbon(aes(ymin=clp, ymax=chp), alpha=0.3) +
-    ylab(sprintf("Change in %s in past week", yvar)) + figtheme + colors() + colors_fill() +
-    ggtitle(TeX(sprintf("Change in %s",yvar))) +
-    xlim(xlims) +
-    annotate("text",x=dt, y=rep(0.01,length(dt)),
-             label=gsub("\\."," ", labels), size=4, angle=90, hjust=0)
-
-
-  figd <- ggplot(data=est, aes(x=date, y=dobs)) +
-    geom_line(aes(y=mdcf, color="Counterfactual"), size=1.5) +
-    geom_line(aes(color="Observed", fill="Observed"), size=1.5) +
-    geom_line(aes(y=mdy,color="Estimated"), size=1.5) +
-    #geom_ribbon(aes(ymin=cldy, ymax=chdy, fill="Estimated"),
-    #            alpha=0.3, show.legend=FALSE) +
-    #geom_ribbon(aes(ymin=cldcf, ymax=chdcf, fill="Without Policies"),
-    #            alpha=0.3, show.legend=FALSE) +
-    figtheme + colors() + colors_fill() +
-    ylab(TeX(sprintf("$\\Delta \\log \\Delta %s$",toupper(substring(yvar,1,1))))) +
-    labs(color="")  +
-    theme(legend.position=c(0.8, 0.8)) +
-    ggtitle(TeX(sprintf("$\\Delta \\log \\Delta %s$",toupper(substring(yvar,1,1))))) +
-    xlim(xlims)
-
-  figdp <- ggplot(data=est, aes(x=date, y=mdp)) +
-    geom_line(size=1.2) +
-    geom_ribbon(aes(ymin=cldp, ymax=chdp), alpha=0.3) +
-    ylab(TeX(sprintf("Change in $\\Delta \\log \\Delta %s$",toupper(substring(yvar,1,1))))) +
-    figtheme + colors() + colors_fill() +
-    ggtitle(TeX(sprintf("Change in $\\Delta \\log \\Delta %s$",toupper(substring(yvar,1,1))))) +
-    xlim(xlims) +
-    annotate("text",x=dt, y=rep(0.01,length(dt)),
-             label=gsub("\\."," ", labels), size=4, angle=90, hjust=0)
-
-  return(list(figd=figd, figdp=figdp, figl=figl, figp=figp))
-}
-
-# Extract E[log(dc) |state, t, parameters] with parameters ~ N(m$coef, vcov(m))
-getmeans <- function(sl) {
-  date <- sl$edf$date[!is.na(sl$edf$my)]
-  state <- sl$edf$state[!is.na(sl$edf$state)]
-  stopifnot(length(unique(state))==1)
-  y0 <- apply(exp(sl$y), c(2,3), mean)
-  long <- melt(y0)
-  names(long)[names(long)=="value"] <- "meany0"
-
-  log0 <- apply(sl$y, c(2,3), mean)
-  long1 <- melt(log0)
-  names(long1)[names(long1)=="value"] <- "meanlog0"
-  long <- merge(long, long1, by=c("Var1","Var2"))
-
-  y1 <- apply(exp(sl$cf), c(2,3), mean)
-  long1 <- melt(y1)
-  names(long1)[names(long1)=="value"] <- "meany1"
-  long <- merge(long,long1, by=c("Var1","Var2"))
-
-  log1 <- apply(sl$cf, c(2,3), mean)
-  long1 <- melt(log1)
-  names(long1)[names(long1)=="value"] <- "meanlog1"
-  long <- merge(long, long1, by=c("Var1","Var2"))
-
-  long$date <- date[long$Var1]
-  long$state <- unique(state)
-  long$sidx <- long$Var2
-  long$Var1 <- NULL
-  long$Var2 <- NULL
-  return(long)
-}
-
+source(paste(rootdir,"cases_and_policies/rmd/counterfactuals.R", sep="/"))
 ```
 
 ```{r statesim, cache=FALSE}
@@ -443,16 +162,62 @@ We now examine the impact changing from the observed policies to
 none. For illustrative purpose, we being by focusing on
 Washington. Figure \ref{fig:WA-nop-dlogdc} shows the observed,
 estimated average, and counterfactual without policies average of
-$\Delta \log \Delta C$ in Washington. To compute the estimated and
-counterfactual paths we use the estimates from column 2 of table
-\ref{tab:policy-cases}. We set initial $\Delta \log \Delta C$ and
-$\log \Delta C$ to their values first observed in the state we are
-simulating. We hold all other regressors at their observed
-values. Error terms are drawn with replacement from the residuals. We
-do this many times and report the average over draws of the
-residuals. To calculate confidence intervals, we repeat the above with
-coefficients drawn randomly from their asymptotic distribution. The
-shaded region is a pointwise 90\% confidence interval.
+$\Delta \log \Delta C$ in Washington.
+
+To compute the estimated and counterfactual paths we use the estimates
+from column 2 of table \ref{tab:policy-cases}. We set initial $\Delta
+\log \Delta C$ and $\log \Delta C$ to their values first observed in
+the state we are simulating. We hold all other regressors at their
+observed values. Error terms are drawn with replacement from the
+residuals. We do this many times and report the average over draws of
+the residuals. To calculate confidence intervals, we repeat the above
+with coefficients drawn randomly from their asymptotic
+distribution. The shaded region is a pointwise 90\% confidence
+interval.
+
+To be more precise, we can rewrite our regression model as:
+
+$$
+  Y_{it} = P_{it}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \epsilon_{it}
+$$
+
+where $Y_{it} = \log \Delta C_{it}$, $P_{it}$ are policies, and
+$X_{it}$ are controls. Each counterfactual involves changing $P_{it}$
+to some other value, $P_{it}^\ast$. We then generate counterfactual paths
+for cases by in state $i$ conditional on
+$Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast \}_{t=1}^T, \theta=(\alpha, \beta, \rho)$ by setting:
+
+$$
+  Y_{it}^{\ast,r} = {P_{it}^\ast}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \hat{\epsilon}_{it}^{\ast,r}
+$$
+
+where $\hat{\epsilon}_{it}^{\ast,r}$ are resampled with replacement
+from $\{\hat{\epsilon}_{it}\}_{i=1,t=1}^{N,T}$. We do resample the
+residuals $R$ times, repeating the above each time. We then compute
+
+$$
+\hat{E}[Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r}
+$$
+
+Finally, we repeatedly draw $\theta$ from its asymptotic distribution
+and repeat all of the above to compute confidence intervals.
+
+For case growth, the same procedure is used, but with $\Delta Y_{it} = \Delta \log \Delta C_{it}$ in place of $Y_{it}$. The top panel of the following figure shows
+
+$$
+E[\Delta Y_{it} | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}\}_{t=1}^T]
+$$
+
+and
+
+$$
+E[\Delta Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T]
+$$
+
+along with the observed $Y_{it}$, and the bottom panel shows the difference.
+
+
 
 
 ```{r WA-nop-dlogdc, cache=TRUE,fig.cap="Case growth without policies in Washington \\label{fig:WA-nop-dlogdc}"}
@@ -462,6 +227,14 @@ grid.arrange(f$figd, f$figdp, nrow=2, top =
                                         textGrob(st,gp=gpar(fontsize=20,font=2)))
 
 ```
+
+To look at cases we instead compute,
+
+$$
+\hat{E}[\exp(Y_{it}^\ast) | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r})
+$$
+
 
 ```{r WA-nop-cases, cache=TRUE, fig.cap="Cases without policies in Washington \\label{fig:WA-nop-cases}"}
 grid.arrange(f$figl, f$figp, nrow=2) #,
@@ -506,62 +279,32 @@ for(st in states) {
 These figures show the average effect on $\Delta \log \Delta C$ across
 states, and the total national effect on cases in past week.
 
+That is for the first figure, we take:
+
+$$
+\hat{E}[\Delta Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\frac{1}{N} \sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \Delta Y_{it}^{\ast,r}
+$$
+
+and plot the difference of the above between two different values of $P_{it}^\ast$
+
+The second figure shows the total change in cases, that is the change in:
+
+$$
+\hat{E}[\exp(Y_{it}^\ast) | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
+\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r}).
+$$
+
+The final figure shows
+$$
+\frac{\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r}) - \sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^r)} {\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{r})}
+$$
+that is, the (average over residual draws) change in national cases relative to (average over residual draws) national cases.
+
+
 ```{r nop-all, cache=TRUE}
 abbrv <- unique(df[,c("state","ST")])
 cfnop <- merge(cfnop, abbrv, by="state")
-
-nationalplots <- function(alldf,cfdf, cfname, yvar="cases") {
-  alldf[order(state, sidx, date), dlog1:=c(rep(NA,7),diff(meanlog1,7)), by=.(state, sidx)]
-  alldf[order(state, sidx, date),dlog0:=c(rep(NA,7),diff(meanlog0,7)), by=.(state, sidx)]
-  national <- alldf[ , .(diff=sum(meany1-meany0), y0=sum(meany0), dlog=mean(dlog1-dlog0)), by=.(date, sidx)]
-
-  adf <- national[, .(mp=mean(diff),
-                      clo=quantile(diff, 0.05),
-                      chi=quantile(diff, 0.95),
-                      rel=mean(diff/y0),
-                      rlo=quantile(diff/y0, 0.05),
-                      rhi=quantile(diff/y0, 0.95),
-                      mlog=mean(dlog, na.rm=TRUE),
-                      llo=quantile(dlog, 0.025, na.rm=TRUE),
-                      lhi=quantile(dlog, 0.975, na.rm=TRUE)
-                      ),
-                  keyby=.(date)]
-
-  figdlog <- ggplot(cfdf, aes(x=date)) +
-    #geom_text(aes(y=mdp, label=ST),alpha=0.2) +
-    geom_point(aes(y=mdp),alpha=0.2, size=0.5) +
-    xlim(datelims) +
-    geom_line(data=adf,  aes(x=date, y=mlog, color=""), size=2) + figtheme +
-    geom_ribbon(data=adf, aes(ymin=llo, ymax=lhi, fill=""),alpha=0.3) +
-    colors() + theme(legend.position="none") +
-    ylab(TeX(sprintf("Change in $\\Delta \\log \\Delta %s$",
-                     toupper(substring(yvar,1,1))
-                     ))) +
-    colors_fill() +
-     ggtitle(sprintf("Effect of %s on %s growth",cfname, substring(yvar,1,nchar(yvar)-1)))
-
-  figc <- ggplot(cfdf, aes(x=date)) +
-    #geom_text(aes(y=mp, label=ST),alpha=0.5) +
-    geom_point(aes(y=mp),alpha=0.2, size=0.5) +
-    xlim(datelims) +
-    geom_line(data=adf, aes(x=date, y=mp, color=""), size=2) +
-    figtheme +
-    geom_ribbon(data=adf, aes(ymin=clo, ymax=chi, fill=""),alpha=0.3) +
-    colors() + theme(legend.position="none") +
-    ylab(sprintf("%s in the past week", yvar)) +
-    colors_fill() +
-    ggtitle(sprintf("Effect of %s on %s",cfname, yvar))
-
-  figr <- ggplot(adf, aes(x=date, y=rel)) +
-    xlim(datelims) +
-    geom_line(aes(color=""), size=2) + figtheme +
-    geom_ribbon(data=adf, aes(ymin=rlo, ymax=rhi, fill=""),alpha=0.3) +
-    colors() + theme(legend.position="none") +
-    ylab(sprintf("relative increase in %s",yvar)) +
-    colors_fill() +
-    ggtitle(sprintf("Relative effect of %s",cfname))
-  return(list(g=figdlog, c=figc, r=figr))
-}
 
 figs <- nationalplots(allmeans,cfnop, "removing policies")
 
@@ -687,6 +430,52 @@ dev.off()
 
 for (f in figs) print(f)
 ```
+
+### Holding Residuals fixed
+
+In this subsection, instead of resampling residuals, we condition on them. That is we look at
+
+$$
+  Y_{it}^{\ast} = {P_{it}^\ast}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \hat{\epsilon}_{it}
+$$
+
+instead of
+
+$$
+  \frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r}.
+$$
+
+
+
+```{r masks-resids-fixed}
+simmodel1 <- function(st, samplecoefs=FALSE, nsim=1)
+  simmodel(st, samplecoefs=samplecoefs, nsim=nsim,
+           shockgen=NULL)
+maskmodel1 <- function(st, samplecoefs=FALSE, nsim=1)
+  maskmodel(st, samplecoefs=samplecoefs, nsim=nsim,
+            shockgen=NULL)
+
+rerunsim <- FALSE
+if (!file.exists("cfmask1.Rda") || rerunsim) {
+  cfmasklist1 <- lapply(unique(df$state),
+                        function(s) nopstatesim(s,simobs=simmodel1,simcf=maskmodel1, data=sdf, nresid=1))
+  maskall1 <- rbindlist(lapply(cfmasklist1, getmeans))
+  save(cfmasklist1, maskall1, file="cfmask1.Rda")
+}
+load("cfmask1.Rda")
+cfmask1 <- do.call(rbind, lapply(cfmasklist1, function(x) x$edf))
+
+for (st in c("Washington","Illinois","Massachusetts")) {
+  f <- cfplots(st, cfmask1, yvar="deaths", data=df)
+  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on April 1st in %s",st)))
+
+}
+
+figs1 <- nationalplots(maskall1, cfmask1, "mandating masks on April 1st\n")
+
+for (f in figs1) print(f)
+```
+
 
 ## Stay at home
 
