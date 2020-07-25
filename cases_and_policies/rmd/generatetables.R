@@ -141,8 +141,18 @@ mainregressions <- function(df, # data
                   xlist[[k]]),
                 interactions[[k]], "0", L=0)
     })
-  }
-  return(list(pib=pib, pbiy=pbiy, piy=piy))
+  } 
+  
+   
+  ijs <- expand.grid(1:length(pols), 1:length(xlist))
+  ip <- apply(ijs, 1, function(ij) {
+    policyreg(df, pols[[ij[1]]],  NULL,  bvars,
+              c(infovars[[ij[2]]],
+                xlist[[ij[2]]]),
+              interactions[[ij[2]]], "0", L=L)
+  })
+    
+  return(list(pib=pib, pbiy=pbiy, piy=piy, ip=ip))
 }
 
 
@@ -155,7 +165,7 @@ printstars <- function(est, se, starp=c(0.1, 0.05, 0.01)) {
   return(sprintf("%.3f$^{%s}$", est, stars))
 }
 
-showhtmltables <- function(pib, pbiy, piy) {
+showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
 
   omit <- c(statevarregexp,
             "^month") #"testratedc:",)
@@ -183,7 +193,31 @@ showhtmltables <- function(pib, pbiy, piy) {
                                "\\hline")
               )
 
- }
+  }
+  
+  
+  if (!(is.null(ip))) {
+    cat("\n### Policies and Information\n")
+    
+    peff <- sapply(ip, function(x) x$peff[1])
+    sep <- sapply(ip, function(x) x$peff[2])
+    cnames <- sapply(ip, function(x) colnames(x$reg$response))
+    stargazer(lapply(ip, function(x) x$reg),
+              type="html",
+              title="Policies and Information",
+              #dep.var.labels=cnames,
+              dep.var.labels.include=FALSE,
+              column.labels=cnames,
+              omit=omit,
+              omit.labels=omit.labels,
+              omit.stat=c("f", "ser"), model.names=FALSE,
+              model.numbers=TRUE,
+              add.lines = list(c("sum Policy",sprintf("%.3f",peff)),
+                               c("",sprintf("(%.3f)",sep)),
+                               "\\hline")
+    )
+    
+  }
 
   if (!(is.null(pbiy))) {
     ylbl <- colnames(pbiy[[1]]$reg$response)
@@ -235,6 +269,9 @@ showhtmltables <- function(pib, pbiy, piy) {
               model.numbers=TRUE)
 
   }
+  
+  
+ 
 
   return(NULL)
 }

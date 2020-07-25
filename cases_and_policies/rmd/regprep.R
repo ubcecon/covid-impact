@@ -78,12 +78,18 @@ df$pmaskany <- apply(df[,c("pmaskbus","pmaskall")], 1, max)
 pols <- c("pmaskbus", "pk12","pshelter","pmovie","pgyms","prestaurant","pnonessential")
 
 
+df$vote <- df$voteshare
+df$logvote <- log(df$vote)
+
 statevars <- c("log(Population.2018)",
                "log(Square.Miles)",
                "Percent.Unemployed..2018.",
                "Percent.living.under.the.federal.poverty.line..2018.",
-               "Percent.at.risk.for.serious.illness.due.to.COVID")
+               "Percent.at.risk.for.serious.illness.due.to.COVID", "logvote")
 bvars <- c("workplaces","retail","grocery","transit")
+
+for(i in 1:length(bvars)) df[,bvars[i]] <- df[,bvars[i]]/100 
+
 
 #df$udistance <- panelma(df$daily_distance_diff,df$state, df$date, 6)
 #df$uvisits <- panelma(df$daily_visitation_diff,df$state, df$date, 6)
@@ -114,6 +120,9 @@ ndf <- merge(ndf, nc, by="date", all=TRUE)
 ndf <- pdata.frame(ndf, index=c("state","t"))
 df <- ndf[order(ndf$state, ndf$date),]
 
+df$z.mask <- df$z.mask/100
+df$mask_percent <- df$mask_percent/100
+
 tilt = ifelse(df$date> as.Date("2020-05-01"),1,0 )
 month <- month(df$date)
 #month[month==6] <- 5
@@ -121,4 +130,4 @@ month <- month(df$date)
 df$month = as.factor(month)
 df$pmask.may <- df$pmaskbus*tilt
 df$pmask.april <- df$pmaskbus*(1-tilt)
-pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
+pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 

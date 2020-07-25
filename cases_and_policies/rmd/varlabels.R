@@ -21,6 +21,7 @@ varlabels <-
     "log(deaths[t]-deaths[t-7])", "NYT", TRUE,
 
     "logt", "log(days since 2020-01-15)", "log(days since January 15, 2020)", "", TRUE,
+    
 
     "testratedc", "$\\frac{\\Delta{D}}{\\Delta{C}} T_{it}$",
     "tests in past week time deaths in past week divided by cases in past week",
@@ -58,6 +59,15 @@ varlabels <-
 
     "psoe","state of emergency","state of emergency", "Raifman et al",TRUE,
 
+    
+    "party","Governor's party","Governor's party", "OPENICPSR",TRUE,
+    
+    "vote","Trump voting shares","Trump voting shares", "MIT Election Lab",TRUE,
+    
+    "logvote","log(Trump voting shares)","log(Trump voting shares)", "MIT Election Lab",TRUE,
+    
+    "z.mask","mask wearing rates","z-score for mask wearing rates", "YouGov",TRUE,
+    
     "pmaskbus", "masks for employees",
     "mandate face mask use by employees in public facing businesses",
     "Raifman et al",TRUE,

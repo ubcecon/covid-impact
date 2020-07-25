@@ -36,6 +36,8 @@ gitrootdir <- function() {
 
 rootdir <- gitrootdir()
 
+rootdir <- "/Users/Hiro/Documents/GitHub/covid-impact"
+
 # Data on policies from Raifman and collaborators
 urls <- c("https://docs.google.com/spreadsheets/d/1zu9qEWI8PsOI_i8nI_S29HDGHlIp2lfVMsGxpQ5tvAQ/edit#gid=993060716",
           "https://docs.google.com/spreadsheets/d/1zu9qEWI8PsOI_i8nI_S29HDGHlIp2lfVMsGxpQ5tvAQ/edit#gid=1357478819",
@@ -266,6 +268,18 @@ stopifnot(length(unique(df$ST))==51)
 stopifnot(length(unique(df$fips))==51)
 stopifnot(nrow(unique(df[,c("state","ST","fips")]))==51)
 stopifnot(nrow(unique(df[,c("fips","date","state","ST")]))==nrow(df))
+
+temp <- read.csv(paste(rootdir,"cases_and_policies/data/Facemask_Mar26_April29.csv",sep="/"))
+temp1 <- temp[c("state","fips","z.mask","mask_percent")] 
+temp <- read.csv(paste(rootdir,"cases_and_policies/data/1976-2016-president.csv",sep="/"))
+temp <- temp[ which(temp$year==2016 & temp$candidate=="Trump, Donald J." & temp$party=="republican" & 
+                       temp$writein=="FALSE"), ]
+temp$voteshare <- temp$candidatevotes/temp$totalvotes
+temp$fips <- temp$state_fips
+temp <- temp[c("state","fips","voteshare")]
+temp <- merge(temp,temp1,by=c("state","fips")) 
+df <- merge(df,temp,by=c("state","fips"))
+
 
 
 covidstates <- df

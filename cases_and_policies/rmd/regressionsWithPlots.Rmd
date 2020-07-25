@@ -73,6 +73,7 @@ sgstyle <- 'default'
 colors <-  scale_color_solarized
 colors_fill <- scale_fill_solarized
 rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
+rootdir <- "/Users/Hiro/Documents/GitHub/covid-impact" 
 source(paste(rootdir,"cases_and_policies/R/exploratory.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/R/dataprep.R",sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
@@ -85,7 +86,7 @@ source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
 
 ## Correlations
 
-```{r corr, cache=TRUE}
+```{r corr, cache=FALSE}
 cmat <-  cor(df[,c(bvars,pols)], use="pairwise.complete.obs")
 scmat <-
   matrix(sprintf("%.2f",cmat),nrow=(length(bvars)+length(pols)))
@@ -167,13 +168,13 @@ df$testratedc.ma[df$dcases==0] <- 0
 
 ## Cases
 
-```{r caseregs, cache=TRUE, warning=FALSE, results='hide'}
+```{r caseregs, cache=FALSE, warning=FALSE, results='hide'}
 infovars <- list(c("dlogdc", "logdc"),
                  c("dlogdc", "logdc","dlogdc.national", "logdc.national")) #,
 #c("dlogdc", "logdc"))
 #infovars2 <- list(c( "logdc"))
-tvars <- "dlogtests"
-xlist <-list("", "")
+tvars <- "dlogtests"  
+xlist <-list("", "") 
 interactions <-list("month", statevars)
 ilist <- list(interactions, interactions)
 iv <- list("0","0") #,"(testratedc ~ lag(testratedc,14))")
@@ -184,8 +185,8 @@ regs <- mainregressions(sdf,
                         "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
 ```
 
-```{r casetables, cache=TRUE, warning=FALSE, results='asis'}
-showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy)
+```{r casetables, cache=FALSE, warning=FALSE, results='asis'}
+showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy, regs$ip)
 savetextables(regs$pib[[1]], NULL, NULL, prefix="behavior")
 savetextables(c(regs$pib[[1]][1:4], regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-NI")
 
@@ -195,7 +196,7 @@ savetextables(NULL, regs$pbiy, regs$piy, prefix="cases")
 savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="cases-nosplit")
 ```
 
-```{r casedieff, cache=TRUE, warning=FALSE, results='asis'}
+```{r casedieff, eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 for (use.national in c(TRUE,FALSE)) {
   sb <- ifelse(use.national, 2, 1)
   sy <- ifelse(use.national, 3, 1)
@@ -252,7 +253,7 @@ for (use.national in c(TRUE,FALSE)) {
 
 ## Deaths (with cases as information)
 
-```{r deathtables, cache=TRUE, warning=FALSE, results='asis'}
+```{r deathtables, eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
 infovars <- list(c("dlogdc", "logdc"),
                  c("dlogdc", "logdc","dlogdc.national", "logdc.national")) #,
 df$zero <- 0
@@ -266,7 +267,7 @@ savetextables(NULL, regs$pbiy, regs$piy, prefix="deaths-casesinfo")
 
 ## Deaths (with deaths as information)
 
-```{r deathtablesd, cache=TRUE, warning=FALSE, results='asis'}
+```{r deathtablesd, eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 df$zero <- 0
 infovarsd <- list(c("dlogdd", "logdd"),
                   c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
@@ -282,12 +283,11 @@ savetextables(c(regs$pib[[1]][1:4], regs$pib[[2]][1:4]), NULL, NULL, prefix="beh
 savetextables(c(regs$pib[[1]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-stateinfo")
 savetextables(c(regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-nationinfo")
 savetextables(NULL, regs$pbiy, regs$piy, prefix="deaths-deathsinfo")
-savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="deaths-deathsinfo-nosplit")
-
+savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="deaths-deathsinfo-nosplit") 
 
 ```
 
-```{r dieff-deaths, cache=TRUE, results='asis', warning=FALSE}
+```{r dieff-deaths, eval = TRUE, cache=FALSE, results='asis', warning=FALSE}
 for (use.national in c(TRUE,FALSE)) {
   sb <- ifelse(use.national, 2, 1)
   sy <- ifelse(use.national, 3, 1)
@@ -329,7 +329,7 @@ for (use.national in c(TRUE,FALSE)) {
 
 <!-- ## $\log(\Delta D/\Delta C)$ -->
 
-<!-- ```{r logdddc, cache=TRUE, warning=FALSE, results='asis'} -->
+<!-- ```{r logdddc, cache=FALSE, warning=FALSE, results='asis'} -->
 <!-- df$logdddc <- log(df$ddeath/panellag(df$cases, df$state, df$date, 7)) -->
 <!-- df$logdddc[df$ddeath<=0] <- NA -->
 <!-- df$logdddc[is.infinite(df$logdddc)] <- NA -->
@@ -339,6 +339,47 @@ for (use.national in c(TRUE,FALSE)) {
 
 <!-- showhtmltables(NULL, regs$pbiy, regs$piy); -->
 <!-- ``` -->
+
+
+
+## Robustness Check
+```{r regsrobust, cache=FALSE, warning=FALSE, results='asis'}
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national")) #,
+#c("dlogdc", "logdc"))
+#infovars2 <- list(c( "logdc"))
+tvars <- "dlogtests"  
+# xlist <-list(c("z.mask","vote"), c("z.mask","vote")) 
+xlist <-list(c("z.mask"), c("z.mask")) 
+#xlist <-list(c("mask_percent","vote"), c("mask_percent","vote")) 
+interactions <-list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0") #,"(testratedc ~ lag(testratedc,14))") 
+L <- 14
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+regs <- mainregressions(sdf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+
+showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy);
+savetextables(NULL, regs$pbiy, regs$piy, prefix="cases-robust")
+
+df$zero <- 0
+infovarsd <- list(c("dlogdd", "logdd"),
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
+# infovarsd <- list(c("logdd")
+L <- 21
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+regs <- mainregressions(sdf,
+                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L)
+showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy);
+
+
+
+```
+
+
+
+
 
 # Figures
 
@@ -353,7 +394,7 @@ interacted with the 14 day lagged, 7 day moving average of a mask
 policy indicator). Light points are the state observations without a
 mask policy. Dark points are states with a mask policy 14 days ago.
 
-```{r fig, cache=TRUE,  fig_width=10, fig_height=6, warning=FALSE}
+```{r fig, cache=FALSE,  fig_width=10, fig_height=6, warning=FALSE}
 pfigure <- function(df, pol, stlab=1, outcome="dlogdc", L=14) {
   df$p <- panellag(df[,pol],df$state, df$date, L)
   df$p <- ceiling(df$p)
@@ -404,7 +445,7 @@ fig
 
 We now look at similar figures for other policies.
 
-```{r polplots, cache=TRUE, fig_width=10, fig_height=6}
+```{r polplots, cache=FALSE, fig_width=10, fig_height=6}
 fig <- pfigure(df, "pk12", stlab=-1) +
   ggtitle(TeX(relabel("dlogdc given pk12"))) +
   xlim(c(as.Date("2020-03-15"), max(df$date))) +
@@ -429,7 +470,7 @@ for (p in pols[3:length(pols)]) {
 
 # Death Growth Plots
 
-```{r poldeathsplots, cache=TRUE, fig_width=10, fig_height=6, warning=FALSE}
+```{r poldeathsplots, cache=FALSE, fig_width=10, fig_height=6, warning=FALSE}
 fig <- pfigure(df, "pmaskbus", stlab=-1, outcome="dlogdd", L=21) +
   ggtitle(TeX(relabel("dlogdd given pmaskbus"))) +
   ylab(TeX(relabel("dlogdd")))
