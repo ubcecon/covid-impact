@@ -100,7 +100,10 @@ mainregressions <- function(df, # data
                        L=14) {
 
 
-  plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
+  # plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
+  plist <- list(pols, c("pmaskbus","pk12","pindex"))
+  
+  
 
   stopifnot(length(xlist)==length(interactions))
   stopifnot(length(xlist)==length(ivlist))
@@ -212,11 +215,15 @@ showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
               omit.labels=omit.labels,
               omit.stat=c("f", "ser"), model.names=FALSE,
               model.numbers=TRUE,
-              add.lines = list(c("sum Policy",sprintf("%.3f",peff)),
-                               c("",sprintf("(%.3f)",sep)),
-                               "\\hline")
-    )
-    
+              # add.lines = list(c("sum Policy",sprintf("%.3f",peff)),
+              #                  c("",sprintf("(%.3f)",sep)),
+              #                  "\\hline")
+              add.lines=list(c("sum behavior",
+                               sprintf("%.3f",sapply(ip, function(x) x$beff[1]))),
+                             c("",
+                               sprintf("(%.3f)",sapply(ip, function(x) x$beff[2]))),
+                             "\\hline")
+    ) 
   }
 
   if (!(is.null(pbiy))) {
@@ -352,9 +359,10 @@ savetextables <- function(pib, pbiy, piy, prefix,
 
   if (!(is.null(piy))) {
 
-    yvar <- colnames(pbiy[[1]]$reg$response)
-    if (yvar=="dlogdd") ylbl <- "Death Growth"
-    if (yvar=="dlogdc") ylbl <- "Case Growth"
+   #  yvar <- colnames(pbiy[[1]]$reg$response)
+    # yvar <- colnames(piy$reg$response)
+    # if (yvar=="dlogdd") ylbl <- "Death Growth"
+    # if (yvar=="dlogdc") ylbl <- "Case Growth"
 
     tbl <- capture.output(stargazer(
         lapply(piy, function(x) x$reg),

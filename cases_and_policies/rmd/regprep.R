@@ -2,7 +2,8 @@ cs$t <- as.numeric(cs$date)
 
 warning("Using data only up to 2020-06-02 as in submitted version of paper. Modify lines 4-5 of regprep.R to change")
 df <- pdata.frame(subset(cs, cs$date>=as.Date("2020-01-01") &
-                             cs$date<=as.Date("2020-06-02")),
+                                   cs$date<=as.Date("2020-06-02")),
+                  # cs$date<=as.Date("2020-06-30")),
                   index=c("state","t"), stringsAsFactors=FALSE)
 
 #df$tests[df$testmissing] <- 0
@@ -85,7 +86,7 @@ statevars <- c("log(Population.2018)",
                "log(Square.Miles)",
                "Percent.Unemployed..2018.",
                "Percent.living.under.the.federal.poverty.line..2018.",
-               "Percent.at.risk.for.serious.illness.due.to.COVID", "logvote")
+               "Percent.at.risk.for.serious.illness.due.to.COVID") #, "logvote")
 bvars <- c("workplaces","retail","grocery","transit")
 
 for(i in 1:length(bvars)) df[,bvars[i]] <- df[,bvars[i]]/100 
@@ -123,6 +124,9 @@ df <- ndf[order(ndf$state, ndf$date),]
 df$z.mask <- df$z.mask/100
 df$mask_percent <- df$mask_percent/100
 
+df$pindex <- (df$pshelter+df$pmovie+df$prestaurant+df$pnonessential)/4
+#df$pindex <- (df$pshelter+df$prestaurant+df$pnonessential)/3
+
 tilt = ifelse(df$date> as.Date("2020-05-01"),1,0 )
 month <- month(df$date)
 #month[month==6] <- 5
@@ -130,4 +134,5 @@ month <- month(df$date)
 df$month = as.factor(month)
 df$pmask.may <- df$pmaskbus*tilt
 df$pmask.april <- df$pmaskbus*(1-tilt)
-pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 
+pols <- c("pmaskbus","pk12","pmovie","pshelter","prestaurant","pnonessential") 
+#pols <- c("pmaskbus","pk12","pindex") 
