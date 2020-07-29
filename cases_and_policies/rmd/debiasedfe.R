@@ -105,7 +105,9 @@ reg_fe <- function(df, # data
                  weights = df[subsample1, ]$sweight)
   cross2 <- felm(fmla[[1]], data = df[subsample2, ], 
                  weights = df[subsample2, ]$sweight)
-  sdf <- rbind(df[subsample1, ], df[subsample2, ])
+  sdf2 <- df[subsample2, ]
+  sdf2$state <- paste(sdf2$state,2, sep = "-")
+  sdf <- rbind(df[subsample1, ], sdf2)
   cross3 <- felm(fmla[[1]], data = sdf, 
                  weights = sdf$sweight)
   # Debiased estimates

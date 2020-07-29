@@ -86,7 +86,7 @@ statevars <- c("log(Population.2018)",
                "log(Square.Miles)",
                "Percent.Unemployed..2018.",
                "Percent.living.under.the.federal.poverty.line..2018.",
-               "Percent.at.risk.for.serious.illness.due.to.COVID") #, "logvote")
+               "Percent.at.risk.for.serious.illness.due.to.COVID","party")#, "logvote")
 bvars <- c("workplaces","retail","grocery","transit")
 
 for(i in 1:length(bvars)) df[,bvars[i]] <- df[,bvars[i]]/100 
@@ -123,6 +123,8 @@ df <- ndf[order(ndf$state, ndf$date),]
 
 df$z.mask <- df$z.mask/100
 df$mask_percent <- df$mask_percent/100
+
+df$party <- as.factor(df$party)
 
 df$pindex <- (df$pshelter+df$pmovie+df$prestaurant+df$pnonessential)/4
 #df$pindex <- (df$pshelter+df$prestaurant+df$pnonessential)/3
