@@ -100,8 +100,8 @@ mainregressions <- function(df, # data
                        L=14) {
 
 
-  # plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
-  plist <- list(pols, c("pmaskbus","pk12","pindex"))
+  plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
+  # plist <- list(pols, c("pmaskbus","pk12","pindex"))
   
   
 
@@ -284,7 +284,7 @@ showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
 }
 
 
-savetextables <- function(pib, pbiy, piy, prefix,
+savetextables <- function(pib, pbiy, piy, prefix, ip = NULL,
                           rootdir=system("git rev-parse --show-toplevel", intern=TRUE)[1])
 {
   omit <- c(statevarregexp,
@@ -360,9 +360,9 @@ savetextables <- function(pib, pbiy, piy, prefix,
   if (!(is.null(piy))) {
 
    #  yvar <- colnames(pbiy[[1]]$reg$response)
-    # yvar <- colnames(piy$reg$response)
-    # if (yvar=="dlogdd") ylbl <- "Death Growth"
-    # if (yvar=="dlogdc") ylbl <- "Case Growth"
+    ylbl <- colnames(piy[[1]]$reg$response)
+    if (ylbl=="dlogdd") ylbl <- "Death Growth"
+    if (ylbl=="dlogdc") ylbl <- "Case Growth"
 
     tbl <- capture.output(stargazer(
         lapply(piy, function(x) x$reg),
@@ -388,6 +388,38 @@ savetextables <- function(pib, pbiy, piy, prefix,
     #tbl <- gsub("No","Yes", tbl)
     texfile <- sprintf("%s/tex/tables_and_figures/%s-piy.tex",rootdir,prefix)
     cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
+  }
+  
+  
+  if (!(is.null(ip))) {
+    
+  beff <- sapply(ip, function(x) x$beff[1])
+  sep <- sapply(ip, function(x) x$beff[2])
+  cnames <- sapply(ip, function(x) colnames(x$reg$response))
+  tbl <- capture.output(stargazer(
+    lapply(ip, function(x) x$reg),
+    type="latex",
+    title="Inofrmation and Policies",
+    #dep.var.labels=c("Trend Information","Lag Cases Information"), #c(bvars,bvars),
+    dep.var.labels.include=FALSE,
+    column.labels=cnames,
+    omit=omit,
+    omit.labels=omit.labels,
+    omit.stat=c("f", "ser"), model.names=FALSE,
+    model.numbers=TRUE,
+    df=FALSE, header=FALSE,
+    no.space=TRUE,
+    column.sep.width="1pt",
+    add.lines = list(c("$\\sum_j \\mathrm{Behavior}_j$",
+                       sapply(1:length(beff), function(i) printstars(beff[i], sep[i]))),
+                     c("",sprintf("(%.3f)",sep))))
+  )
+  tbl <- relabel(tbl)
+  tbl <- gsub("Model (\\d)", "\\(\\1\\)", tbl)
+  #tbl <- gsub("No","Yes", tbl)
+  texfile <- sprintf("%s/tex/tables_and_figures/%s-ip.tex",rootdir,prefix)
+  cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
+  
   }
 
   return(NULL)
