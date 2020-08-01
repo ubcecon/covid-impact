@@ -338,48 +338,77 @@ interactions <-list("month", statevars)
 ilist <- list(interactions, interactions)
 iv <- list("0","0") #,"(testratedc ~ lag(testratedc,14))")
 
+
+# pi-y with log(vote)
+xlist <-list(c("logvote"), c("logvote"))
+L <- 14
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+regs <- mainregressions(sdf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, NULL, regs$ip)
+savetextables(NULL, NULL, NULL, prefix="policy",ip = regs$ip[1:6])
+
+
+
 L <- 14
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
 piy <- list()
 yvar <- "dlogdc"
 for (k in 1:length(infovars)) {
-  # (1) excluding NY
+  # (1) policy index
+  pols <- c("pmaskbus","pk12","pindex")
+   xlist <-list("","")
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+  piy[[(1+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+              c(sprintf("lag(%s, %d)", infovars[[k]], L),
+                tvars, xlist[[k]]),
+              ilist[[k]], 0, L=L)
+  # (2) excluding NY
+  pols <- c("pmaskbus","pk12","pmovie","pshelter","prestaurant","pnonessential")
    xlist <-list("","")
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   sdf2 <- sdf[which(sdf$state!='New York'),]
-  piy[[(1+4*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
+  piy[[(2+6*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
               ilist[[k]], 0, L=L)
-  # (2) adding mask wearing rate and log(Trump's vote)
+  # (3) adding mask wearing rate
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
-  xlist <-list(c("z.mask","logvote"), c("z.mask","logvote"))
-  piy[[(2+4*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+  xlist <-list(c("z.mask"), c("z.mask"))
+  piy[[(3+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
               ilist[[k]], 0, L=L)
-  # (3) lagged behavior variables
+  # (4) adding log(Trump's vote)
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+  xlist <-list(c("logvote","party"), c("logvote","party"))
+  piy[[(4+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+              c(sprintf("lag(%s, %d)", infovars[[k]], L),
+                tvars, xlist[[k]]),
+              ilist[[k]], 0, L=L)
+  # (5) lagged behavior variables
   sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L)
   xlist <-list("","")
-  piy[[(3+4*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+  piy[[(5+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", bvars, L+14),
                 sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
               ilist[[k]], 0, L=L)
-  # (4) (1)-(3)
+  # (6) (2)-(5)
    sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L)
    sdf2 <- sdf[which(sdf$state!='New York'),]
-   xlist <-list(c("z.mask","logvote"), c("z.mask","logvote"))
-   piy[[(4+4*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
+  xlist <-list(c("z.mask","logvote","party"), c("z.mask","logvote","party"))
+   piy[[(6+6*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", bvars, L+14),
                 sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
               ilist[[k]], 0, L=L)
-
 }
 
+
+colnames(piy[[1]]$reg$response) <- "dlogdc"
 showhtmltables(NULL, NULL, piy);
-# savetextables(NULL, NULL,  piy, prefix="cases-robust")
+savetextables(NULL, NULL,  piy[1:6], prefix="cases-robust")
 
 
 L <- 21
@@ -390,43 +419,67 @@ infovars <- list(c("dlogdd", "logdd"),
                   c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
 #xlist <-list(c("z.mask","logvote"), c("z.mask","logvote"))
 for (k in 1:length(infovars)) {
-  # (1) excluding NY
+
+
+
+  # (1) policy index
+  pols <- c("pmaskbus","pk12","pindex")
+  xlist <-list("","")
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+  piy[[(1+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+              c(sprintf("lag(%s, %d)", infovars[[k]], L),
+                 xlist[[k]]),
+              ilist[[k]], 0, L=L)
+  # (2) excluding NY
+  pols <- c("pmaskbus","pk12","pmovie","pshelter","prestaurant","pnonessential")
   xlist <-list("","")
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   sdf2 <- sdf[which(sdf$state!='New York'),]
-  piy[[(1+4*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
+  piy[[(2+6*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                  xlist[[k]]),
               ilist[[k]], 0, L=L)
-  # (2) adding mask wearing rate and log(Trump's vote)
+
+  # (3) adding mask wearing rate
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
-  xlist <-list(c("z.mask","logvote"), c("z.mask","logvote"))
-  piy[[(2+4*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+  xlist <-list(c("z.mask"), c("z.mask"))
+  piy[[(3+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                  xlist[[k]]),
               ilist[[k]], 0, L=L)
-  # (3) lagged behavior variables
+  # (4) adding log(Trump's vote)
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+  xlist <-list(c("logvote"), c("logvote"))
+  piy[[(4+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+              c(sprintf("lag(%s, %d)", infovars[[k]], L),
+                 xlist[[k]]),
+              ilist[[k]], 0, L=L)
+  # (5) lagged behavior variables
   sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L)
   xlist <-list("","")
-  piy[[(3+4*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
+  piy[[(5+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", bvars, L+14),
                 sprintf("lag(%s, %d)", infovars[[k]], L),
                  xlist[[k]]),
               ilist[[k]], 0, L=L)
-  # (4) (1)-(3)
+  # (6) (2)-(5)
    sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L)
    # sdf2 <- sdf[which(sdf$state!='New York' & sdf$state!='New Jersey' & sdf$state!='Connecticut' & sdf$state!='Massachusetts'),]
    sdf2 <- sdf[which(sdf$state!='New York'),]
    xlist <-list(c("z.mask","logvote"), c("z.mask","logvote"))
-   piy[[(4+4*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
+   piy[[(6+6*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", bvars, L+14),
                 sprintf("lag(%s, %d)", infovars[[k]], L),
                 xlist[[k]]),
               ilist[[k]], 0, L=L)
 
 }
+colnames(piy[[1]]$reg$response) <- "dlogdd"
 showhtmltables(NULL, NULL, piy);
-# savetextables(NULL, NULL,  piy, prefix="deaths-robust")
+savetextables(NULL, NULL,  piy[1:6], prefix="deaths-robust")
+　
+
+
 ```
 
 
@@ -436,8 +489,8 @@ showhtmltables(NULL, NULL, piy);
 
 source(paste(rootdir,"cases_and_policies/rmd/debiasedfe.R", sep="/"))
 
-#df$pindex <- (df$pshelter+df$pmovie+df$prestaurant+df$pnonessential)/4
-df$pindex <- (df$pshelter+df$prestaurant+df$pnonessential)/3
+df$pindex <- (df$pshelter+df$pmovie+df$prestaurant+df$pnonessential)/4
+#df$pindex <- (df$pshelter+df$prestaurant+df$pnonessential)/3
 
 yvar <- "dlogdc"
 infovars <- list(c("dlogdc", "logdc"),
@@ -446,6 +499,21 @@ tvars <- "dlogtests"
 L <- 14
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
 piy <- list()
+
+#' Update the coefficients of felm object.  Also updates the t stats
+#' and p values, so that summary and stargazer work correctly after.
+replacecoef <- function(reg, newcoef) {
+  reg$beta[] <- newcoef
+  reg$coefficients[] <- newcoef
+  reg$tval <- reg$beta/reg$se
+  reg$pval <- pt(-abs(reg$tval),df=reg$df)*2
+  reg$rtval <- reg$beta/reg$rse
+  reg$rpval <- pt(-abs(reg$rtval),df=reg$df)*2
+  reg$ctval <- reg$beta/reg$cse
+  reg$cpval <- pt(-abs(reg$ctval),df=reg$df)*2
+  return(reg)
+}
+
 for (k in 1:length(infovars)) {
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   pols <- c("pmaskbus","pk12","pmovie","pshelter","prestaurant","pnonessential")
@@ -453,24 +521,51 @@ for (k in 1:length(infovars)) {
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars), 0, L, "state + month")
   piy[[(1+4*(k-1))]] <- m
-  #m$reg$beta[1:(9+2*(k-1))] <- m$bc2[1:(9+2*(k-1))]
-  m$reg$beta <- m$bc2
-  #m$reg$beta[1:(6+2*(k-1))] <- m$bc[1:(6+2*(k-1))]
+  m$reg <- replacecoef(m$reg, m$bc2)
   piy[[(2+4*(k-1))]] <- m
   pols <- c("pmaskbus","pk12","pindex")
-  # pols <- c("pmaskbus","pk12","pmovie","pindex")
   m <-  reg_fe(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars), 0, L, "state + month")
   piy[[(3+4*(k-1))]] <- m
-  #m$reg$beta[1:(6+2*(k-1))] <- m$bc2[1:(6+2*(k-1))]
-  m$reg$beta <- m$bc2
+  m$reg <- replacecoef(m$reg, m$bc2)
   piy[[(4+4*(k-1))]] <- m
 }
 
 showhtmltables(NULL, NULL,  piy);
-# savetextables(NULL, NULL, piy, prefix="cases-fe")
+prefix="cases-fe"
+#savetextables(NULL, NULL, piy[1:4], prefix="cases-fe") copying and
 
+# pasting this is bad style and seems like it might create maintenance
+# problems ...
+   ylbl <- colnames(piy[[1]]$reg$response)
+    if (ylbl=="dlogdd") ylbl <- "Death Growth"
+    if (ylbl=="dlogdc") ylbl <- "Case Growth"
+
+    tbl <- capture.output(stargazer(
+        lapply(piy, function(x) x$reg),
+        type="latex",
+        dep.var.labels.include=FALSE,
+        title=ylbl,
+        # omit=omit,
+        # omit.labels=omit.labels,
+        column.labels=c(yvar),
+        column.separate=c(length(piy)),
+        # add.lines=list(c("$\\sum_j \\mathrm{Policy}_j$",
+        #                  sapply(piy, function(x) printstars(x$peff[1], x$peff[2]))),
+        #                c("",
+        #                  sprintf("(%.3f)",sapply(piy, function(x) x$peff[2])))
+        #                ),
+        omit.stat=c("f", "ser"), model.names=FALSE,
+        no.space=TRUE,
+        column.sep.width="1pt",
+        df=FALSE, header=FALSE,
+        model.numbers=TRUE))
+    tbl <- relabel(tbl)
+    tbl <- gsub("Model (\\d)", "\\(\\1\\)", tbl)
+    #tbl <- gsub("No","Yes", tbl)
+    texfile <- sprintf("%s/tex/tables_and_figures/%s-piy.tex",rootdir,prefix)
+    cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
 
 yvar <- "dlogdd"
 infovars <- list(c("dlogdd", "logdd"),
@@ -484,21 +579,20 @@ for (k in 1:length(infovars)) {
   m <-  reg_fe(sdf, yvar, pols, NULL,
               sprintf("lag(%s, %d)", infovars[[k]], L), 0, L, "state + month")
   piy[[(1+4*(k-1))]] <- m
-  m$reg$beta[1:(8+2*(k-1))] <- m$bc2[1:(8+2*(k-1))]
-  #m$reg$beta[1:(5+2*(k-1))] <- m$bc[1:(5+2*(k-1))]
+  m$reg <- replacecoef(m$reg, m$bc2)
   piy[[(2+4*(k-1))]] <- m
   pols <- c("pmaskbus","pk12","pindex")
-  #pols <- c("pmaskbus","pk12","pmovie","pindex")
   m <-  reg_fe(sdf, yvar, pols, NULL,
               sprintf("lag(%s, %d)", infovars[[k]], L), 0, L, "state + month")
   piy[[(3+4*(k-1))]] <- m
-  m$reg$beta[1:(5+2*(k-1))] <- m$bc2[1:(5+2*(k-1))]
-  #m$reg$beta[1:(4+2*(k-1))] <- m$bc[1:(4+2*(k-1))]
+  m$reg <- replacecoef(m$reg, m$bc2)
   piy[[(4+4*(k-1))]] <- m
 }
 
- showhtmltables(NULL, NULL,  piy);
-# savetextables(NULL, NULL, piy, prefix="deaths-fe")
+colnames(piy[[1]]$reg$response) <- "dlogdd"
+showhtmltables(NULL, NULL,  piy);
+#savetextables(NULL, NULL, piy[1:4], prefix="deaths-fe")
+
 ```
 
 
