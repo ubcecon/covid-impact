@@ -1,0 +1,293 @@
+\documentclass[11pt,reqno,letter]{amsart}
+%\pdfoutput=1
+\usepackage{amsmath}
+
+%----------------------------------------------------------------------------------------%
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[left=1.25in,right=1.25in,top=1.5in,bottom=1.25in]{geometry}
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{rotating}
+%\usepackage{pxfonts}
+%\usepackage{isomath}
+%\usepackage{newpxtext}
+%\usepackage{newpxmath}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{booktabs}
+
+
+% packages for rmd output
+\usepackage{tabu}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{float}
+\usepackage{booktabs}
+
+\usepackage{subcaption}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\theoremstyle{definition}
+\newtheorem{assumption}{}[section]
+\renewcommand{\theassumption}{A\arabic{assumption}}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{step}{Step}[section]
+\newtheorem{remark}{Comment}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem*{example*}{Example}
+\newtheorem{mpart}{Part}
+\newtheorem{problem}{Problem}
+
+\usepackage{calc,tikz,nicefrac}
+
+\usepackage[section]{placeins}
+
+\usetikzlibrary{positioning}
+\geometry{letterpaper}
+%\usepackag\Ep[parfill]{parskip}    % Activate to begin paragraphs
+%with an empty line rather than an indent
+
+\setlength{\parskip}{.4cm}
+\geometry{centering}
+\usepackage{mathtools}
+
+\usepackage{bm}
+
+\usepackage[authoryear]{natbib}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{capt-of}
+
+
+
+\newcommand{\argmax}{\operatornamewithlimits{arg\,max}}
+\newcommand{\argmin}{\operatornamewithlimits{arg\,min}}
+\def\inprobLOW{\rightarrow_p}
+\def\inprobHIGH{\,{\buildrel p \over \rightarrow}\,}
+\def\inprob{\,{\inprobHIGH}\,}
+\def\indist{\,{\buildrel d \over \rightarrow}\,}
+\def\F{\mathbb{F}}
+\newcommand{\gmatrix}[1]{\begin{pmatrix} {#1}_{11} & \cdots &
+    {#1}_{1n} \\ \vdots & \ddots & \vdots \\ {#1}_{m1} & \cdots &
+    {#1}_{mn} \end{pmatrix}}
+\newcommand{\iprod}[2]{\left\langle {#1} , {#2} \right\rangle}
+\newcommand{\norm}[1]{\left\Vert {#1} \right\Vert}
+\newcommand{\abs}[1]{\left\vert {#1} \right\vert}
+\renewcommand{\det}{\mathrm{det}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\spn}{\mathrm{span}}
+\newcommand{\row}{\mathrm{Row}}
+\newcommand{\col}{\mathrm{Col}}
+\renewcommand{\dim}{\mathrm{dim}}
+\newcommand{\prefeq}{\succeq}
+\newcommand{\pref}{\succ}
+\newcommand{\seq}[1]{\{{#1}_n \}_{n=1}^\infty }
+\renewcommand{\to}{{\rightarrow}}
+\providecommand{\Infected}{{\mathcal{I}}}
+\providecommand{\Recovered}{{R}}
+
+\providecommand{\Er}{{\mathrm{E}}}
+\providecommand{\Var}{{\mathrm{Var}}}
+\providecommand{\set}[1]{\left\{#1\right\}}
+\providecommand{\plim}{\operatornamewithlimits{plim}}
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\setbox0\hbox{$#1#2$}%
+    \copy0\kern-\wd0\mkern4mu\box0}}
+
+\newcommand{\ad}{\overset{\mathrm{a}}{\sim}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+%\renewcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\mS}{\mathcal{S}}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\mE}{\mathcal{E}}
+\newcommand{\mG}{\mathcal{G}}
+\newcommand{\mL}{\mathcal{L}}
+\renewcommand{\qed}{\hfill{\tiny \ensuremath{\blacksquare} }}%
+
+\newcommand{\Ep}{{\mathrm{E}}}
+\newcommand{\barEp}{\bar \Ep}
+\newcommand{\En}{{\mathbb{E}_n}}
+\renewcommand{\Pr}{{\mathrm{P}}}
+
+%\newcommand{\mathbbeta}{\mbox{$\beta$}}
+%\newcommand{\btheta}{\mbox{$\theta$}}
+%\newcommand{\bdelta}{\mbox{$\delta$}}
+\newcommand{\balpha}{\mbox{$\alpha$}}
+\newcommand{\stheta}{\mbox{\scriptsize \theta}}
+
+\newcommand{\mC}{\mathcal{C}}
+\newcommand{\mU}{\mathcal{U}}
+\newcommand{\mX}{\mathcal{X}}
+\newcommand{\mJ}{\mathcal{J}}
+\newcommand{\df}{\mathrm{df}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bEn}{\mathbb{E}_{n}}
+\newcommand{\bG}{\mathbb{G}}
+
+\newcommand{\eps}{\varepsilon}
+
+\usepackage{neuralnetwork}
+
+\def\bcolor{\color{ForestGreen}}
+\def\pcolor{\color{blue}}
+\def\icolor{\color{magenta}}
+\def\wcolor{\color{gray}}
+\def\ycolor{\color{red}}
+
+
+\DeclareMathOperator{\dist}{dist} % The distance.
+
+\begin{document}
+
+\title[Causal Impact of Masks, Policies, Behavior]
+{Causal Impact of Masks, Policies, Behavior on Early Covid-19 Pandemic in the U.S.}\thanks{We are grateful to Daron Acemoglu, V.V. Chari, Raj Chetty,  Christian Hansen, Glenn Ellison, Ivan Fernandez-Val, David Green,  Ido Rosen, Konstantin Sonin, James Stock, and Ivan Werning for helpful comments. We also thank Chiyoung Ahn,
+Joshua Catalano,  Jason Chau, Samuel Gyetvay, Sev Chenyu Hou,
+Jordan Hutchings, and Dongxiao Zhang  for excellent research assistance.  All mistakes are our own. }
+
+
+\author{Victor Chernozhukov}
+\address{Department of Economics and Center for Statistics and Data Science, MIT,  MA 02139}
+\email{vchern@mit.edu}
+%\urladdr{www.mit.edu/$\sim$vcherm} % Delete if not wanted.
+\author{Hiroyuki Kasahara}
+\address{ Vancouver School of Economics, UBC, 6000 Iona Drive, Vancouver, BC.}
+\email{hkasahar@mail.ubc.ca}
+
+\author{Paul Schrimpf}
+\address{ Vancouver School of Economics, UBC, 6000 Iona Drive, Vancouver, BC.}
+\email{schrimpf@mail.ubc.ca}
+
+
+\date{\today; \textit{First public} version posted to ArXiv:  May 28, 2020}
+
+\begin{abstract}
+%This paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our counterfactual experiments suggest that nationally mandating face masks for employees on April 1st could have reduced the growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 17 to 55 percent less deaths nationally by the end of May, which roughly translates into 17 to 55 thousand saved lives.   Our estimates imply that removing non-essential business closures  (while maintaining school closures, restrictions on  movie theaters and restaurants)  could have led to -20 to 60 percent more cases and deaths by the end of May. We also find that, without stay-at-home orders, cases would have been larger by  25 to 170 percent, which implies that 0.5 to 3.4 million more Americans could have been infected if stay-at-home orders had not been implemented. Finally,  we find considerable uncertainty over the effects of removing all policies because the timing of school closures had little cross-sectional variation.%  (the potential range of effects could be even larger the effect of school closures on behavior is hard to identify separately from aggregate time effects).
+\end{abstract}
+
+\keywords{Covid-19, causal impact, masks, non-essential business, policies, behavior}
+
+% JEL: C33, H75, I10, I18
+
+\maketitle
+
+%\tableofcontents
+
+
+
+\section{Robustness}
+
+
+In this section, we examine the robustness of our results by including additional controls and examining the sub-sample that excludes the state of New York. 
+
+Table \ref{tab:PtoY-robust} presents the regression result for robustness check, where dependent variable is the weekly growth rate of
+  cases  (left panel) or deaths (right panel).   Column (1) replaces four policy variables  (stay-at-home, closure of movie theaters, closure of restaurants, and closure of non-essential businesses) that are highly correlated to each other with the variable of their average values. Column (2) excludes the state of New York, which could be viewed as an outlier in the early pandemic period, from the sample.
+ Column (3) adds the percentage of people who wears masks to protect themselves between March 26-April 29, 2020, which controls for people's attitude toward mask wearing in the first half of sample.\footnote{ The survey is conducted online by YouGov and is based on the interviews of 89,347 US adults aged 18 and over between March 26-April 29, 2020.  The survey question is ``Which, if any, of the following measures have you taken in the past 2 weeks to protect yourself from the Coronavirus (COVID-19)?''.}  Column (5) controls for the log of Trump voting shares in 2016 presidential election. Column (6) includes four weeks lagged behavior variables as an additional set of controls; under this specification, our causal interpretation is valid when policy variables are sufficiently random conditional on past behavior variables. Finally, column (6) includes all additional controls in column (3)-(5) using the sample that excludes New York.   The estimated coefficients of mask mandates on case or death growths are significantly negative in all specifications, confirming the importance of mask policy on reducing case and death growths.  \textbf{[here, instead of table, we may present ``dot-and-whisker plot'' for mask coefficients as well as stay-at-home and pindex.]}
+  
+In Table \ref{tab:PtoY-fe} of the appendix,   we find that the estimated coefficients of mask mandates are significantly negative even when we include state fixed effects. In contrast,  the estimated coefficients of stay-at-home order  and closures of movie theaters, restaurants, and non-essential businesses under fixed effects specification are sometimes different from those under random effects specification, especially when bias correction is applied to the fixed effects estimator.  Non-robustness of the estimated coefficients of these four  policy variables 
+ is likely due to high correlations among them (see Table \ref{corr}). In fact, as shown in columns (3)-(4) of Table \ref{tab:PtoY-fe}, the  estimated effects of the average of four policy variables 
+ under fixed effects specification are negative and significant, indicating that  the total effect of four policies is robustly estimated.
+
+
+
+\subsection{Fixed Effects Regressions (in Appendix)}
+
+Table \ref{tab:PtoY-fe} in the appendix reports the regression result when we include state fixed effects and month dummies. Column (1) reports our baseline estimation when we include state fixed effects while column (2) report the estimate when we apply the bias correction to the fixed effects estimator. Columns (3) and (4) are similar to columns (1) and (2) except that we replace  four policy variables  (stay-at-home, closure of movie theaters, closure of restaurants, and closure of non-essential businesses) with their average values.  Again, the estimated coefficients of mask mandates are significantly negative across different specifications, confirming the importance of mask policy on reducing case and death growths. On the other hand,  the estimated coefficients of stay-at-home order as well as closures of movie theaters, restaurants, and non-essential businesses under fixed effects specification are substantially different from the estimates under random effects specification. This is likely due to muti-colinearity problem as implied by  high correlations among these four policy variables as shown in Table \ref{corr}. When we replace these four policy variables with their average variable in columns (3) and (4), the estimated effect of the sum of four policy variables under fixed effects specification is similar to that under random effects specification in column (1) of Table \ref{tab:PtoY-robust}. 
+
+
+
+  \afterpage{
+ \begin{landscape}
+\begin{table}[!htbp] \centering
+ \caption{\label{tab:PtoY-robust}
+Robustness Check for the Total Effect of Policies on Case and Death Growth ($PI \to Y$)}\vspace{-0.3cm}
+ \begin{minipage}{\linewidth}
+   \resizebox{\textwidth}{!}{
+   \centering
+   \tiny
+   \begin{tabular}{c|c}
+   \begin{minipage}{0.65\linewidth}
+     \centering
+     \input{tables_and_figures/cases-robust-piy}
+   \end{minipage}
+     &
+   \begin{minipage}{0.65\linewidth}
+     \centering
+     \input{tables_and_figures/deaths-robust-piy}
+   \end{minipage}
+
+   \end{tabular}
+   }
+   \begin{flushleft}
+     \scriptsize Dependent variable is the weekly growth rate of
+     confirmed cases (in the left panel) or deaths (in the right
+     panel) as defined in equation (\ref{eq:y}). Columns (2) and (6) exclude the observations of the state of New York.
+      The covariates
+     include lagged policy variables, which are
+     constructed as 7 day moving averages between $t$ to $t-7$ of
+     corresponding daily measures.  The row
+     ``$\sum_j \mathrm{Policies}_j$'' reports the sum of six policy
+     coefficients.  Standard errors are clustered at the state level.
+   \end{flushleft}
+ \end{minipage}
+\end{table}
+\end{landscape}
+}
+
+
+  \afterpage{
+ \begin{landscape}
+\begin{table}[!htbp] \centering
+ \caption{\label{tab:PtoY-fe}
+Fixed Effects Specification for  the Total Effect of Policies on Case and Death Growth ($PI \to Y$)}\vspace{-0.3cm}
+ \begin{minipage}{\linewidth}
+   \resizebox{\textwidth}{!}{
+   \centering
+   \tiny
+   \begin{tabular}{c|c}
+   \begin{minipage}{0.5\linewidth}
+     \centering
+     \input{tables_and_figures/cases-fe-piy}
+   \end{minipage}
+     &
+   \begin{minipage}{0.5\linewidth}
+     \centering
+     \input{tables_and_figures/deaths-fe-piy}
+   \end{minipage}
+
+   \end{tabular}
+   }
+   \begin{flushleft}
+     \scriptsize Dependent variable is the weekly growth rate of
+     confirmed cases (in the left panel) or deaths (in the right
+     panel) as defined in equation (\ref{eq:y}).        The covariates
+     include lagged policy variables, which are
+     constructed as 7 day moving averages between $t$ to $t-7$ of
+     corresponding daily measures.  The row
+     ``$\sum_j \mathrm{Policies}_j$'' reports the sum of six policy
+     coefficients.  Standard errors are clustered at the state level.
+   \end{flushleft}
+ \end{minipage}
+\end{table}
+\end{landscape}
+}
+
+
+
+
+
+\end{document}
+
