@@ -101,9 +101,9 @@ mainregressions <- function(df, # data
 
 
   plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
-  # plist <- list(pols, c("pmaskbus","pk12","pindex"))
-  
-  
+  plist <- list(pols,c("pmaskbus","pk12","pindex"))
+
+
 
   stopifnot(length(xlist)==length(interactions))
   stopifnot(length(xlist)==length(ivlist))
@@ -144,9 +144,9 @@ mainregressions <- function(df, # data
                   xlist[[k]]),
                 interactions[[k]], "0", L=0)
     })
-  } 
-  
-   
+  }
+
+
   ijs <- expand.grid(1:length(pols), 1:length(xlist))
   ip <- apply(ijs, 1, function(ij) {
     policyreg(df, pols[[ij[1]]],  NULL,  bvars,
@@ -154,7 +154,7 @@ mainregressions <- function(df, # data
                 xlist[[ij[2]]]),
               interactions[[ij[2]]], "0", L=L)
   })
-    
+
   return(list(pib=pib, pbiy=pbiy, piy=piy, ip=ip))
 }
 
@@ -163,6 +163,11 @@ statevarregexp <- gsub("\\)","\\\\)",gsub("\\(","\\\\(",statevars))
 statevarregexp <- paste("^(",paste(c("Constant",statevarregexp), collapse="|"),")",sep="")
 
 printstars <- function(est, se, starp=c(0.1, 0.05, 0.01)) {
+  foo()
+  print(est)
+  print(se)
+  print(starp)
+  print(sum(pnorm(-abs(est), sd=se)<starp/2))
   stars <- paste(rep("*", sum(pnorm(-abs(est), sd=se)<starp/2)), collapse="")
   if (length(stars)==0 || stars=="") return(sprintf("%.3f",est))
   return(sprintf("%.3f$^{%s}$", est, stars))
@@ -191,17 +196,19 @@ showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
               omit.labels=omit.labels,
               omit.stat=c("f", "ser"), model.names=FALSE,
               model.numbers=TRUE,
-              add.lines = list(c("sum Policy",sprintf("%.3f",peff)),
-                               c("",sprintf("(%.3f)",sep)),
+              add.lines = list("", "","",
                                "\\hline")
+              # add.lines = list(c("sum Policy",sprintf("%.3f",peff)),
+              #                  c("",sprintf("(%.3f)",sep)),
+              #                  "\\hline")
               )
 
   }
-  
-  
+
+
   if (!(is.null(ip))) {
     cat("\n### Policies and Information\n")
-    
+
     peff <- sapply(ip, function(x) x$peff[1])
     sep <- sapply(ip, function(x) x$peff[2])
     cnames <- sapply(ip, function(x) colnames(x$reg$response))
@@ -223,7 +230,7 @@ showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
                              c("",
                                sprintf("(%.3f)",sapply(ip, function(x) x$beff[2]))),
                              "\\hline")
-    ) 
+    )
   }
 
   if (!(is.null(pbiy))) {
@@ -276,9 +283,9 @@ showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
               model.numbers=TRUE)
 
   }
-  
-  
- 
+
+
+
 
   return(NULL)
 }
@@ -389,10 +396,10 @@ savetextables <- function(pib, pbiy, piy, prefix, ip = NULL,
     texfile <- sprintf("%s/tex/tables_and_figures/%s-piy.tex",rootdir,prefix)
     cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
   }
-  
-  
+
+
   if (!(is.null(ip))) {
-    
+
   beff <- sapply(ip, function(x) x$beff[1])
   sep <- sapply(ip, function(x) x$beff[2])
   cnames <- sapply(ip, function(x) colnames(x$reg$response))
@@ -419,7 +426,7 @@ savetextables <- function(pib, pbiy, piy, prefix, ip = NULL,
   #tbl <- gsub("No","Yes", tbl)
   texfile <- sprintf("%s/tex/tables_and_figures/%s-ip.tex",rootdir,prefix)
   cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
-  
+
   }
 
   return(NULL)
