@@ -242,39 +242,6 @@ grid.arrange(f$figl, f$figp, nrow=2) #,
 #top = textGrob(st,gp=gpar(fontsize=20,font=2)))
 ```
 
-# ```{r otherstates, cache=TRUE, fig.cap="Effect of Removing Policies"}
-# if (!knitr::is_latex_output()) {
-#   for( st in c("New York", "Florida", "Michigan", "Georgia", "Massachusetts")) {
-#     f <- cfplots(st, cfnop, data=df)
-#     grid.arrange(f$figd, f$figdp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2)))
-#     grid.arrange(f$figl, f$figp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2)))
-#   }
-# }
-# ```
-
-# ```{r nop-state-figures, cache=TRUE, warning=FALSE}
-# states <- c("Washington","Illinois","Massachusetts")
-# for(st in states) {
-#   f <- cfplots(st, cfnop, data=df)
-#
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
-#   print(f$figdp)
-#   dev.off()
-#
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-growth_idx.pdf",rootdir,st), width=5,height=3.75)
-#   print(f$figd + ylim(c(-1,5)))
-#   dev.off()
-#
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-cases_idx.pdf",rootdir,st), width=5,height=3.75)
-#   print(f$figl)
-#   dev.off()
-#
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
-#   print(f$figp)
-#   dev.off()
-# }
-# ```
-
 ## National
 
 These figures show the average effect on $\Delta \log \Delta C$ across

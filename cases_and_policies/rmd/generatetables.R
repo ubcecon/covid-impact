@@ -163,11 +163,6 @@ statevarregexp <- gsub("\\)","\\\\)",gsub("\\(","\\\\(",statevars))
 statevarregexp <- paste("^(",paste(c("Constant",statevarregexp), collapse="|"),")",sep="")
 
 printstars <- function(est, se, starp=c(0.1, 0.05, 0.01)) {
-  foo()
-  print(est)
-  print(se)
-  print(starp)
-  print(sum(pnorm(-abs(est), sd=se)<starp/2))
   stars <- paste(rep("*", sum(pnorm(-abs(est), sd=se)<starp/2)), collapse="")
   if (length(stars)==0 || stars=="") return(sprintf("%.3f",est))
   return(sprintf("%.3f$^{%s}$", est, stars))

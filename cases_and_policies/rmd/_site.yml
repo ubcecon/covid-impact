@@ -10,11 +10,12 @@ navbar:
       href: datasummary.html
     - text: "Regresssions"
       href: regressionsWithPlots.html
-    - text: "Counterfactuals (without national information)"
+    - text: "Counterfactuals"
+    - text: "(without national information)"
       href: counterfactuals.html
-    - text: "Counterfactuals (averaged policies, without national information)"
+    - text: "(averaged policies, without national information)"
       href: cf-pindex.html
-    - text: "Counterfactuals (with national information)"
+    - text: "(with national information)"
       href: counterfactuals_national.html
 output:
   html_document:
