@@ -1,7 +1,7 @@
 ---
 title       : "Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S."
-subtitle    : "Counterfactuals"
-author      :  Victor Chernozhukov, Paul Schrimpf, Hiro Kasahara
+subtitle    : "Counterfactuals (with policies averaged)"
+author      :  Victor Chernozhukov,  Hiro Kasahara, Paul Schrimpf
 job         :
 date        : "`r format(Sys.time(), '%d %B, %Y')`"
 bibliography: "covid.bib"
@@ -83,6 +83,7 @@ datelims <- c(as.Date("2020-03-07"), max(df$date))
 
 ```{r cffuncs, cache=FALSE}
 source(paste(rootdir,"cases_and_policies/rmd/counterfactuals.R", sep="/"))
+pols <- c("pmaskbus","pk12","pindex")
 ```
 
 ```{r statesim, cache=FALSE}
@@ -146,13 +147,13 @@ cf[,pols] <- 0
 nopmodel <- createforwardsim(m, cf)
 
 rerunsim=FALSE
-if (!file.exists("cfnop.Rda") || rerunsim) {
+if (!file.exists("cfnop_idx.Rda") || rerunsim) {
   cfnoplist <- lapply(unique(sdf$state), function(s)
     nopstatesim(s,simobs=simmodel,simcf=nopmodel,data=sdf))
   allmeans <- rbindlist(lapply(cfnoplist, getmeans))
-  save(cfnoplist,allmeans, file="cfnop.Rda")
+  save(cfnoplist,allmeans, file="cfnop_idx.Rda")
 }
-load("cfnop.Rda")
+load("cfnop_idx.Rda")
 cfnop <- do.call(rbind, lapply(cfnoplist, function(x) x$edf))
 ```
 
@@ -256,19 +257,19 @@ grid.arrange(f$figl, f$figp, nrow=2) #,
 # for(st in states) {
 #   f <- cfplots(st, cfnop, data=df)
 #
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dgrowth_v1.pdf",rootdir,st), width=5,height=3.75)
+#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
 #   print(f$figdp)
 #   dev.off()
 #
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-growth_v1.pdf",rootdir,st), width=5,height=3.75)
+#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-growth_idx.pdf",rootdir,st), width=5,height=3.75)
 #   print(f$figd + ylim(c(-1,5)))
 #   dev.off()
 #
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-cases_v1.pdf",rootdir,st), width=5,height=3.75)
+#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-cases_idx.pdf",rootdir,st), width=5,height=3.75)
 #   print(f$figl)
 #   dev.off()
 #
-#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dcases_v1.pdf",rootdir,st), width=5,height=3.75)
+#   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
 #   print(f$figp)
 #   dev.off()
 # }
@@ -308,69 +309,15 @@ cfnop <- merge(cfnop, abbrv, by="state")
 
 figs <- nationalplots(allmeans,cfnop, "removing policies")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dgrowth_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dcases_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dcases_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-rel_v1.pdf",sep="/"), width=5,height=3.75)
-figs$r
-dev.off()
-
-for (f in figs) print(f)
-```
-
-## Non-Essential Business Closures
-
-```{r business_sim, cache=FALSE}
-# remove non essential business closure
-cf <- sdf
-cf[,"pnonessential"] <- 0
-nobmodel <- createforwardsim(m, cf)
-
-if (!file.exists("cfnb.Rda") || rerunsim) {
-  cfnblist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf))
-  nball <- rbindlist(lapply(cfnblist, getmeans))
-  save(cfnblist,nball, file="cfnb.Rda")
-}
-load("cfnb.Rda")
-cfnb <- do.call(rbind, lapply(cfnblist, function(x) x$edf))
-```
-
-```{r, cache=TRUE}
-cfnb <- merge(cfnb, abbrv, by="state")
-for (st in c("Washington","Illinois","Massachusetts")) {
-  f <- cfplots(st, cfnb, data=df)
-  f$figp + ggtitle(sprintf("Effect of never shutting down non-essential businesses in %s",st))
-  #grid.arrange(f$figd + ggtitle(), f$figdp + ggtitle(), nrow=2, top =
-  #textGrob(st,gp=gpar(fontsize=20,font=2)))
-
-  figdev(sprintf("%s/tex/tables_and_figures/%s-nb-dgrowth_v1.pdf",rootdir,st), width=5,height=3.75)
-  print(f$figdp)
-  dev.off()
-
-
-  figdev(sprintf("%s/tex/tables_and_figures/%s-nb-dcases_v1.pdf",rootdir,st), width=5,height=3.75)
-  print(f$figp)
-  dev.off()
-}
-
-
-figs <- nationalplots(nball, cfnb,
-                      "never shutting down non-essential\nbusinesses")
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nb-dgrowth_v1.pdf",sep="/"), width=5,height=3.75)
-figs$g
-dev.off()
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nb-dcases_v1.pdf",sep="/"), width=5,height=3.75)
-figs$c
-dev.off()
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nb-rel_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-nop-rel_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
@@ -390,12 +337,12 @@ cf[,"pmaskbus"] <-
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
 maskmodel <- createforwardsim(m, cf)
 
-if (!file.exists("cfmask.Rda") || rerunsim) {
+if (!file.exists("cfmask_idx.Rda") || rerunsim) {
   cfmasklist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf))
   maskall <- rbindlist(lapply(cfmasklist, getmeans))
-  save(cfmasklist, maskall, file="cfmask.Rda")
+  save(cfmasklist, maskall, file="cfmask_idx.Rda")
 }
-load("cfmask.Rda")
+load("cfmask_idx.Rda")
 cfmask <- do.call(rbind, lapply(cfmasklist, function(x) x$edf))
 ```
 
@@ -405,26 +352,26 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfmask, data=df)
   print(f$figp +  ggtitle(sprintf("Effect of mandating masks on April 1st in %s",st)))
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcases_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }
 
 figs <- nationalplots(maskall, cfmask, "mandating masks on April 1st\n")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dcases_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dcases_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rel_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rel_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
@@ -456,13 +403,13 @@ maskmodel1 <- function(st, samplecoefs=FALSE, nsim=1)
             shockgen=NULL)
 
 rerunsim <- FALSE
-if (!file.exists("cfmask1.Rda") || rerunsim) {
+if (!file.exists("cfmask1_idx.Rda") || rerunsim) {
   cfmasklist1 <- lapply(unique(df$state),
                         function(s) nopstatesim(s,simobs=simmodel1,simcf=maskmodel1, data=sdf, nresid=1))
   maskall1 <- rbindlist(lapply(cfmasklist1, getmeans))
-  save(cfmasklist1, maskall1, file="cfmask1.Rda")
+  save(cfmasklist1, maskall1, file="cfmask1_idx.Rda")
 }
-load("cfmask1.Rda")
+load("cfmask1_idx.Rda")
 cfmask1 <- do.call(rbind, lapply(cfmasklist1, function(x) x$edf))
 
 for (st in c("Washington","Illinois","Massachusetts")) {
@@ -487,12 +434,12 @@ cf[,"pshelter"] <- 0
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noshelter <- createforwardsim(m, cf)
 
-if (!file.exists("cfshelter.Rda") || rerunsim) {
+if (!file.exists("cfshelter_idx.Rda") || rerunsim) {
   cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
-  save(cfshelterlist, shelterall, file="cfshelter.Rda")
+  save(cfshelterlist, shelterall, file="cfshelter_idx.Rda")
 }
-load("cfshelter.Rda")
+load("cfshelter_idx.Rda")
 cfshelter <- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))
 ```
 
@@ -502,26 +449,26 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfshelter, data=df)
   print(f$figp +  ggtitle(sprintf("Effect of no stay at home order in %s",st)))
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dgrowth_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }
 
 figs <- nationalplots(shelterall, cfshelter, "no stay at home orders")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dgrowth_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dcases_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dcases_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
@@ -584,13 +531,13 @@ cf[,pols] <- 0
 nopmodel <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
 rerunsim=FALSE
-if (!file.exists("cfnop_deaths.Rda") || rerunsim) {
+if (!file.exists("cfnop_deaths_idx.Rda") || rerunsim) {
   cfnoplist <- lapply(unique(df$state), function(s)
     nopstatesim(s,simobs=simmodel,simcf=nopmodel, data=sdf, var="logdd", dvar="dlogdd"))
   allmeans <- rbindlist(lapply(cfnoplist, getmeans))
-  save(cfnoplist,allmeans, file="cfnop_deaths.Rda")
+  save(cfnoplist,allmeans, file="cfnop_deaths_idx.Rda")
 }
-load("cfnop_deaths.Rda")
+load("cfnop_deaths_idx.Rda")
 cfnop <- do.call(rbind, lapply(cfnoplist, function(x) x$edf))
 ```
 
@@ -619,69 +566,15 @@ cfnop <- merge(cfnop, abbrv, by="state")
 
 figs <- nationalplots(allmeans,cfnop, "removing policies", yvar="deaths")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dgrowth_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dcases_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dcases_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-rel_deaths_v1.pdf",sep="/"), width=5,height=3.75)
-figs$r
-dev.off()
-
-for (f in figs) print(f)
-```
-
-## Non-essential Business Closures
-
-```{r business_sim-deaths, cache=FALSE}
-# remove non essential business closure
-cf <- sdf
-cf[,"pnonessential"] <- 0
-nobmodel <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
-
-if (!file.exists("cfnb_deaths.Rda") || rerunsim) {
-  cfnblist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf, var="logdd", dvar="dlogdd"))
-  nball <- rbindlist(lapply(cfnblist, getmeans))
-  save(cfnblist,nball, file="cfnb_deaths.Rda")
-}
-load("cfnb_deaths.Rda")
-cfnb <- do.call(rbind, lapply(cfnblist, function(x) x$edf))
-```
-
-```{r, cache=TRUE}
-cfnb <- merge(cfnb, abbrv, by="state")
-for (st in c("Washington","Illinois","Massachusetts")) {
-  f <- cfplots(st, cfnb, yvar="deaths", data=df)
-  f$figp + ggtitle(sprintf("Effect of never shutting down non-essential businesses in %s",st))
-  #grid.arrange(f$figd + ggtitle(), f$figdp + ggtitle(), nrow=2, top =
-  #textGrob(st,gp=gpar(fontsize=20,font=2)))
-
-  figdev(sprintf("%s/tex/tables_and_figures/%s-nb-dgrowth_deaths_v1.pdf",rootdir,st), width=5,height=3.75)
-  print(f$figdp)
-  dev.off()
-
-
-  figdev(sprintf("%s/tex/tables_and_figures/%s-nb-dcases_deaths_v1.pdf",rootdir,st), width=5,height=3.75)
-  print(f$figp)
-  dev.off()
-}
-
-
-figs <- nationalplots(nball, cfnb,
-                      "never shutting down non-essential\nbusinesses", yvar="deaths")
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nb-dgrowth_deaths_v1.pdf",sep="/"), width=5,height=3.75)
-figs$g
-dev.off()
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nb-dcases_deaths_v1.pdf",sep="/"), width=5,height=3.75)
-figs$c
-dev.off()
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nb-rel_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-nop-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
@@ -701,12 +594,12 @@ cf[,"pmaskbus"] <-
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
 maskmodel <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
-if (!file.exists("cfmask_deaths.Rda") || rerunsim) {
+if (!file.exists("cfmask_deaths_idx.Rda") || rerunsim) {
   cfmasklist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf, var="logdd", dvar="dlogdd"))
   maskall <- rbindlist(lapply(cfmasklist, getmeans))
-  save(cfmasklist, maskall, file="cfmask_deaths.Rda")
+  save(cfmasklist, maskall, file="cfmask_deaths_idx.Rda")
 }
-load("cfmask_deaths.Rda")
+load("cfmask_deaths_idx.Rda")
 cfmask <- do.call(rbind, lapply(cfmasklist, function(x) x$edf))
 ```
 
@@ -716,26 +609,26 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfmask, yvar="deaths", data=df)
   print(f$figp +  ggtitle(sprintf("Effect of mandating masks on April 1st in %s",st)))
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_deaths_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcases_deaths_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcases_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }
 
 figs <- nationalplots(maskall, cfmask, "mandating masks on April 1st\n", yvar="deaths")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dcases_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dcases_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rel_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
@@ -752,12 +645,12 @@ cf[,"pshelter"] <- 0
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noshelter <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
-if (!file.exists("cfshelter_deaths.Rda") || rerunsim) {
+if (!file.exists("cfshelter_deaths_idx.Rda") || rerunsim) {
   cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
-  save(cfshelterlist, shelterall, file="cfshelter_deaths.Rda")
+  save(cfshelterlist, shelterall, file="cfshelter_deaths_idx.Rda")
 }
-load("cfshelter_deaths.Rda")
+load("cfshelter_deaths_idx.Rda")
 cfshelter <- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))
 ```
 
@@ -767,26 +660,26 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfshelter, data=df, yvar="deaths")
   print(f$figp +  ggtitle(sprintf("Effect of no stay at home order in %s",st)))
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dgrowth_deaths_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dgrowth_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_deaths_v1.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }
 
 figs <- nationalplots(shelterall, cfshelter, "no stay at home orders", yvar="deaths")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dcases_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dcases_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
