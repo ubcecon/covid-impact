@@ -397,11 +397,14 @@ library(ggplot2)
 library(gridExtra)
 library(knitr)
 library(kableExtra)
+library(latex2exp)
+library(plm)
+library(lubridate)
 
 rootdir &lt;- system(&quot;git rev-parse --show-toplevel&quot;, intern=TRUE)[1]
 datafile &lt;- paste(rootdir,&quot;cases_and_policies/data/covidstates.Rda&quot;, sep=&quot;/&quot;)
 cat(&quot;Loading data last updated on &quot;, as.character(file.mtime(datafile)), &quot;\n&quot;)</code></pre>
-<pre><code>## Loading data last updated on  2020-07-16 08:31:04</code></pre>
+<pre><code>## Loading data last updated on  2020-07-31 15:44:29</code></pre>
 <pre class="r"><code>cat(&quot;Run &quot;, paste(rootdir,&quot;cases_and_policies/R/cases_and_policies.R&quot;, sep=&quot;/&quot;), &quot; to update data.\n&quot;)</code></pre>
 <pre><code>## Run  /home/paul/covid/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
 <pre class="r"><code>load(datafile)
@@ -525,13 +528,13 @@ fjhu &lt;- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alp
 grid.arrange(fnyt,fjhu,fctp)</code></pre>
 <pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2179 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2109 row(s) containing missing values (geom_path).</code></pre>
 <pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 1225 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1177 row(s) containing missing values (geom_path).</code></pre>
 <pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2252 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2158 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="datasummary_files/figure-html/newcases-1.png" width="768" /></p>
 <pre class="r"><code>X  &lt;- cs[,c(&quot;newcases.nyt&quot;,&quot;newcases.jhu&quot;,&quot;newcases.ctp&quot;)]
 X[X&lt;0] &lt;- NA
@@ -560,26 +563,26 @@ kable(tbl, digits=4, caption=&quot;Correlation and variance of log daily new cas
 <tr class="odd">
 <td>NYT</td>
 <td align="right">1.0000</td>
-<td align="right">0.8849</td>
-<td align="right">0.8494</td>
+<td align="right">0.8874</td>
+<td align="right">0.8532</td>
 </tr>
 <tr class="even">
 <td>JHU</td>
-<td align="right">0.8849</td>
+<td align="right">0.8874</td>
 <td align="right">1.0000</td>
-<td align="right">0.7870</td>
+<td align="right">0.7873</td>
 </tr>
 <tr class="odd">
 <td>CTP</td>
-<td align="right">0.8494</td>
-<td align="right">0.7870</td>
+<td align="right">0.8532</td>
+<td align="right">0.7873</td>
 <td align="right">1.0000</td>
 </tr>
 <tr class="even">
 <td>Variance</td>
-<td align="right">5.1362</td>
-<td align="right">6.4953</td>
-<td align="right">6.1192</td>
+<td align="right">5.2279</td>
+<td align="right">6.5713</td>
+<td align="right">6.2818</td>
 </tr>
 </tbody>
 </table>
@@ -615,26 +618,26 @@ kable(tbl, digits=4, caption=&quot;Correlation and variance of log weekly new ca
 <tr class="odd">
 <td>NYT</td>
 <td align="right">1.0000</td>
-<td align="right">0.9827</td>
-<td align="right">0.9795</td>
+<td align="right">0.9848</td>
+<td align="right">0.9810</td>
 </tr>
 <tr class="even">
 <td>JHU</td>
-<td align="right">0.9827</td>
+<td align="right">0.9848</td>
 <td align="right">1.0000</td>
-<td align="right">0.9631</td>
+<td align="right">0.9664</td>
 </tr>
 <tr class="odd">
 <td>CTP</td>
-<td align="right">0.9795</td>
-<td align="right">0.9631</td>
+<td align="right">0.9810</td>
+<td align="right">0.9664</td>
 <td align="right">1.0000</td>
 </tr>
 <tr class="even">
 <td>Variance</td>
-<td align="right">3.7352</td>
-<td align="right">3.9610</td>
-<td align="right">3.4828</td>
+<td align="right">3.7941</td>
+<td align="right">3.9929</td>
+<td align="right">3.5532</td>
 </tr>
 </tbody>
 </table>
@@ -653,11 +656,11 @@ fjhu &lt;- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alp
 
 grid.arrange(fnyt,fjhu,fctp)</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2447 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2371 row(s) containing missing values (geom_path).</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 1225 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1177 row(s) containing missing values (geom_path).</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2552 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2445 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="datasummary_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
 </div>
 <div id="deaths" class="section level2" number="1.3">
@@ -1928,7 +1931,7 @@ kable(varlabels)</code></pre>
 <div id="case-and-death-growth" class="section level1" number="6">
 <h1 number="6"><span class="header-section-number">6</span> Case and death growth</h1>
 <pre class="r"><code>source(paste(rootdir,&quot;cases_and_policies/R/dataprep.R&quot;,sep=&quot;/&quot;))</code></pre>
-<pre><code>## Loading data last updated on  2020-07-16 08:31:04 
+<pre><code>## Loading data last updated on  2020-07-31 15:44:29 
 ## Run  /home/paul/covid/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
 <pre class="r"><code>source(paste(rootdir,&quot;cases_and_policies/rmd/varlabels.R&quot;, sep=&quot;/&quot;))
 source(paste(rootdir,&quot;cases_and_policies/rmd/regprep.R&quot;, sep=&quot;/&quot;))</code></pre>
@@ -1956,7 +1959,7 @@ print(fig)</code></pre>
 ## Warning: Removed 26 row(s) containing missing values (geom_path).
 
 ## Warning: Removed 26 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1990 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1912 row(s) containing missing values (geom_path).</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
@@ -1982,7 +1985,7 @@ print(fig)</code></pre>
 ## Warning: Removed 26 row(s) containing missing values (geom_path).
 
 ## Warning: Removed 26 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1990 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1912 row(s) containing missing values (geom_path).</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
