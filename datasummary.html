@@ -362,11 +362,15 @@ div.tocify {
 <li>
   <a href="regressionsWithPlots.html">Regresssions</a>
 </li>
+<li class="dropdown-header">Counterfactuals</li>
 <li>
-  <a href="counterfactuals.html">Counterfactuals (without national information)</a>
+  <a href="counterfactuals.html">(without national information)</a>
 </li>
 <li>
-  <a href="counterfactuals_national.html">Counterfactuals (with national information)</a>
+  <a href="cf-pindex.html">(averaged policies, without national information)</a>
+</li>
+<li>
+  <a href="counterfactuals_national.html">(with national information)</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -526,15 +530,6 @@ fjhu &lt;- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alp
   theme(legend.position = &quot;none&quot;)
 
 grid.arrange(fnyt,fjhu,fctp)</code></pre>
-<pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2109 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 1177 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2158 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="datasummary_files/figure-html/newcases-1.png" width="768" /></p>
 <pre class="r"><code>X  &lt;- cs[,c(&quot;newcases.nyt&quot;,&quot;newcases.jhu&quot;,&quot;newcases.ctp&quot;)]
 X[X&lt;0] &lt;- NA
@@ -546,9 +541,6 @@ colnames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;)
 rownames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;,&quot;Variance&quot;)
 
 kable(tbl, digits=4, caption=&quot;Correlation and variance of log daily new cases\\label{tab:newcasecor}&quot;)</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Correlation and variance of log daily new cases</caption>
 <thead>
@@ -601,9 +593,6 @@ tbl &lt;- rbind(tbl, diag(cov(log(X), use=&quot;complete&quot;)))
 colnames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;)
 rownames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;,&quot;Variance&quot;)
 kable(tbl, digits=4, caption=&quot;Correlation and variance of log weekly new cases\\label{tab:weekcasecor}&quot;)</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Correlation and variance of log weekly new cases</caption>
 <thead>
@@ -655,12 +644,6 @@ fjhu &lt;- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alp
   theme(legend.position = &quot;none&quot;)
 
 grid.arrange(fnyt,fjhu,fctp)</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2371 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 1177 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2445 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="datasummary_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
 </div>
 <div id="deaths" class="section level2" number="1.3">
@@ -1934,59 +1917,21 @@ kable(varlabels)</code></pre>
 <pre><code>## Loading data last updated on  2020-07-31 15:44:29 
 ## Run  /home/paul/covid/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
 <pre class="r"><code>source(paste(rootdir,&quot;cases_and_policies/rmd/varlabels.R&quot;, sep=&quot;/&quot;))
-source(paste(rootdir,&quot;cases_and_policies/rmd/regprep.R&quot;, sep=&quot;/&quot;))</code></pre>
-<pre><code>## Warning in eval(ei, envir): Using data only up to 2020-06-02 as in submitted version of paper.
-## Modify lines 4-5 of regprep.R to change</code></pre>
-<pre class="r"><code>fig &lt;- quantileplot(&quot;dlogdc&quot;, data=df) + ylab(&quot;&quot;) + xlim(c(as.Date(&quot;2020-03-01&quot;),max(df$date+3)))</code></pre>
+source(paste(rootdir,&quot;cases_and_policies/rmd/regprep.R&quot;, sep=&quot;/&quot;))
+fig &lt;- quantileplot(&quot;dlogdc&quot;, data=df) + ylab(&quot;&quot;) + xlim(c(as.Date(&quot;2020-03-01&quot;),max(df$date+3)))</code></pre>
 <pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will replace the
 ## existing scale.</code></pre>
 <pre class="r"><code>pdf(sprintf(&quot;%s/tex/tables_and_figures/casequantiles.pdf&quot;,rootdir), width=7, height=3.5)
-print(fig)</code></pre>
-<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
-<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.
-
-## Warning: Use of `adf$y` is discouraged. Use `y` instead.
-
-## Warning: Use of `adf$y` is discouraged. Use `y` instead.
-
-## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
-<pre><code>## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1912 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+print(fig)
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
 <pre class="r"><code>fig &lt;- quantileplot(&quot;dlogdd&quot;, data=df) + ylab(&quot;&quot;) + xlim(c(as.Date(&quot;2020-03-01&quot;),max(df$date+3)))</code></pre>
 <pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will replace the
 ## existing scale.</code></pre>
 <pre class="r"><code>pdf(sprintf(&quot;%s/tex/tables_and_figures/deathquantiles.pdf&quot;,rootdir), width=7, height=3.5)
-print(fig)</code></pre>
-<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
-<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.
-
-## Warning: Use of `adf$y` is discouraged. Use `y` instead.
-
-## Warning: Use of `adf$y` is discouraged. Use `y` instead.
-
-## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
-<pre><code>## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).
-
-## Warning: Removed 26 row(s) containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1912 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+print(fig)
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
 </div>
