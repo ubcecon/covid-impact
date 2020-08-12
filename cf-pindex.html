@@ -395,7 +395,7 @@ div.tocify {
 <h1 class="title toc-ignore">Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S.</h1>
 <h3 class="subtitle">Counterfactuals (with policies averaged)</h3>
 <h4 class="author">Victor Chernozhukov, Hiro Kasahara, Paul Schrimpf</h4>
-<h4 class="date">11 August, 2020</h4>
+<h4 class="date">12 August, 2020</h4>
 
 </div>
 
@@ -704,80 +704,54 @@ for (f in figs1) print(f)</code></pre>
 <p><img src="cf-pindex_files/figure-html/masks-resids-fixed-4.png" width="768" /><img src="cf-pindex_files/figure-html/masks-resids-fixed-5.png" width="768" /><img src="cf-pindex_files/figure-html/masks-resids-fixed-6.png" width="768" /></p>
 </div>
 </div>
-<div id="stay-at-home" class="section level2" number="2.3">
-<h2 number="2.3"><span class="header-section-number">2.3</span> Stay at home</h2>
-<p>We now look at what happens if stay at home orders were never issued.</p>
+<div id="averaged-policies" class="section level2" number="2.3">
+<h2 number="2.3"><span class="header-section-number">2.3</span> Averaged policies</h2>
+<p>We now look at what happens if none of the four averaged policies (stay at home, close movie theaters, close restaurants, close nonessential businesses) were implemented.</p>
 <pre class="r"><code>cf &lt;- df
-cf[,&quot;pshelter&quot;] &lt;- 0
+cf[,&quot;pindex&quot;] &lt;- 0
 cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
 noshelter &lt;- createforwardsim(m, cf)
 
-if (!file.exists(&quot;cfshelter_idx.Rda&quot;) || rerunsim) {
+if (!file.exists(&quot;cfindex_idx.Rda&quot;) || rerunsim) {
   cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
-  save(cfshelterlist, shelterall, file=&quot;cfshelter_idx.Rda&quot;)
+  save(cfshelterlist, shelterall, file=&quot;cfindex_idx.Rda&quot;)
 }
-load(&quot;cfshelter_idx.Rda&quot;)
+load(&quot;cfindex_idx.Rda&quot;)
 cfshelter &lt;- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))</code></pre>
 <pre class="r"><code>cfshelter &lt;- merge(cfshelter, abbrv, by=&quot;state&quot;)
 for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
   f &lt;- cfplots(st, cfshelter, data=df)
-  print(f$figp +  ggtitle(sprintf(&quot;Effect of no stay at home order in %s&quot;,st)))
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of no shutdown policies in %s&quot;,st)))
 
-  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dgrowth_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dgrowth_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcases_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dcases_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }</code></pre>
-<pre><code>## Warning: Ignoring unknown aesthetics: fill
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-1.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-3-2.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-3-3.png" width="768" /></p>
+<pre class="r"><code>figs &lt;- nationalplots(shelterall, cfshelter, &quot;no shutdown policies&quot;)
 
-## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
-<pre><code>## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-2.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-3-3.png" width="768" /></p>
-<pre class="r"><code>figs &lt;- nationalplots(shelterall, cfshelter, &quot;no stay at home orders&quot;)
-
-figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dgrowth_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$g</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-dgrowth_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
-<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dcases_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$c</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_point).
-
-## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-dcases_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
-<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-rel_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$r</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-rel_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
 <pre class="r"><code>for (f in figs) print(f)</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_point).
-
-## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-4.png" width="768" /></p>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_point).
-
-## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-5.png" width="768" /></p>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-6.png" width="768" /></p>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-4.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-3-5.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-3-6.png" width="768" /></p>
 </div>
 </div>
 <div id="deaths" class="section level1" number="3">
@@ -970,73 +944,54 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-4-6.png" width="768" /></p>
 </div>
-<div id="stay-at-home-1" class="section level2" number="3.3">
+<div id="stay-at-home" class="section level2" number="3.3">
 <h2 number="3.3"><span class="header-section-number">3.3</span> Stay at home</h2>
 <p>We now look at what happens if stay at home orders were never issued.</p>
 <pre class="r"><code>cf &lt;- df
-cf[,&quot;pshelter&quot;] &lt;- 0
+cf[,&quot;pindex&quot;] &lt;- 0
 cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
 noshelter &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)
 
-if (!file.exists(&quot;cfshelter_deaths_idx.Rda&quot;) || rerunsim) {
+if (!file.exists(&quot;cfindex_deaths_idx.Rda&quot;) || rerunsim) {
   cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
-  save(cfshelterlist, shelterall, file=&quot;cfshelter_deaths_idx.Rda&quot;)
+  save(cfshelterlist, shelterall, file=&quot;cfindex_deaths_idx.Rda&quot;)
 }
-load(&quot;cfshelter_deaths_idx.Rda&quot;)
+load(&quot;cfindex_deaths_idx.Rda&quot;)
 cfshelter &lt;- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))</code></pre>
 <pre class="r"><code>cfshelter &lt;- merge(cfshelter, abbrv, by=&quot;state&quot;)
 for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
   f &lt;- cfplots(st, cfshelter, data=df, yvar=&quot;deaths&quot;)
-  print(f$figp +  ggtitle(sprintf(&quot;Effect of no stay at home order in %s&quot;,st)))
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of no shutdown policies in %s&quot;,st)))
 
-  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dgrowth_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dgrowth_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcases_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dcases_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }</code></pre>
-<pre><code>## Warning: Ignoring unknown aesthetics: fill
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-1.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-5-2.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-5-3.png" width="768" /></p>
+<pre class="r"><code>figs &lt;- nationalplots(shelterall, cfshelter, &quot;no shutdown policies&quot;, yvar=&quot;deaths&quot;)
 
-## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
-<pre><code>## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-2.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-5-3.png" width="768" /></p>
-<pre class="r"><code>figs &lt;- nationalplots(shelterall, cfshelter, &quot;no stay at home orders&quot;, yvar=&quot;deaths&quot;)
-
-figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$g</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-dgrowth_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$g
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
-<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-dcases_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$c</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-dcases_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$c
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
-<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-rel_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$r</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-rel_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$r
+dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
 <pre class="r"><code>for (f in figs) print(f)</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-4.png" width="768" /></p>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-5.png" width="768" /></p>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-6.png" width="768" /></p>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-4.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-5-5.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-5-6.png" width="768" /></p>
 </div>
 </div>
 
