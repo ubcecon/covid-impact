@@ -191,7 +191,7 @@ Jordan Hutchings, and Dongxiao Zhang  for excellent research assistance.  All mi
 \section{Sensitivity Analysis}
 
 
-In this section, we provide sensitivity analysis by estimating (\ref{PtoY}) with alternative specifications and methods. Figure \ref{fig:whisker} shows  the 90\% confidence intervals of   coefficients of (A) masks for employees, (B)  closed K-12 school, (C) stay-at-home, and (D) the average variable of stay-at-home, closed movie theaters, closed restaurants, and closed non-essential businesses across different specifications and estimation methods as follows:
+In this section, we provide sensitivity analysis by estimating (\ref{PtoY}) with alternative specifications and methods. Figure \ref{fig:whisker} shows  the 90\% confidence intervals of   coefficients of (A) masks for employees, (B)  closed K-12 school, (C) stay-at-home, and (D) the average variable of stay-at-home, closed movie theaters, closed restaurants, and closed non-essential businesses for the following specifications and estimation methods:
   \begin{itemize}
   \item[(1)] Baseline specification  in Table  \ref{tab:PtoY}.
   \item[(2)]  Exclude  the state of New York from the sample because it may be viewed as an outlier in the early pandemic period.
@@ -204,16 +204,7 @@ In this section, we provide sensitivity analysis by estimating (\ref{PtoY}) with
   % \item Alternative Timing assumption ($\ell=10$ for cases and $\ell=23$ for deaths) on all of the above.
   \end{itemize} 
 In Figure \ref{fig:whisker}, ``red'', ``green'', ``blue'', and ``purple" indicate the regression models for case growth without national information variables, case growth with national information variables, death growth without national information variables, and death growth with national information variables, respectively. The left panel of ``(i) baseline timing'' assume that the times from exposure to case confirmation and death reporting are 14 and 21 days, respectively,  while they are 9 and 24 days, respectively, in the right panel of ``(ii) alternative timing.''\footnote{This alternative timing assumption is motivated by the lower bound estimate of median times from exposure to case confirmation or death reporting in Table 2 of \url{https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html}, which are based on data received by CDC through June 29, 2020.  We thank Jessica Metclaf for recommending us to do a sensitivity analysis on the timing assumption while suggesting this reference to us.}
- 
- 
   
-  
-%We examine the robustness of our results by adding more controls, excluding the state of New York, and applying  estimation methods of double/debiased machine learning (DML) of \cite{chernozhukov18} and bias corrected fixed effects estimator. We also provide a sensitivity analysis regarding the assumption on the times from exposure to case confirmation and death reporting.  
-  
- 
-%  
-%In each of four regression models, we report: (1) baseline specification  in Table xx; (2) excluding New York from the sample; (3) adding  the percentage of people who wears masks to protect themselves between March 26-April 29, 2020 to control for people's attitude toward mask wearing in the first half of sample;\footnote{ The survey is conducted online by YouGov and is based on the interviews of 89,347 US adults aged 18 and over between March 26-April 29, 2020.  The survey question is ``Which, if any, of the following measures have you taken in the past 2 weeks to protect yourself from the Coronavirus (COVID-19)?''.} (4) adding the log of Trump voting shares;   (5)  including four weeks lagged behavior variables as an additional set of controls, where our causal interpretation is valid when policy variables are sufficiently random conditional on past behavior variables under this specification; (6) including  all additional controls in (3)-(5) with the sample that excludes New York; (7) applying the DML  with Lasso to (6); (8) applying the DML with Random Forest to (6); (9) including state fixed effects while applying bias correction based on cross-splitting.\footnote{In the appendix, Table \ref{tab:PtoY-robust} presents the estimates for (1)-(6) while Table \ref{tab:PtoY-fe} compares bias corrected fixed effect estimates with those without bias correction. The appendix also provides more detailed discussion on how we implement DML procedures as well as bias correction to fixed effects estimator.}
-
 
 Panel (A) of Figure  \ref{fig:whisker} illustrates that the estimated coefficients of mask mandates are negative and significant across different specifications, methods, and timing assumptions, confirming the importance of mask policy on reducing case and death growths.  % Comparing (i) baseline timing on the left with (ii) alternative timing on the right,  we notice that the estimated magnitudes of masks for employees are similar to each other.
 
@@ -224,7 +215,7 @@ children's contact rates are much higher.
 This type of evidence, as well as, evidence that children carry viral
 loads similar to older people (\cite{children:germany}), led Germany to make the early decision of closing schools.
  
-Our estimates of school closures substantially vary  across  specifications, however, and the estimated effects of school closures on case growth are not significant once national cases are controlled for.
+Our estimates of school closures substantially vary  across  specifications, however, and the estimated effects of school closures on case/death growth are often not significantly different from zero once national cases are controlled for.
 In the US state-level data,  there is little variation across states in the timing of school closures.  
 Consequently, its estimate is particularly sensitive to an inclusion of some aggregate variables such as national cases.  Given this sensitivity,  there still exists a lot of uncertainty as to the magnitude of the effect of school closures.  Any analyses of re-opening plans need to be aware of this uncertainty.  An important research question is how to resolve this uncertainty using additional data sources. 
 

@@ -188,10 +188,10 @@ iv <- list("0","0") #,"(testratedc ~ lag(testratedc,14))")
 
 
 # Set time lag:
-# L.c <- 14
-# L.d <- 21
-L.c <- 9
-L.d <- 24
+L.c <- 14
+L.d <- 21
+# L.c <- 9
+# L.d <- 24
  
 L <- L.c
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
@@ -209,7 +209,7 @@ savetextables(NULL, regs$pbiy, regs$piy, prefix="cases")
 savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="cases-nosplit")
 ```
 
-```{r casedieff, eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
+```{r casedieff, eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 for (use.national in c(TRUE,FALSE)) {
   sb <- ifelse(use.national, 2, 1)
   sy <- ifelse(use.national, 3, 1)
@@ -297,7 +297,7 @@ savetextables(NULL, regs$pbiy, regs$piy, prefix="deaths-deathsinfo")
 savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="deaths-deathsinfo-nosplit") 
 ```
 
-```{r dieff-deaths, eval = FALSE, cache=FALSE, results='asis', warning=FALSE}
+```{r dieff-deaths, eval = TRUE, cache=FALSE, results='asis', warning=FALSE}
 for (use.national in c(TRUE,FALSE)) {
   sb <- ifelse(use.national, 2, 1)
   sy <- ifelse(use.national, 3, 1)

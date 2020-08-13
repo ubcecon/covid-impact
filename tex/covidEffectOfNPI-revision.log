@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.16)  10 AUG 2020 09:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.16)  13 AUG 2020 12:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -930,9 +930,6 @@ LaTeX Warning: Unused global option(s):
 
 LaTeX Warning: Label `fig:growthpolicies1' multiply defined.
 
-
-LaTeX Warning: Label `fig:growthpolicies1' multiply defined.
-
 )
 \openout1 = `covidEffectOfNPI-revision.aux'.
 
@@ -1048,26 +1045,33 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 ABD: EveryShipout initializing macros [1{/usr/local/texlive/2020/texmf-var/font
 s/map/pdftex/updmap/pdftex.map}] [2] [3]
-<tables_and_figures/us-mask-dgrowth_v1.pdf, id=230, 361.35pt x 271.0125pt>
+
+LaTeX Warning: Reference `fig:US-nop-SI' on page 4 undefined on input line 255.
+
+
+
+LaTeX Warning: Reference `fig:US-nop' on page 4 undefined on input line 255.
+
+<tables_and_figures/us-mask-dgrowth_v1.pdf, id=228, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-mask-dgrowth_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_v1.pdf  used on inp
 ut line 282.
 (pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-<tables_and_figures/us-mask-rel_v1.pdf, id=231, 361.35pt x 271.0125pt>
+<tables_and_figures/us-mask-rel_v1.pdf, id=229, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-mask-rel_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-rel_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-rel_v1.pdf  used on input l
 ine 284.
 (pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-<tables_and_figures/us-mask-dgrowth_deaths_v1.pdf, id=232, 361.35pt x 271.0125p
+<tables_and_figures/us-mask-dgrowth_deaths_v1.pdf, id=230, 361.35pt x 271.0125p
 t>
 File: tables_and_figures/us-mask-dgrowth_deaths_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-dgrowth_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_deaths_v1.pdf  used
  on input line 288.
 (pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-<tables_and_figures/us-mask-rel_deaths_v1.pdf, id=233, 361.35pt x 271.0125pt>
+<tables_and_figures/us-mask-rel_deaths_v1.pdf, id=231, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-mask-rel_deaths_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-rel_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-rel_deaths_v1.pdf  used on 
@@ -1078,25 +1082,25 @@ Overfull \hbox (11.33238pt too wide) in paragraph at lines 280--292
  [][] 
  []
 
-<tables_and_figures/us-nb-dgrowth_v1.pdf, id=234, 361.35pt x 271.0125pt>
+<tables_and_figures/us-nb-dgrowth_v1.pdf, id=232, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-nb-dgrowth_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-nb-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-nb-dgrowth_v1.pdf  used on input
  line 309.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-nb-rel_v1.pdf, id=235, 361.35pt x 271.0125pt>
+<tables_and_figures/us-nb-rel_v1.pdf, id=233, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-nb-rel_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-nb-rel_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-nb-rel_v1.pdf  used on input lin
 e 311.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-shelter-dgrowth_v1.pdf, id=236, 361.35pt x 271.0125pt>
+<tables_and_figures/us-shelter-dgrowth_v1.pdf, id=234, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-shelter-dgrowth_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-dgrowth_v1.pdf  used on 
 input line 328.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-shelter-rel_v1.pdf, id=237, 361.35pt x 271.0125pt>
+<tables_and_figures/us-shelter-rel_v1.pdf, id=235, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-shelter-rel_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-rel_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-rel_v1.pdf  used on inpu
@@ -1207,13 +1211,13 @@ Underfull \vbox (badness 1960) has occurred while \output is active []
                                                   \fi \fi 
 l.998 
       ] (./tables_and_figures/policies_inregs.tex) [17]
-<tables_and_figures/transit.pdf, id=632, 505.89pt x 252.945pt>
+<tables_and_figures/transit.pdf, id=627, 505.89pt x 252.945pt>
 File: tables_and_figures/transit.pdf Graphic file (type pdf)
 <use tables_and_figures/transit.pdf>
 Package pdftex.def Info: tables_and_figures/transit.pdf  used on input line 102
 4.
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/workplaces.pdf, id=633, 505.89pt x 252.945pt>
+<tables_and_figures/workplaces.pdf, id=628, 505.89pt x 252.945pt>
 File: tables_and_figures/workplaces.pdf Graphic file (type pdf)
 <use tables_and_figures/workplaces.pdf>
 Package pdftex.def Info: tables_and_figures/workplaces.pdf  used on input line 
@@ -1225,41 +1229,41 @@ Overfull \hbox (13.65pt too wide) in paragraph at lines 1023--1027
  []
 
 (./tables_and_figures/corr.tex)
-<tables_and_figures/pmaskbus_p.pdf, id=637, 289.08pt x 144.54pt>
+<tables_and_figures/pmaskbus_p.pdf, id=632, 289.08pt x 144.54pt>
 File: tables_and_figures/pmaskbus_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus_p.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus_p.pdf  used on input line 
-1083.
+1084.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pk12_p.pdf, id=638, 289.08pt x 144.54pt>
+<tables_and_figures/pk12_p.pdf, id=633, 289.08pt x 144.54pt>
 File: tables_and_figures/pk12_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12_p.pdf>
-Package pdftex.def Info: tables_and_figures/pk12_p.pdf  used on input line 1085
+Package pdftex.def Info: tables_and_figures/pk12_p.pdf  used on input line 1086
 .
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pshelter_p.pdf, id=639, 289.08pt x 144.54pt>
+<tables_and_figures/pshelter_p.pdf, id=634, 289.08pt x 144.54pt>
 File: tables_and_figures/pshelter_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter_p.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter_p.pdf  used on input line 
-1087.
+1088.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pmovie_p.pdf, id=640, 289.08pt x 144.54pt>
+<tables_and_figures/pmovie_p.pdf, id=635, 289.08pt x 144.54pt>
 File: tables_and_figures/pmovie_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie_p.pdf>
 Package pdftex.def Info: tables_and_figures/pmovie_p.pdf  used on input line 10
-89.
+90.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/prestaurant_p.pdf, id=641, 289.08pt x 144.54pt>
+<tables_and_figures/prestaurant_p.pdf, id=636, 289.08pt x 144.54pt>
 File: tables_and_figures/prestaurant_p.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant_p.pdf>
 Package pdftex.def Info: tables_and_figures/prestaurant_p.pdf  used on input li
-ne 1091.
+ne 1092.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pnonessential_p.pdf, id=642, 289.08pt x 144.54pt>
+<tables_and_figures/pnonessential_p.pdf, id=637, 289.08pt x 144.54pt>
 File: tables_and_figures/pnonessential_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential_p.pdf>
 Package pdftex.def Info: tables_and_figures/pnonessential_p.pdf  used on input 
-line 1093.
+line 1094.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1268,72 +1272,70 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [19 <./tables_and_figures/pmaskbus_p.pdf> <./tables_and_figures/pk12_p.pdf> <./
 tables_and_figures/pshelter_p.pdf> <./tables_and_figures/pmovie_p.pdf> <./table
 s_and_figures/prestaurant_p.pdf> <./tables_and_figures/pnonessential_p.pdf>]
-(./tables_and_figures/behavior-NI-pib.tex)
-
-LaTeX Warning: Float too large for page by 65.19867pt on input line 1165.
-
-(./tables_and_figures/behavior-deathsinfo-NI-pib.tex)
-
-LaTeX Warning: Float too large for page by 48.73457pt on input line 1165.
-
-[20] [21]
-<tables_and_figures/pmaskbus-cases-14.pdf, id=729, 289.08pt x 216.81pt>
+<tables_and_figures/pmaskbus-cases-14.pdf, id=711, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-cases-14.pdf  used on inpu
-t line 1224.
+t line 1225.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pmaskbus-deaths-21.pdf, id=730, 289.08pt x 216.81pt>
+<tables_and_figures/pmaskbus-deaths-21.pdf, id=712, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-deaths-21.pdf  used on inp
-ut line 1226.
+ut line 1227.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1223--1228
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1224--1229
  [][] 
  []
 
 
-Underfull \vbox (badness 5490) has occurred while \output is active []
+Underfull \vbox (badness 5696) has occurred while \output is active []
 
- [22
-
-
-
-
-]
-[23 <./tables_and_figures/pmaskbus-cases-14.pdf> <./tables_and_figures/pmaskbus
+ [20]
+[21 <./tables_and_figures/pmaskbus-cases-14.pdf> <./tables_and_figures/pmaskbus
 -deaths-21.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pmaskbu
 s-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in a si
 ngle page
->] (./tables_and_figures/cases-pbiy.tex)
-Overfull \hbox (3.79248pt too wide) in paragraph at lines 1--1296
+>] (./tables_and_figures/behavior-NI-pib.tex)
+
+LaTeX Warning: Float too large for page by 67.08755pt on input line 1297.
+
+(./tables_and_figures/behavior-deathsinfo-NI-pib.tex)
+
+LaTeX Warning: Float too large for page by 50.62346pt on input line 1297.
+
+[22] [23] (./tables_and_figures/cases-pbiy.tex)
+Overfull \hbox (7.77861pt too wide) in paragraph at lines 1--1297
  [][] 
  []
 
 (./tables_and_figures/deaths-deathsinfo-pbiy.tex)
-Overfull \hbox (7.77861pt too wide) in paragraph at lines 1--1296
+Overfull \hbox (7.77861pt too wide) in paragraph at lines 1--1297
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 2.44202pt on input line 1296.
+LaTeX Warning: Float too large for page by 12.44202pt on input line 1297.
 
 [24] [25
 
 
 
 
+
+
+
+
 ] [26] [27] (./tables_and_figures/cases-piy.tex)
-Overfull \hbox (3.79248pt too wide) in paragraph at lines 1--1599
+Overfull \hbox (7.77861pt too wide) in paragraph at lines 1--1601
  [][] 
  []
 
 (./tables_and_figures/deaths-deathsinfo-piy.tex)
-Overfull \hbox (7.77861pt too wide) in paragraph at lines 1--1599
+Overfull \hbox (7.77861pt too wide) in paragraph at lines 1--1601
  [][] 
  []
 
@@ -1344,138 +1346,134 @@ Overfull \hbox (7.77861pt too wide) in paragraph at lines 1--1599
 (./tables_and_figures/dieff-cases-NI.tex)
 (./tables_and_figures/dieff-deaths-deathsinfo-NI.tex)
 
-LaTeX Warning: Float too large for page by 7.16695pt on input line 1599.
+LaTeX Warning: Float too large for page by 7.16695pt on input line 1601.
 
 [29] [30] [31
 
 
 ]
 
-LaTeX Warning: Reference `tab:PtoY-robust' on page 32 undefined on input line 1
-647.
-
-
-LaTeX Warning: Reference `tab:PtoY-fe' on page 32 undefined on input line 1647.
-
+Package natbib Warning: Citation `chernozhukov18' on page 32 undefined on input
+ line 1633.
 
 [32]
-<tables_and_figures/pmaskbus-whisker-14.pdf, id=929, 289.08pt x 216.81pt>
+<tables_and_figures/pmaskbus-whisker-14.pdf, id=932, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-whisker-14.pdf  used on in
-put line 1675.
+put line 1665.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pmaskbus-whisker-10.pdf, id=930, 289.08pt x 216.81pt>
-File: tables_and_figures/pmaskbus-whisker-10.pdf Graphic file (type pdf)
-<use tables_and_figures/pmaskbus-whisker-10.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus-whisker-10.pdf  used on in
-put line 1677.
+<tables_and_figures/pmaskbus-whisker-9.pdf, id=933, 289.08pt x 216.81pt>
+File: tables_and_figures/pmaskbus-whisker-9.pdf Graphic file (type pdf)
+<use tables_and_figures/pmaskbus-whisker-9.pdf>
+Package pdftex.def Info: tables_and_figures/pmaskbus-whisker-9.pdf  used on inp
+ut line 1667.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1673--1679
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1663--1669
  [][] 
  []
 
-<tables_and_figures/pk12-whisker-14.pdf, id=931, 289.08pt x 216.81pt>
+<tables_and_figures/pk12-whisker-14.pdf, id=934, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-whisker-14.pdf  used on input 
-line 1686.
+line 1676.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pk12-whisker-10.pdf, id=932, 289.08pt x 216.81pt>
-File: tables_and_figures/pk12-whisker-10.pdf Graphic file (type pdf)
-<use tables_and_figures/pk12-whisker-10.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-whisker-10.pdf  used on input 
-line 1688.
+<tables_and_figures/pk12-whisker-9.pdf, id=935, 289.08pt x 216.81pt>
+File: tables_and_figures/pk12-whisker-9.pdf Graphic file (type pdf)
+<use tables_and_figures/pk12-whisker-9.pdf>
+Package pdftex.def Info: tables_and_figures/pk12-whisker-9.pdf  used on input l
+ine 1678.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1684--1690
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1674--1680
  [][] 
  []
 
-<tables_and_figures/pshelter-whisker-14.pdf, id=933, 289.08pt x 216.81pt>
+<tables_and_figures/pshelter-whisker-14.pdf, id=936, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter-whisker-14.pdf  used on in
-put line 1706.
+put line 1696.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pshelter-whisker-10.pdf, id=934, 289.08pt x 216.81pt>
-File: tables_and_figures/pshelter-whisker-10.pdf Graphic file (type pdf)
-<use tables_and_figures/pshelter-whisker-10.pdf>
-Package pdftex.def Info: tables_and_figures/pshelter-whisker-10.pdf  used on in
-put line 1708.
+<tables_and_figures/pshelter-whisker-9.pdf, id=937, 289.08pt x 216.81pt>
+File: tables_and_figures/pshelter-whisker-9.pdf Graphic file (type pdf)
+<use tables_and_figures/pshelter-whisker-9.pdf>
+Package pdftex.def Info: tables_and_figures/pshelter-whisker-9.pdf  used on inp
+ut line 1698.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1704--1710
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1694--1700
  [][] 
  []
 
-<tables_and_figures/pindex-whisker-14.pdf, id=935, 289.08pt x 216.81pt>
+<tables_and_figures/pindex-whisker-14.pdf, id=938, 289.08pt x 216.81pt>
 File: tables_and_figures/pindex-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pindex-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pindex-whisker-14.pdf  used on inpu
-t line 1717.
+t line 1707.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pindex-whisker-10.pdf, id=936, 289.08pt x 216.81pt>
-File: tables_and_figures/pindex-whisker-10.pdf Graphic file (type pdf)
-<use tables_and_figures/pindex-whisker-10.pdf>
-Package pdftex.def Info: tables_and_figures/pindex-whisker-10.pdf  used on inpu
-t line 1719.
+<tables_and_figures/pindex-whisker-9.pdf, id=939, 289.08pt x 216.81pt>
+File: tables_and_figures/pindex-whisker-9.pdf Graphic file (type pdf)
+<use tables_and_figures/pindex-whisker-9.pdf>
+Package pdftex.def Info: tables_and_figures/pindex-whisker-9.pdf  used on input
+ line 1709.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1715--1721
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1705--1711
  [][] 
  []
 
-<tables_and_figures/pk12-cases-14.pdf, id=937, 289.08pt x 216.81pt>
+<tables_and_figures/pk12-cases-14.pdf, id=940, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-cases-14.pdf  used on input li
-ne 1734.
+ne 1724.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pk12-deaths-21.pdf, id=938, 289.08pt x 216.81pt>
+<tables_and_figures/pk12-deaths-21.pdf, id=941, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-deaths-21.pdf  used on input l
-ine 1736.
+ine 1726.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 
-Overfull \hbox (5.2584pt too wide) in paragraph at lines 1733--1744
+Overfull \hbox (5.2584pt too wide) in paragraph at lines 1723--1734
  [][] 
  []
 
 [33] [34 <./tables_and_figures/pmaskbus-whisker-14.pdf> <./tables_and_figures/p
-maskbus-whisker-10.pdf
+maskbus-whisker-9.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pmaskbu
-s-whisker-10.pdf): PDF inclusion: multiple pdfs with page group included in a s
-ingle page
+s-whisker-9.pdf): PDF inclusion: multiple pdfs with page group included in a si
+ngle page
 > <./tables_and_figures/pk12-whisker-14.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pk12-wh
 isker-14.pdf): PDF inclusion: multiple pdfs with page group included in a singl
 e page
-> <./tables_and_figures/pk12-whisker-10.pdf
+> <./tables_and_figures/pk12-whisker-9.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pk12-wh
-isker-10.pdf): PDF inclusion: multiple pdfs with page group included in a singl
-e page
+isker-9.pdf): PDF inclusion: multiple pdfs with page group included in a single
+ page
 >] [35 <./tables_and_figures/pshelter-whisker-14.pdf> <./tables_and_figures/psh
-elter-whisker-10.pdf
+elter-whisker-9.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pshelte
-r-whisker-10.pdf): PDF inclusion: multiple pdfs with page group included in a s
-ingle page
+r-whisker-9.pdf): PDF inclusion: multiple pdfs with page group included in a si
+ngle page
 > <./tables_and_figures/pindex-whisker-14.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pindex-
 whisker-14.pdf): PDF inclusion: multiple pdfs with page group included in a sin
 gle page
-> <./tables_and_figures/pindex-whisker-10.pdf
+> <./tables_and_figures/pindex-whisker-9.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pindex-
-whisker-10.pdf): PDF inclusion: multiple pdfs with page group included in a sin
-gle page
+whisker-9.pdf): PDF inclusion: multiple pdfs with page group included in a sing
+le page
 >] [36 <./tables_and_figures/pk12-cases-14.pdf> <./tables_and_figures/pk12-deat
 hs-21.pdf
 
@@ -1484,57 +1482,57 @@ aths-21.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
 >]
 
-./covidEffectOfNPI-revision.tex:1773: LaTeX Error: File `tables_and_figures/Was
+./covidEffectOfNPI-revision.tex:1758: LaTeX Error: File `tables_and_figures/Was
 hington-mask-growth' not found.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1773 ...bles_and_figures/Washington-mask-growth}
+l.1758 ...bles_and_figures/Washington-mask-growth}
                                                   
 ? 
-<tables_and_figures/Washington-mask-dgrowth_v1.pdf, id=1053, 361.35pt x 271.012
+<tables_and_figures/Washington-mask-dgrowth_v1.pdf, id=1055, 361.35pt x 271.012
 5pt>
 File: tables_and_figures/Washington-mask-dgrowth_v1.pdf Graphic file (type pdf)
 
 <use tables_and_figures/Washington-mask-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-mask-dgrowth_v1.pdf  use
-d on input line 1775.
+d on input line 1760.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-dcases_v1.pdf, id=1054, 361.35pt x 271.0125
+<tables_and_figures/Washington-mask-dcases_v1.pdf, id=1056, 361.35pt x 271.0125
 pt>
 File: tables_and_figures/Washington-mask-dcases_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/Washington-mask-dcases_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-mask-dcases_v1.pdf  used
- on input line 1776.
+ on input line 1761.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
 
-./covidEffectOfNPI-revision.tex:1780: LaTeX Error: File `tables_and_figures/Was
+./covidEffectOfNPI-revision.tex:1765: LaTeX Error: File `tables_and_figures/Was
 hington-mask-growth_deaths' not found.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1780 ...d_figures/Washington-mask-growth_deaths}
+l.1765 ...d_figures/Washington-mask-growth_deaths}
                                                   
 ? 
-<tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf, id=1055, 361.35pt x 
+<tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf, id=1057, 361.35pt x 
 271.0125pt>
 File: tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf Graphic file (ty
 pe pdf)
 <use tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-mask-dgrowth_deaths_v1.p
-df  used on input line 1781.
+df  used on input line 1766.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-dcases_deaths_v1.pdf, id=1056, 361.35pt x 2
+<tables_and_figures/Washington-mask-dcases_deaths_v1.pdf, id=1058, 361.35pt x 2
 71.0125pt>
 File: tables_and_figures/Washington-mask-dcases_deaths_v1.pdf Graphic file (typ
 e pdf)
 <use tables_and_figures/Washington-mask-dcases_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-mask-dcases_deaths_v1.pd
-f  used on input line 1782.
+f  used on input line 1767.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
 [37
 
@@ -1558,115 +1556,115 @@ cluded in a single page
 File: tables_and_figures/us-mask-dgrowth_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_v1.pdf  used on inp
-ut line 1855.
+ut line 1840.
 (pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
 File: tables_and_figures/us-mask-rel_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-rel_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-rel_v1.pdf  used on input l
-ine 1857.
+ine 1842.
 (pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
 File: tables_and_figures/us-mask-dgrowth_deaths_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-dgrowth_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_deaths_v1.pdf  used
- on input line 1861.
+ on input line 1846.
 (pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
 File: tables_and_figures/us-mask-rel_deaths_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-rel_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-rel_deaths_v1.pdf  used on 
-input line 1863.
+input line 1848.
 (pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
 
-Overfull \hbox (11.33238pt too wide) in paragraph at lines 1853--1865
+Overfull \hbox (11.33238pt too wide) in paragraph at lines 1838--1850
  [][] 
  []
 
 
-LaTeX Warning: Reference `fig:MA-mask' on page 38 undefined on input line 1878.
+LaTeX Warning: Reference `fig:MA-mask' on page 38 undefined on input line 1863.
 
 
 
-LaTeX Warning: Reference `fig:IL-mask' on page 38 undefined on input line 1878.
+LaTeX Warning: Reference `fig:IL-mask' on page 38 undefined on input line 1863.
 
 
-<tables_and_figures/Washington-nb-dgrowth_v1.pdf, id=1143, 361.35pt x 271.0125p
+<tables_and_figures/Washington-nb-dgrowth_v1.pdf, id=1145, 361.35pt x 271.0125p
 t>
 File: tables_and_figures/Washington-nb-dgrowth_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/Washington-nb-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-nb-dgrowth_v1.pdf  used 
-on input line 1904.
+on input line 1889.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/Washington-nb-dcases_v1.pdf, id=1144, 361.35pt x 271.0125pt
+<tables_and_figures/Washington-nb-dcases_v1.pdf, id=1146, 361.35pt x 271.0125pt
 >
 File: tables_and_figures/Washington-nb-dcases_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/Washington-nb-dcases_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-nb-dcases_v1.pdf  used o
-n input line 1906.
+n input line 1891.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf, id=1145, 361.35pt x 27
+<tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf, id=1147, 361.35pt x 27
 1.0125pt>
 File: tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf Graphic file (type
  pdf)
 <use tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf
-  used on input line 1909.
+  used on input line 1894.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/Washington-nb-dcases_deaths_v1.pdf, id=1146, 361.35pt x 271
+<tables_and_figures/Washington-nb-dcases_deaths_v1.pdf, id=1148, 361.35pt x 271
 .0125pt>
 File: tables_and_figures/Washington-nb-dcases_deaths_v1.pdf Graphic file (type 
 pdf)
 <use tables_and_figures/Washington-nb-dcases_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-nb-dcases_deaths_v1.pdf 
- used on input line 1910.
+ used on input line 1895.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
 [38]
 File: tables_and_figures/us-nb-dgrowth_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-nb-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-nb-dgrowth_v1.pdf  used on input
- line 1927.
+ line 1912.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
 File: tables_and_figures/us-nb-rel_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-nb-rel_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-nb-rel_v1.pdf  used on input lin
-e 1929.
+e 1914.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-nb-dgrowth_deaths_v1.pdf, id=1154, 361.35pt x 271.0125pt
+<tables_and_figures/us-nb-dgrowth_deaths_v1.pdf, id=1156, 361.35pt x 271.0125pt
 >
 File: tables_and_figures/us-nb-dgrowth_deaths_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-nb-dgrowth_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-nb-dgrowth_deaths_v1.pdf  used o
-n input line 1933.
+n input line 1918.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-nb-rel_deaths_v1.pdf, id=1155, 361.35pt x 271.0125pt>
+<tables_and_figures/us-nb-rel_deaths_v1.pdf, id=1157, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-nb-rel_deaths_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-nb-rel_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-nb-rel_deaths_v1.pdf  used on in
-put line 1935.
+put line 1920.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
  [39]
 File: tables_and_figures/us-shelter-dgrowth_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-dgrowth_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-dgrowth_v1.pdf  used on 
-input line 1956.
+input line 1941.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
 File: tables_and_figures/us-shelter-rel_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-rel_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-rel_v1.pdf  used on inpu
-t line 1958.
+t line 1943.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf, id=1162, 361.35pt x 271.0
+<tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf, id=1164, 361.35pt x 271.0
 125pt>
 File: tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf Graphic file (type pd
 f)
 <use tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf  u
-sed on input line 1962.
+sed on input line 1947.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-shelter-rel_deaths_v1.pdf, id=1163, 361.35pt x 271.0125p
+<tables_and_figures/us-shelter-rel_deaths_v1.pdf, id=1165, 361.35pt x 271.0125p
 t>
 File: tables_and_figures/us-shelter-rel_deaths_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-rel_deaths_v1.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-rel_deaths_v1.pdf  used 
-on input line 1964.
+on input line 1949.
 (pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
  [40 <./tables_and_figures/Washington-nb-dgrowth_v1.pdf> <./tables_and_figures/
 Washington-nb-dcases_v1.pdf
@@ -1697,343 +1695,275 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-shel
 ter-rel_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group included i
 n a single page
 >]
-<tables_and_figures/pk12-cases.pdf, id=1292, 289.08pt x 216.81pt>
-File: tables_and_figures/pk12-cases.pdf Graphic file (type pdf)
-<use tables_and_figures/pk12-cases.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-cases.pdf  used on input line 
-2030.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pk12-deaths.pdf, id=1293, 289.08pt x 216.81pt>
-File: tables_and_figures/pk12-deaths.pdf Graphic file (type pdf)
-<use tables_and_figures/pk12-deaths.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-deaths.pdf  used on input line
- 2032.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
-) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2039       states with each policy.}
-                                      
-Overfull \hbox (5.2584pt too wide) in paragraph at lines 2029--2040
- [][] 
- []
+
+LaTeX Warning: Reference `fig:US-nop-SI' on page 43 undefined on input line 198
+9.
 
 [43
 
- <./tables_and_figures/pk12-cases.pdf> <./tables_and_figures/pk12-deaths.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pk12-de
-aths.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
-ge
->]
-<tables_and_figures/us-nop-dgrowth_v1.pdf, id=1330, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-nop-dgrowth_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-nop-dgrowth_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-nop-dgrowth_v1.pdf  used on inpu
-t line 2059.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-nop-rel_v1.pdf, id=1331, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-nop-rel_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-nop-rel_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-nop-rel_v1.pdf  used on input li
-ne 2061.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-
-
-./covidEffectOfNPI-revision.tex:2076: LaTeX Error: File `tables_and_figures/us-
-nop-dgrowth' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2076 ...idth]{tables_and_figures/us-nop-dgrowth}
-                                                  
-? 
-
-./covidEffectOfNPI-revision.tex:2078: LaTeX Error: File `tables_and_figures/us-
-nop-rel' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2078 ...extwidth]{tables_and_figures/us-nop-rel}
-                                                  
-? 
-[44 <./tables_and_figures/us-nop-dgrowth_v1.pdf> <./tables_and_figures/us-nop-r
-el_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-nop-
-rel_v1.pdf): PDF inclusion: multiple pdfs with page group included in a single 
-page
->] (./covidEffectOfNPI-revision.bbl [45
+] (./covidEffectOfNPI-revision.bbl [44
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [46]
+ [45]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [48])
-[49]
+ [46])
+[47]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2134.
+(hyperref)                removing `math shift' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 2134.
+(hyperref)                removing `\Delta' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2134.
+(hyperref)                removing `math shift' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2134.
+(hyperref)                removing `math shift' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 2134.
+(hyperref)                removing `\Delta' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathop' on input line 2134.
+(hyperref)                removing `\mathop' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathgroup' on input line 2134.
+(hyperref)                removing `\mathgroup' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\symoperators' on input line 2134.
+(hyperref)                removing `\symoperators' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@ifnextchar' on input line 2134.
+(hyperref)                removing `\@ifnextchar' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 2134.
+(hyperref)                removing `\Delta' on input line 2121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2134.
+(hyperref)                removing `math shift' on input line 2121.
 
 (./tables_and_figures/casecor.tex) (./tables_and_figures/casediff.tex)
-<tables_and_figures/newcases.pdf, id=1436, 505.89pt x 505.89pt>
+<tables_and_figures/newcases.pdf, id=1367, 505.89pt x 505.89pt>
 File: tables_and_figures/newcases.pdf Graphic file (type pdf)
 <use tables_and_figures/newcases.pdf>
 Package pdftex.def Info: tables_and_figures/newcases.pdf  used on input line 21
-62.
+49.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 
 (./tables_and_figures/newcasecor.tex) (./tables_and_figures/weekcasecor.tex)
-<tables_and_figures/weekcases.pdf, id=1439, 505.89pt x 505.89pt>
+<tables_and_figures/weekcases.pdf, id=1370, 505.89pt x 505.89pt>
 File: tables_and_figures/weekcases.pdf Graphic file (type pdf)
 <use tables_and_figures/weekcases.pdf>
 Package pdftex.def Info: tables_and_figures/weekcases.pdf  used on input line 2
-185.
+172.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
 
-(./tables_and_figures/weekdeathcor.tex [50])
-<tables_and_figures/weekdeaths.pdf, id=1452, 505.89pt x 505.89pt>
+(./tables_and_figures/weekdeathcor.tex [48])
+<tables_and_figures/weekdeaths.pdf, id=1383, 505.89pt x 505.89pt>
 File: tables_and_figures/weekdeaths.pdf Graphic file (type pdf)
 <use tables_and_figures/weekdeaths.pdf>
 Package pdftex.def Info: tables_and_figures/weekdeaths.pdf  used on input line 
-2203.
+2190.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.31}
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2204 ...ch line shows weekly deaths in a state.}
+l.2191 ...ch line shows weekly deaths in a state.}
                                                   
-<tables_and_figures/casequantiles.pdf, id=1453, 505.89pt x 252.945pt>
+<tables_and_figures/casequantiles.pdf, id=1384, 505.89pt x 252.945pt>
 File: tables_and_figures/casequantiles.pdf Graphic file (type pdf)
 <use tables_and_figures/casequantiles.pdf>
 Package pdftex.def Info: tables_and_figures/casequantiles.pdf  used on input li
-ne 2214.
+ne 2201.
 (pdftex.def)             Requested size: 325.215pt x 162.60985pt.
-<tables_and_figures/deathquantiles.pdf, id=1454, 505.89pt x 252.945pt>
+<tables_and_figures/deathquantiles.pdf, id=1385, 505.89pt x 252.945pt>
 File: tables_and_figures/deathquantiles.pdf Graphic file (type pdf)
 <use tables_and_figures/deathquantiles.pdf>
 Package pdftex.def Info: tables_and_figures/deathquantiles.pdf  used on input l
-ine 2216.
+ine 2203.
 (pdftex.def)             Requested size: 325.215pt x 162.60985pt.
-pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.31}
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2219       death growth conditional on date.}
+l.2206       death growth conditional on date.}
                                                
-<tables_and_figures/test.pdf, id=1456, 505.89pt x 505.89pt>
+<tables_and_figures/test.pdf, id=1387, 505.89pt x 505.89pt>
 File: tables_and_figures/test.pdf Graphic file (type pdf)
 <use tables_and_figures/test.pdf>
-Package pdftex.def Info: tables_and_figures/test.pdf  used on input line 2234.
+Package pdftex.def Info: tables_and_figures/test.pdf  used on input line 2221.
 (pdftex.def)             Requested size: 195.12767pt x 195.12718pt.
-pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.31}
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2239         the number of specimens tested}).}
-                                                  [51pdfTeX warning (ext4): des
-tination with the same identifier (name{Hfootnote.31}) has been already used, d
+l.2226         the number of specimens tested}).}
+                                                  [49pdfTeX warning (ext4): des
+tination with the same identifier (name{Hfootnote.30}) has been already used, d
 uplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.2243 \FloatBarrier
-                     <./tables_and_figures/newcases.pdf>] [52pdfTeX warning (ex
-t4): destination with the same identifier (name{Hfootnote.31}) has been already
+l.2230 \FloatBarrier
+                     <./tables_and_figures/newcases.pdf>] [50pdfTeX warning (ex
+t4): destination with the same identifier (name{Hfootnote.30}) has been already
  used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.2243 \FloatBarrier
+l.2230 \FloatBarrier
                      <./tables_and_figures/weekcases.pdf> <./tables_and_figures
-/weekdeaths.pdf>] [53 <./tables_and_figures/casequantiles.pdf> <./tables_and_fi
-gures/deathquantiles.pdf>] [54 <./tables_and_figures/test.pdf>]
+/weekdeaths.pdf>] [51 <./tables_and_figures/casequantiles.pdf> <./tables_and_fi
+gures/deathquantiles.pdf>] [52 <./tables_and_figures/test.pdf>]
 File: tables_and_figures/workplaces.pdf Graphic file (type pdf)
 <use tables_and_figures/workplaces.pdf>
 Package pdftex.def Info: tables_and_figures/workplaces.pdf  used on input line 
-2262.
+2249.
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/retail.pdf, id=1517, 505.89pt x 252.945pt>
+<tables_and_figures/retail.pdf, id=1450, 505.89pt x 252.945pt>
 File: tables_and_figures/retail.pdf Graphic file (type pdf)
 <use tables_and_figures/retail.pdf>
-Package pdftex.def Info: tables_and_figures/retail.pdf  used on input line 2264
+Package pdftex.def Info: tables_and_figures/retail.pdf  used on input line 2251
 .
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/grocery.pdf, id=1518, 505.89pt x 252.945pt>
+<tables_and_figures/grocery.pdf, id=1451, 505.89pt x 252.945pt>
 File: tables_and_figures/grocery.pdf Graphic file (type pdf)
 <use tables_and_figures/grocery.pdf>
-Package pdftex.def Info: tables_and_figures/grocery.pdf  used on input line 226
-6.
+Package pdftex.def Info: tables_and_figures/grocery.pdf  used on input line 225
+3.
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
 File: tables_and_figures/transit.pdf Graphic file (type pdf)
 <use tables_and_figures/transit.pdf>
-Package pdftex.def Info: tables_and_figures/transit.pdf  used on input line 226
-8.
+Package pdftex.def Info: tables_and_figures/transit.pdf  used on input line 225
+5.
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.31}
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2273 ...s of the variables conditional on date.}
+l.2260 ...s of the variables conditional on date.}
                                                   
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 2261--2274
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 2248--2261
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2261--2274
+Underfull \hbox (badness 10000) in paragraph at lines 2248--2261
 
  []
 
 File: tables_and_figures/pmaskbus-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-cases-14.pdf  used on inpu
-t line 2308.
+t line 2295.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 File: tables_and_figures/pmaskbus-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-deaths-21.pdf  used on inp
-ut line 2310.
+ut line 2297.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 File: tables_and_figures/pk12-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-cases-14.pdf  used on input li
-ne 2312.
+ne 2299.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 File: tables_and_figures/pk12-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-deaths-21.pdf  used on input l
-ine 2314.
+ine 2301.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pshelter-cases-14.pdf, id=1527, 289.08pt x 216.81pt>
+<tables_and_figures/pshelter-cases-14.pdf, id=1460, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter-cases-14.pdf  used on inpu
-t line 2316.
+t line 2303.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pshelter-deaths-21.pdf, id=1528, 289.08pt x 216.81pt>
+<tables_and_figures/pshelter-deaths-21.pdf, id=1461, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter-deaths-21.pdf  used on inp
-ut line 2318.
+ut line 2305.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.31}
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2326       states with each policy.}
+l.2313       states with each policy.}
                                       
-Overfull \hbox (5.2584pt too wide) in paragraph at lines 2307--2327
+Overfull \hbox (5.2584pt too wide) in paragraph at lines 2294--2314
  [][] 
  []
 
-<tables_and_figures/pmovie-cases-14.pdf, id=1529, 289.08pt x 216.81pt>
+<tables_and_figures/pmovie-cases-14.pdf, id=1462, 289.08pt x 216.81pt>
 File: tables_and_figures/pmovie-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pmovie-cases-14.pdf  used on input 
-line 2335.
+line 2322.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pmovie-deaths-21.pdf, id=1530, 289.08pt x 216.81pt>
+<tables_and_figures/pmovie-deaths-21.pdf, id=1463, 289.08pt x 216.81pt>
 File: tables_and_figures/pmovie-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pmovie-deaths-21.pdf  used on input
- line 2337.
+ line 2324.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/prestaurant-cases-14.pdf, id=1531, 289.08pt x 216.81pt>
+<tables_and_figures/prestaurant-cases-14.pdf, id=1464, 289.08pt x 216.81pt>
 File: tables_and_figures/prestaurant-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/prestaurant-cases-14.pdf  used on i
-nput line 2339.
+nput line 2326.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/prestaurant-deaths-21.pdf, id=1532, 289.08pt x 216.81pt>
+<tables_and_figures/prestaurant-deaths-21.pdf, id=1465, 289.08pt x 216.81pt>
 File: tables_and_figures/prestaurant-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/prestaurant-deaths-21.pdf  used on 
-input line 2341.
+input line 2328.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pnonessential-cases-14.pdf, id=1533, 289.08pt x 216.81pt>
+<tables_and_figures/pnonessential-cases-14.pdf, id=1466, 289.08pt x 216.81pt>
 File: tables_and_figures/pnonessential-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pnonessential-cases-14.pdf  used on
- input line 2343.
+ input line 2330.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pnonessential-deaths-21.pdf, id=1534, 289.08pt x 216.81pt>
+<tables_and_figures/pnonessential-deaths-21.pdf, id=1467, 289.08pt x 216.81pt>
 File: tables_and_figures/pnonessential-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pnonessential-deaths-21.pdf  used o
-n input line 2345.
+n input line 2332.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.31}
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
 ) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2352       states with each policy.}
+l.2339       states with each policy.}
                                       
-Overfull \hbox (5.2584pt too wide) in paragraph at lines 2334--2353
+Overfull \hbox (5.2584pt too wide) in paragraph at lines 2321--2340
  [][] 
  []
 
-[55
+[53
 
  <./tables_and_figures/retail.pdf> <./tables_and_figures/grocery.pdf>]
-[56 <./tables_and_figures/pshelter-cases-14.pdf> <./tables_and_figures/pshelter
+[54 <./tables_and_figures/pshelter-cases-14.pdf> <./tables_and_figures/pshelter
 -deaths-21.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pshelte
 r-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in a si
 ngle page
->] [57 <./tables_and_figures/pmovie-cases-14.pdf> <./tables_and_figures/pmovie-
+>] [55 <./tables_and_figures/pmovie-cases-14.pdf> <./tables_and_figures/pmovie-
 deaths-21.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pmovie-
@@ -2059,23 +1989,26 @@ a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pnoness
 ential-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in
  a single page
->] (./tables_and_figures/policies.tex) [58
-
-
-] [59
+>] (./tables_and_figures/policies.tex) [56
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2417.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2417.
 
-(./covidEffectOfNPI-revision.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2417.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2417.
+Package natbib Warning: There were undefined citations.
+
+[57
+
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2404.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2404.
+ (./covidEffectOfNPI-revision.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2404.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2404.
 
 Package rerunfilecheck Info: File `covidEffectOfNPI-revision.out' has not chang
 ed.
-(rerunfilecheck)             Checksum: D02B51D149C828B519615599244FAF65;2391.
+(rerunfilecheck)             Checksum: E066B7BFD71178088F932F77264B34C6;2391.
 
 
 LaTeX Warning: There were undefined references.
@@ -2083,50 +2016,49 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2417.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2404.
  ) 
 Here is how much of TeX's memory you used:
- 25205 strings out of 480480
- 484675 string characters out of 5899675
- 798753 words of memory out of 5000000
- 40173 multiletter control sequences out of 15000+600000
+ 25138 strings out of 480480
+ 482398 string characters out of 5899675
+ 799459 words of memory out of 5000000
+ 40118 multiletter control sequences out of 15000+600000
  548266 words of font info for 82 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  60i,21n,79p,1748b,995s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pf
-b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9
-.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.
-pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pf
-b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb>
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
-usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
-cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local
-/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
-2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2020/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2020/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2020/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2020/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2020/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on covidEffectOfNPI-revision.pdf (59 pages, 3633371 bytes).
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
+usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb
+></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cme
+x9.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></us
+r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/
+texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
+e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2020
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2020/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2020/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2020/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2020/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2020/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on covidEffectOfNPI-revision.pdf (57 pages, 3210149 bytes).
 PDF statistics:
- 1859 PDF objects out of 2073 (max. 8388607)
- 1518 compressed objects within 16 object streams
- 250 named destinations out of 1000 (max. 500000)
- 589 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1787 PDF objects out of 2073 (max. 8388607)
+ 1468 compressed objects within 15 object streams
+ 244 named destinations out of 1000 (max. 500000)
+ 569 words of extra memory for PDF output out of 10000 (max. 10000000)
 
