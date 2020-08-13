@@ -1,0 +1,24 @@
+{
+    "id": "B9386A70",
+    "path": "~/Documents/GitHub/covid-impact/cases_and_policies/rmd/generatetables.R",
+    "project_path": "cases_and_policies/rmd/generatetables.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1596217778783.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "cursorPosition": "103,50",
+        "scrollLine": "90"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1596330632,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1596330632312,
+    "read_only": false,
+    "read_only_alternatives": []
+}

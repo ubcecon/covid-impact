@@ -1,0 +1,599 @@
+---
+title       : ""
+subtitle    : "Data description and summary statistics"
+author      : Paul Schrimpf, Hiro Kasahara, Victor Chernozhukov
+job         :
+date        : "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: "covid.bib"
+link-citations: true
+output      :
+    html_document :
+        toc : true
+        toc_depth : 3
+        toc_float : true
+        number_sections : true
+        code_folding: hide
+        fig_width: 8
+        fig_height: 6
+## To create html files from this, in R enter `library(rmarkdown);
+## rmarkdown::render("regressionsWithPlots.Rmd")`
+##
+
+## to create the gh-pages hosted website in R enter
+## rmarkdown::render_site()
+##
+## Then in a shell
+## $ ghp-import -p -n -m "$(date)" _site
+##
+
+---
+
+```{r setup}
+library(ggthemes)
+library(ggplot2)
+library(gridExtra)
+library(knitr)
+library(kableExtra)
+library(latex2exp)
+library(plm)
+library(lubridate)
+
+rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
+datafile <- paste(rootdir,"cases_and_policies/data/covidstates.Rda", sep="/")
+cat("Loading data last updated on ", as.character(file.mtime(datafile)), "\n")
+cat("Run ", paste(rootdir,"cases_and_policies/R/cases_and_policies.R", sep="/"), " to update data.\n")
+load(datafile)
+source(paste(rootdir,"cases_and_policies/R/utils.R",sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
+
+plottheme <- figtheme
+colors <-  scale_color_solarized
+
+kable <- function(tbl, ...) kable_styling(knitr::kable(tbl, ...),
+                                          bootstrap_options=c("striped","condensed","responsive"),
+                                          full_width=TRUE)
+
+cs <- covidstates
+cs <- cs[cs$fips<60, ] # drop territories (Puerto Rico, Guam, etc)
+cs <- cs[order(cs$state, cs$date),]
+```
+
+# Comparing Datasets on Cases and Deaths
+
+```{r, cache=TRUE}
+vars <- c("cases.nyt","cases","positive")
+tbl <- cor(cs[,vars],use="complete")
+rownames(tbl) <- colnames(tbl) <- c("NYT","JHU","CTP")
+kable(tbl, digits=5, caption="Correlation of cumulative cases \\label{tab:casecor}")
+
+tbl2 <- matrix(NA,3,3)
+for(i in 1:3) {
+  for(j in 1:3) {
+    tbl2[i,j] <- mean(cs[,vars[i]]==cs[,vars[j]], na.rm=TRUE)
+  }
+}
+rownames(tbl2) <- rownames(tbl)
+colnames(tbl2) <- colnames(tbl)
+kable(tbl2, digits=5,
+      caption="Portion of days that cumulative cases are equal between data sets \\label{tab:eqcases}")
+
+```
+
+## Daily Cases
+
+```{r newcases, cache=FALSE}
+startday <- as.Date("2020-02-15")
+cs$newcases.nyt <- paneldiff(cs$cases.nyt, cs$state, cs$date, lag=1)
+cs$newcases.jhu <- paneldiff(cs$cases, cs$state, cs$date, lag=1)
+cs$newcases.ctp <- paneldiff(cs$positive, cs$state, cs$date, lag=1)
+
+fctp <- ggplot(cs, aes(x=date, y=newcases.ctp, colour=state)) + geom_line(alpha=1) +
+  xlim(as.Date(startday),max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("CTP") + ylab("New cases") +
+  theme(legend.position = "none")
+fnyt <- ggplot(cs, aes(x=date, y=newcases.nyt, colour=state)) + geom_line(alpha=1) +
+  xlim(as.Date(startday),max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("NYT") + ylab("New cases") +
+  theme(legend.position = "none")
+fjhu <- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alpha=1) +
+  xlim(as.Date(startday),max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("JHU") + ylab("New cases") +
+  theme(legend.position = "none")
+
+grid.arrange(fnyt,fjhu,fctp)
+
+
+X  <- cs[,c("newcases.nyt","newcases.jhu","newcases.ctp")]
+X[X<0] <- NA
+X[X==0] <- 0.1
+tbl  <- colSums(cs[,c("newcases.nyt","newcases.jhu","newcases.ctp")]<0, na.rm=TRUE)
+tbl <- cor(log(X), use="complete")
+tbl <- rbind(tbl, diag(cov(log(X), use="complete")))
+colnames(tbl) <- c("NYT","JHU","CTP")
+rownames(tbl) <- c("NYT","JHU","CTP","Variance")
+
+kable(tbl, digits=4, caption="Correlation and variance of log daily new cases\\label{tab:newcasecor}")
+```
+
+## Weekly Cases
+
+```{r}
+cs$newcases.nyt <- paneldiff(cs$cases.nyt, cs$state, cs$date, lag=7)
+cs$newcases.jhu <- paneldiff(cs$cases, cs$state, cs$date, lag=7)
+cs$newcases.ctp <- paneldiff(cs$positive, cs$state, cs$date, lag=7)
+X  <- cs[,c("newcases.nyt","newcases.jhu","newcases.ctp")]
+X[X<0] <- NA
+X[X==0] <- 0.1
+tbl  <- colSums(cs[,c("newcases.nyt","newcases.jhu","newcases.ctp")]<0, na.rm=TRUE)
+tbl <- cor(log(X), use="complete")
+tbl <- rbind(tbl, diag(cov(log(X), use="complete")))
+colnames(tbl) <- c("NYT","JHU","CTP")
+rownames(tbl) <- c("NYT","JHU","CTP","Variance")
+kable(tbl, digits=4, caption="Correlation and variance of log weekly new cases\\label{tab:weekcasecor}")
+
+fctp <- ggplot(cs, aes(x=date, y=newcases.ctp, colour=state)) + geom_line(alpha=1) +
+  xlim(startday,max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("CTP") + ylab("New cases") +
+  theme(legend.position = "none")
+fnyt <- ggplot(cs, aes(x=date, y=newcases.nyt, colour=state)) + geom_line(alpha=1) +
+  xlim(startday,max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("NYT") + ylab("New cases") +
+  theme(legend.position = "none")
+fjhu <- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alpha=1) +
+  xlim(startday,max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("JHU") + ylab("New cases") +
+  theme(legend.position = "none")
+
+grid.arrange(fnyt,fjhu,fctp)
+```
+
+## Deaths
+
+```{r deathplots, cache=TRUE}
+cs$newdeaths.nyt <- paneldiff(cs$deaths.nyt, cs$state, cs$date, lag=7)
+cs$newdeaths.jhu <- paneldiff(cs$deaths, cs$state, cs$date, lag=7)
+cs$newdeaths.ctp <- paneldiff(cs$deaths.ctp, cs$state, cs$date, lag=7)
+X  <- cs[,c("newdeaths.nyt","newdeaths.jhu","newdeaths.ctp")]
+tbl  <- colSums(cs[,c("newdeaths.nyt","newdeaths.jhu","newdeaths.ctp")]<0, na.rm=TRUE)
+tbl <- cor(X, use="complete")
+tbl <- rbind(tbl, diag(cov(X, use="complete")))
+colnames(tbl) <- c("NYT","JHU","CTP")
+rownames(tbl) <- c("NYT","JHU","CTP","Variance")
+kable(tbl, digits=4, caption="Correlation and variance of weekly deaths\\label{tab:weekdeathcor}")
+
+fctp <- ggplot(cs, aes(x=date, y=newdeaths.ctp, colour=state)) + geom_line(alpha=1) +
+  xlim(startday,max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("CTP") + ylab("Deaths") +
+  theme(legend.position = "none")
+fnyt <- ggplot(cs, aes(x=date, y=newdeaths.nyt, colour=state)) + geom_line(alpha=1) +
+  xlim(startday,max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("NYT") + ylab("Deaths") +
+  theme(legend.position = "none")
+fjhu <- ggplot(cs, aes(x=date, y=newdeaths.jhu, colour=state)) + geom_line(alpha=1) +
+  xlim(startday,max(cs$date)) + scale_y_log10() + plottheme +
+  ggtitle("JHU") + ylab("Deaths") +
+  theme(legend.position = "none")
+
+grid.arrange(fnyt,fjhu,fctp)
+```
+
+
+# Testing data
+
+Our data on tests is from the [Covid Tracking
+Project](https://covidtracking.com/). This dataset contains the following variables.
+
+
+```{r , cache=TRUE}
+kable(dataguide[dataguide$source=="Covid-Tracking Project",c("name","source")])
+```
+
+We have been using the `totalTestResults` variable.
+
+```{r testplots, cache=TRUE}
+fign <- ggplot(aggregate(totalTestResults ~ date, FUN=function(x) sum(!is.na(x)), data=cs)) +
+  geom_line(aes(x=date, y=totalTestResults, colour="Tests"), size=1.5) +
+  geom_line(data=aggregate(cases ~ date, FUN=function(x) sum(!is.na(x)), data=cs),
+            aes(x=date, y=cases, colour="Cases"), size=1.3) +
+  geom_line(data=aggregate(deaths ~ date, FUN=function(x) sum(!is.na(x)), data=cs),
+            aes(x=date, y=deaths, colour="Deaths"), size=1.3) +
+            ylab("Number non-missing") +
+            xlab("") + plottheme + ggtitle("Number of non-missing observations") + colors()
+
+p <- c(0.05, 0.25, 0.5, 0.75, 0.95)
+adf <- aggregate(totalTestResults ~ date,
+                 FUN=function(x) quantile(x, probs=p,
+                                          na.rm=TRUE), data=cs)
+
+## The following code sucks and the fact that the equivalent loop
+## doesn't work reflects all that is wrong with ggplot2 and the
+## tidyverse
+p <- as.factor(p)
+s <- 1.5
+figm <- ggplot(adf) +
+  geom_line(aes(x=date, y=adf$totalTestResults[,1], color=p[1]), size=s) +
+  geom_line(aes(x=date, y=adf$totalTestResults[,2], color=p[2]), size=s) +
+  geom_line(aes(x=date, y=adf$totalTestResults[,3], color=p[3]), size=s) +
+  geom_line(aes(x=date, y=adf$totalTestResults[,4], color=p[4]), size=s) +
+  geom_line(aes(x=date, y=adf$totalTestResults[,5], color=p[5]), size=s) +
+  plottheme + scale_y_log10() + ylab("Cumulative tests") +
+  colors() + ggtitle("Quantiles of cumulative tests") +
+  geom_line(data=cs, aes(x=date, y=totalTestResults, group=state), alpha=0.2) +
+  theme(legend.position="bottom")
+
+grid.arrange(fign, figm, layout_matrix=matrix(1:2, nrow=2), heights=c(0.5,1))
+```
+
+The top panel shows that states began reporting test numbers in early
+March at earliest, and test numbers are included for all states by mid
+March. A few states began reporting cases earlier than March, but
+mostly case reporting and test reporting coincide.
+
+In the bottom panel, the thick colored lines are quantiles of total
+cumulative tests, and the gray lines are tests in each state.
+
+# Policies
+
+```{r, cache=TRUE}
+rvars <- dataguide[dataguide$source=="Raifman et al", "name"]
+pols  <- unique(cs[,c("state","fips",rvars)])
+di <- sapply(cs[,rvars], function(x) inherits(x,"Date"))
+pvars <- rvars[di]
+
+tbl <- cbind(sapply(pols[,pvars], function(x) sum(!is.na(x)), USE.NAMES=FALSE),
+             sapply(pols[,pvars], function(x) min(x, na.rm=TRUE), USE.NAMES=FALSE),
+             sapply(pols[,pvars], function(x) median(x, na.rm=TRUE), USE.NAMES=FALSE),
+             sapply(pols[,pvars], function(x) max(x, na.rm=TRUE), USE.NAMES=FALSE))
+tbl[,2:4] <- as.character(as.Date(as.numeric(tbl[,2:4]), origin=as.Date("1970-01-01", format="%Y-%m-%d")))
+rownames(tbl) <- gsub("\\."," ",pvars)
+colnames(tbl) <- c("N","Min","Median","Max")
+kable(tbl, digits=0, caption="State Policies \\label{tab:policies}", )
+```
+
+```{r policyplot, cache=TRUE, warning=FALSE}
+rvars <- dataguide[dataguide$source=="Raifman et al", "name"]
+pols  <- unique(cs[,c("state","fips",rvars)])
+di <- sapply(cs[,rvars], function(x) inherits(x,"Date"))
+pols <- rvars[di]
+
+plotstatepolicies  <- function(st) {
+  sdf  <- subset(cs, state==st)
+  x  <- c()
+  labels <- c()
+  for (lbl in pols) {
+    d <- unique(sdf[,lbl])
+    i <- which(x==d)
+    if (length(i)==0) {
+      if (length(x)==0)
+        x <- d
+      else
+        x <- c(x,d)
+      labels <- c(labels,lbl)
+    } else {
+      labels[i]  <- paste(labels[i],lbl,sep=", ")
+    }
+  }
+  labels <- labels[!is.na(x)]
+  x <- x[!is.na(x)]
+  y <- rep(1, length(x))
+  fig <- ggplot(sdf,aes(x=date))  +
+    geom_line(aes(y=cases)) +
+    geom_line(aes(y=deaths), colour="red") +
+    xlim(startday,max(sdf$date)) +
+    ylab("count") +
+    scale_y_continuous(trans="log10") + plottheme + colors() +
+    ggtitle(st)
+
+  fig + annotate("text", x=x,y=y,label=gsub("\\."," ",labels),
+                 size=2, angle=90, hjust=0)
+
+}
+
+i <- 0
+for (st in unique(cs$state)) {
+  if (i == 0) fig <- list()
+  fig <- c(fig, list(plotstatepolicies(st)))
+  i <- i+1
+  if (i %% 3 == 0) {
+    grid.arrange(grobs=fig, nrow=3, ncol=1)
+    i = 0
+  }
+}
+if (i != 0) {
+  fig <- c(fig, rep(list(ggplot() + plottheme), 3-i))
+  grid.arrange(grobs=fig, nrow=3, ncol=1)
+}
+```
+
+```{r npolicies, warning=FALSE, cache=TRUE}
+df <- cs[order(cs$state,cs$date),]
+pdates <- c("Date.closed.K.12.schools",
+            "Stay.at.home..shelter.in.place",
+            "Closed.movie.theaters",
+            "Closed.restaurants.except.take.out",
+            "Closed.non.essential.businesses",
+            "Mandate.face.mask.use.by.all.individuals.in.public.spaces",
+            "Mandate.face.mask.use.by.employees.in.public.facing.businesses",
+            "State.of.emergency")
+enddates <- c(NA,
+              "End.relax.stay.at.home.shelter.in.place",
+              "Reopened.movie.theaters",
+              "Reopen.restaurants",
+              "Began.to.reopen.businesses.statewide",
+              NA,
+              NA,
+              NA)
+stopifnot(length(enddates)==length(pdates))
+
+pvars <- c("pk12", "pshelter", "pmovie", "prestaurant", "pnonessential",
+           "pmaskall","pmaskbus", "psoe")
+for(i in 1:length(pdates)) df[,pvars[i]] <-
+                             smoothedpolicy(df,pdates[i],enddatevar=enddates[i],type="ma",bw=0)
+
+pols <- c("psoe","pmaskbus","pk12", "pshelter", "pmovie", "prestaurant", "pnonessential")
+
+ppplot <- function(pol, df) {
+  df$y <- df[,pol]
+  adf <- aggregate(y ~ date, data=df, function(x) mean(x, na.rm=TRUE))
+  fig <- ggplot(adf, aes(x=date, y=y)) + geom_line(size=1.2) +
+    plottheme + ylab("Portion of States") +
+    colors() + ggtitle(varlabels[varlabels$Variable==pol,"Label"]) +
+    theme(legend.position="none") +
+    xlim(startday, max(df$date)) + ylim(0,1)
+  return(fig)
+}
+figs <- lapply(pols,function(p) ppplot(p, df))
+
+for (i in 1:length(pols)) {
+  pdf(sprintf("%s/tex/tables_and_figures/%s_p.pdf",rootdir, pols[i]), width=4, height=2)
+  print(figs[[i]])
+  dev.off()
+}
+grid.arrange(grobs=figs[2:7], nrow=3, ncol=2)
+```
+
+# Social Distancing Measures
+
+
+```{r, warning=FALSE}
+gv <- dataguide$name[dataguide$source=="Google Mobility Reports"]
+gv <- gv[grep("_change_from_baseline",gv)]
+hv <- dataguide$name[dataguide$source=="Homebase"]
+```
+
+## Google Mobility Reports
+
+```{r gplots, cache=TRUE, warning=FALSE}
+## fign <-
+##   ggplot(aggregate(retail_and_recreation_percent_change_from_baseline
+##                    ~ date,
+##                    FUN=function(x) sum(!is.na(x)), data=cs)) +
+##   geom_line(aes(x=date, y=retail_and_recreation_percent_change_from_baseline), size=1) +
+##   ylab("Number non-missing") +
+##   theme(legend.position = "none") +
+##   xlab("") + plottheme + ggtitle("Number of non-missing observations of Google Mobility Reports") +
+##   colors() + xlim(startday, max(cs$date))
+## fign
+
+quantileplot <- function(v, p=c(0.05, 0.25, 0.5, 0.75, 0.95), data=cs) {
+  data$y <- data[,v]
+  adf <- aggregate(y ~ date, data=data,
+                   FUN=function(x) quantile(x, probs=p, na.rm=TRUE))
+  p <- as.factor(p)
+  s <- 1.2
+  txt <- data.frame(date=max(adf$date), y=adf$y[nrow(adf$y),], p=p)
+  names(adf)[1] <- "date"
+  figm <- ggplot(adf) +
+    geom_line(aes(x=date, y=adf$y[,1], color=p[1]), size=s) +
+    geom_line(aes(x=date, y=adf$y[,2], color=p[2]), size=s) +
+    geom_line(aes(x=date, y=adf$y[,3], color=p[3]), size=s) +
+    geom_line(aes(x=date, y=adf$y[,4], color=p[4]), size=s) +
+    geom_line(aes(x=date, y=adf$y[,5], color=p[5]), size=s) +
+    geom_text(data=txt,aes(x=date,y=y,color=p, label=p,
+                           hjust="left",vjust="center", size=2)) +
+    plottheme + ylab("Percent Change") +
+    colors() + ggtitle(TeX(paste("Evolution of",
+                             varlabels[varlabels$Variable==v,"Label"]))) +
+    geom_line(data=data, aes(x=date, y=y, group=state), alpha=0.2) +
+    theme(legend.position="none") +
+    #labs(color='Quantile')  +
+    xlim(startday, max(data$date))
+}
+
+figm <- lapply(gv, quantileplot)
+
+for (i in seq(1,length(figm),by=2)) {
+  grid.arrange(grobs=figm[i:(i+1)], nrow=2)
+}
+for (i in 1:length(figm)) {
+  vl <- strsplit(gv[i],"_")[[1]][1]
+  pdf(sprintf("%s/tex/tables_and_figures/%s.pdf",rootdir,vl), width=7, height=3.5)
+  print(figm[[i]])
+  dev.off()
+}
+
+```
+
+The following figure shows the residuals from projecting each of the
+above variables on the social distancing metrics we use in our main
+analysis,
+```{r, cache=TRUE}
+sdused <- c(#"residential_percent_change_from_baseline",
+    "retail_and_recreation_percent_change_from_baseline",
+    "transit_stations_percent_change_from_baseline",
+    "workplaces_percent_change_from_baseline",
+    "grocery_and_pharmacy_percent_change_from_baseline")
+kable(t(varlabels[sapply(sdused, function(x) which(x==varlabels$Variable)),"Label"]))
+```
+no smoothing is used in the figure.
+
+The table shows the $R^2$ from regressing each of the social distance
+measures on the ones used in our main regressions. We report this both
+with and without smoothing.
+
+```{r, cache=TRUE}
+residanalysis <- function(yvars, xvars=sdused, df=cs) {
+
+  madf <- df[,c("state","date",yvars,xvars)]
+  for(v in c(yvars, xvars)) {
+    madf[,v] <- panelma(madf[,v], madf$state, madf$date, 7)
+  }
+
+  r <- lapply(yvars, function(v) {
+    if (v %in% xvars) {
+      list(r.squared=1, r.squared.ma=1, residuals=rep(0,nrow(df)))
+    } else {
+      m <- lm(as.formula(paste(v,"~",
+                               paste(xvars, collapse=" + "), sep=" ")),
+              data=df,na.action=na.exclude)
+      ma <- lm(as.formula(paste(v,"~",
+                               paste(xvars, collapse=" + "), sep=" ")),
+               data=madf,na.action=na.exclude)
+      list(r.squared=summary(m)$r.squared,
+           r.squared.ma=summary(ma)$r.squared,
+           residuals=residuals(m))
+    }
+  })
+
+  tmp <- data.frame()
+  for (i in 1:length(yvars)) {
+    tmp <- rbind(tmp,
+                 data.frame(var=varlabels[varlabels$Variable==yvars[i],"Label"],
+                            date=df$date, state=df$state,
+                            residuals=r[[i]]$residuals))
+  }
+  tbl <- t(matrix(c(sapply(r, function(x) x$r.squared),
+                    sapply(r, function(x) x$r.squared.ma)),
+                 nrow=length(yvars)))
+  colnames(tbl) <- varlabels[sapply(yvars, function(x) which(x==varlabels$Variable)),"Label"]
+  rownames(tbl) <- c("No smoothing", "7 day moving average")
+
+  fig <- ggplot(tmp, aes(x=date, y=residuals,color=var)) +
+    geom_point(alpha=0.7) + colors() + plottheme + ylab("Residuals") +
+    labs(color="") + theme(legend.position=c(0.05, 0.95)) +
+    xlim(as.Date("2020-03-01"),max(df$date))
+  return(list(fig, tbl))
+}
+
+out <- residanalysis(gv, sdused)
+
+kable(out[[2]],
+      caption="Variance explained by Google Mobility measures used in regressions")
+
+out[[1]]
+```
+
+## Homebase
+
+```{r hplots, cache=TRUE, warning=FALSE}
+## fign <-
+##   ggplot(aggregate(percentchangehours ~ date,
+##                    FUN=function(x) sum(!is.na(x)), data=cs)) +
+##   geom_line(aes(x=date, y=percentchangehours), size=1) +
+##   ylab("Number non-missing") +
+##   theme(legend.position = "none") +
+##   xlab("") + plottheme + ggtitle("Number of non-missing observations of HomeBase Variables") +
+##   colors() + xlim(startday, max(cs$date))
+## fign
+
+figm <- lapply(hv, quantileplot)
+grid.arrange(grobs=figm, nrow=2)
+
+out <- residanalysis(hv, sdused)
+
+kable(out[[2]],
+      caption="Variance explained by Google Mobility measures used in regressions")
+
+out[[1]]
+```
+
+<!-- ## Unacast -->
+
+<!-- ```{r uplots, cache=TRUE, warning=FALSE} -->
+<!-- ## fign <- -->
+<!-- ##   ggplot(aggregate(encounters_rate ~ date, -->
+<!-- ##                    FUN=function(x) sum(!is.na(x)), data=cs)) + -->
+<!-- ##   geom_line(aes(x=date, y=encounters_rate), size=1) + -->
+<!-- ##   ylab("Number non-missing") + -->
+<!-- ##   theme(legend.position = "none") + -->
+<!-- ##   xlab("") + plottheme + ggtitle("Number of non-missing observations of Unacast Variables") + -->
+<!-- ##   colors() + xlim(startday, max(cs$date)) -->
+<!-- ## fign -->
+
+<!-- figm <- lapply(uv, quantileplot) -->
+<!-- figm <- lapply(figm, function(x) x + ylab("")) -->
+<!-- for (i in seq(1,length(figm), by=2)) { -->
+<!--   grid.arrange(grobs=figm[i:(i+1)], nrow=2) -->
+<!-- } -->
+
+<!-- out <- residanalysis(uv, sdused) -->
+
+<!-- kable(out[[2]], -->
+<!--       caption="Variance explained by Google Mobility measures used in regressions") -->
+
+<!-- out[[1]] -->
+<!-- ``` -->
+
+<!-- ## SafeGraph -->
+
+<!-- ```{r splots, cache=TRUE, warning=FALSE} -->
+<!-- sv <- c("distance_traveled_from_home", "completely_home_device_count", -->
+<!--         "median_home_dwell_time", "part_time_work_behavior_devices", -->
+<!--         "full_time_work_behavior_devices","portion_completely_home", -->
+<!--         "portion_full_time_work", "portion_part_time_work") -->
+<!-- cs$portion_completely_home <- -->
+<!--   cs$completely_home_device_count/cs$device_count -->
+<!-- cs$portion_full_time_work <- -->
+<!--   cs$full_time_work_behavior_devices/cs$device_count -->
+<!-- cs$portion_part_time_work <- -->
+<!--   cs$part_time_work_behavior_devices/cs$device_count -->
+
+<!-- ## fign <- -->
+<!-- ##   ggplot(aggregate(distance_traveled_from_home ~ date, -->
+<!-- ##                    FUN=function(x) sum(!is.na(x)), data=cs)) + -->
+<!-- ##   geom_line(aes(x=date, y=distance_traveled_from_home), size=1) + -->
+<!-- ##   ylab("Number non-missing") + -->
+<!-- ##   theme(legend.position = "none") + -->
+<!-- ##   xlab("") + plottheme + -->
+<!-- ##   ggtitle("Number of non-missing observations of Safegraph Variables") + -->
+<!-- ##   colors() + xlim(startday, max(cs$date)) -->
+<!-- ## fign -->
+
+<!-- figm <- lapply(sv, quantileplot) -->
+<!-- figm <- lapply(figm, function(x) x + ylab("")) -->
+<!-- for (i in seq(1,length(figm), by=2)) { -->
+<!--   grid.arrange(grobs=figm[i:(i+1)], nrow=2) -->
+<!-- } -->
+
+<!-- out <- residanalysis(sv, sdused) -->
+
+<!-- kable(out[[2]], -->
+<!--       caption="Variance explained by Google Mobility measures used in regressions") -->
+
+<!-- out[[1]] -->
+<!-- ``` -->
+
+# Variables
+
+```{r varlabels, cache=TRUE}
+source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
+kable(varlabels)
+```
+
+# Case and death growth
+
+```{r cdgrowth, cache=FALSE}
+source(paste(rootdir,"cases_and_policies/R/dataprep.R",sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/regprep.R", sep="/"))
+fig <- quantileplot("dlogdc", data=df) + ylab("") + xlim(c(as.Date("2020-03-01"),max(df$date+3)))
+pdf(sprintf("%s/tex/tables_and_figures/casequantiles.pdf",rootdir), width=7, height=3.5)
+print(fig)
+dev.off()
+
+fig <- quantileplot("dlogdd", data=df) + ylab("") + xlim(c(as.Date("2020-03-01"),max(df$date+3)))
+pdf(sprintf("%s/tex/tables_and_figures/deathquantiles.pdf",rootdir), width=7, height=3.5)
+print(fig)
+dev.off()
+
+```
