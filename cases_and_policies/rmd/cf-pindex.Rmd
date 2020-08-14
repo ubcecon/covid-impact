@@ -391,22 +391,24 @@ for (f in figs1) print(f)
 ```
 
 
-## Stay at home
+## Averaged policies
 
-We now look at what happens if stay at home orders were never issued.
+We now look at what happens if none of the four averaged policies
+(stay at home, close movie theaters, close restaurants, close
+nonessential businesses) were implemented.
 
 ```{r home, cache=FALSE}
 cf <- df
-cf[,"pshelter"] <- 0
+cf[,"pindex"] <- 0
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noshelter <- createforwardsim(m, cf)
 
-if (!file.exists("cfshelter_idx.Rda") || rerunsim) {
+if (!file.exists("cfindex_idx.Rda") || rerunsim) {
   cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
-  save(cfshelterlist, shelterall, file="cfshelter_idx.Rda")
+  save(cfshelterlist, shelterall, file="cfindex_idx.Rda")
 }
-load("cfshelter_idx.Rda")
+load("cfindex_idx.Rda")
 cfshelter <- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))
 ```
 
@@ -414,28 +416,28 @@ cfshelter <- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))
 cfshelter <- merge(cfshelter, abbrv, by="state")
 for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfshelter, data=df)
-  print(f$figp +  ggtitle(sprintf("Effect of no stay at home order in %s",st)))
+  print(f$figp +  ggtitle(sprintf("Effect of no shutdown policies in %s",st)))
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }
 
-figs <- nationalplots(shelterall, cfshelter, "no stay at home orders")
+figs <- nationalplots(shelterall, cfshelter, "no shutdown policies")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dcases_idx.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dcases_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_idx.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-rel_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
@@ -602,22 +604,22 @@ dev.off()
 for (f in figs) print(f)
 ```
 
-## Stay at home
+## Shutdown policies
 
-We now look at what happens if stay at home orders were never issued.
+We now look at what happens if the four shutdown policies in pindex were never implemented.
 
 ```{r home-deaths, cache=FALSE}
 cf <- df
-cf[,"pshelter"] <- 0
+cf[,"pindex"] <- 0
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noshelter <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
-if (!file.exists("cfshelter_deaths_idx.Rda") || rerunsim) {
+if (!file.exists("cfindex_deaths_idx.Rda") || rerunsim) {
   cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
-  save(cfshelterlist, shelterall, file="cfshelter_deaths_idx.Rda")
+  save(cfshelterlist, shelterall, file="cfindex_deaths_idx.Rda")
 }
-load("cfshelter_deaths_idx.Rda")
+load("cfindex_deaths_idx.Rda")
 cfshelter <- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))
 ```
 
@@ -625,28 +627,28 @@ cfshelter <- do.call(rbind, lapply(cfshelterlist, function(x) x$edf))
 cfshelter <- merge(cfshelter, abbrv, by="state")
 for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfshelter, data=df, yvar="deaths")
-  print(f$figp +  ggtitle(sprintf("Effect of no stay at home order in %s",st)))
+  print(f$figp +  ggtitle(sprintf("Effect of no shutdown policies in %s",st)))
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dgrowth_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dgrowth_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
   dev.off()
 
-  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcases_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
 }
 
-figs <- nationalplots(shelterall, cfshelter, "no stay at home orders", yvar="deaths")
+figs <- nationalplots(shelterall, cfshelter, "no shutdown policies", yvar="deaths")
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-dcases_deaths_idx.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dcases_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$c
 dev.off()
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 
