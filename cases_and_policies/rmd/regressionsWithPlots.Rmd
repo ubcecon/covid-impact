@@ -420,15 +420,9 @@ savetextables(NULL, NULL,  piy[1:6], prefix="cases-robust")
 
 
 # case growth with pindex
-<<<<<<< HEAD
-pols <- c("pmaskbus","pk12","pindex")
-for (k in 1:length(infovars)) {
-  # (1) baseline
-=======
 pols <- c("pmaskbus","pk12","pshelter","pindex")
 for (k in 1:length(infovars)) {
   # (1) baseline
->>>>>>> 485671554bb4d07bd21ead18b2cca97a8efec7bc
    xlist <-list("","")
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   piy[[(1+6*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
@@ -552,13 +546,8 @@ showhtmltables(NULL, NULL, piy);
 savetextables(NULL, NULL,  piy[1:6], prefix="deaths-robust")
 
 # death growth with pindex
-<<<<<<< HEAD
-pols <- c("pmaskbus","pk12","pindex")
-for (k in 1:length(infovars)) {
-=======
 pols <- c("pmaskbus","pk12","pshelter","pindex")
 for (k in 1:length(infovars)) {
->>>>>>> 485671554bb4d07bd21ead18b2cca97a8efec7bc
   # (1) baseline
   xlist <-list("","")
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
@@ -655,11 +644,7 @@ for (k in 1:length(infovars)) {
   piy[[(1+4*(k-1))]] <- m
   m$reg <- replacecoef(m$reg, m$bc2)
   piy[[(2+4*(k-1))]] <- m
-<<<<<<< HEAD
-  pols <- c("pmaskbus","pk12","pindex")
-=======
   pols <- c("pmaskbus","pk12","pshelter","pindex")
->>>>>>> 485671554bb4d07bd21ead18b2cca97a8efec7bc
   m <-  reg_fe(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars), 0, L, "state + month")
@@ -737,11 +722,7 @@ for (k in 1:length(infovars)) {
   piy[[(1+4*(k-1))]] <- m
   m$reg <- replacecoef(m$reg, m$bc2)
   piy[[(2+4*(k-1))]] <- m
-<<<<<<< HEAD
-  pols <- c("pmaskbus","pk12","pindex")
-=======
   pols <- c("pmaskbus","pk12","pshelter","pindex")
->>>>>>> 485671554bb4d07bd21ead18b2cca97a8efec7bc
   m <-  reg_fe(sdf, yvar, pols, NULL,
               sprintf("lag(%s, %d)", infovars[[k]], L), 0, L, "state + month")
   piy[[(3+4*(k-1))]] <- m
@@ -841,27 +822,6 @@ for(i in 1:length(bvars)) {
   df[,v] <- panellag(df[,bvars[i]],df$state,df$date, lag=L+14)
 }
 
-<<<<<<< HEAD
-df$test <- df$dlogtests
-df$test[is.na(df$test)] <- 0
-
-wvars <- c("logpop","logsq","Percent.Unemployed..2018.",
-               "Percent.living.under.the.federal.poverty.line..2018.",
-               "Percent.at.risk.for.serious.illness.due.to.COVID","party_dum",
-               "mask_percent", "logvote","test","month3","month4","month5","month6")
-wvars.d <- c("logpop", "logsq","Percent.Unemployed..2018.",
-               "Percent.living.under.the.federal.poverty.line..2018.",
-               "Percent.at.risk.for.serious.illness.due.to.COVID","party_dum",
-               "mask_percent", "logvote","month3","month4","month5","month6")
-
-bvars.c <- c("workplaces.L14","retail.L14","grocery.L14","transit.L14")
-bvars.d <- c("workplaces.L21","retail.L21","grocery.L21","transit.L21")
-xvars <- c(bvars.c,"dlogdc.L14","logdc.L14")
-xvars.national <- c(bvars.c,"dlogdc.L14","logdc.L14","dlogdc.national.L14","logdc.national.L14")
-xvars.d <- c(bvars.d,"dlogdd.L21","logdd.L21")
-xvars.national.d <- c(bvars.d,"dlogdd.L21","logdd.L21","dlogdd.national.L21","logdd.national.L21")
-
-=======
 # df$test <- df$dlogtests
 # df$test[is.na(df$test)] <- 0
 
@@ -889,7 +849,6 @@ xvars.national.d <- c(bvars.d,"dlogdd.L21","logdd.L21","dlogdd.national.L21","lo
 
 pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pmovie.L14","prestaurant.L14","pnonessential.L14")
 pols.L21 <- c("pmaskbus.L21","pk12.L21","pshelter.L21","pmovie.L21","prestaurant.L21","pnonessential.L21")
->>>>>>> 485671554bb4d07bd21ead18b2cca97a8efec7bc
 
 pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pmovie.L14","prestaurant.L14","pnonessential.L14")
 pols.L21 <- c("pmaskbus.L21","pk12.L21","pshelter.L21","pmovie.L21","prestaurant.L21","pnonessential.L21")
@@ -1008,17 +967,10 @@ for (j in 1:4){
     p <- pols.L14[-3]
     # d = sdf$pshelter.L14
   } else if (j==4) {
-<<<<<<< HEAD
-    dv <- "pindex.L14"
-    p <- c("pmaskbus.L14","pk12.L14")
-    # d = sdf$pindex.L14
-  }
-=======
     dv <- "pindex.L14"
     p <- pols.L14[1:3]
     # d = sdf$pindex.L14
   }
->>>>>>> 485671554bb4d07bd21ead18b2cca97a8efec7bc
   # case growth without national
   # x = as.matrix(cbind(sdf[,p],sdf[,xvars]))
   xv <- c(xvars,p)
@@ -1061,15 +1013,9 @@ for (j in 1:4){
     # d = sdf$pshelter.L21
   } else if (j==4) {
     dv <- "pindex.L21"
-<<<<<<< HEAD
-    p <- pols.L21[1:2]
-    # d = sdf$pindex.L21
-  }
-=======
     p <- pols.L21[1:3]
     # d = sdf$pindex.L21
   }
->>>>>>> 485671554bb4d07bd21ead18b2cca97a8efec7bc
   # death growth without national
   # x = as.matrix(cbind(sdf[,p],sdf[,xvars.d]))
   xv <- c(xvars.d,p)
