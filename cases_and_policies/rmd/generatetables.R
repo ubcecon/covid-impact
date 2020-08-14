@@ -97,11 +97,14 @@ mainregressions <- function(df, # data
                        xlist,
                        interactions,
                        ivlist,
-                       L=14) {
+                       L=14,
+                       sameobservations=FALSE # whether to use same observations in pib and other equations
+                       ) {
 
 
-  plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
-  plist <- list(pols,c("pmaskbus","pk12","pindex"))
+  ## plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
+  ## plist <- list(pols,c("pmaskbus","pk12","pindex"))
+  plist <- list(pols,c("pmaskbus","pk12","pshelter","pindex"))
 
 
 
@@ -110,11 +113,14 @@ mainregressions <- function(df, # data
   ijs <- expand.grid(1:length(plist), 1:length(xlist))
 
   pbiy <- apply(ijs, 1, function(ij) {
+    ia <- interactions[[ij[2]]]
+    ia[[1]] <- sprintf("lag(%s, %d)", ia[[1]], L)
     policyreg(df, yvar, plist[[ij[1]]], bvars,
               c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L),
                 tvars,
                 xlist[[ij[2]]]),
-              interactions[[ij[2]]], iv[[ij[2]]], L=L)
+              ia,
+              iv[[ij[2]]], L=L)
   })
 
   ## # Get subset included in regressions
@@ -128,6 +134,8 @@ mainregressions <- function(df, # data
 
 
   piy <- apply(ijs, 1, function(ij) {
+    ia <- interactions[[ij[2]]]
+    ia[[1]] <- sprintf("lag(%s, %d)", ia[[1]], L)
     policyreg(df, yvar, plist[[ij[1]]], NULL,
               c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L),
                 tvars,
@@ -137,10 +145,20 @@ mainregressions <- function(df, # data
 
   ijs <- expand.grid(1:length(bvars), 1:length(plist))
   pib <- list()
+  if (sameobservations) {
+    sdf <- subset(df, df$date<=(max(df$date) - L ))
+  } else {
+    sdf <- df
+  }
   for (k in 1:length(xlist)) {
+    #ia <- interactions[[k]]
+    #if (sameobservations) {
+    #  ia[[1]] <- "lag(month,-L)"
+    #}
     pib[[k]] <- apply(ijs, 1, function(ij) {
-      policyreg(df, bvars[ij[1]], plist[[ij[2]]], NULL,
+      policyreg(sdf, bvars[ij[1]], plist[[ij[2]]], NULL,
                 c(infovars[[k]],
+                 # tvars,
                   xlist[[k]]),
                 interactions[[k]], "0", L=0)
     })

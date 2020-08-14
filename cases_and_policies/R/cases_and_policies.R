@@ -36,8 +36,6 @@ gitrootdir <- function() {
 
 rootdir <- gitrootdir()
 
-rootdir <- "/Users/Hiro/Documents/GitHub/covid-impact"
-
 # Data on policies from Raifman and collaborators
 urls <- c("https://docs.google.com/spreadsheets/d/1zu9qEWI8PsOI_i8nI_S29HDGHlIp2lfVMsGxpQ5tvAQ/edit#gid=993060716",
           "https://docs.google.com/spreadsheets/d/1zu9qEWI8PsOI_i8nI_S29HDGHlIp2lfVMsGxpQ5tvAQ/edit#gid=1357478819",

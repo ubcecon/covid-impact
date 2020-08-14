@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.16)  13 AUG 2020 12:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.16)  14 AUG 2020 14:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2021,7 +2021,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2404.
 Here is how much of TeX's memory you used:
  25138 strings out of 480480
  482398 string characters out of 5899675
- 799459 words of memory out of 5000000
+ 798459 words of memory out of 5000000
  40118 multiletter control sequences out of 15000+600000
  548266 words of font info for 82 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
@@ -2055,7 +2055,7 @@ ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2020/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on covidEffectOfNPI-revision.pdf (57 pages, 3210149 bytes).
+Output written on covidEffectOfNPI-revision.pdf (57 pages, 3278363 bytes).
 PDF statistics:
  1787 PDF objects out of 2073 (max. 8388607)
  1468 compressed objects within 15 object streams
