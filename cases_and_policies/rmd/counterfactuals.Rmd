@@ -148,7 +148,7 @@ nopmodel <- createforwardsim(m, cf)
 rerunsim=FALSE
 if (!file.exists("cfnop.Rda") || rerunsim) {
   cfnoplist <- lapply(unique(sdf$state), function(s)
-    nopstatesim(s,simobs=simmodel,simcf=nopmodel,data=sdf))
+    nopstatesim(s,simobs=simmodel,simcf=nopmodel,data=sdf, nresid=1))
   allmeans <- rbindlist(lapply(cfnoplist, getmeans))
   save(cfnoplist,allmeans, file="cfnop.Rda")
 }
@@ -164,60 +164,72 @@ Washington. Figure \ref{fig:WA-nop-dlogdc} shows the observed,
 estimated average, and counterfactual without policies average of
 $\Delta \log \Delta C$ in Washington.
 
-To compute the estimated and counterfactual paths we use the estimates
-from column 2 of table \ref{tab:policy-cases}. We set initial $\Delta
-\log \Delta C$ and $\log \Delta C$ to their values first observed in
-the state we are simulating. We hold all other regressors at their
-observed values. Error terms are drawn with replacement from the
-residuals. We do this many times and report the average over draws of
-the residuals. To calculate confidence intervals, we repeat the above
-with coefficients drawn randomly from their asymptotic
-distribution. The shaded region is a pointwise 90\% confidence
-interval.
+We hold residuals fixed throughout.
+<!-- To compute the estimated and counterfactual paths we use the estimates -->
+<!-- from column 2 of table \ref{tab:policy-cases}. We set initial $\Delta -->
+<!-- \log \Delta C$ and $\log \Delta C$ to their values first observed in -->
+<!-- the state we are simulating. We hold all other regressors at their -->
+<!-- observed values. Error terms are drawn with replacement from the -->
+<!-- residuals. We do this many times and report the average over draws of -->
+<!-- the residuals. To calculate confidence intervals, we repeat the above -->
+<!-- with coefficients drawn randomly from their asymptotic -->
+<!-- distribution. The shaded region is a pointwise 90\% confidence -->
+<!-- interval. -->
 
-To be more precise, we can rewrite our regression model as:
+<!-- To be more precise, we can rewrite our regression model as: -->
 
-$$
-  Y_{it} = P_{it}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \epsilon_{it}
-$$
+<!-- $$ -->
+<!--   Y_{it} = P_{it}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \epsilon_{it} -->
+<!-- $$ -->
 
-where $Y_{it} = \log \Delta C_{it}$, $P_{it}$ are policies, and
-$X_{it}$ are controls. Each counterfactual involves changing $P_{it}$
-to some other value, $P_{it}^\ast$. We then generate counterfactual paths
-for cases by in state $i$ conditional on
-$Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast \}_{t=1}^T, \theta=(\alpha, \beta, \rho)$ by setting:
+<!-- where $Y_{it} = \log \Delta C_{it}$, $P_{it}$ are policies, and -->
+<!-- $X_{it}$ are controls. Each counterfactual involves changing $P_{it}$ -->
+<!-- to some other value, $P_{it}^\ast$. We then generate counterfactual paths -->
+<!-- for cases by in state $i$ conditional on -->
+<!-- $Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast \}_{t=1}^T, \theta=(\alpha, \beta, \rho)$ by setting: -->
 
-$$
-  Y_{it}^{\ast,r} = {P_{it}^\ast}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \hat{\epsilon}_{it}^{\ast,r}
-$$
+<!-- $$ -->
+<!--   Y_{it}^{\ast,r} = {P_{it}^\ast}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \hat{\epsilon}_{it}^{\ast,r} -->
+<!-- $$ -->
 
-where $\hat{\epsilon}_{it}^{\ast,r}$ are resampled with replacement
-from $\{\hat{\epsilon}_{it}\}_{i=1,t=1}^{N,T}$. We do resample the
-residuals $R$ times, repeating the above each time. We then compute
+<!-- where $\hat{\epsilon}_{it}^{\ast,r}$ are resampled with replacement -->
+<!-- from $\{\hat{\epsilon}_{it}\}_{i=1,t=1}^{N,T}$. We do resample the -->
+<!-- residuals $R$ times, repeating the above each time. We then compute -->
 
-$$
-\hat{E}[Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
-\frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r}
-$$
+<!-- $$ -->
+<!-- \hat{E}[Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] = -->
+<!-- \frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r} -->
+<!-- $$ -->
 
-Finally, we repeatedly draw $\theta$ from its asymptotic distribution
-and repeat all of the above to compute confidence intervals.
+<!-- Finally, we repeatedly draw $\theta$ from its asymptotic distribution -->
+<!-- and repeat all of the above to compute confidence intervals. -->
 
-For case growth, the same procedure is used, but with $\Delta Y_{it} = \Delta \log \Delta C_{it}$ in place of $Y_{it}$. The top panel of the following figure shows
+<!-- For case growth, the same procedure is used, but with $\Delta Y_{it} = \Delta \log \Delta C_{it}$ in place of $Y_{it}$. The top panel of the following figure shows -->
 
-$$
-E[\Delta Y_{it} | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}\}_{t=1}^T]
-$$
+<!-- $$ -->
+<!-- E[\Delta Y_{it} | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}\}_{t=1}^T] -->
+<!-- $$ -->
 
-and
+<!-- and -->
 
-$$
-E[\Delta Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T]
-$$
+<!-- $$ -->
+<!-- E[\Delta Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T] -->
+<!-- $$ -->
 
-along with the observed $Y_{it}$, and the bottom panel shows the difference.
+<!-- along with the observed $Y_{it}$, and the bottom panel shows the difference. -->
 
 
+<!-- In this subsection, instead of resampling residuals, we condition on them. That is we look at -->
+
+<!-- $$ -->
+<!--   Y_{it}^{\ast} = {P_{it}^\ast}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \hat{\epsilon}_{it} -->
+<!-- $$ -->
+
+<!-- instead of -->
+
+<!-- $$ -->
+<!--   \frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r}. -->
+<!-- $$ -->
 
 
 ```{r WA-nop-dlogdc, cache=TRUE,fig.cap="Case growth without policies in Washington \\label{fig:WA-nop-dlogdc}"}
@@ -332,7 +344,7 @@ cf[,"pnonessential"] <- 0
 nobmodel <- createforwardsim(m, cf)
 
 if (!file.exists("cfnb.Rda") || rerunsim) {
-  cfnblist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf))
+  cfnblist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf, nresid=1))
   nball <- rbindlist(lapply(cfnblist, getmeans))
   save(cfnblist,nball, file="cfnb.Rda")
 }
@@ -391,7 +403,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 maskmodel <- createforwardsim(m, cf)
 
 if (!file.exists("cfmask.Rda") || rerunsim) {
-  cfmasklist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf))
+  cfmasklist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf, nresid=1))
   maskall <- rbindlist(lapply(cfmasklist, getmeans))
   save(cfmasklist, maskall, file="cfmask.Rda")
 }
@@ -431,50 +443,6 @@ dev.off()
 for (f in figs) print(f)
 ```
 
-### Holding Residuals fixed
-
-In this subsection, instead of resampling residuals, we condition on them. That is we look at
-
-$$
-  Y_{it}^{\ast} = {P_{it}^\ast}'\alpha + \sum_{\ell=1}^L \rho_\ell Y_{it-\ell} + X_{it}'\beta + \hat{\epsilon}_{it}
-$$
-
-instead of
-
-$$
-  \frac{1}{R} \sum_{r=1}^R Y_{it}^{\ast,r}.
-$$
-
-
-
-```{r masks-resids-fixed}
-simmodel1 <- function(st, samplecoefs=FALSE, nsim=1)
-  simmodel(st, samplecoefs=samplecoefs, nsim=nsim,
-           shockgen=NULL)
-maskmodel1 <- function(st, samplecoefs=FALSE, nsim=1)
-  maskmodel(st, samplecoefs=samplecoefs, nsim=nsim,
-            shockgen=NULL)
-
-rerunsim <- FALSE
-if (!file.exists("cfmask1.Rda") || rerunsim) {
-  cfmasklist1 <- lapply(unique(df$state),
-                        function(s) nopstatesim(s,simobs=simmodel1,simcf=maskmodel1, data=sdf, nresid=1))
-  maskall1 <- rbindlist(lapply(cfmasklist1, getmeans))
-  save(cfmasklist1, maskall1, file="cfmask1.Rda")
-}
-load("cfmask1.Rda")
-cfmask1 <- do.call(rbind, lapply(cfmasklist1, function(x) x$edf))
-
-for (st in c("Washington","Illinois","Massachusetts")) {
-  f <- cfplots(st, cfmask1, yvar="deaths", data=df)
-  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on April 1st in %s",st)))
-
-}
-
-figs1 <- nationalplots(maskall1, cfmask1, "mandating masks on April 1st\n")
-
-for (f in figs1) print(f)
-```
 
 
 ## Stay at home
@@ -488,7 +456,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noshelter <- createforwardsim(m, cf)
 
 if (!file.exists("cfshelter.Rda") || rerunsim) {
-  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
+  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf, nresid=1))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
   save(cfshelterlist, shelterall, file="cfshelter.Rda")
 }
@@ -527,6 +495,61 @@ dev.off()
 
 for (f in figs) print(f)
 ```
+
+## Shutdown policies
+
+We now look at what happens if the four shutdown policies in pindex were never implemented.
+
+```{r shutdown, cache=FALSE}
+cf <- df
+cf[,"pshelter"] <- 0
+cf[,"pmovie"] <- 0
+cf[,"prestaurant"] <- 0
+cf[,"pnonessential"] <- 0
+cf <- subset(cf, cf$date>=datelims[1]) #+L)
+noindex <- createforwardsim(m, cf)
+
+if (!file.exists("cfindex.Rda") || rerunsim) {
+  cfindexlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf, nresid=1))
+  indexall <- rbindlist(lapply(cfindexlist, getmeans))
+  save(cfindexlist, indexall, file="cfindex.Rda")
+}
+load("cfindex.Rda")
+cfindex <- do.call(rbind, lapply(cfindexlist, function(x) x$edf))
+```
+
+```{r, cache=TRUE}
+cfindex <- merge(cfindex, abbrv, by="state")
+for (st in c("Washington","Illinois","Massachusetts")) {
+  f <- cfplots(st, cfindex, data=df, yvar="deaths")
+  print(f$figp +  ggtitle(sprintf("Effect of no shutdown policies in %s",st)))
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dgrowth.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcases.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}
+
+figs <- nationalplots(indexall, cfindex, "no shutdown policies", yvar="deaths")
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dgrowth.pdf",sep="/"), width=5,height=3.75)
+figs$g
+dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dcases.pdf",sep="/"), width=5,height=3.75)
+figs$c
+dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-rel.pdf",sep="/"), width=5,height=3.75)
+figs$r
+dev.off()
+
+for (f in figs) print(f)
+```
+
 
 # Deaths
 
@@ -594,7 +617,7 @@ load("cfnop_deaths.Rda")
 cfnop <- do.call(rbind, lapply(cfnoplist, function(x) x$edf))
 ```
 
-### Removing Policies
+## Removing Policies
 
 
 ```{r WA-nop-dlogdd, cache=TRUE,fig.cap="Case growth without policies in Washington \\label{fig:WA-nop-dlogdc}"}
@@ -610,7 +633,7 @@ grid.arrange(f$figl, f$figp, nrow=2) #,
 #top = textGrob(st,gp=gpar(fontsize=20,font=2)))
 ```
 
-## National
+### National
 
 
 ```{r nop-all-deaths, cache=TRUE}
@@ -787,6 +810,60 @@ figs$c
 dev.off()
 
 figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_deaths_v1.pdf",sep="/"), width=5,height=3.75)
+figs$r
+dev.off()
+
+for (f in figs) print(f)
+```
+
+## Shutdown policies
+
+We now look at what happens if the four shutdown policies in pindex were never implemented.
+
+```{r shutdown-deaths, cache=FALSE}
+cf <- df
+cf[,"pshelter"] <- 0
+cf[,"pmovie"] <- 0
+cf[,"prestaurant"] <- 0
+cf[,"pnonessential"] <- 0
+cf <- subset(cf, cf$date>=datelims[1]) #+L)
+noindex <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
+
+if (!file.exists("cfindex_deaths.Rda") || rerunsim) {
+  cfindexlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf))
+  indexall <- rbindlist(lapply(cfindexlist, getmeans))
+  save(cfindexlist, indexall, file="cfindex_deaths.Rda")
+}
+load("cfindex_deaths.Rda")
+cfindex <- do.call(rbind, lapply(cfindexlist, function(x) x$edf))
+```
+
+```{r, cache=TRUE}
+cfindex <- merge(cfindex, abbrv, by="state")
+for (st in c("Washington","Illinois","Massachusetts")) {
+  f <- cfplots(st, cfindex, data=df, yvar="deaths")
+  print(f$figp +  ggtitle(sprintf("Effect of no shutdown policies in %s",st)))
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dgrowth_deaths.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdp)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcases_deaths.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figp)
+  dev.off()
+}
+
+figs <- nationalplots(indexall, cfindex, "no shutdown policies", yvar="deaths")
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dgrowth_deaths.pdf",sep="/"), width=5,height=3.75)
+figs$g
+dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-dcases_deaths.pdf",sep="/"), width=5,height=3.75)
+figs$c
+dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-rel_deaths.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
 

@@ -101,9 +101,9 @@ createforwardsim <- function(m, df, id="state",
     stopifnot(all(is.pconsecutive(df)))
   }
 
-  sim <- function(idvar, shockgen=function(n=1) { sample(m$residuals, size=n,
-                                                         replace=TRUE)},
-                  samplecoefs=FALSE, nsim=100) {
+  sim <- function(idvar, shockgen=NULL, #shockgen=function(n=1) { sample(m$residuals, size=n,
+                         #                                replace=TRUE)},
+                  samplecoefs=FALSE, nsim=1) {
     ids <- df[idx,id]
     if (samplecoefs) {
       V <- vcov(m)
@@ -183,7 +183,7 @@ meanandci <- function(yi, cfyi, date, p=0.9, difflag=7) {
 
 }
 
-nopstatesim <- function(st, nsim=200, simobs, simcf, data, var="logdc", dvar="dlogdc", nresid=nsim/2) {
+nopstatesim <- function(st, nsim=200, simobs, simcf, data, var="logdc", dvar="dlogdc", nresid=1) {
   seed <- .Random.seed
   set.seed(seed)
   yi <- replicate(nsim, simobs(st, samplecoefs=TRUE, nsim=nresid)$y)

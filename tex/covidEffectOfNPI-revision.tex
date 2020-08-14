@@ -154,7 +154,7 @@
 \begin{document}
 
 \title[Causal Impact of Masks, Policies, Behavior]
-{Causal Impact of Masks, Policies, Behavior on Early Covid-19 Pandemic in the U.S.}\thanks{We are grateful to Daron Acemoglu, V.V. Chari, Raj Chetty,  Christian Hansen, Glenn Ellison, Ivan Fernandez-Val, David Green,  Ido Rosen, Konstantin Sonin, James Stock, and Ivan Werning for helpful comments. We also thank Chiyoung Ahn,
+{Causal Impact of Masks, Policies, Behavior on Early Covid-19 Pandemic in the U.S.}\thanks{We are grateful to Daron Acemoglu, V.V. Chari, Raj Chetty,  Christian Hansen, Glenn Ellison, Ivan Fernandez-Val, David Green,  C. Jessica E. Metcalf, Ido Rosen, Konstantin Sonin, James Stock, and Ivan Werning for helpful comments. We also thank Chiyoung Ahn,
 Joshua Catalano,  Jason Chau, Samuel Gyetvay, Sev Chenyu Hou,
 Jordan Hutchings, and Dongxiao Zhang  for excellent research assistance.  All mistakes are our own. }
 
@@ -1008,7 +1008,7 @@ policies are the most widespread and important.
 %, where state of emergency was declared first and the implementation of other policies followed with some time lag.
 Closed movie theaters is included because it captures common bans on gatherings of more than
 a handful of people. We also include mandatory face mask use by employees because its effectiveness on slowing down Covid-19 spread is a controversial policy issue \citep{howard2020,Greenhalghm2020,zhangr2020}.
-Table \ref{tab:policies_inreg} provides summary statistics, where $N$ is the number of states that have ever implemented the policy. We also obtain information on state-level covariates from \citet{raifman2020}, which include population size, total area, unemployment rate, poverty rate, and a percentage of people who are subject to illness.These confounders are motivated by \cite{wheaton2020} who finds that case growth is associated  with residential density and per capita income.
+Table \ref{tab:policies_inreg} provides summary statistics, where $N$ is the number of states that have ever implemented the policy. We also obtain information on state-level covariates mostly from \citet{raifman2020}, which include population size, total area, unemployment rate, poverty rate,  a percentage of people who are subject to illness, and state governor's party affiliations.  These confounders are motivated by \cite{wheaton2020} who finds that case growth is associated  with residential density and per capita income.
 
 
 \input{tables_and_figures/policies_inregs}
@@ -1055,7 +1055,7 @@ Intensity.'' Consequently, our empirical analysis uses 7 day moving averages of 
        \begin{flushleft}
          \scriptsize
          Each off-diagonal entry reports a correlation coefficient of
-         a pair of policy and behavior variables.
+         a pair of policy and behavior variables. ``ave of four policy vars'' is defined by the average of stay-at-home, closured movie theaters, closured restaurants, and closured non-essential businesses. 
        \end{flushleft}
   \end{minipage}
 \end{table}
@@ -1064,9 +1064,10 @@ Table \ref{tab:correlation} reports that weekly policy and behavior
 variables are highly correlated with each other, except for the``masks
 for employees'' policy.  High correlations may cause multicolinearity
 problems and could limit our ability to separately identify the
-effect of each policy or behavior variable on case growth, but this
-does not prevent us from identifying the aggregate effect of all
-policies and behavior variables on case or death growth.
+effect of each policy or behavior variable on case growth. 
+%, but this does not prevent us from identifying the aggregate effect of all policies and behavior variables on case or death growth. 
+For this reason, we also consider a specification that includes
+the average of stay-at-home, closured movie theaters, closed  restaurants, and closured non-essential businesses in place of these four policy variables separately.
 
 Figure \ref{fig:policyportion} shows the portion of states that have
 each policy in place at each date. For most policies, there is
@@ -1135,7 +1136,7 @@ of cases or deaths.
         \scriptsize
         Dependent variables are   ``Transit
         Intensity,'' ``Workplace Intensity,'' ``Retail Intensity,'' and ``Grocery
-        Intensity" defined as 7 days moving averages of corresponding daily measures obtained from Google Mobility Reports.  All specifications include state-level characteristics (population, area, unemployment rate, poverty rate, and a percentage of people subject to illness) as well as their interactions with the log of days since Jan 15, 2020. The row ``$\sum_j \text{Policy}_j$'' reports the sum of six policy coefficients. Standard errors are clustered at the state level.
+        Intensity" defined as 7 days moving averages of corresponding daily measures obtained from Google Mobility Reports.  All specifications include state-level characteristics (population, area, unemployment rate, poverty rate,  a percentage of people subject to illness, and governor's party) as well as their interactions with the log of days since Jan 15, 2020. The row ``$\sum_j \text{Policy}_j$'' reports the sum of six policy coefficients. Standard errors are clustered at the state level.
         \end{flushleft}
       \end{minipage}
     \end{subtable}
@@ -1154,7 +1155,7 @@ of cases or deaths.
           \scriptsize
           Dependent variables are   ``Transit
           Intensity,'' ``Workplace Intensity,'' ``Retail Intensity,'' and ``Grocery
-          Intensity" defined as 7 days moving averages of corresponding daily measures obtained from Google Mobility Reports.  All specifications include state-level characteristics (population, area, unemployment rate, poverty rate, and a percentage of people subject to illness) as well as their interactions with the log of days since Jan 15, 2020. The row ``$\sum_j \text{Policy}_j$'' reports the sum of six policy coefficients. Standard errors are clustered at the state level.
+          Intensity" defined as 7 days moving averages of corresponding daily measures obtained from Google Mobility Reports.  All specifications include state-level characteristics (population, area, unemployment rate, poverty rate,  a percentage of people subject to illness, and governor's party) as well as their interactions with the log of days since Jan 15, 2020. The row ``$\sum_j \text{Policy}_j$'' reports the sum of six policy coefficients. Standard errors are clustered at the state level.
         \end{flushleft}
       \end{minipage}
     \end{subtable}
@@ -1221,9 +1222,9 @@ variables have large, negative coefficients. This suggests that behavior respond
  \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
-      \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-cases}
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-cases-14}
       &
-        \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-deaths}
+        \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-deaths-21}
     \end{tabular}
     \begin{flushleft}
       \scriptsize In these figures, red points are the case or death
@@ -1274,7 +1275,7 @@ variables have large, negative coefficients. This suggests that behavior respond
      coefficients.  The row ``$\sum_k w_k \mathrm{Behavior}_k$''
      reports the sum of four coefficients of behavior variables
      weighted by the average of each behavioral variable from April
-     1st-10th.  Standard errors are clustered at the state level.
+     1st-10th.   ``ave of four policy vars'' is defined by the average of stay-at-home orders, closured movie theaters, closured restaurants, and closured non-essential businesses.  Standard errors are clustered at the state level. 
    \end{flushleft}
  \end{minipage}
 \end{table}
@@ -1318,7 +1319,7 @@ where the outcome variable, $\ycolor Y_{i,t+\ell}$, is either case growth  or de
 For case growth as the outcome, we choose a lag length of $\ell=14$ days for behavior, policy, and information variables to reflect the delay between infection and
 confirmation of case.\footnote{As we review in the Appendix \ref{sec:timing},
   a lag length of 14 days between exposure and case reporting, as well as a lag length of 21 days between exposure and deaths, is broadly consistent with currently
-  available evidence.  }   $\bcolor B_{it}=(B_{it}^1,...,B_{it}^4)'$ is a vector of four behavior
+  available evidence. Section \ref{sec:sensitivity} provides a sensitivity analysis under different timing assumptions.  }   $\bcolor B_{it}=(B_{it}^1,...,B_{it}^4)'$ is a vector of four behavior
 variables  in state $i$. $\pcolor P_{it}$ includes the Covid-related policies
 in state $i$  that directly affect the spread of Covid-19
 after controlling for behavior variables (e.g., masks for employees).
@@ -1340,22 +1341,24 @@ For death growth as the outcome, we take a lag length of $\ell=21$ days. The inf
 Table \ref{tab:BPItoY} shows
 the results of estimating
 (\ref{eq:reg-y}) for case and death growth rates. %, respectively.
-Column (1) represents our baseline specification while column (2) allows the effect of masks to be different before and after May 1st. Columns (3) and (4) include past cases/deaths and growth rates at national level as additional regressors.
+
+Column (1) represents our baseline specification while column (2) replaces stay-at-home, closed movie theaters, closed restaurants, and closed non-essential businesses with the average of these four policy variables. Columns (3) and (4) include past cases/deaths and growth rates at national level as additional regressors.
 
 The estimates indicate that mandatory face masks for employees
 reduce the growth rate of infections and deaths by 8-15 percent, while holding behavior constant. This suggests that
 requiring masks for employees in public-facing businesses may be an effective preventive measure.\footnote{Note that we are \textit{not} evaluating the effect of \textit{universal} mask-wearing for the public but that of mask-wearing for employees. The effect of \textit{universal} mask-wearing for the public could be larger if people comply with such a policy measure. \cite{tian2020calibrated} considered a  model in which mask wearing reduces  the reproduction number by a factor $(1-e \cdot pm)^2$, where $e$ is the efficacy of trapping viral particles inside the mask and $pm$ is the percentage of mask-wearing population. Given an estimate of $R_0=2.4$, \cite{howard2020} argue that  50\% mask usage and a 50\% mask efficacy level would reduce the reproduction number from 2.4 to 1.35, an order of magnitude
 impact.} The estimated effect of masks on death growth is larger than the effect on case growth, but this difference between the two estimated effects is not statistically significant.
+ 
+The estimates also imply that stay-at-home orders reduce the growth rate of cases and deaths by 8-10 percent directly. This can be a reflection of multi-colinearity problem given high correlations among policy variables; in columns (2) and (4), the estimates of the average of stay-at-home orders, closed movie theaters, closed restaurants, and closed non-essential businesses are not significantly zero, indicating that the four policies in total may have little direct
+effect on case or death growth when behavior is held constant.  
 
-Except for mask requirements, policies appear to have little direct
-effect on case or death growth when behavior is held constant. The one
-exception is that closing schools has a large and statistically
+Closing schools has a large and statistically
 significant coefficient in the death growth regressions. As discussed
-above, there is little cross-state variation in the timing of school
-closures, making estimates of its effect less reliable.
+above, however, there is little cross-state variation in the timing of school
+closures, making estimates of its effect less reliable.  
 
 The row ``$\sum_k w_k \mathrm{Behavior}_k$'' reports the sum of estimated coefficients weighted by the average of the behavioral
-variables from April 1st-10th. The estimates of $-0.76$ and $-0.87$ for ``$\sum_k w_k \mathrm{Behavior}_k$'' in column (1)  imply that a reduction in mobility measures relative to the baseline in January and February have induced a decrease in case and death growth rates by 76 and 83 percent, respectively, suggesting an importance of social distancing for reducing the spread of Covid-19.
+variables from April 1st-10th. The estimates of $-0.73$ and $-0.79$ for ``$\sum_k w_k \mathrm{Behavior}_k$'' in column (1)  imply that a reduction in mobility measures relative to the baseline in January and February have induced a decrease in case and death growth rates by 73 and 79 percent, respectively, suggesting an importance of social distancing for reducing the spread of Covid-19.
 When including national cases and deaths in information, as shown in columns (3) and (4), the estimated aggregate impact of behavior is substantially smaller, but remains large and statistically significant.
 
 A useful practical implication of these results are that Google Mobility
@@ -1473,7 +1476,7 @@ feedback through information in section \ref{counterfactuals}.
      constructed as 7 day moving averages between $t$ to $t-7$ of
      corresponding daily measures.  The row
      ``$\sum_j \mathrm{Policies}_j$'' reports the sum of six policy
-     coefficients.  Standard errors are clustered at the state level.
+     coefficients.   ``ave of four policy vars'' is defined by the average of stay-at-home orders, closured movie theaters, closured restaurants, and closured non-essential businesses. Standard errors are clustered at the state level.
    \end{flushleft}
  \end{minipage}
 \end{table}
@@ -1575,8 +1578,8 @@ effects of policy under a specification that excludes national information varia
 national cases or deaths included as information (columns (1)-(4) of
 Table \ref{tab:PItoB} and column (1) of Table \ref{tab:BPItoY}). The estimates imply
 that all policies combined would reduce the growth rate of cases  and deaths by
-0.70 and 0.98, respectively,   out of which about two-third to
-three-fourth is attributable to the indirect effect through their impact on behavior.  The estimate also indicates that the
+0.75 and 1.01, respectively,   out of which more than one-half to
+two-third is attributable to the indirect effect through their impact on behavior.  The estimate also indicates that the
 effect of mandatory masks for employees is mostly direct.
 
 We can also examine the total effect of policies and information on
@@ -1591,7 +1594,7 @@ sensitive to the inclusion of national information variables.  Also as
 above, mask mandates have a significant negative effect on growth
 rates.
 
-In columns (2) and (4) of Table \ref{tab:PtoY}, we find that the estimated effect of mask mandates in April is larger than that in May for both case and death regressions.  This may reflect a wider \textit{voluntary} adoption of masks in May than in April --- if more people wear masks even without mandatory mask policy,  the policy effect of mandating masks for employees becomes weaker.
+%In columns (2) and (4) of Table \ref{tab:PtoY}, we find that the estimated effect of mask mandates in April is larger than that in May for both case and death regressions.  This may reflect a wider \textit{voluntary} adoption of masks in May than in April --- if more people wear masks even without mandatory mask policy,  the policy effect of mandating masks for employees becomes weaker.
 
 
 Table \ref{tab:dieff} presents the estimates for the specification with past national case/death variables. The effects of school closures and  the sum of policies are estimated substantially smaller in Table \ref{tab:dieff} when national case/death variables are included than in Table \ref{tab:dieff-si}. This sensitivity reflects the difficulty in identifying the aggregate time effect---which is largely captured by national cases/deaths---given little cross-sectional variation in the timing of school closures across states. On the other hand, the estimated effects of policies other than school closures are similar between Table \ref{tab:dieff-si} and Table \ref{tab:dieff}; the effect of other policies are well-identified from cross-sectional variations.
@@ -1606,17 +1609,131 @@ Column ``Average'' of  Tables \ref{tab:dieff-si} and \ref{tab:dieff}   reports t
 to combine the two estimates of the total effect: one relying on the causal structure and another inferred from a direct estimation of equation (PI $\to$ Y).\footnote{Averaging the two estimates theoretically reduces noise, albeit in our case the reductions are small.
 Another approach would be to use precision averaging, which would give similar result. Finally, another approach would be to use generalized method of moments to estimate
 all of the equations jointly. We don't pursue this approach since it is likely to be non-robust under local deviations from correct specification; simple model averaging is more appealing in this case.}  We shall be using the average estimate in generating the counterfactuals in the next section. Turning to the results, the estimates of Tables \ref{tab:dieff-si} and \ref{tab:dieff}  imply that all policies combined would reduce
-\(\Delta \log \Delta D\) by  0.97 and  0.40, respectively. For
+\(\Delta \log \Delta D\) by  0.97 and  0.48, respectively. For
 comparison, the median of \(\Delta \log \Delta D_{it}\) reached its
 peak in mid-March of about 1.3 (see Figure \ref{fig:growthq} in the
-appendix). Since then it has declined to near 0. Therefore,  -0.97 and -0.40 imply
+appendix). Since then it has declined to near 0. Therefore,  -0.97 and -0.48 imply
 that policy changes can account for roughly one-third to two-third of the observed
 decrease in death growth.  The remainder of the decline is likely due
 to changes in behavior from information.
 
 
-\section{Robustness}
 
+\section{Sensitivity Analysis}\label{sec:sensitivity}
+
+
+In this section, we provide sensitivity analysis by estimating (\ref{eq:R4}) with alternative specifications and methods. Figure \ref{fig:whisker} shows  the 90\% confidence intervals of   coefficients of (A) masks for employees, (B)  closed K-12 school, (C) stay-at-home, and (D) the average variable of stay-at-home, closed movie theaters, closed restaurants, and closed non-essential businesses for the following specifications and estimation methods:
+  \begin{itemize}
+  \item[(1)] Baseline specification  in Table  \ref{tab:PtoY}.
+  \item[(2)]  Exclude  the state of New York from the sample because it may be viewed as an outlier in the early pandemic period.
+  \item[(3)]   Add  the percentage of people who wears masks to protect themselves in March and April as confounder for unobserved  personal risk-aversion and initial attitude toward mask wearing.\footnote{ The survey is conducted online by YouGov and is based on the interviews of 89,347 US adults aged 18 and over between March 26-April 29, 2020.  The survey question is ``Which, if any, of the following measures have you taken in the past 2 weeks to protect yourself from the Coronavirus (COVID-19)?''.}  
+   \item[(4)]   Add the log of Trump's vote share  in 2016 presidential election as confounder for unobserved private behavioral response.
+   \item[(5)]   Add  past behavior variables  as information used to set policies. Under this specification, our causal interpretation is valid when policy variables are sufficiently random conditional on past behavior variables.
+   \item[(6)]   Include all additional controls in (3)-(5) with the sample that excludes New York as in (2).
+   \item[(7)]   Estimated by Double Machine Learning (DML) of \cite{chernozhukov18} with Lasso to reduce dimensionality while adding private mask wearing rates and  the log of Trump's vote share as additional controls.   \item[(8)]  Estimated by DML with Random Forest to reduce dimensionality  and capture some nonlinearities while adding private mask wearing rates and  the log of Trump's vote share as additional controls.   
+   \item[(9)]   Add latent state confounders as components of $W_{it}$, estimated using fixed effects with bias correction.
+  % \item Alternative Timing assumption ($\ell=10$ for cases and $\ell=23$ for deaths) on all of the above.
+  \end{itemize} 
+In Figure \ref{fig:whisker}, ``red'', ``green'', ``blue'', and ``purple" indicate the regression models for case growth without national information variables, case growth with national information variables, death growth without national information variables, and death growth with national information variables, respectively. The left panel of ``(i) baseline timing'' assume that the times from exposure to case confirmation and death reporting are 14 and 21 days, respectively,  while they are 9 and 24 days, respectively, in the right panel of ``(ii) alternative timing.''\footnote{This alternative timing assumption is motivated by the lower bound estimate of median times from exposure to case confirmation or death reporting in Table 2 of \url{https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html}, which are based on data received by CDC through June 29, 2020.  We thank Jessica Metclaf for recommending us to do a sensitivity analysis on the timing assumption while suggesting this reference to us.}
+  
+
+Panel (A) of Figure  \ref{fig:whisker} illustrates that the estimated coefficients of mask mandates are negative and significant across different specifications, methods, and timing assumptions, confirming the importance of mask policy on reducing case and death growths.  % Comparing (i) baseline timing on the left with (ii) alternative timing on the right,  we notice that the estimated magnitudes of masks for employees are similar to each other.
+
+In Panel (B) of  Figure  \ref{fig:whisker}, many estimates of closures of K-12 schools  suggest that  the effect of school closures is large. The visual evidence on growth rates for states with and without school closures in Figure \ref{fig:growthpolicies1} also suggests that there may be a potentially large effect, though the history is very short.  This evidence is consistent
+with the emerging evidence of prevalence of Covid-19 among children  \citep{Lee2020jama,Szablewski2020cdc}. \cite{children:nature} find that although children's
+transmission and susceptibility rates are half that of ages 20-30,
+children's contact rates are much higher.
+This type of evidence, as well as, evidence that children carry viral
+loads similar to older people (\cite{children:germany}), led Germany to make the early decision of closing schools.
+ 
+Our estimates of school closures substantially vary  across  specifications, however, and the estimated effects of school closures on case/death growth are often not significantly different from zero once national cases are controlled for.
+In the US state-level data,  there is little variation across states in the timing of school closures.  
+Consequently, its estimate is particularly sensitive to an inclusion of some aggregate variables such as national cases.  Given this sensitivity,  there still exists a lot of uncertainty as to the magnitude of the effect of school closures.  Any analyses of re-opening plans need to be aware of this uncertainty.  An important research question is how to resolve this uncertainty using additional data sources. 
+
+
+Panel (C) of Figure  \ref{fig:whisker} indicates that the estimated coefficients of stay-at-home order  are generally negative and often significant 
+ except for fixed effects estimator with bias correction. The sensitivity under fixed effects estimator may be due to high correlations between stay-at-home order  and closures of movie theaters, restaurants, and non-essential businesses. As shown in Panel (D), the  estimated coefficient of the average of  stay-at-home order  and closures of movie theaters, restaurants, and non-essential businesses   are  negative and often significant even under fixed effect specification; similar to school closure estimates, however,  its estimate is sensitive to controlling for national cases and deaths because the timing of implementing these policies is similar across states.
+ 
+\begin{figure}[ht]
+  \caption{Estimated Coefficients for  Policy Variables: Sensitivity Analysis \label{fig:whisker}}\bigskip
+  \begin{minipage}{\linewidth}
+    \centering
+   {\textbf{(A)  masks for employees}}\\
+    \medskip
+    \begin{tabular}{cc}  
+ $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-whisker-14}
+      &
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-whisker-9} 
+    \end{tabular}
+  \end{minipage} \\\smallskip
+    \begin{minipage}{\linewidth}
+    \centering 
+     {\textbf{(B)  closed K-12 Schools}}\\
+    \medskip
+    \begin{tabular}{cc}  
+ $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pk12-whisker-14}
+      &
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pk12-whisker-9}
+          \end{tabular}
+  \end{minipage}  
+    \begin{flushleft}
+      \footnotesize
+      $^\dagger$The times from exposure to case confirmation and death reporting  are assumed to be 14 and 21 days, respectively. $^\ddagger$The times from exposure to case confirmation and death reporting  are assumed to be 9 and 24 days, respectively. 
+    \end{flushleft}
+\end{figure}
+   
+   \addtocounter{figure}{-1}
+\begin{figure}[ht]
+  \caption{Estimated Coefficients for Policy Variables:  Sensitivity Analysis (cont.) \label{fig:whisker-2}}\bigskip
+  \begin{minipage}{\linewidth}
+    \centering
+   {\textbf{(C)  stay-at-home orders}}\\
+    \medskip
+    \begin{tabular}{cc}  
+ $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pshelter-whisker-14}
+      &
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pshelter-whisker-9} 
+    \end{tabular}
+  \end{minipage} \\ \smallskip
+    \begin{minipage}{\linewidth}
+    \centering 
+     {\textbf{(D)  Average of stay-at-home, closed movie theaters, closed restaurants, and closed  businesses}}\\
+    \medskip
+    \begin{tabular}{cc}  
+ $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pindex-whisker-14}
+      &
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pindex-whisker-9}
+          \end{tabular}
+  \end{minipage}   
+    \begin{flushleft}
+      \footnotesize
+      $^\dagger$The times from exposure to case confirmation and death reporting  are assumed to be 14 and 21 days, respectively. $^\ddagger$The times from exposure to case confirmation and death reporting  are assumed to be 9 and 24 days, respectively. 
+    \end{flushleft}
+\end{figure}
+   
+
+ \begin{figure}
+  \caption{Case and death growth conditional on school closures \label{fig:growthpolicies1}}
+  \begin{minipage}{\linewidth}
+    \centering
+    \begin{tabular}{cc}
+       \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-cases-14}
+      &
+        \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-deaths-21} 
+    \end{tabular} 
+      \footnotesize In these figures, red points are the case or death
+      growth rate in states without each policy 14 (or 21 for deaths)
+      days earlier. Blue points are states with each policy 14 (or 21
+      for deaths) days earlier. The red line is the average across
+      states without each policy. The blue line is the average across
+      states with each policy.
+  \end{minipage}
+\end{figure}
+ 
 
 
 
@@ -1880,77 +1997,79 @@ estimates imply at least a 7 fold increase in cases with a large upper bound by 
 at least 14 million additional cases. The estimated impact on deaths is larger than
 cases, and even more imprecise.
 
-The effect of removing all policies includes the effect of school
-closures. The visual evidence on growth rates for states with and without school closures,
-presented blow, suggest that there may be a potentially large effect, though the history is very short. The main results presented in Section 3 also support the hypothesis that the school closures were important at lowering the growth rates.  This evidence is consistent
-with the emerging evidence of prevalence of Covid-19 among children
-aged 10-17. \cite{children:nature} find that although children's
-transmission and susceptibility rates are half that of ages 20-30,
-children's contact rates are much higher.
-This type of evidence, as well as, evidence that children carry viral
-loads similar to older people (\cite{children:germany}), led Germany to make the early decision of closing schools.
+[Discussion on the effect of school closures has been moved to sensitivity analysis section.]
 
-\begin{figure}
-  \caption{Case and death growth conditional on policies \label{fig:growthpolicies1}}
-  \begin{minipage}{\linewidth}
-    \centering
-    \begin{tabular}{cc}
-       \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-cases}
-      &
-        \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-deaths}
-    \end{tabular}
-    \footnotetext{ In these figures, red points are the case or death
-      growth rate in states without each policy 14 (or 21 for deaths)
-      days earlier. Blue points are states with each policy 14 (or 21
-      for deaths) days earlier. The red line is the average across
-      states without each policy. The blue line is the average across
-      states with each policy.}
-  \end{minipage}
-\end{figure}
-
-
-As discussed above, there is little variation across states
-in the timing of school closures. Consequently, the effect of school
-closures is difficult to identify statistically, because it is hard to separate it from aggregate time effect, and its estimate is sensitive to an inclusion of some aggregate variables such as national cases. To support this point, Figure \ref{fig:US-nop} shows the
-effect of removing all policies on cases based on the estimates with national cases
-included as information. When national case variables are included
-in the specification, the estimated effect of school closures, and hence that of removing all
-policies, is much smaller with a 90\% confidence interval of [0,10] fold increases.
-
-Given this sensitivity, we conclude that there still exists a lot of uncertainty as to the effect of removing all policies, especially schooling. The impact of not implementing any policies on cases and deaths can be quite large, but  the effect of school closures, hence that of removing all policies, is not well identified statistically from the US state-level data alone, because of the lack of cross-sectional variations.  Any analyses of re-opening plans need to be aware of this uncertainty.  An important research question is how to resolve this uncertainty using additional data sources.
-
-\begin{figure}[ht]
-  \caption{Effect of removing policies on cases in the US under a specification with only state-level cases/deaths as information \label{fig:US-nop-SI}}
-  \begin{minipage}{\linewidth}
-    \centering
-    \begin{tabular}{cc}
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_v1}
-      &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_v1}
-%      \\
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_deaths_v1}
+%The effect of removing all policies includes the effect of school
+%closures. The visual evidence on growth rates for states with and without school closures,
+%presented blow, suggest that there may be a potentially large effect, though the history is very short. The main results presented in Section 3 also support the hypothesis that the school closures were important at lowering the growth rates.  This evidence is consistent
+%with the emerging evidence of prevalence of Covid-19 among children
+%aged 10-17. \cite{children:nature} find that although children's
+%transmission and susceptibility rates are half that of ages 20-30,
+%children's contact rates are much higher.
+%This type of evidence, as well as, evidence that children carry viral
+%loads similar to older people (\cite{children:germany}), led Germany to make the early decision of closing schools.
+%
+%\begin{figure}
+%  \caption{Case and death growth conditional on policies \label{fig:growthpolicies1}}
+%  \begin{minipage}{\linewidth}
+%    \centering
+%    \begin{tabular}{cc}
+%       \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-cases}
 %      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_deaths_v1}
-    \end{tabular}
-  \end{minipage}
-\end{figure}
+%        \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-deaths}
+%    \end{tabular}
+%    \footnotetext{ In these figures, red points are the case or death
+%      growth rate in states without each policy 14 (or 21 for deaths)
+%      days earlier. Blue points are states with each policy 14 (or 21
+%      for deaths) days earlier. The red line is the average across
+%      states without each policy. The blue line is the average across
+%      states with each policy.}
+%  \end{minipage}
+%\end{figure}
 
-\begin{figure}[ht]
-  \caption{Effect of removing policies on cases in the US under a specification with both
-  state-level cases/deaths and national-level cases/deaths as information \label{fig:US-nop}}
-  \begin{minipage}{\linewidth}
-    \centering
-    \begin{tabular}{cc}
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth}
-      &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel}
-%      \\
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_deaths}
+
+%As discussed above, there is little variation across states
+%in the timing of school closures. Consequently, the effect of school
+%closures is difficult to identify statistically, because it is hard to separate it from aggregate time effect, and its estimate is sensitive to an inclusion of some aggregate variables such as national cases. To support this point, Figure \ref{fig:US-nop} shows the
+%effect of removing all policies on cases based on the estimates with national cases
+%included as information. When national case variables are included
+%in the specification, the estimated effect of school closures, and hence that of removing all
+%policies, is much smaller with a 90\% confidence interval of [0,10] fold increases.
+%
+%Given this sensitivity, we conclude that there still exists a lot of uncertainty as to the effect of removing all policies, especially schooling. The impact of not implementing any policies on cases and deaths can be quite large, but  the effect of school closures, hence that of removing all policies, is not well identified statistically from the US state-level data alone, because of the lack of cross-sectional variations.  Any analyses of re-opening plans need to be aware of this uncertainty.  An important research question is how to resolve this uncertainty using additional data sources.
+%
+%\begin{figure}[ht]
+%  \caption{Effect of removing policies on cases in the US under a specification with only state-level cases/deaths as information \label{fig:US-nop-SI}}
+%  \begin{minipage}{\linewidth}
+%    \centering
+%    \begin{tabular}{cc}
+%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_v1}
 %      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_deaths}
-    \end{tabular}
-  \end{minipage}
-\end{figure}
+%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_v1}
+%%      \\
+%%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_deaths_v1}
+%%      &
+%%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_deaths_v1}
+%    \end{tabular}
+%  \end{minipage}
+%\end{figure}
+%
+%\begin{figure}[ht]
+%  \caption{Effect of removing policies on cases in the US under a specification with both
+%  state-level cases/deaths and national-level cases/deaths as information \label{fig:US-nop}}
+%  \begin{minipage}{\linewidth}
+%    \centering
+%    \begin{tabular}{cc}
+%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth}
+%      &
+%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel}
+%%      \\
+%%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_deaths}
+%%      &
+%%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_deaths}
+%    \end{tabular}
+%  \end{minipage}
+%\end{figure}
 
 
 
@@ -2173,17 +2292,17 @@ non-essential business closures. Table \ref{tab:policies} displays all 25 dated 
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
-      \includegraphics[width=0.483\textwidth]{tables_and_figures/pmaskbus-cases}
+      \includegraphics[width=0.483\textwidth]{tables_and_figures/pmaskbus-cases-14}
       &
-        \includegraphics[width=0.483\textwidth]{tables_and_figures/pmaskbus-deaths}
+        \includegraphics[width=0.483\textwidth]{tables_and_figures/pmaskbus-deaths-21}
       \\
-      \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-cases}
+      \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-cases-14}
       &
-        \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-deaths}
+        \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-deaths-21}
       \\
-      \includegraphics[width=0.483\textwidth]{tables_and_figures/pshelter-cases}
+      \includegraphics[width=0.483\textwidth]{tables_and_figures/pshelter-cases-14}
       &
-        \includegraphics[width=0.483\textwidth]{tables_and_figures/pshelter-deaths}
+        \includegraphics[width=0.483\textwidth]{tables_and_figures/pshelter-deaths-21}
       \\
     \end{tabular}
     \footnotetext{ In these figures, red points are the case or death
@@ -2200,17 +2319,17 @@ non-essential business closures. Table \ref{tab:policies} displays all 25 dated 
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
-      \includegraphics[width=0.483\textwidth]{tables_and_figures/pmovie-cases}
+      \includegraphics[width=0.483\textwidth]{tables_and_figures/pmovie-cases-14}
       &
-        \includegraphics[width=0.483\textwidth]{tables_and_figures/pmovie-deaths}
+        \includegraphics[width=0.483\textwidth]{tables_and_figures/pmovie-deaths-21}
       \\
-      \includegraphics[width=0.483\textwidth]{tables_and_figures/prestaurant-cases}
+      \includegraphics[width=0.483\textwidth]{tables_and_figures/prestaurant-cases-14}
       &
-        \includegraphics[width=0.483\textwidth]{tables_and_figures/prestaurant-deaths}
+        \includegraphics[width=0.483\textwidth]{tables_and_figures/prestaurant-deaths-21}
       \\
-      \includegraphics[width=0.483\textwidth]{tables_and_figures/pnonessential-cases}
+      \includegraphics[width=0.483\textwidth]{tables_and_figures/pnonessential-cases-14}
       &
-        \includegraphics[width=0.483\textwidth]{tables_and_figures/pnonessential-deaths}
+        \includegraphics[width=0.483\textwidth]{tables_and_figures/pnonessential-deaths-21}
     \end{tabular}
     \footnotetext{ In these figures, red points are the case or death
       growth rate in states without each policy 14 (or 21 for deaths)
@@ -2280,6 +2399,11 @@ cases while a corresponding delay of roughly three weeks for deaths.
 % }
 
 \FloatBarrier
+
+
+\end{document}
+
+
 
 \subsection{Counterfactuals for Massachusetts and
   Illinois}
@@ -2379,95 +2503,10 @@ cases while a corresponding delay of roughly three weeks for deaths.
       &       \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nb-dcases_deaths_v1}    \end{tabular}
   \end{minipage}
 \end{figure}
-
-%\begin{figure}[h]
-%  \caption{Effect of removing all policies in
-%    Illinois \label{fig:IL-nop}}
-%  \begin{minipage}{\linewidth}
-%    \centering
-%    \begin{tabular}{cc}
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nop-dgrowth_v1}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nop-dcases_v1}
-%      \\
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nop-dgrowth_deaths_v1}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nop-dcases_deaths_v1}
-%    \end{tabular}
-%  \end{minipage}
-%\end{figure}
-%
-%\begin{figure}[h]
-%  \caption{Effect of removing all policies in
-%    Massachusetts \label{fig:MA-nop}}
-%  \begin{minipage}{\linewidth}
-%    \centering
-%    \begin{tabular}{cc}
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nop-dgrowth_v1}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nop-dcases_v1}
-%      \\
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nop-dgrowth_deaths_v1}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nop-dcases_deaths_v1}
-%    \end{tabular}
-%  \end{minipage}
-%\end{figure}
-
+ 
 \FloatBarrier
 
-%\subsection{Policy Effects without National Cases as Information Variables}
-%
-%Table \ref{tab:dieff-si} presents the estimates under a specification that excludes national information variables. Comparing the estimates in table \ref{tab:dieff}, the effects of school closures and  the sum of policies are estimated substantially larger in table \ref{tab:dieff-si} when national information variables are excluded.
-%
-%%Here we present the results of counterfactual analyses that don't include the national cases/deaths as
-%%the the information variables.  The growth in the national cases nearly perfectly predicts school closure
-%%policies, which have little cross-sectional variation.  Here we remove the national cases from the information
-%%and check what happens to the counterfactual results.  The counterfactual results of mask policies, shelter-in-place,
-%%and closing
-%%non-essential businesses remain robust. The results on school closures effects change substantially,
-%%attributing a much bigger role to school closures. The resulting counterfactual of  removing
-%%all policies has a much larger effect on cases, with the lower bound of the confidence band implying at
-%%least a 7 fold increase in cases (see Figure \ref{fig:US-nop-SI} given in the main text).
-%
-%\begin{table}[!b]
-%  \caption{\label{tab:dieff-si}Direct and Indirect Policy Effects
-%    (without national information variables)}
-%\begin{minipage}{\linewidth}
-%  \centering
-%    \scriptsize
-%  \begin{tabular}{c}
-%    \textbf{Cases}
-%    \\
-%    \input{tables_and_figures/dieff-cases-SI}
-%    \\
-%    \textbf{Deaths}
-%    \\
-%    \input{tables_and_figures/dieff-deaths-deathsinfo-SI}
-%  \end{tabular}
-%  \smallskip
-%  \begin{flushleft}
-%    {\tiny Direct effects capture the effect of policy on case
-%      growth holding behavior, information, and confounders
-%      constant. Direct effects are given by ${\pcolor \pi}$ in
-%      equation (\ref{eq:R1}). Indirect effects capture how policy
-%      changes behavior and behavior shift case growth. They are given
-%      by ${\bcolor \alpha}$ from (\ref{eq:R1}) times ${\pcolor \beta}$
-%      from (\ref{eq:R2}). The total effect is
-%      ${\pcolor \pi} + {\pcolor \beta} {\bcolor \alpha}$. Column
-%      ``PI$\to$Y Coefficients'' shows the coefficient estimates from
-%      \ref{eq:R4}. Columns ``Difference''    are  the differences between
-%      the estimates from (\ref{eq:R4}) and the combination of
-%      (\ref{eq:R1}) and (\ref{eq:R2}) while column ``Average'' are their averages.
-%      Standard errors are computed by
-%      bootstrap and clustered on state.}
-%    %  \ref{tab:PtoY}.
-%    \end{flushleft}
-%  \end{minipage}
-%\end{table}
-
-
-\FloatBarrier
+  
 
 \subsection{Counterfactuals with National Cases as Information
   Variables}

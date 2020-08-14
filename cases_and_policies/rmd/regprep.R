@@ -136,5 +136,5 @@ month <- month(df$date)
 df$month = as.factor(month)
 df$pmask.may <- df$pmaskbus*tilt
 df$pmask.april <- df$pmaskbus*(1-tilt)
-pols <- c("pmaskbus","pk12","pmovie","pshelter","prestaurant","pnonessential") 
+pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 
 #pols <- c("pmaskbus","pk12","pindex") 

@@ -15,8 +15,6 @@ navbar:
       href: counterfactuals.html
     - text: "(averaged policies, without national information)"
       href: cf-pindex.html
-    - text: "(with national information)"
-      href: counterfactuals_national.html
 output:
   html_document:
     theme: journal
