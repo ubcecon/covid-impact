@@ -25,7 +25,7 @@ gitrootdir <- function() {
   rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
   if (is.na(rootdir)) {
     thisfilepath <- thisPath()
-    rootdir <- normalizePath(paste(thifilepath,"../..",sep="/"))
+    rootdir <- normalizePath(paste(thisfilepath,"../..",sep="/"))
   }
   validationfile <- normalizePath(paste(rootdir,"cases_and_policies/",sep="/"))
   if (!file.exists(validationfile)) {
@@ -35,8 +35,6 @@ gitrootdir <- function() {
 }
 
 rootdir <- gitrootdir()
-
-rootdir <- "/Users/Hiro/Documents/GitHub/covid-impact"
 
 # Data on policies from Raifman and collaborators
 urls <- c("https://docs.google.com/spreadsheets/d/1zu9qEWI8PsOI_i8nI_S29HDGHlIp2lfVMsGxpQ5tvAQ/edit#gid=993060716",

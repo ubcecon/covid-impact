@@ -2,7 +2,7 @@ cs$t <- as.numeric(cs$date)
 
 warning("Using data only up to 2020-06-02 as in submitted version of paper. Modify lines 4-5 of regprep.R to change")
 df <- pdata.frame(subset(cs, cs$date>=as.Date("2020-01-01") &
-                                   cs$date<=as.Date("2020-06-02")),
+                                   cs$date<=as.Date("2020-06-03")),
                   # cs$date<=as.Date("2020-06-30")),
                   index=c("state","t"), stringsAsFactors=FALSE)
 
@@ -126,8 +126,11 @@ df$mask_percent <- df$mask_percent/100
 
 df$party <- as.factor(df$party)
 
-df$pindex <- (df$pshelter+df$pmovie+df$prestaurant+df$pnonessential)/4
+# df$pindex <- (df$pshelter+df$pmovie+df$prestaurant+df$pnonessential)/4
 #df$pindex <- (df$pshelter+df$prestaurant+df$pnonessential)/3
+
+df$pindex <- (df$pmovie+df$prestaurant+df$pnonessential)/3
+
 
 tilt = ifelse(df$date> as.Date("2020-05-01"),1,0 )
 month <- month(df$date)

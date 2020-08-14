@@ -102,6 +102,7 @@ mainregressions <- function(df, # data
 
   plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
   plist <- list(pols,c("pmaskbus","pk12","pindex"))
+  plist <- list(pols,c("pmaskbus","pk12","pshelter","pindex"))
   
   
 
@@ -135,12 +136,16 @@ mainregressions <- function(df, # data
               interactions[[ij[2]]], iv[[ij[2]]], L=L)
   })
 
+   
+ # sdf <- subset(df, df$date<=(max(df$date)-L)) 
+ sdf <- df
   ijs <- expand.grid(1:length(bvars), 1:length(plist))
   pib <- list()
   for (k in 1:length(xlist)) {
     pib[[k]] <- apply(ijs, 1, function(ij) {
-      policyreg(df, bvars[ij[1]], plist[[ij[2]]], NULL,
+      policyreg(sdf, bvars[ij[1]], plist[[ij[2]]], NULL,
                 c(infovars[[k]],
+                 # tvars,
                   xlist[[k]]),
                 interactions[[k]], "0", L=0)
     })
