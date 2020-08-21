@@ -134,9 +134,11 @@ df$pindex <- (df$pmovie+df$prestaurant+df$pnonessential)/3
 
 tilt = ifelse(df$date> as.Date("2020-05-01"),1,0 )
 month <- month(df$date)
+week <- week(df$date)
 #month[month==6] <- 5
 #month[month<3] <- 3
 df$month = as.factor(month)
+df$week = as.factor(week)
 df$pmask.may <- df$pmaskbus*tilt
 df$pmask.april <- df$pmaskbus*(1-tilt)
 pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 

@@ -9,49 +9,54 @@ Warning--entry type for "whitehouse2020" isn't style-file defined
 --line 642 of file covid.bib
 Warning--entry type for "midas2020" isn't style-file defined
 --line 650 of file covid.bib
+Warning--I didn't find a database entry for "tinbergen1940"
+Warning--I didn't find a database entry for "wold1954"
+Warning--I didn't find a database entry for "pearl:biometrika"
+Warning--I didn't find a database entry for "pearl:causality"
+Warning--I didn't find a database entry for "white:chalak"
+Warning--I didn't find a database entry for "heckman:pinto"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--missing institution in bartik2020
-Warning--empty pages in heckman2007
 Warning--empty pages in lsmith
 You've used 63 entries,
             3072 wiz_defined-function locations,
-            942 strings with 20494 characters,
-and the built_in function-call counts, 50963 in all, are:
-= -- 3490
-> -- 4366
-< -- 7
-+ -- 1471
-- -- 1381
-* -- 4069
-:= -- 8634
-add.period$ -- 321
+            945 strings with 20579 characters,
+and the built_in function-call counts, 51133 in all, are:
+= -- 3501
+> -- 4403
+< -- 5
++ -- 1484
+- -- 1394
+* -- 4084
+:= -- 8673
+add.period$ -- 320
 call.type$ -- 63
-change.case$ -- 691
+change.case$ -- 694
 chr.to.int$ -- 60
-cite$ -- 66
-duplicate$ -- 3359
-empty$ -- 2640
-format.name$ -- 1517
-if$ -- 9691
+cite$ -- 65
+duplicate$ -- 3358
+empty$ -- 2635
+format.name$ -- 1529
+if$ -- 9721
 int.to.chr$ -- 4
 int.to.str$ -- 1
-missing$ -- 780
+missing$ -- 781
 newline$ -- 330
-num.names$ -- 253
-pop$ -- 1718
+num.names$ -- 252
+pop$ -- 1715
 preamble$ -- 1
-purify$ -- 672
+purify$ -- 677
 quote$ -- 0
-skip$ -- 934
+skip$ -- 928
 stack$ -- 0
-substring$ -- 1076
-swap$ -- 1706
-text.length$ -- 7
+substring$ -- 1094
+swap$ -- 1703
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 555
-warning$ -- 3
+warning$ -- 2
 while$ -- 275
 width$ -- 0
-write$ -- 822
-(There were 6 warnings)
+write$ -- 821
+(There were 11 warnings)

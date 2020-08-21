@@ -233,7 +233,7 @@ Panel (C) of Figure  \ref{fig:whisker} indicates that the estimated coefficients
  $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
       \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-whisker-14}
       &
-      \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-whisker-9} 
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pmaskbus-whisker-7} 
     \end{tabular}
   \end{minipage} \\\smallskip
     \begin{minipage}{\linewidth}
@@ -244,7 +244,7 @@ Panel (C) of Figure  \ref{fig:whisker} indicates that the estimated coefficients
  $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
       \includegraphics[width=0.5\textwidth]{tables_and_figures/pk12-whisker-14}
       &
-      \includegraphics[width=0.5\textwidth]{tables_and_figures/pk12-whisker-9}
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pk12-whisker-7}
           \end{tabular}
   \end{minipage}  
     \begin{flushleft}
@@ -264,7 +264,7 @@ Panel (C) of Figure  \ref{fig:whisker} indicates that the estimated coefficients
  $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
       \includegraphics[width=0.5\textwidth]{tables_and_figures/pshelter-whisker-14}
       &
-      \includegraphics[width=0.5\textwidth]{tables_and_figures/pshelter-whisker-9} 
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pshelter-whisker-7} 
     \end{tabular}
   \end{minipage} \\ \smallskip
     \begin{minipage}{\linewidth}
@@ -275,7 +275,7 @@ Panel (C) of Figure  \ref{fig:whisker} indicates that the estimated coefficients
  $\quad$  (i) baseline timing$^\dagger$ &$\quad$ (ii) alternative timing$^\ddagger$\\ 
       \includegraphics[width=0.5\textwidth]{tables_and_figures/pindex-whisker-14}
       &
-      \includegraphics[width=0.5\textwidth]{tables_and_figures/pindex-whisker-9}
+      \includegraphics[width=0.5\textwidth]{tables_and_figures/pindex-whisker-7}
           \end{tabular}
   \end{minipage}   
     \begin{flushleft}
@@ -386,14 +386,10 @@ Fixed Effects Specification for  the Total Effect of Policies on Case and Death 
    \end{tabular}
    }
    \begin{flushleft}
-     \scriptsize Dependent variable is the weekly growth rate of
+     \scriptsize   All specifications include weekly dummies and state fixed effects. Dependent variable is the weekly growth rate of
      confirmed cases (in the left panel) or deaths (in the right
-     panel) as defined in equation (\ref{eq:y}).        The covariates
-     include lagged policy variables, which are
-     constructed as 7 day moving averages between $t$ to $t-7$ of
-     corresponding daily measures.  The row
-     ``$\sum_j \mathrm{Policies}_j$'' reports the sum of six policy
-     coefficients.  Standard errors are clustered at the state level.
+     panel) as defined in equation (\ref{eq:y}).   Columns (1) and (3) report the standard fixed effects estimator  while Columns (2) and (4) report the fixed effects estimator with bias corrections.    Standard errors are computed by multiplier bootstrap clustered at the state level.
+    
    \end{flushleft}
  \end{minipage}
 \end{table}

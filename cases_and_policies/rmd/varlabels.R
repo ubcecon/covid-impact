@@ -54,12 +54,15 @@ varlabels <-
     "prestaurant","closed restaurants", "closed restaurants except takeout",
     "Raifman et al",TRUE,
 
-    "pnonessential","closed businesses", "closed non-essential businesses",
+    "pnonessential","closed non-essent bus", "closed non-essential businesses",
     "Raifman et al",TRUE,
 
     "psoe","state of emergency","state of emergency", "Raifman et al",TRUE,
     
-    "pindex","ave of four policy vars","the average of stay-at-hom and closures of movie theaters, 
+    # "pindex","ave of four policy vars","the average of stay-at-hom and closures of movie theaters, 
+    # reataurants, and non-essential businesses", "Raifman et al",TRUE,
+    
+    "pindex","business closure policies","the average of closures of movie theaters, 
     reataurants, and non-essential businesses", "Raifman et al",TRUE,
     
     "party","Governor's party","Governor's party", "OPENICPSR",TRUE,
