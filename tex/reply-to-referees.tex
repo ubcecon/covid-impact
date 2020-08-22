@@ -68,6 +68,26 @@ Major changes are:}
 \refreplyheading
  
 \changes
+\subsection*{Reply to Comments}
+\begin{itemize}
+
+\item   \textit{``I particularly like your mapping of your estimating equation to the SIR model. But, it would be nice to discuss further the assumptions in light of the SIR model. For example, how do the orthogonality assumptions in (1) relate to the assumptions on top of page (14)? and just to be clear, you have a "causal model" yet for identification you rely on projections in the random effects specification (and no exclusion restriction). For example, what do you rule out vis a vis "diff in diff" type event study models with fixed effects? How about a brief discussion of the "invariance assumption" and why you think it would hold in your counterfactual exercise. ''}
+
+
+
+\item   \textit{``It might make sense to reorganize Section 2 (which is the heart of the theory in the paper) into a simpler to read section  where the assumptions that are required for causal interpretation are laid out. Also, one easier threshold is that your system of estimating equations provide a direct "predictive effect" of various policies. These predictive (not causal) in my opinion would still be very useful. ''}
+
+Following your suggestion, we have reorganized Section 2. 
+ We also state the following in abstract:
+ \begin{quote}
+ We stress that our study is observational and should be interpreted with great caution. 
+ From a completely agnostic point of view,
+our findings uncover predictive effects (association) of observed policies and behavioral changes  on future health outcomes,
+ controlling for informational and other confounding variables.
+\end{quote}
+
+\end{itemize}
+
 
 \newpage
 
@@ -86,6 +106,13 @@ cautiously warn that their casual impact cannot be interpreted too literally.''}
  \begin{quote}
  Validation of the model by (TR) allows us to check exclusion restrictions brought by contextual knowledge, and check stability of the model by using different data subsets. However, passing the (TR) does not, of course, guarantee that the model is necessarily valid for recovery of causal effects. The only fundamental way to truly validate a causal model for observational data is through a controlled experiment, which is impossible to carry in our setting. We shall however cross-check our results against other scientific evidence and, for example, results from RCT on effectiveness of masks on respiratory deceases (though not in the Covid-19 context).
  \end{quote}
+ 
+ We also state the following in abstract:
+ \begin{quote}
+ From a completely agnostic point of view,
+our findings uncover predictive effects (association) of observed policies and behavioral changes  on future health outcomes,
+ controlling for informational and other confounding variables.
+\end{quote}
   
 \item[1.]   \textit{(Source of state-level variation) ``The main specification is based on random effects panel data
 models. It is unclear what is the source of state-level variation. In particular, what is behind
@@ -137,11 +164,13 @@ the authors could add some more remarks why the causal chain on pages 8-10 is pl
 and acknowledge that the results in the paper are highly conditional on this particular causal
 ordering.''}
 
-Thank you for your comment. As a part of sensitivity checks, we now examine if the estimates are sensitive when we include past behavior variables as information variables, under which policies depend on past behavior. We find that the estimated coefficients of masks for employees are not sensitive to an inclusion of past behavior variables. 
-
-In early pandemic period, we believe 
-
-
+Thank you for your comment. Following your comment, we added the following sentence:
+\begin{quote}
+The  lagged values of behavior variable may be also included in the information set, but we postpone this discussion after the main empirical results are presented.
+\end{quote} 
+As a part of sensitivity checks, we now examine if the estimates are sensitive when we include two weeks lagged value of behavior variables in the information set, under which policies depend on past behavior. We find that the estimated coefficients of masks for employees are not sensitive to an inclusion of past behavior variables. 
+ 
+We think it is reasonable to assume that people's behavior today will not immediately affect today's policy because it takes time for policy makers to gather information on people's behavior and make a policy decision based on gathered information, especially in the early pandemic period.  
   
 \item[5.]  \textit{(Details about confidence intervals) ``Starting from Figure 1, confidence intervals are shown
 in the shaded region. It is not clearly stated in the paper how they are obtained. On page 32,
@@ -152,10 +181,25 @@ are drawn with replacement from the residuals. We do this many times and report
 the average over draws of the residuals. The shaded region is a point-wise 90\%
 confidence interval. It is still unclear how a pointwise confidence interval is obtained. Does this mean that a pointwise
 90\% confidence interval is constructed by simulation or bootstrap? It would be useful if the authors describe how to construct a confidence interval and provide a remark why it is valid.''}
+
+We have the following paragraph:
+\begin{quote}
+ To compute the estimated and counterfactual
+paths, we use the   estimate   in
+column ``Average'' of Table \ref{tab:dieff-si}. We set initial
+$\Delta \log \Delta C$ and $\log \Delta C$ to their values first
+observed in the state we are simulating. We hold all other regressors
+at their observed values. Error terms are drawn with replacement from
+the residuals. We do this many times and report the average over draws
+of the residuals. The shaded region is a point-wise 90\% confidence
+interval.
+\end{quote}
   
 \item[6.]  \textit{(Replication files) ``It would be great if the authors could post their dataset and replication
 files on public domain such as a GitHub page or ICPSR at https://www.openicpsr.org/
 openicpsr/covid19.''}
+
+All programs and dataset will be available at our GitHub page, which is currently set to be private but we will plan to make it publicly accessible once the paper is accepted.
   
 \item[7.]  \textit{(Debiased fixed effect estimates) ``On page 11, the authors state:
 However, we find the debiased fixed effect estimates are qualitatively and quantitatively
@@ -178,6 +222,8 @@ Following your suggestion, we have added a comment on this on page xx in Section
 \item[9.]  \textit{(Multiple testing) ``There are lots of hypotheses and stars in Tables 3-7. Perhaps it might be
 useful to consider multiple testing corrections by controlling the familywise error rate or a
 related concept.''}
+
+[Not sure of what to do here]
   
 \item[10.]  \textit{(Table 3A: Cases as Information) ``It is puzzling why the coefficients on  $\Delta\log\Delta C$ are positive
 and large. How would the authors interpret these numbers? Would this mean that information
@@ -196,6 +242,8 @@ Following your suggestion, we added the above discussion in footnote 20 (check!)
 
 
 \item[11.]  \textit{Figure 8 is very informative. Perhaps the authors could show this in introduction as well.''}
+
+[We can move this to introduction. Or we can keep it as it is by saying that there could be confounders and many other things at play.]
   
   \end{itemize}
   
@@ -206,24 +254,51 @@ Following your suggestion, we added the above discussion in footnote 20 (check!)
 
 \item[1.]  \textit{(Figure 1) ``What are black and grey dotted lines? It would be helpful if the authors add notes
 to the figure. The same questions apply to Figures 2 and 3 and other figures.''}
+
+Black and grey dots represent each state's change in growth rate over time.  Given that it may be difficult to digest a counterfactual change in case/death growth in introduction, we decided to focus on relative effect of policies in Figures 1-3. 
+
 \item[2.]  \textit{(Figure 4) ``What do S. \& P. stand for in Figure 4?''}
+
+It stands for 
+P. Wright and S. Wright as discussed in the footnote 2:
+\begin{quote}
+The father and son,
+P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright'��s
+key work represented supply-demand system as a directed acyclical graph and established its identification using
+exclusion restrictions on instrumental variables.
+\end{quote}
+
 \item[3.]  \textit{(Footnote 17) ``Is this necessary? This seems obvious. The authors could simply drop this
 footnote or make it more informative.''}
+
+Following your suggestion, we have dropped this footnote. 
+
 \item[4.]  \textit{(Footnote 19) ``On page 17, in footnote 19, the authors state:
-We drop “Residential” because it is highly correlated with both “Workplaces” and
-“Retail \& recreation” at correlation coefficients of0:98.
-This sentence is ambiguous. Do the authors mean that both correlation coefficients are identically 0:98? Please rephrase this sentence.''}
+We drop ``Residential�'' because it is highly correlated with both “Workplaces” and
+``Retail \& recreation�'' at correlation coefficients of 0.98.
+This sentence is ambiguous. Do the authors mean that both correlation coefficients are identically 0.98? Please rephrase this sentence.''}
+
+We rephrased this sentence as follows: `` We drop ``Residential'' because it is highly correlated with  ``Workplaces'' and  ``Retail \& recreation''  at correlation coefficients of -0.98 and -0.97, respectively. ''
+
 \item[5.]  \textit{(Figures 9 and 11) ``On page 32, in Figure 9, the subfigures in the middle and right panels
 contain non-legible legend. Please improve the figures. The same applies to Figure 11 and
 other similar figures in the appendix.''}
+
+We have decided to drop these legends to improve the readability of those figures. 
+
 \item[6. ]  \textit{(Intepretation) ``On page 13, it is state that
 The estimates imply that mandating masks on April 1st would have led to 500
 fewer cases and 250 fewer deaths in Washington by the start of June.
 What is the time scale of this statement? Does this mean 500 fewer cases weekly or in total
 by the start of June? Please clarify the quantitative statement.''}
+
+It is in total by the start of June. We have modify the sentence as suggested.  
+
 \item[7.]  \textit{``Some of the figures are difficult to read because there are too many curves. In particular,
 Figures 18, 19, and 21 convey very little information. Please improve the figures and delete
 some of them if they are less important.''}
+
+Following your suggestion, we have consolidated these figures and present figures with quantiles to improve the readability.
 
 \end{itemize} 
  
@@ -246,14 +321,30 @@ Following your suggestion,   we provide a sensitivity analysis on the delay betw
 Given  your suggestion, Figure 9 presents whisker-dot-plots for confidence intervals of mask coefficients (as well as other policy variables) across different specifications, timing assumptions, and estimation methods. We believe this figure will provide a sufficient robust sense of the uncertainty on the  estimates. 
   
 \item \textit{`` Figure 1 - are the points on the left hand figures the state specific estimates? or? What is the blue enveloppe? Mildly distracting having nothing happen till halfway through April (I know this is purely illustration, but an 'all else equal' in the caption might help?) And then, for what happens next, crudely, log(It/It-1) is diminshed by a factor by masks, etc, and the lag is simply due to the delays until cases? ''}
+ 
+Black and grey dots represent each state's change in growth rate over time.  Given that it may be difficult to digest a counterfactual change in case/death growth in introduction, we decided to focus on relative effect of policies in Figures 1-3.
+  
+[We may change the starting date for counterfactual figures.]
 
 \item \textit{`` p5 - perhaps some papers from beyond the Econ literature would be relevant for a sense of the status of our knowledge of the epidemiogogy?  ''}
 
-\item \textit{`` p6 - simulations would produce exponential spread of disease - well, yes? The mechanism is reasonably well described, and the conditions to elude exponential growth are fairly crisp - even if you include 'a voluntary behavioral response' the outcome will be exponential growth unless you are in a regime where susceptible depletion is dominating dynamics, or you have shifted Re<1.  ''}
+We have reviewed and added more references from the epidemiology literature. 
+
+\item \textit{`` p6 - simulations would produce exponential spread of disease - well, yes? The mechanism is reasonably well described, and the conditions to elude exponential growth are fairly crisp - even if you include 'a voluntary behavioral response' the outcome will be exponential growth unless you are in a regime where susceptible depletion is dominating dynamics, or you have shifted Re$<$1.  ''}
+ 
+ Thank you for raising this issue. Yes, you are right. Following your comment, we have changed the sentence as follows:
+\begin{quote}
+When such a voluntary behavioral response is ignored, simulations would necessarily exhibit exponential spread and over-predict  cases and deaths. In contrast, as cases and deaths rise, a voluntary behavioral response may possibly reduce the effective reproduction number  below 1,  potentially preventing exponential spread. Our counterfactual experiments  illustrate the importance of this voluntary behavioral change. 
+\end{quote}
+ 
 
 \item \textit{`` p20 log delta C\_it is obviously strongly autocorrelated (on top of the other collinearities detailed) - I also wondered if time since start of the outbreak might not do just as well at capturing the dirve in change in behavior? Do numbers of cases and deaths do better? ''}
 
+We believe that it is better to use the number of cases and deaths rather than time since start of the outbreak as a  general framework to analyze the spread of COVID-19. This is especially true if we analyze the second wave of COVID-19, where time since start of the first outbreak may not be so relevant, and identifying the start of the second outbreak may be difficult. 
+
 \item \textit{`` Figure 8 - I do like seeing the data, but it also just raises questions, as you say, confounders + many other things at play.... I wondered if there would be a way to create a visual that captured a bit more of this, and pinpointed the anomalies which are where the inferential power lies. ''}
+
+[This is something we don't do given the time/space constraint.]
 
 \end{enumerate}
 

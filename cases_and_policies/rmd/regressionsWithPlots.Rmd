@@ -84,6 +84,8 @@ source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/regprep.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/generatetables.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/")) 
+
+
 ```
 
 # Empirical Results
@@ -92,6 +94,9 @@ source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
 
 ```{r corr, cache=FALSE}
 
+# cmat <-  cor(df[,c(bvars,"residential",pols,"pindex")], use="pairwise.complete.obs")
+# scmat <-
+#   matrix(sprintf("%.2f",cmat),nrow=(length(bvars)+length(pols)+2))
 cmat <-  cor(df[,c(bvars,pols,"pindex")], use="pairwise.complete.obs")
 scmat <-
   matrix(sprintf("%.2f",cmat),nrow=(length(bvars)+length(pols)+1))
@@ -182,24 +187,13 @@ df$dlogtests[is.na(df$dlogtests)] <- df$lagtests[is.na(df$dlogtests)]
 
 ```{r caseregs, cache=FALSE, warning=FALSE, results='hide'}
 infovars <- list(c("dlogdc", "logdc"),
-                 c("dlogdc", "logdc","dlogdc.national", "logdc.national")) #,
-#c("dlogdc", "logdc"))
-#infovars2 <- list(c( "logdc"))
-# tvars <-  "dlogtests"  
-# xlist <-list("party", "party") 
-# xlist <-list(c("party","logvote"), c("party","logvote")) 
-# xlist <- list("week","week")
- 
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))  
 xlist <- list("","")
 interactions <-list("month", statevars) 
-ilist <- list(interactions, interactions)
-# iv <- list("(dlogtests ~ lag(logtests,7))","(dlogtests ~ lag(logtests,7))")
-# tvars <- ""
+ilist <- list(interactions, interactions) 
 iv <- list("0","0")
-tvars <- "dlogtests"
- 
-pols = c("pmaskbus","pk12","pshelter","pindex")
-#pols = c("pmaskbus","pmaskall","pk12","pshelter","pindex")
+tvars <- "dlogtests" 
+pols = c("pmaskbus","pk12","pshelter","pindex") 
 
 # Set time lag:
 timing <- 0 # 0 or 1
@@ -687,7 +681,7 @@ savetextables(NULL, NULL,  piy[1:6], prefix="deaths-robust")
 
 
 ## Fixed Effects
-```{r regsfe,  eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
+```{r regsfe,  eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
  
 
 
@@ -1185,7 +1179,7 @@ ij <- c(1:k)
                          stringsAsFactors = FALSE)
  # Draw dot-and-whisker plot
 fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
-    theme(       legend.justification=c(.01, .999), legend.position=c(.61, .99), 
+    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99), 
            legend.title = element_blank(), legend.background =
               element_rect(color="gray90")) + 
     xlab("coefficients of masks for employees") +
@@ -1222,7 +1216,7 @@ fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
   theme(text=element_text(family="Times New Roman", face="bold", size=8)) + 
   xlim(-1.3, 0.3)  +theme(
   legend.title = element_text(size = 6),
-  legend.text = element_text(size = 5)
+  legend.text = element_text(size = 6)
   )# + ggtitle("School Closures")  
 p <- "pk12" 
 figdev(sprintf("%s/tex/tables_and_figures/%s-whisker-%s.pdf", rootdir, p, L.c), width=4, height=3)
@@ -1240,7 +1234,7 @@ ij <- c(21:(20+k))
                                    rep("death w/o national",k), rep("death w/ national", k)),
                          stringsAsFactors = FALSE) 
 fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
-    theme(       legend.justification=c(.01, .999), legend.position=c(.61, .99), 
+    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99), 
            legend.title = element_blank(), legend.background =
               element_rect(color="gray90")) + 
     xlab("coefficients of stay-at-home") +
@@ -1267,7 +1261,7 @@ ij <- c(31:(30+k))
                                    rep("death w/o national",k), rep("death w/ national", k)),
                          stringsAsFactors = FALSE) 
 fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
-    theme(       legend.justification=c(.01, .999), legend.position=c(.61, .99), 
+    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99), 
            legend.title = element_blank(), legend.background =
               element_rect(color="gray90")) + 
     xlab("coefficients of average of three policy variables") +
@@ -1275,7 +1269,7 @@ fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
   theme(text=element_text(family="Times New Roman", face="bold", size=8)) + 
   xlim(-0.35, 0.35) +theme(
   legend.title = element_text(size = 6),
-  legend.text = element_text(size = 5)
+  legend.text = element_text(size = 6)
   )# + ggtitle("Average of Four Policy Variables")  
 p <- "pindex" 
 figdev(sprintf("%s/tex/tables_and_figures/%s-whisker-%s.pdf", rootdir, p, L.c), width=4, height=3)

@@ -207,13 +207,8 @@ See
 
 This paper  quantitatively assesses the impact of various policies adopted by US states on the spread of Covid-19, such as non-essential business closure and mandatory  face masks, paying particular attention to how people adjust their behavior in response to policies as well as new information on cases and deaths.
 
-We present a conceptual framework that spells out the causal structure on how the Covid-19 spread  is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place.  Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.\footnote{
-The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, tinbergen1940, wold1954} and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. See \cite{pearl:biometrika},\cite{pearl:robins},  \cite{pearl:causality}, \cite{white:chalak}, \cite{peters2020book}, \cite{heckman:pinto}, and \cite{hernanrobins2020book}  for modern developments, in computer
-science, econometrics, and epidemiology. The particular causal diagram has several “mediation” components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986} and \cite{Hines2020} for modern treatments. The father and son,
-P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P.Wright’s
-key work represented supply-demand system as a directed acyclical graph and established its identification using
-exclusion restrictions on instrumental variables.
-}
+We present a conceptual framework that spells out the causal structure on how the Covid-19 spread  is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place.  Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.\footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, tinbergen1940, wold1954} and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. See \cite{pearl:biometrika},\cite{pearl:robins},  \cite{pearl:causality}, \cite{white:chalak}, \cite{peters2020book}, \cite{heckman:pinto}, and \cite{hernanrobins2020book}  for modern developments, in computer
+science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986} and \cite{Hines2020} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
 %The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, heckman2007}. See \cite{pearl:robins}, \cite{peters2020book}, and \cite{hernanrobins2020book} for  modern developments, especially in computer science and epidemiology), with natural unfolding potential outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. As such it naturally converses in all languages for causal inference. 
 
 % It also allows us  to explicitly define counterfactual scenarios to properly evaluate the effect of alternative policies on the spread of Covid-19.
@@ -378,17 +373,13 @@ that of the 60 percentage point drop in workplace intensity, 40
 percentage points can be explained by changes in information as
 proxied by case numbers, while roughly 8 percentage points can be
 explained by policy changes.} Another study by  \cite{gupta2020} also found little evidence that stay-at-home mandates induced distancing by
-using mobility measures from PlaceIQ and SafeGraph. Using data from SafeGraph, \cite{anderson2020} show that there has been substantial voluntary social distancing but also provide evidence that mandatory measures such as stay-at-home orders have  been effective at reducing the frequency of visits  outside of one’s home.
+using mobility measures from PlaceIQ and SafeGraph. Using data from SafeGraph, \cite{anderson2020} show that there has been substantial voluntary social distancing but also provide evidence that mandatory measures such as stay-at-home orders have  been effective at reducing the frequency of visits  outside of one's home.
 % Overall, these evidence suggests the importance of voluntary social distancing behavior when we evaluate the effect of polices.
 
  \cite{pei2020} use county-level observations of reported infections and deaths in conjunction with mobility  data from SafeGraph to estimate how effective reproductive numbers in major metropolitan areas change over time. They conduct simulation of implementing all policies 1-2 weeks earlier and found that it would have resulted in reducing the number of cases and deaths by more than half. However, their study does not  explicitly analyze how policies are related to
 the effective reproduction numbers. % Our study  analyzes how policies  affects the reproduction numbers through their impact on people's behavior.
 
-Epidemiologists use model simulations to predict how cases and deaths evolve for the purpose of policy recommendation. As reviewed by \cite{avery2020}, there exist substantial uncertainty about the values of key epidimiological parameters \citep[see also][]{atkeson2020b,stock2020}. Simulations are often done under strong assumptions about the impact of social distancing policies without connecting to the relevant data  \citep[e.g.,][]{ferguson2020}. Furthermore, simulated models do not take into account that people may limit their contact with other people in response to higher transmission risks.\footnote{See \cite{atkeson2020a} and \cite{stock2020} for the implications of the SIR model for Covid-19 in the US. \cite{NBERw27128} estimate a SIRD model in which time-varying reproduction numbers depend on the daily deaths to capture feedback from daily deaths
-to future behavior and infections.}  When such a voluntary behavioral response is ignored, simulations would produce exponential spread of disease and would over-predict  cases and deaths. Our counterfactual experiments  illustrate the importance of this voluntary behavioral change.
-
-
-
+Epidemiologists use model simulations to predict how cases and deaths evolve for the purpose of policy recommendation. As reviewed by \cite{avery2020}, there exist substantial uncertainty about the values of key epidimiological parameters \citep[see also][]{atkeson2020b,stock2020}. Simulations are often done under strong assumptions about the impact of social distancing policies without connecting to the relevant data  \citep[e.g.,][]{ferguson2020}. Furthermore, simulated models do not take into account that people may limit their contact with other people in response to higher transmission risks.\footnote{See \cite{atkeson2020a} and \cite{stock2020} for the implications of the SIR model for Covid-19 in the US. \cite{NBERw27128} estimate a SIRD model in which time-varying reproduction numbers depend on the daily deaths to capture feedback from daily deaths to future behavior and infections.}  When such a voluntary behavioral response is ignored, simulations would necessarily exhibit exponential spread and over-predict  cases and deaths. In contrast, as cases and deaths rise, a voluntary behavioral response may possibly reduce the effective reproduction number  below 1,  potentially preventing exponential spread. Our counterfactual experiments  illustrate the importance of this voluntary behavioral change. 
 
 Whether wearing  masks in public place should be mandatory or not has been one of the most contested policy issues with health authorities of different countries providing contradiction recommendations. Reviewing evidence, \cite{Greenhalghm2020}  recognize that there is no randomized controlled trial evidence for the effectiveness of face masks,  but they state ``indirect evidence exists to support the argument for the public wearing masks in the Covid-19 pandemic."\footnote{The virus remains viable in the air for several hours, for which surgical masks may be effective. Also, a substantial fraction of individual who are infected become infectious before showing symptom onset.}
 \cite{howard2020} also review available medical evidence and conclude that ``mask wearing reduces the transmissibility per contact by reducing transmission of infected droplets in both laboratory and clinical contexts.''  The laboratory findings in \cite{hou2020} suggest that the nasal cavity may be the initial site of infection followed by aspiration to the lung, supporting the argument  ``for the widespread use of masks to prevent aersol, large droplet, and/or mechanical exposure to the nasal passages.''
@@ -851,9 +842,7 @@ Letting $C_{it}$ denote the cumulative number of  confirmed cases in state $i$ a
 {\ycolor Y_{it}} =\Delta \log(\Delta C_{it}):= \log( \Delta C_{it} ) -
 \log( \Delta C_{i,t-7})
 \end{equation}
-approximates the weekly growth rate in new cases from $t-7$ to $t$.\footnote{We may show that $ \log( \Delta C_{it} ) -
-\log( \Delta C_{i,t-7})$ approximates the average
-growth rate of cases from $t-7$ to $t$.} Here $\Delta$ denotes the differencing operator over 7 days from $t$ to $t-7$, so that $\Delta C_{it}:=C_{it}-C_{i,t-7}$ is the number of new confirmed cases in the past 7 days.
+approximates the weekly growth rate in new cases from $t-7$ to $t$. Here $\Delta$ denotes the differencing operator over 7 days from $t$ to $t-7$, so that $\Delta C_{it}:=C_{it}-C_{i,t-7}$ is the number of new confirmed cases in the past 7 days.
 
 
 We chose this metric as this is the key metric for policy makers deciding when to relax Covid mitigation policies.  The U.S. government's guidelines for state reopening
@@ -985,7 +974,7 @@ Our baseline measures for daily Covid-19   cases and deaths are from
 \href{https://github.com/nytimes/covid-19-data}{The New York Times (NYT)}. When there are missing values in NYT, we use reported cases and deaths from \href{https://github.com/CSSEGISandData/COVID-19}{JHU CSSE}, and then the
 \href{https://github.com/COVID19Tracking/covid-tracking-data}{Covid
 Tracking Project}.  The number of tests for each state is from  \href{https://github.com/COVID19Tracking/covid-tracking-data}{Covid
- Tracking Project}. As shown in Figure \ref{fig:test} in the appendix, there was a rapid increase in testing in the second half of March and then the
+ Tracking Project}. As shown in the lower right panel of Figure \ref{fig:casedeathtest} in the appendix, there was a rapid increase in testing in the second half of March and then the
 number of tests increased very slowly in each state in April.
 
 We use the database on US state policies created by
@@ -1007,7 +996,7 @@ Table \ref{tab:policies_inreg} provides summary statistics, where $N$ is the num
 
 
 We obtain social distancing behavior measures from``\href{https://www.google.com/covid19/mobility/}{Google COVID-19 Community Mobility Reports}''
-\citep{google2020}.  The dataset provides six measures of ``mobility trends''  that report a percentage change in visits and length of stay at different places relative to a baseline computed by their median values of the same day of the week from January 3 to February 6, 2020.  Our analysis focuses on the following four measures: ``Grocery \& pharmacy," ``Transit stations,'' ``Retail \& recreation,'' and ``Workplaces.''\footnote{The other two measures are ``Residential'' and  ``Parks.''  We drop ``Residential'' because it is highly correlated with both ``Workplaces'' and  ``Retail \& recreation''  at correlation coefficients of -0.98. We also drop ``Parks'' because it does not have clear implication on the spread of Covid-19.}
+\citep{google2020}.  The dataset provides six measures of ``mobility trends''  that report a percentage change in visits and length of stay at different places relative to a baseline computed by their median values of the same day of the week from January 3 to February 6, 2020.  Our analysis focuses on the following four measures: ``Grocery \& pharmacy," ``Transit stations,'' ``Retail \& recreation,'' and ``Workplaces.''\footnote{The other two measures are ``Residential'' and  ``Parks.''  We drop ``Residential'' because it is highly correlated with  ``Workplaces'' and  ``Retail \& recreation''  at correlation coefficients of -0.98 and -0.97, respectively. We also drop ``Parks'' because it does not have clear implication on the spread of Covid-19.}
 
 Figure \ref{fig:transit-workplaces} shows the evolution of  ``Transit stations'' and ``Workplaces,'' where thin lines are the value in each state and date while thicker colored lines are quantiles  conditional on date. The figures illustrate a sharp decline in people's movements starting from mid-March as well as differences in their evolutions across states. They also reveal periodic fluctuations associated with days of the week, which motivates our use of weekly measures.
 
@@ -1029,7 +1018,7 @@ In our empirical analysis, we use weekly measures for cases, deaths,
 and tests by summing up their daily measures from day \(t\) to
 \(t-6\).  We focus on weekly cases and deaths because daily new cases and deaths are
 affected by the timing of reporting and testing, and are quite
-volatile as shown in Figure \ref{fig:dailycases} in the
+volatile as shown in the upper right panel of Figure \ref{fig:casedeathtest} in the
 appendix.  Aggregating to weekly new cases/deaths/tests smooths
 out idiosyncratic daily noises as well as periodic fluctuations
 associated with days of the week.
@@ -1058,7 +1047,7 @@ for employees'' policy.  High correlations may cause multicolinearity
 problems and could limit our ability to separately identify the
 effect of each policy or behavior variable on case growth. 
 %, but this does not prevent us from identifying the aggregate effect of all policies and behavior variables on case or death growth. 
-For this reason, we define  ``business closure policies'' variable by the average of closured movie theaters, closed  restaurants, and closured non-essential businesses variables and consider a specification that includes business closure policies   in place of these three policy variables separately.
+For this reason, we define  ``business closure policies'' variable by the average of closured movie theaters, closed  restaurants, and closured non-essential businesses variables, and consider a specification that includes business closure policies   in place of these three policy variables separately.
 
 Figure \ref{fig:policyportion} shows the portion of states that have
 each policy in place at each date. For most policies, there is
@@ -1242,13 +1231,13 @@ variables have large, negative coefficients. This suggests that behavior respond
    \resizebox{\textwidth}{!}{
    \tiny
    \begin{tabular}{c|c}
-   \begin{minipage}{0.5\linewidth}
+   \begin{minipage}{0.51\linewidth}
      \centering
      \input{tables_and_figures/cases-pbiy}
    \end{minipage}
      %\hspace{1pt}
      &
-   \begin{minipage}{0.5\linewidth}
+   \begin{minipage}{0.51\linewidth}
      \centering
      \input{tables_and_figures/deaths-deathsinfo-pbiy}
    \end{minipage}
@@ -1438,12 +1427,12 @@ If policies are enacted and behavior changes, then future cases/deaths and infor
    \centering
    \tiny
    \begin{tabular}{c|c}
-   \begin{minipage}{0.49\linewidth}
+   \begin{minipage}{0.51\linewidth}
      \centering
      \input{tables_and_figures/cases-piy}
    \end{minipage}
      &
-   \begin{minipage}{0.49\linewidth}
+   \begin{minipage}{0.51\linewidth}
      \centering
      \input{tables_and_figures/deaths-deathsinfo-piy}
    \end{minipage}
@@ -1700,7 +1689,7 @@ In this section, we provide sensitivity analysis by estimating (\ref{eq:R4}) wit
    \item[(4)]   Add the log of Trump's vote share  in 2016 presidential election as confounder for unobserved private behavioral response.
    \item[(5)]   Add  past behavior variables  as information used to set policies. Under this specification, our causal interpretation is valid when policy variables are sufficiently random conditional on past behavior variables.
    \item[(6)]   Include all additional controls in (3)-(5) with the sample that excludes New York as in (2). 
-   \item[(7)] Add weekly dummies fo  to the baseline specification.
+   \item[(7)] Add weekly dummies  to the baseline specification.
    \item[(8)] Baseline specification is estimated by instrumenting $\Delta \log T_{it}$ with one week lagged  logarithm  value of the number of tests per 1000 people.
    \item[(9)]   Estimated by Double Machine Learning (DML) of \cite{chernozhukov18} with Lasso to reduce dimensionality while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables  as additional controls.   \item[(10)]  Estimated by DML with Random Forest to reduce dimensionality  and capture some nonlinearities while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables as additional controls.
  %  \item[(10)]   Add latent state confounders and weekly dummies as components of $W_{it}$, estimated using fixed effects with bias correction.
@@ -1824,12 +1813,12 @@ Fixed Effects Specification: the Total Effect of Policies on Case and Death Grow
    \centering
    \tiny
    \begin{tabular}{c|c}
-   \begin{minipage}{0.5\linewidth}
+   \begin{minipage}{0.51\linewidth}
      \centering
      \input{tables_and_figures/cases-fe-piy}
    \end{minipage}
      &
-   \begin{minipage}{0.5\linewidth}
+   \begin{minipage}{0.51\linewidth}
      \centering
      \input{tables_and_figures/deaths-fe-piy}
    \end{minipage}
@@ -1938,7 +1927,7 @@ it the undecayed impact of Washington's actual, later mask mandate.
 The right column of Figure \ref{fig:WA-mask} shows how the changes in
 case and death growth translate into changes in cases and deaths. The
 estimates imply that mandating masks on April 1st would have led to
-500 fewer cases and 250 fewer deaths in Washington by the start of
+500 fewer cases and 250 fewer deaths in Washington in total by the start of
 June.
 
 \begin{figure}[ht]
@@ -2240,10 +2229,15 @@ than not.
 
 \input{tables_and_figures/casediff.tex}
 
-Figure \ref{fig:dailycases} shows the evolution of new cases in each
-of these three datasets. In all cases, daily changes in cumulative
+
+%Figure \ref{fig:dailycases} shows the evolution of new cases in each
+%of these three datasets. In all cases, daily changes in cumulative
+%cases displays some excessive volatility. This is likely due to delays
+%and bunching in testing and reporting of results. 
+The upper left panel of Figure \ref{fig:casedeathtest} shows the evolution of new cases in the NYT data, where daily changes in cumulative
 cases displays some excessive volatility. This is likely due to delays
-and bunching in testing and reporting of results. Table
+and bunching in testing and reporting of results. 
+Table
 \ref{tab:newcasecor} shows the variance of log new cases in each data
 set, as well as their correlations. As shown, the correlations are
 approximately $0.9$. The NYT new case
@@ -2254,14 +2248,30 @@ numbers have the lowest variance.\footnote{This comparison is somewhat
 In our subsequent results, we will primarily use the case numbers from
 The New York Times.
 
-\begin{figure}[!ht]\caption{Daily cases \label{fig:dailycases}}
+\begin{figure}[!ht]\caption{Daily Cases, Weekly Cases,  Weekly Deaths from NYT Data, and Weekly Tests from JHU\label{fig:casedeathtest}}\smallskip
   \centering
   \begin{minipage}{\textwidth}
     \centering
-    \includegraphics[width=0.45\textwidth]{tables_and_figures/newcases}
-    \footnotetext{Each line shows daily new cases in a state.}
+    \includegraphics[width=0.8\textwidth,height=0.7\textwidth]{tables_and_figures/casesdeaths_q}
+%      \footnotetext{Thin gray lines are case or death growth in each
+%      state and date. Thicker colored lines are quantiles of case or
+%      death growth conditional on date.}
   \end{minipage}
+     \begin{flushleft}
+      \footnotesize Thin gray lines are the log of cases, death, and tests  in each
+      state and date. Thicker colored lines are their quantiles conditional on date.
+      \end{flushleft}
 \end{figure}
+
+
+%\begin{figure}[!ht]\caption{Daily cases \label{fig:dailycases}}
+%  \centering
+%  \begin{minipage}{\textwidth}
+%    \centering
+%    \includegraphics[width=0.45\textwidth]{tables_and_figures/newcases}
+%    \footnotetext{Each line shows daily new cases in a state.}
+%  \end{minipage}
+%\end{figure}
 
 \input{tables_and_figures/newcasecor.tex}
 
@@ -2271,38 +2281,41 @@ two weeks has become a key metric for decision makers. Secondly, aggregating to 
 reporting and testing.
 
 Table \ref{tab:weekcasecor} reports the correlation and variance of
-weekly log new cases across the three data sets. Figure
-\ref{fig:weekcases} shows the evolution of weekly new cases in each
+weekly log new cases across the three data sets. The upper right panel of Figure
+\ref{fig:casedeathtest} shows the evolution of weekly new cases in each
+state over time  from the NYT data. The upper panel of Figure \ref{fig:growthq} shows the evolution of the weekly growth rate of new cases in each
 state over time.
 
 \input{tables_and_figures/weekcasecor}
 
-\begin{figure}[!ht]\caption{Weekly Cases \label{fig:weekcases}}
-  \centering
-  \begin{minipage}{\textwidth}
-    \centering
-    \includegraphics[width=0.45\textwidth]{tables_and_figures/weekcases}
-    \footnotetext{Each line shows weekly new cases in a state.}
-  \end{minipage}
-\end{figure}
+%\begin{figure}[!ht]\caption{Weekly Cases \label{fig:weekcases}}
+%  \centering
+%  \begin{minipage}{\textwidth}
+%    \centering
+%    \includegraphics[width=0.45\textwidth]{tables_and_figures/weekcases}
+%    \footnotetext{Each line shows weekly new cases in a state.}
+%  \end{minipage}
+%\end{figure}
 
 \subsection{Deaths}
 
 Table \ref{tab:weekdeathcor} reports the correlation and variance of
-weekly deaths in the three data sets. Figure \ref{fig:weekdeaths}
-shows the evolution of weekly deaths in each state. As with cases, we
-use death data from The New York Times in our main results.
+weekly deaths in the three data sets. The lower left panel of Figure \ref{fig:casedeathtest}
+shows the evolution of weekly deaths in each state from the NYT data. As with cases, we
+use death data from The New York Times in our main results. The lower panel of Figure \ref{fig:growthq} shows the evolution of the weekly growth rate of new deaths in each
+state over time.
+
 
 \input{tables_and_figures/weekdeathcor}
 
-\begin{figure}[!ht]\caption{Weekly Deaths \label{fig:weekdeaths}}
-  \centering
-  \begin{minipage}{\textwidth}
-    \centering
-    \includegraphics[width=0.45\textwidth]{tables_and_figures/weekdeaths}
-    \footnotetext{Each line shows weekly deaths in a state.}
-  \end{minipage}
-\end{figure}
+%\begin{figure}[!ht]\caption{Weekly Deaths \label{fig:weekdeaths}}
+%  \centering
+%  \begin{minipage}{\textwidth}
+%    \centering
+%    \includegraphics[width=0.45\textwidth]{tables_and_figures/weekdeaths}
+%    \footnotetext{Each line shows weekly deaths in a state.}
+%  \end{minipage}
+%\end{figure}
 
 
 \begin{figure}[!ht]\caption{Case and death growth \label{fig:growthq}}
@@ -2313,31 +2326,35 @@ use death data from The New York Times in our main results.
       \includegraphics[width=0.75\textwidth]{tables_and_figures/casequantiles}
       \\
       \includegraphics[width=0.75\textwidth]{tables_and_figures/deathquantiles}
-      \footnotetext{Thin gray lines are case or death growth in each
-      state and date. Thicker colored lines are quantiles of case or
-      death growth conditional on date.}
+%      \footnotetext{Thin gray lines are case or death growth in each
+%      state and date. Thicker colored lines are quantiles of case or
+%      death growth conditional on date.}
     \end{tabular}
   \end{minipage}
+     \begin{flushleft}
+      \footnotesize Thin gray lines are case or death growth in each
+      state and date. Thicker colored lines are quantiles of case or
+      death growth conditional on date.      \end{flushleft}
 \end{figure}
 
 
 \subsection{Tests}
 
-Our test data comes from The Covid Tracking Project. Figure
-\ref{fig:test} shows the evolution of tests over time.
+Our test data comes from The Covid Tracking Project. The lower right panel of Figure
+\ref{fig:casedeathtest} shows the evolution of the weekly number of tests over time.
 
-\begin{figure}[!ht]\caption{Number of Tests \label{fig:test}}
-  \centering
-  \begin{minipage}{\textwidth}
-    \centering
-    \includegraphics[width=0.45\textwidth]{tables_and_figures/test}
-    \footnotetext{These figures use the ``total test results''
-      reported by The Covid Tracking Project. This is meant to reflect
-      the number of people tested
-      (\href{https://covidtracking.com/about-data/faq}{as opposed to
-        the number of specimens tested}).}
-  \end{minipage}
-\end{figure}
+%\begin{figure}[!ht]\caption{Number of Tests \label{fig:test}}
+%  \centering
+%  \begin{minipage}{\textwidth}
+%    \centering
+%    \includegraphics[width=0.45\textwidth]{tables_and_figures/test}
+%    \footnotetext{These figures use the ``total test results''
+%      reported by The Covid Tracking Project. This is meant to reflect
+%      the number of people tested
+%      (\href{https://covidtracking.com/about-data/faq}{as opposed to
+%        the number of specimens tested}).}
+%  \end{minipage}
+%\end{figure}
 
 \FloatBarrier
 
@@ -2366,11 +2383,16 @@ Mobility Reports variables that we use in our analysis.
       &
       \includegraphics[width=0.5\linewidth]{tables_and_figures/transit}
     \end{tabular}
-    \footnotetext{This figure shows the evolution of Google Mobility
+%    \footnotetext{This figure shows the evolution of Google Mobility
+%      Reports over time. Thin gray lines are the value of the
+%      variables in each state and date. Thicker colored lines are
+%      quantiles of the variables conditional on date.}
+  \end{minipage}
+     \begin{flushleft}
+      \footnotesize This figure shows the evolution of Google Mobility
       Reports over time. Thin gray lines are the value of the
       variables in each state and date. Thicker colored lines are
-      quantiles of the variables conditional on date.}
-  \end{minipage}
+      quantiles of the variables conditional on date.     \end{flushleft}
 \end{figure}
 
 
@@ -2378,7 +2400,7 @@ Mobility Reports variables that we use in our analysis.
 
 We use the database on US state policies created by
 \cite{raifman2020}. %This database records that each state implemented 25 Covid-19 related policies.
-As discussed in the main text, our analysis focuses on seven policies. For stay-at-home orders, closed nonessential
+As discussed in the main text, our analysis focuses on six policies. For stay-at-home orders, closed nonessential
 businesses, closed K-12 schools, closed restaurants except takeout,
 and closed movie theaters, we double-checked any
 state for which \cite{raifman2020} does not record a date. We filled
@@ -2388,6 +2410,8 @@ modifications fill in 1 value for school closures, 2 for stay-at-home orders, 3 
 non-essential business closures. Table \ref{tab:policies} displays all 25 dated policy variables in
 \cite{raifman2020}'s database with our modifications described above.
 
+Figures \ref{fig:growthpolicies1}-\ref{fig:growthpolicies2} show the  average case and death growth conditional on date and whether each of six policies  is implemented or not. 
+  
 
 \afterpage{%
   \clearpage% Flush earlier floats (otherwise order might not be correct)
@@ -2417,14 +2441,20 @@ non-essential business closures. Table \ref{tab:policies} displays all 25 dated 
         \includegraphics[width=0.483\textwidth]{tables_and_figures/pshelter-deaths-21}
       \\
     \end{tabular}
-    \footnotetext{ In these figures, red points are the case or death
+%    \footnotetext{ In these figures, red points are the case or death
+%      growth rate in states without each policy 14 (or 21 for deaths)
+%      days earlier. Blue points are states with each policy 14 (or 21
+%      for deaths) days earlier. The red line is the average across
+%      states without each policy. The blue line is the average across
+%      states with each policy.}
+  \end{minipage}
+     \begin{flushleft}
+      \footnotesize In these figures, red points are the case or death
       growth rate in states without each policy 14 (or 21 for deaths)
       days earlier. Blue points are states with each policy 14 (or 21
       for deaths) days earlier. The red line is the average across
       states without each policy. The blue line is the average across
-      states with each policy.}
-  \end{minipage}
-\end{figure}
+      states with each policy.    \end{flushleft}\end{figure}
 
 \begin{figure}
   \caption{Case and death growth conditional on policies \label{fig:growthpolicies2}}
@@ -2443,13 +2473,20 @@ non-essential business closures. Table \ref{tab:policies} displays all 25 dated 
       &
         \includegraphics[width=0.483\textwidth]{tables_and_figures/pnonessential-deaths-21}
     \end{tabular}
-    \footnotetext{ In these figures, red points are the case or death
+%    \footnotetext{ In these figures, red points are the case or death
+%      growth rate in states without each policy 14 (or 21 for deaths)
+%      days earlier.  Blue points are states with each policy14 (or 21
+%      for deaths) days earlier.  The red line is the average across
+%      states without each policy. The blue line is the average across
+%      states with each policy.}
+  \end{minipage}
+     \begin{flushleft}
+      \footnotesize  In these figures, red points are the case or death
       growth rate in states without each policy 14 (or 21 for deaths)
       days earlier.  Blue points are states with each policy14 (or 21
       for deaths) days earlier.  The red line is the average across
       states without each policy. The blue line is the average across
-      states with each policy.}
-  \end{minipage}
+      states with each policy.    \end{flushleft}
 \end{figure}
 
 \subsection{Timing\label{sec:timing}}
@@ -2513,7 +2550,7 @@ cases while a corresponding delay of roughly three weeks for deaths.
 \FloatBarrier
 
 \subsection{Direct and Indirect Policy Effects with national case/death variables}
-Tables \ref{tab:dieff} and \ref{tab:dieff-con}  present  the estimates for the specification with past national case/death variables. The effects of school closures and  the sum of policies are estimated substantially smaller in Table \ref{tab:dieff} when national case/death variables are included than in Table \ref{tab:dieff-si}. This sensitivity reflects the difficulty in identifying the aggregate time effect---which is largely captured by national cases/deaths---given little cross-sectional variation in the timing of school closures across states. On the other hand, the estimated effects of policies other than school closures are similar between Table \ref{tab:dieff-si} and Table \ref{tab:dieff}; the effect of other policies are well-identified from cross-sectional variations.
+Tables \ref{tab:dieff} and \ref{tab:dieff-con}  present  the estimates of direct and indirect effects of policies for the specification with past national case/death variables. The effects of school closures and  the sum of policies are estimated substantially smaller in Table \ref{tab:dieff} when national case/death variables are included than in Table \ref{tab:dieff-si}. This sensitivity reflects the difficulty in identifying the aggregate time effect---which is largely captured by national cases/deaths---given little cross-sectional variation in the timing of school closures across states. On the other hand, the estimated effects of policies other than school closures are similar between Table \ref{tab:dieff-si} and Table \ref{tab:dieff}; the effect of other policies are well-identified from cross-sectional variations.
 
 
 \afterpage{
@@ -2592,6 +2629,13 @@ Tables \ref{tab:dieff} and \ref{tab:dieff-con}  present  the estimates for the s
   \end{minipage}
 \end{table}
 \clearpage}
+
+
+\subsection{Double Machine Learning}
+ 
+
+\subsection{Debiased Fixed Effects Estimator}
+
 
 
 \end{document}
