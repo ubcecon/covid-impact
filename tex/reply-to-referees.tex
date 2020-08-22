@@ -73,6 +73,18 @@ Major changes are:}
 
 \item   \textit{``I particularly like your mapping of your estimating equation to the SIR model. But, it would be nice to discuss further the assumptions in light of the SIR model. For example, how do the orthogonality assumptions in (1) relate to the assumptions on top of page (14)? and just to be clear, you have a "causal model" yet for identification you rely on projections in the random effects specification (and no exclusion restriction). For example, what do you rule out vis a vis "diff in diff" type event study models with fixed effects? How about a brief discussion of the "invariance assumption" and why you think it would hold in your counterfactual exercise. ''}
 
+The testable restrictions of the model are now described better.  Please see the discussion around TR. The SIR model
+for example implies that testing rate is a confounder for case growth rate, but the causal model implies  that testing rate
+does not affect the behavior or policy variables (other than through cases). This is an overidentification restriction.
+To show the power of this approach, we also looked at imposition of other "contextual information": for example, mask
+having only direct effect on growth rates (and not via behavior) or business closure policies affecting case growth rates
+only through behavhior.
+
+The fixed effect estimates lump state-level confounders in one unobservable component.  Our approach does not preclude
+the use of fixed effects to estimate the model. We present fixed effects as part of Sensitivity analysis.
+
+The invariance assumption is similar to standard assumptions in Structural VAR literature, starting with Sims (1972).
+
 
 
 \item   \textit{``It might make sense to reorganize Section 2 (which is the heart of the theory in the paper) into a simpler to read section  where the assumptions that are required for causal interpretation are laid out. Also, one easier threshold is that your system of estimating equations provide a direct "predictive effect" of various policies. These predictive (not causal) in my opinion would still be very useful. ''}
@@ -148,7 +160,7 @@ On the other hand, the lagged values of  behaviors may be a part of the informat
    
   
 \item[3.]  \textit{(Expectation and Lucas critique) ``Related to the previous comment, what would be the link
-between the current paper‚Äôs setup and how expectations are formed given the information
+between the current paper's setup and how expectations are formed given the information
 structure? For example, is this paper safe from Lucas critique? Some comments would be
 helpful.''}
 
@@ -188,10 +200,9 @@ We have the following paragraph:
 paths, we use the   estimate   in
 column ``Average'' of Table \ref{tab:dieff-si}. We set initial
 $\Delta \log \Delta C$ and $\log \Delta C$ to their values first
-observed in the state we are simulating. We hold all other regressors
-at their observed values. Error terms are drawn with replacement from
-the residuals. We do this many times and report the average over draws
-of the residuals. The shaded region is a point-wise 90\% confidence
+observed in the state we are simulating. We now provide
+more details on how counterfactuals are constructed -- see Section 2.
+The shaded region is a point-wise 90\% confidence
 interval.
 \end{quote}
   
@@ -199,7 +210,7 @@ interval.
 files on public domain such as a GitHub page or ICPSR at https://www.openicpsr.org/
 openicpsr/covid19.''}
 
-All programs and dataset will be available at our GitHub page, which is currently set to be private but we will plan to make it publicly accessible once the paper is accepted.
+All programs and dataset will be available at our GitHub page, which is currently set to be private but we will plan to make it publicly accessible once the final version of the paper is accepted.
   
 \item[7.]  \textit{(Debiased fixed effect estimates) ``On page 11, the authors state:
 However, we find the debiased fixed effect estimates are qualitatively and quantitatively
@@ -223,7 +234,30 @@ Following your suggestion, we have added a comment on this on page xx in Section
 useful to consider multiple testing corrections by controlling the familywise error rate or a
 related concept.''}
 
-[Not sure of what to do here]
+We are not doing any hypothesis testing in this paper: we are constructing point and interval predictions for 2-3 key policies. This
+is in line with with IHME institute is doing (our analysis on masks predates theirs, as we posted our findings
+at the end of May, and they announced their findings in middle of July). The 
+"stars" are reported as a matter of statistical convention, but we never use them in any formal way.
+
+Furthermore, we believe that testing "no mask effect" hypothesis is actually not an interesting exercise for policy analysis
+or actual policy decisions.   From a decision-theoretic point of view the cost of accepting the false null is extremely high,
+which could result in huge losses. The Neyman-Pearson test with $\alpha=$ small, corresponds to the idea that the cost
+of the null is small (little harm done if the "no mask effect" is falsely accepted), e.g. Amemiya "Introduction to Statistics and Econometrics".  So doing "no mask effect" testing with very low $\alpha$ would correspond to assuming that the cost of deciding that masks are not effective is very low.  Multiple hypothesis testing would further drive $\alpha$ to smaller values, and we are not sure how this would align with the decision-theoretic framework.
+
+%Remark. Elaborating further on decision-theoretic point, with $H_0$ masks being useless, the policy makers problem is to make a decision 
+%to achieve minimal loss:
+%$$
+%\min (E [Loss (NoMask) | H_0] P[H_0], E [Loss (Mask) | H_A] P[H_A]).
+%$$
+%The optimal decision is not to use Masks if $$P[H_0]> \alpha = P[H_A] \cdot E [Loss (Mask) | H_A] /E [Loss (NoMask) | H_0] ),$$
+%which gives the relevant $\alpha$. E.g, using $\alpha =.1$ results from the information that $P[H_A]=1/2$ and assuming that the loss from using masks has to be 5 times higher than the loss from not using masks. 
+
+
+ For masks, given the decision-theoretic framework, given prior evidence from RCT on efficacy of masks for respiratory deceases, (unfortunately not including corona), the interesting nulls would be "mask effects  have -.15, -.1, -.05" effects on growth rate. This null would not be  rejected no matter what adjustments to p-values we make or what sensitivity analysis we make.  Moreover, after doing all of the sensitivity exercises, we would not be able to reject this null.   This corresponds to the idea that the null hypothesis
+ here is the one that is very costly if falsely rejected.
+
+
+
   
 \item[10.]  \textit{(Table 3A: Cases as Information) ``It is puzzling why the coefficients on  $\Delta\log\Delta C$ are positive
 and large. How would the authors interpret these numbers? Would this mean that information
@@ -263,7 +297,7 @@ It stands for
 P. Wright and S. Wright as discussed in the footnote 2:
 \begin{quote}
 The father and son,
-P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright'Äôs
+P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's
 key work represented supply-demand system as a directed acyclical graph and established its identification using
 exclusion restrictions on instrumental variables.
 \end{quote}
@@ -274,8 +308,8 @@ footnote or make it more informative.''}
 Following your suggestion, we have dropped this footnote. 
 
 \item[4.]  \textit{(Footnote 19) ``On page 17, in footnote 19, the authors state:
-We drop ``Residential‚Ä'' because it is highly correlated with both ‚ÄúWorkplaces‚Äù and
-``Retail \& recreation‚Ä'' at correlation coefficients of 0.98.
+We drop ``Residential' because it is highly correlated with both ``Workplace'' and
+``Retail \& recreation" at correlation coefficients of 0.98.
 This sentence is ambiguous. Do the authors mean that both correlation coefficients are identically 0.98? Please rephrase this sentence.''}
 
 We rephrased this sentence as follows: `` We drop ``Residential'' because it is highly correlated with  ``Workplaces'' and  ``Retail \& recreation''  at correlation coefficients of -0.98 and -0.97, respectively. ''
