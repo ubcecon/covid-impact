@@ -140,7 +140,7 @@ mainregressions <- function(df, # data
               c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L),
                 tvars,
                 xlist[[ij[2]]]),
-              interactions[[ij[2]]], iv[[ij[2]]], L=L)
+              ia, iv[[ij[2]]], L=L)
   })
 
   ijs <- expand.grid(1:length(bvars), 1:length(plist))

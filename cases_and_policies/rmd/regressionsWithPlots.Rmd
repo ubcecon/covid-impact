@@ -785,7 +785,7 @@ prefix="deaths-fe"
 ```
 
 ## DML
-```{r regsdml,  eval = TRUE, cache=TRUE, warning=FALSE, results='asis'}
+```{r regsdml,  eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
 
 
 df$logpop <- log(df$Population.2018)
