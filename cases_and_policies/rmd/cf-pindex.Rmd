@@ -86,6 +86,10 @@ source(paste(rootdir,"cases_and_policies/rmd/counterfactuals.R", sep="/"))
 pols <- c("pmaskbus","pk12","pshelter","pindex")
 ```
 
+```{r testsmooth, cache=FALSE}
+source("smoothtests.R")
+```
+
 ```{r statesim, cache=FALSE}
 infovars <- list(c("dlogdc", "logdc")) #,
 #c("dlogdc", "logdc"))
@@ -98,11 +102,11 @@ iv <- list("0") #,"(testratedc ~ lag(testratedc,14))")
 
 L <- 14
 sdf <- subset(df, df$date>=datelims[1]) #+L)
-regs <- mainregressions(sdf,
+regs <- mainregressions2(sdf,
                         "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
 m <- regs$piy[[1]]$reg
 cnames <- c(pols, infovars[[1]])
-di <- dieff_table(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
+di <- dieff_table2(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
                   regs$pbiy[[1]]$reg$coef[,1],
                   regs$piy[[1]]$reg$coef[,1],
                   policies=cnames)
@@ -112,11 +116,11 @@ pbiy <- regs$pbiy[[1]]$reg
 piy <- regs$piy[[1]]$reg
 
 S <- 999
-bs <- bootstrap_felm(sdf, c(pib,list(pbiy,piy)), S=S)
+bs <- bootstrap_felm2(sdf, c(pib,list(pbiy,piy)), S=S)
 bdi <- lapply(1:S, function(i)
-  dieff_table(lapply(1:4, function(j) bs[[j]][,i]),
-              bs[[5]][,i], bs[[6]][,i],
-              policies=cnames)
+  dieff_table2(lapply(1:4, function(j) bs[[j]][,i]),
+               bs[[5]][,i], bs[[6]][,i],
+               policies=cnames)
   )
 
 subcoefs <- function(di, coef) {
@@ -402,13 +406,13 @@ iv <- list("0") #,"(testratedc ~ lag(testratedc,14))")
 
 L <- 21
 sdf <- subset(df, df$date>=datelims[1]) #+L)
-regs <- mainregressions(sdf,
+regs <- mainregressions2(sdf,
                         "dlogdd", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
 
 m <- regs$piy[[1]]$reg
 
 cnames <- c(pols, infovars[[1]])
-di <- dieff_table(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
+di <- dieff_table2(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
                   regs$pbiy[[1]]$reg$coef[,1],
                   regs$piy[[1]]$reg$coef[,1],
                   policies=cnames)
@@ -418,9 +422,9 @@ pbiy <- regs$pbiy[[1]]$reg
 piy <- regs$piy[[1]]$reg
 
 S <- 999
-bs <- bootstrap_felm(sdf, c(pib,list(pbiy,piy)), S=S)
+bs <- bootstrap_felm2(sdf, c(pib,list(pbiy,piy)), S=S)
 bdi <- lapply(1:S, function(i)
-  dieff_table(lapply(1:4, function(j) bs[[j]][,i]),
+  dieff_table2(lapply(1:4, function(j) bs[[j]][,i]),
               bs[[5]][,i], bs[[6]][,i],
               policies=cnames)
   )

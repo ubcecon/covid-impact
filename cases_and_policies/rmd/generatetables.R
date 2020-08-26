@@ -97,59 +97,44 @@ mainregressions <- function(df, # data
                        xlist,
                        interactions,
                        ivlist,
-                       L=14,
-                       sameobservations=FALSE # whether to use same observations in pib and other equations
+                       L=14
                        ) {
 
 
-  ## plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
-  ## plist <- list(pols,c("pmaskbus","pk12","pindex"))
-  plist <- list(pols,c("pmaskbus","pk12","pshelter","pindex"))
-
-
+  #plist <- list(pols,c("pmaskbus","pk12","pshelter","pindex"))
+  plist <- list(pols,c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential"))
 
   stopifnot(length(xlist)==length(interactions))
   stopifnot(length(xlist)==length(ivlist))
   ijs <- expand.grid(1:length(plist), 1:length(xlist))
 
   pbiy <- apply(ijs, 1, function(ij) {
-    ia <- interactions[[ij[2]]]
-    ia[[1]] <- sprintf("lag(%s, %d)", ia[[1]], L)
+    # ia <- interactions[[ij[2]]]
+    # ia[[1]] <-  "lag(month,L)"
     policyreg(df, yvar, plist[[ij[1]]], bvars,
               c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L),
                 tvars,
                 xlist[[ij[2]]]),
-              ia,
-              iv[[ij[2]]], L=L)
+            #  ia, iv[[ij[2]]], L=L)
+               interactions[[ij[2]]], iv[[ij[2]]], L=L)
   })
-
-  ## # Get subset included in regressions
-  ## df$idx <- 1:nrow(df)
-  ## tmp <- policyreg(df, "idx", plist[[1]], bvars,
-  ##                  c(sprintf("lag(%s, %d)", infovars, L),
-  ##                    xlist[[1]]),
-  ##                  interactions[[1]], iv[[ij[2]]], L=L)
-  ## df$insample <- NA
-  ## df$insample[tmp$reg$response] <- 1
 
 
   piy <- apply(ijs, 1, function(ij) {
-    ia <- interactions[[ij[2]]]
-    ia[[1]] <- sprintf("lag(%s, %d)", ia[[1]], L)
+    # ia <- interactions[[ij[2]]]
+    # ia[[1]] <-  "lag(month,L)"
     policyreg(df, yvar, plist[[ij[1]]], NULL,
               c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L),
                 tvars,
                 xlist[[ij[2]]]),
-              ia, iv[[ij[2]]], L=L)
+           #   ia, iv[[ij[2]]], L=L)
+                interactions[[ij[2]]], iv[[ij[2]]], L=L)
   })
 
+  sdf <- df
+  sdf$month <- panellag(sdf$month,sdf$state,sdf$date,-L)
   ijs <- expand.grid(1:length(bvars), 1:length(plist))
   pib <- list()
-  if (sameobservations) {
-    sdf <- subset(df, df$date<=(max(df$date) - L ))
-  } else {
-    sdf <- df
-  }
   for (k in 1:length(xlist)) {
     #ia <- interactions[[k]]
     #if (sameobservations) {
@@ -158,7 +143,6 @@ mainregressions <- function(df, # data
     pib[[k]] <- apply(ijs, 1, function(ij) {
       policyreg(sdf, bvars[ij[1]], plist[[ij[2]]], NULL,
                 c(infovars[[k]],
-                 # tvars,
                   xlist[[k]]),
                 interactions[[k]], "0", L=0)
     })
@@ -302,6 +286,212 @@ showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
 
   return(NULL)
 }
+
+
+#' Regressions, but with policies (pindex) restricted to only have
+#' indirect, via behavior effects (i.e. it coefficient in PBIY is 0),
+#' and masks have only direct effects (i.e. coefficient in PIB is 0).
+#'
+mainregressions2 <- function(df, # data
+                            yvar,
+                            pols, # policy variables
+                            bvars, # behavior variables
+                            infovars,
+                            tvars,
+                            xlist,
+                            interactions,
+                            ivlist,
+                            L=14) {
+
+
+  #plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
+  #plist <- list(pols,c("pmaskbus","pk12","pindex"))
+  #plist <- list(pols,c("pmaskbus","pk12","pshelter","pindex"))
+  # plist <- list(pols,c("pmaskbus","pmaskall","pk12","pshelter","pmovie","prestaurant","pnonessential"))
+  plist <- list(pols,c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential"))
+
+  stopifnot(length(xlist)==length(interactions))
+  stopifnot(length(xlist)==length(ivlist))
+  ijs <- expand.grid(1:length(plist), 1:length(xlist))
+
+  sdf <- df
+  sdf$pindex <- 0*sdf$pindex
+  pbiy <- apply(ijs, 1, function(ij) {
+    # ia <- interactions[[ij[2]]]
+    # ia[[1]] <-  "lag(month,L)"
+    policyreg(sdf, yvar, plist[[ij[1]]], bvars,
+              c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L),
+                tvars,
+                xlist[[ij[2]]]),
+              #  ia, iv[[ij[2]]], L=L)
+              interactions[[ij[2]]], iv[[ij[2]]], L=L)
+  })
+
+  piy <- apply(ijs, 1, function(ij) {
+    # ia <- interactions[[ij[2]]]
+    # ia[[1]] <-  "lag(month,L)"
+    policyreg(df, yvar, plist[[ij[1]]], NULL,
+              c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L),
+                tvars,
+                xlist[[ij[2]]]),
+              #   ia, iv[[ij[2]]], L=L)
+              interactions[[ij[2]]], iv[[ij[2]]], L=L)
+  })
+
+  sdf <- df
+  sdf$pmaskbus <- 0*sdf$pmaskbus
+  sdf$month <- panellag(sdf$month,sdf$state,sdf$date,-L)
+  ijs <- expand.grid(1:length(bvars), 1:length(plist))
+  pib <- list()
+  for (k in 1:length(xlist)) {
+    pib[[k]] <- apply(ijs, 1, function(ij) {
+      policyreg(sdf, bvars[ij[1]], plist[[ij[2]]], NULL,
+                c(infovars[[k]],
+                  xlist[[k]]),
+                interactions[[k]], "0", L=0)
+    })
+  }
+
+
+  ijs <- expand.grid(1:length(pols), 1:length(xlist))
+  ip <- apply(ijs, 1, function(ij) {
+    policyreg(df, pols[[ij[1]]],  NULL,  bvars,
+              c(infovars[[ij[2]]],
+                xlist[[ij[2]]]),
+              interactions[[ij[2]]], "0", L=L)
+  })
+
+  return(list(pib=pib, pbiy=pbiy, piy=piy, ip=ip))
+}
+
+
+statevarregexp <- gsub("\\)","\\\\)",gsub("\\(","\\\\(",statevars))
+statevarregexp <- paste("^(",paste(c("Constant",statevarregexp), collapse="|"),")",sep="")
+
+printstars <- function(est, se, starp=c(0.1, 0.05, 0.01)) {
+  stars <- paste(rep("*", sum(pnorm(-abs(est), sd=se)<starp/2)), collapse="")
+  if (length(stars)==0 || stars=="") return(sprintf("%.3f",est))
+  return(sprintf("%.3f$^{%s}$", est, stars))
+}
+
+showhtmltables <- function(pib, pbiy, piy, ip=NULL) {
+
+  omit <- c(statevarregexp,
+            "^month") #"testratedc:",)
+  omit.labels <- c("state variables",
+                   "Month : state variables")
+
+  if (!(is.null(pib))) {
+    cat("\n### Policies and Behavior\n")
+
+    peff <- sapply(pib, function(x) x$peff[1])
+    sep <- sapply(pib, function(x) x$peff[2])
+    cnames <- sapply(pib, function(x) colnames(x$reg$response))
+    stargazer(lapply(pib, function(x) x$reg),
+              type="html",
+              title="Policies and Behavior",
+              #dep.var.labels=cnames,
+              dep.var.labels.include=FALSE,
+              column.labels=cnames,
+              omit=omit,
+              omit.labels=omit.labels,
+              omit.stat=c("f", "ser"), model.names=FALSE,
+              model.numbers=TRUE,
+              add.lines = list("", "","",
+                               "\\hline")
+              # add.lines = list(c("sum Policy",sprintf("%.3f",peff)),
+              #                  c("",sprintf("(%.3f)",sep)),
+              #                  "\\hline")
+    )
+
+  }
+
+
+  if (!(is.null(ip))) {
+    cat("\n### Policies and Information\n")
+
+    peff <- sapply(ip, function(x) x$peff[1])
+    sep <- sapply(ip, function(x) x$peff[2])
+    cnames <- sapply(ip, function(x) colnames(x$reg$response))
+    stargazer(lapply(ip, function(x) x$reg),
+              type="html",
+              title="Policies and Information",
+              #dep.var.labels=cnames,
+              dep.var.labels.include=FALSE,
+              column.labels=cnames,
+              omit=omit,
+              omit.labels=omit.labels,
+              omit.stat=c("f", "ser"), model.names=FALSE,
+              model.numbers=TRUE,
+              # add.lines = list(c("sum Policy",sprintf("%.3f",peff)),
+              #                  c("",sprintf("(%.3f)",sep)),
+              #                  "\\hline")
+              add.lines=list(c("sum behavior",
+                               sprintf("%.3f",sapply(ip, function(x) x$beff[1]))),
+                             c("",
+                               sprintf("(%.3f)",sapply(ip, function(x) x$beff[2]))),
+                             "\\hline")
+    )
+  }
+
+  if (!(is.null(pbiy))) {
+    ylbl <- colnames(pbiy[[1]]$reg$response)
+    if (ylbl=="dlogdd") ylbl <- "Death Growth"
+    if (ylbl=="dlogdc") ylbl <- "Case Growth"
+
+    cat(sprintf("\n### Policy, Behavior, and %s\n",ylbl))
+
+    stargazer(lapply(pbiy, function(x) x$reg),
+              type="html", dep.var.labels.include=FALSE,
+              title=ylbl,
+              omit=omit,
+              omit.labels=omit.labels,
+              #column.labels=c("OLS","IV"),
+              #column.separate=c(2,2),
+              add.lines=list(c("sum policies",
+                               sprintf("%.3f",sapply(pbiy, function(x) x$peff[1]))),
+                             c("",
+                               sprintf("(%.3f)",sapply(pbiy, function(x) x$peff[2]))),
+                             c("sum behavior",
+                               sprintf("%.3f",sapply(pbiy, function(x) x$beff[1]))),
+                             c("",
+                               sprintf("(%.3f)",sapply(pbiy, function(x) x$beff[2])))
+              ),
+              omit.stat=c("f", "ser"), model.names=FALSE,
+              model.numbers=TRUE)
+  }
+
+  if (!(is.null(piy))) {
+    ylbl <- colnames(piy[[1]]$reg$response)
+    if (ylbl=="dlogdd") ylbl <- "Death Growth"
+    if (ylbl=="dlogdc") ylbl <- "Case Growth"
+
+    cat(sprintf("\n### Policy and %s\n",ylbl))
+
+    stargazer(lapply(piy, function(x) x$reg),
+              type="html", dep.var.labels.include=FALSE,
+              title=ylbl,
+              omit=omit,
+              omit.labels=omit.labels,
+              #column.labels=c("OLS","IV"),
+              #column.separate=c(2,2),
+              add.lines=list(c("sum policies",
+                               sprintf("%.3f",sapply(piy, function(x) x$peff[1]))),
+                             c("",
+                               sprintf("(%.3f)",sapply(piy, function(x) x$peff[2])))
+              ),
+              omit.stat=c("f", "ser"), model.names=FALSE,
+              model.numbers=TRUE)
+
+  }
+
+
+
+
+  return(NULL)
+}
+
+
 
 
 savetextables <- function(pib, pbiy, piy, prefix, ip = NULL,
@@ -458,6 +648,7 @@ escapeforregexp <- function(string) {
   return(string)
 }
 
+#' Create table of direct, indirect, and total policy effects.
 dieff_table <- function(pib, pbiy,  piy, policies=pols, behaviors=bvars, nsum=length(policies)) {
   stopifnot(length(pib)==length(behaviors))
   names(pib) <- behaviors
@@ -484,6 +675,51 @@ dieff_table <- function(pib, pbiy,  piy, policies=pols, behaviors=bvars, nsum=le
 
   tbl <- cbind(pi, beta %*% alpha, pi + beta %*% alpha, tot,
   (pi + beta %*% alpha + tot)/2, pi + beta %*% alpha - tot)
+  if (nsum==nrow(tbl)) {
+    tbl <- rbind(tbl[1:nsum,], colSums(tbl[1:nsum,]))
+    rownames(tbl) <- c(policies, "$\\sum_j \\mathrm{Policy}_j$")
+  } else {
+    tbl <- rbind(tbl[1:nsum,], colSums(tbl[1:nsum,]), tbl[(nsum+1):nrow(tbl),])
+    rownames(tbl) <- c(policies[1:nsum], "$\\sum_j \\mathrm{Policy}_j$",
+                       policies[(nsum+1):length(policies)])
+  }
+  colnames(tbl) <- c("Direct","Indirect", "Total", "PI$\\to$Y Coef.",
+                     "Average", "Difference")
+  return(tbl)
+}
+
+#' Create table of direct, indirect, and total policy effects. Any
+#' behavior or policy variables without coefficients (or with NA
+#' coefficients) will have their coefficients set to 0.
+dieff_table2 <- function(pib, pbiy,  piy, policies=pols, behaviors=bvars, nsum=length(policies)) {
+  stopifnot(length(pib)==length(behaviors))
+  names(pib) <- behaviors
+  pi <- rep(NA, length(policies))
+  alpha <- rep(NA, length(behaviors))
+  beta <- matrix(NA, nrow=length(policies), ncol=length(behaviors))
+  names(pi) <- rownames(beta) <- policies
+  colnames(beta) <- names(alpha) <- behaviors
+  pi <- sapply(policies,
+               function(p) pbiy[grep(sprintf("(^|lag\\()%s(, |$)",escapeforregexp(p)),names(pbiy))])
+  pi[is.na(pi)] <- 0.0
+  alpha <- sapply(behaviors,
+                  function(b) pbiy[grep(sprintf("(^|lag\\()%s(, |$)",escapeforregexp(b)),names(pbiy))])
+  alpha[is.na(alpha)] <- 0.0
+  for (b in behaviors) {
+    beta[,b] <- sapply(policies, function(p) {
+      i <- grep(sprintf("(^|lag\\()%s(, |$)",escapeforregexp(p)),names(pib[[b]]))
+      if (length(i)==0) return(0)
+      else return( pib[[b]][i])
+    })
+  }
+  beta[is.na(beta)] <- 0.0
+
+  tot <- sapply(policies,
+                function(p) piy[grep(sprintf("(^|lag\\()%s(, |$)",escapeforregexp(p)),names(piy))])
+
+
+  tbl <- cbind(pi, beta %*% alpha, pi + beta %*% alpha, tot,
+               (pi + beta %*% alpha + tot)/2, pi + beta %*% alpha - tot)
   if (nsum==nrow(tbl)) {
     tbl <- rbind(tbl[1:nsum,], colSums(tbl[1:nsum,]))
     rownames(tbl) <- c(policies, "$\\sum_j \\mathrm{Policy}_j$")

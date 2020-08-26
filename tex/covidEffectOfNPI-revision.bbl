@@ -105,6 +105,16 @@ Chen, Shuowen, Victor Chernozhukov, and Iv{\'a}n Fern{\'a}ndez-Val. 2019.
   growth.}
 \newblock In \emph{AEA Papers and Proceedings}, vol. 109. 77--82.
 
+\bibitem[{Chernozhukov et~al.(2018)Chernozhukov, Chetverikov, Demirer, Duflo,
+  Hansen, Newey, and Robins}]{chernozhukov18}
+Chernozhukov, Victor, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian
+  Hansen, Whitney Newey, and James Robins. 2018.
+\newblock \enquote{Double/debiased machine learning for treatment and
+  structural parameters.}
+\newblock \emph{The Econometrics Journal} 21~(1):C1--C68.
+\newblock
+  \urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1111/ectj.12097}.
+
 \bibitem[{Chetty et~al.(2020)Chetty, Friedman, Hendren, and
   Stepner}]{chetty2020real}
 Chetty, Raj, John~N Friedman, Nathaniel Hendren, and Michael Stepner. 2020.
@@ -197,15 +207,6 @@ Harris, Jeffrey~E. 2020.
   York City.}
 \newblock Working Paper 27021, National Bureau of Economic Research.
 \newblock \urlprefix\url{http://www.nber.org/papers/w27021}.
-
-\bibitem[{Heckman and Vytlacil(2007)}]{heckman2007}
-Heckman, James~J. and Edward~J. Vytlacil. 2007.
-\newblock \enquote{{Econometric Evaluation of Social Programs, Part I: Causal
-  Models, Structural Models and Econometric Policy Evaluation}.}
-\newblock In \emph{{Handbook of Econometrics}}, \emph{Handbook of
-  Econometrics}, vol.~6, edited by J.J. Heckman and E.E. Leamer, chap.~70.
-  Elsevier.
-\newblock \urlprefix\url{https://ideas.repec.org/h/eee/ecochp/6b-70.html}.
 
 \bibitem[{Hern\'{a}n and Robins(2020)}]{hernanrobins2020book}
 Hern\'{a}n, M.A. and J.M. Robins. 2020.

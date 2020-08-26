@@ -8,7 +8,10 @@ library(lfe)
 library(speedglm)
 library(boot)
 # load data (sdf)
-load("~/Desktop/Research/Panel-Cross-over-jackknife/application/covidsince0307.RData")
+#load("~/Desktop/Research/Panel-Cross-over-jackknife/application/covidsince0307.RData")
+
+
+load("/Users/Hiro/Documents/GitHub/covid-impact/cases_and_policies/data/covidsince0307.RData")
 
 # add weight to sdf
 sdf$sweight <- 1
@@ -232,19 +235,19 @@ infovars <- list(c("dlogdc", "logdc"),
 infovarsd <- list(c("dlogdd", "logdd"),
                   c("dlogdd", "logdd", "dlogdd.national", "logdd.national")) # deaths
 
-# Regression
-case2 <- mainregressions_fe(sdf, yvar, pols, bvars, infovars, tvars, L = 14, fixed = "state + month")
-death_case <- mainregressions_fe(sdf, yvar2, pols, bvars, infovars, NULL, L = 21, fixed = "state + month")
-death_death <- mainregressions_fe(sdf, yvar2, pols, bvars, infovarsd, NULL, L = 21, fixed = "state + month")
+# # Regression
+# case2 <- mainregressions_fe(sdf, yvar, pols, bvars, infovars, tvars, L = 14, fixed = "state + month")
+# death_case <- mainregressions_fe(sdf, yvar2, pols, bvars, infovars, NULL, L = 21, fixed = "state + month")
+# death_death <- mainregressions_fe(sdf, yvar2, pols, bvars, infovarsd, NULL, L = 21, fixed = "state + month")
 
-# Week and state fixed effects
-case_week <- mainregressions_fe(sdf, yvar, pols, bvars, infovars, tvars, L = 14, fixed = "state + week")
-death_case_week <- mainregressions_fe(sdf, yvar2, pols, bvars, infovars, NULL, L = 21, fixed = "state + week")
-death_death_week <- mainregressions_fe(sdf, yvar2, pols, bvars, infovarsd, NULL, L = 21, fixed = "state + week")
-
-# Consider date and state fixed effect. Drop information structure as there is no policy variation
-case_date <- mainregressions_fe(sdf, yvar, pols, bvars, NULL, tvars, L = 14, fixed = "state + date")
-death_date <- mainregressions_fe(sdf, yvar2, pols, bvars, NULL, NULL, L = 21, fixed = "state + date")
+# # Week and state fixed effects
+# case_week <- mainregressions_fe(sdf, yvar, pols, bvars, infovars, tvars, L = 14, fixed = "state + week")
+# death_case_week <- mainregressions_fe(sdf, yvar2, pols, bvars, infovars, NULL, L = 21, fixed = "state + week")
+# death_death_week <- mainregressions_fe(sdf, yvar2, pols, bvars, infovarsd, NULL, L = 21, fixed = "state + week")
+# 
+# # Consider date and state fixed effect. Drop information structure as there is no policy variation
+# case_date <- mainregressions_fe(sdf, yvar, pols, bvars, NULL, tvars, L = 14, fixed = "state + date")
+# death_date <- mainregressions_fe(sdf, yvar2, pols, bvars, NULL, NULL, L = 21, fixed = "state + date")
 
 
 #### 2. Bootstrap Standard Errors 

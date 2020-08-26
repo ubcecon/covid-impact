@@ -68,6 +68,7 @@ multiple_split <- function(s, n, unit, time, dat, uc, fm) {
   return(acbc)
 }
 
+
 ##### DFE estimation based on cross-over jackknife
 # Note: The output of this function facilitates calculation of bootstrap se
 reg_fe <- function(df, # data
@@ -76,20 +77,20 @@ reg_fe <- function(df, # data
                    bvars, # behavior (NULL if not behavior)
                    x, # controls
                    iv, # iv for felm, if not needed just input "0"
-                   l = 14,
-                   fixedeffect) {
-  if (l == 0) {
+                   L,
+                   fe) {
+  if (L == 0) {
     # This is for pib
     p <- pols
     b <- bvars
   } else {
     # This is for pbiy and piy
-    p <- sprintf("lag(%s, %d)", pols, l)
-    b <- sprintf("lag(%s, %d)", bvars, l)
+    p <- sprintf("lag(%s, %d)", pols, L)
+    b <- sprintf("lag(%s, %d)", bvars, L)
   }
   # create regression formula
   xvars <- c(p, b, x)
-  fmla <- createfmla_fe(yvar, xvars, fe = fixedeffect, iv = iv)
+  fmla <- createfmla_fe(yvar, xvars, fe = fe, iv = iv)
   # two cross-over subsamples
   stopifnot(is.factor(df$state)) # we need as.double(df$state) to return values in 1:n
   unit <- as.double(df$state)
@@ -135,17 +136,60 @@ reg_fe <- function(df, # data
   }
   # outputs: noncorrected, corrected, sum of policy and behavioral coefficients
   return(list(reg = whole, nobc = coef_nobc, bc = coef_cbc, bc2 = coef_cbc2, peff=peff, beff=beff, acbc = coef_acbc))
+  # return(list(reg = whole, nobc = coef_nobc, bc = coef_cbc, bc2 = coef_cbc2, peff=peff, acbc = coef_acbc))
 }
 
+　
+data_rg <- function(data, mle) {
+  n <- length(unique(data$state))
+  t <- length(unique(data$date))
+  # swap state index
+  ids <- kronecker(sample.int(n, n, replace = TRUE), rep(1, t))
+  data_b <- data[(ids - 1)*t + rep(c(1:t), n), ]
+  data_b$state <- kronecker(c(1:n), rep(1, T))
+  data_b$date <- rep(seq(as.Date("2020-03-07"), as.Date("2020-06-03"), by = "day"), n)
+  data_b <- data.frame(data_b)
+  #data_b <- pdata.frame(data_b, index = c("state", "date"))
+  return(data_b)
+}
+
+data_wb <- function(data, mle) {
+  # number of states
+  n <- length(unique(data$state))
+  t <- length(unique(data$date))
+  # Exponential weights
+  multipliers <- rexp(n)
+  # For each state, weight is the same for all dates
+  weight <- rep(multipliers/sum(multipliers), each = t)
+  # Add to the data and treat it as sampling weight
+  data$sweight <- weight
+  return(data)
+}
+
+　
+# # Call boot command to conduct bootstrap
+# set.seed(88) # seed for replication
+# num_boot <- 99 # number of bootstraps
+# ncores <- 1 # number of cpus (speed)　
+# # nonpar will throw warning wrt multiple splitting bias correction
+# result_boot <- boot(data = sdf, statistic = bootstat_fe, sim = "parametric", ran.gen = data_rg,
+#                     mle = 0, parallel = "multicore", ncpus = ncores, R = 5)　
+# # Compute standard errors
+# result <- structure(vapply(result_boot$t, as.double, numeric(1)), dim = dim(result_boot$t))
+# tot_bse <- apply(result, 2, function(x) {
+#   # Normal scaled IQR
+#   return((quantile(x, .75, na.rm = TRUE) - quantile(x, .25, na.rm = TRUE))/(qnorm(.75) - qnorm(.25)))
+# })
+　
 
 
-# # The following function extends the function mainregressions
-# # NOTE: there is one change in the code
-# # the original code put xlist in the controls, but xlist is specified as an empty list
-# # in the program, so I'm not sure what it stands for. I think it's meant for creating a list
-# # so as to loop over choices of specifications. I deleted it in the argument. I checked the
-# # results with and without xlist in the control for fe = "0" in the original code
-# # and they are identical.
+# The following function extends the function mainregressions
+# NOTE: there is one change in the code
+# the original code put xlist in the controls, but xlist is specified as an empty list
+# in the program, so I'm not sure what it stands for. I think it's meant for creating a list
+# so as to loop over choices of specifications. I deleted it in the argument. I checked the
+# results with and without xlist in the control for fe = "0" in the original code
+# and they are identical.
 #
 # mainregressions_fe <- function(df, # data
 #                                yvar, # dependent variable (Y)
@@ -155,7 +199,7 @@ reg_fe <- function(df, # data
 #                                tvars, # key confounder from SIR
 #                                ivlist = "0",
 #                                L = 14,
-#                                fixed) {
+#                                fe) {
 #   # This is considering both pols and interacted of pmask with months
 #   plist <- list(pols, c("pmask.april","pmask.may", pols[-1]))
 #   # for pols only
@@ -167,13 +211,13 @@ reg_fe <- function(df, # data
 #   pbiy <- apply(ijs, 1, function(ij) {
 #     reg_fe(df, yvar, plist[[ij[1]]], bvars,
 #            c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L), tvars),
-#            ivlist, l = L, fixedeffect = fixed)
+#            ivlist, L = L, fe = fe)
 #   })
 #
 #   piy <- apply(ijs, 1, function(ij) {
 #     reg_fe(df, yvar, plist[[ij[1]]], NULL,
 #            c(sprintf("lag(%s, %d)", infovars[[ij[2]]], L), tvars),
-#            ivlist, l = L, fixedeffect = fixed)
+#            ivlist, L = L, fe = fe)
 #   })
 #
 #   # for pib, note the four behavioral variables each can be a
@@ -188,7 +232,7 @@ reg_fe <- function(df, # data
 #   for (k in 1:infonum) {
 #     pib[[k]] <- apply(ijs, 1, function(ij) {
 #       reg_fe(df, bvars[ij[1]], plist[[ij[2]]], NULL,
-#              c(infovars[[k]]), ivlist, l = 0, fixedeffect = fixed)
+#              c(infovars[[k]]), ivlist, L = 0, fe = fe)
 #     })
 #   }
 #   # return output as three lists
