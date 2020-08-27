@@ -269,21 +269,21 @@ stopifnot(nrow(unique(df[,c("state","ST","fips")]))==51)
 stopifnot(nrow(unique(df[,c("fips","date","state","ST")]))==nrow(df))
 
 temp <- read.csv(paste(rootdir,"cases_and_policies/data/Facemask_Mar26_April29.csv",sep="/"))
-temp1 <- temp[c("state","fips","z.mask","mask_percent")] 
+temp1 <- temp[c("state","fips","z.mask","mask_percent")]
 
 temp <- read.csv(paste(rootdir,"cases_and_policies/data/1976-2016-president.csv",sep="/"))
-temp <- temp[ which(temp$year==2016 & temp$candidate=="Trump, Donald J." & temp$party=="republican" & 
+temp <- temp[ which(temp$year==2016 & temp$candidate=="Trump, Donald J." & temp$party=="republican" &
                        temp$writein=="FALSE"), ]
 temp$voteshare <- temp$candidatevotes/temp$totalvotes
 temp$fips <- temp$state_fips
 temp <- temp[c("state","fips","voteshare")]
-temp1 <- merge(temp,temp1,by=c("state","fips")) 
- 
+temp1 <- merge(temp,temp1,by=c("state","fips"))
+
 # from https://github.com/CivilServiceUSA
 temp <- read.csv(paste(rootdir,"cases_and_policies/data/us-governors.csv",sep="/"))
-temp$state <- temp$state_name 
+temp$state <- temp$state_name
 temp <- temp[c("state","party")]
-temp <- merge(temp,temp1,by="state") 
+temp <- merge(temp,temp1,by="state")
 df <- merge(df,temp,by=c("state","fips"))
 
 

@@ -17,7 +17,7 @@ output      :
         #css : 628notes.css
         code_folding: hide
         #lib_dir : deps
-        self_cononontained : true
+        self_contained : true
         fig_width: 8
         fig_height: 6
 ---
@@ -70,22 +70,19 @@ library(reshape2)
 library(AER)
 library(hdm)
 library(randomForest)
-library(glmnet) 
+library(glmnet)
 
 sgtype <- opts_knit$get("rmarkdown.pandoc.to")
 sgstyle <- 'default'
 colors <-  scale_color_solarized
 colors_fill <- scale_fill_solarized
 rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
-rootdir <- "/Users/Hiro/Documents/GitHub/covid-impact" 
 source(paste(rootdir,"cases_and_policies/R/exploratory.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/R/dataprep.R",sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/regprep.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/generatetables.R", sep="/"))
-source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/")) 
-
-
+source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
 ```
 
 # Empirical Results
@@ -98,8 +95,7 @@ source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
 # scmat <-
 #   matrix(sprintf("%.2f",cmat),nrow=(length(bvars)+length(pols)+2))
 cmat <-  cor(df[,c(bvars,pols,"pindex")], use="pairwise.complete.obs")
-scmat <-
-  matrix(sprintf("%.2f",cmat),nrow=(length(bvars)+length(pols)+1))
+scmat <- matrix(sprintf("%.2f",cmat),nrow=(length(bvars)+length(pols)+1))
 
 rownames(scmat) <- getlabel(rownames(cmat))
 colnames(scmat) <- getlabel(colnames(cmat))
@@ -120,80 +116,20 @@ We rearrange and linearly interpolate constant test counts, but do not
 apply any additional smoothing.
 
 ```{r testsmooth, cache=FALSE}
-rearrange <- function(x, id) {
-  for (i in unique(id)) {
-    xi <- x[id==i]
-    xi[!is.na(xi)] <- sort(xi[!is.na(xi)])
-    x[id==i] <- xi
-  }
-  return(x)
-}
-
-
-dropnotincreasing <- function(x, id, t) {
-  const <- (x <= panellag(x, id, t))
-  const[is.na(const)] <- FALSE
-  x[const & x>0] <- NA
-  return(x)
-}
-
-lininterp <- function(x, id, t) {
-  for (i in unique(id)) {
-    xi <- x[id==i]
-    ti <- t[id==i]
-    xi[is.na(xi)] <- approx(ti[!is.na(xi)], xi[!is.na(xi)], ti[is.na(xi)])$y
-    x[id==i] <- xi
-  }
-  return(x)
-}
-
-
-smoothtests <- function(x, id, t) {
-  x[is.na(x)] <- 0
-  return(lininterp(dropnotincreasing(rearrange(x,id),id,t),id,t))
-}
-
-df$neg.interp <- smoothtests(df$negative, df$state, df$date)
-df$pos.interp <- df$cases #smoothtests(df$positive, df$state, df$date)
-df$tot.interp <- df$neg.interp + df$pos.interp
-
-L <- 7
-df$tests <- paneldiff(df$tot.interp, df$state, df$date, lag=L)
-df$testrate  <- df$tests/df$Population.2018*1000
-df$testrate[df$testrate<0] <- NA
-df$dlogtests <- paneldiff(log(sapply(df$testrate, function(x)
-  max(x,exp(-1)))), df$state, df$date, lag=L)
-df$testratedc <- df$ddeath/df$dcases*df$testrate
-df$testratedc[df$dcases==0] <- 0
-
-df$tests.ma <- paneldiff(panelma(df$neg.interp, df$state, df$date, 7) + df$cases,
-                         df$state, df$date, lag=L)
-df$testrate.ma  <- df$tests.ma/df$Population.2018*1000
-df$testrate.ma[df$testrate.ma<0] <- NA
-df$dlogtests.ma <- paneldiff(log(sapply(df$testrate.ma, function(x)
-  max(x,exp(-1)))), df$state, df$date, lag=L)
-df$testratedc.ma <- df$ddeath/df$dcases*df$testrate.ma
-df$testratedc.ma[df$dcases==0] <- 0
-
-df$logtests <- log(sapply(df$testrate, function(x)
-  max(x,exp(-1))))
-
-df$lagtests <- panellag(df$dlogtests, df$state, df$date, lag=1)  
-df$dlogtests[is.na(df$dlogtests)] <- df$lagtests[is.na(df$dlogtests)]
-
+source("smoothtests.R")
 ```
 
 ## Cases
 
 ```{r caseregs, cache=FALSE, warning=FALSE, results='hide'}
 infovars <- list(c("dlogdc", "logdc"),
-                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))  
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
 xlist <- list("","")
-interactions <-list("month", statevars) 
-ilist <- list(interactions, interactions) 
+interactions <-list("month", statevars)
+ilist <- list(interactions, interactions)
 iv <- list("0","0")
-tvars <- "dlogtests" 
-pols = c("pmaskbus","pk12","pshelter","pindex") 
+tvars <- "dlogtests"
+pols = c("pmaskbus","pk12","pshelter","pindex")
 
 # Set time lag:
 timing <- 0 # 0 or 1
@@ -204,7 +140,7 @@ if (timing==0){
   L.c <- 7
   L.d <- 24
 }
- 
+
 L <- L.c
 sdf <- subset(df, df$date>=as.Date("2020-03-07"))
 regs <- mainregressions(sdf,
@@ -215,7 +151,7 @@ summary(regs$piy[[1]]$reg)
 ```{r casetables, cache=FALSE, warning=FALSE, results='asis'}
 showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy, regs$ip)
 savetextables(regs$pib[[1]], NULL, NULL, prefix="behavior")
-savetextables(c(regs$pib[[1]][1:4], regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-NI") 
+savetextables(c(regs$pib[[1]][1:4], regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-NI")
 savetextables(c(regs$pib[[1]][1:4]), NULL, NULL, prefix="behavior-cases-stateinfo")
 savetextables(c(regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-cases-nationinfo")
 savetextables(NULL, regs$pbiy, regs$piy, prefix="cases")
@@ -223,7 +159,7 @@ savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="cases-nosplit")
 ```
 
 ```{r casedieff, eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
- 
+
 for (use.national in c(TRUE,FALSE)) {
   sb <- ifelse(use.national, 2, 1)
   sy <- ifelse(use.national, 3, 1)
@@ -272,7 +208,7 @@ for (use.national in c(TRUE,FALSE)) {
     column_spec(column=ncol(tbl)+1, border_left=TRUE)
   cat(ltbl, file=paste(rootdir,
                        sprintf("tex/tables_and_figures/dieff-cases-%s.tex",ifelse(use.national, "NI","SI")),
-                       sep="/")) 
+                       sep="/"))
   kable(tbl)
 }
 ```
@@ -281,7 +217,7 @@ for (use.national in c(TRUE,FALSE)) {
 ```{r casedieff2, eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 
 # source(paste(rootdir,"cases_and_policies/rmd/generatetables.R", sep="/"))
-# source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/")) 
+# source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
 
 # pols <- c("pmaskbus","pk12","pshelter","pindex")
 L <- L.c
@@ -294,24 +230,24 @@ for (use.national in c(TRUE,FALSE)) {
   pib <- lapply(regs$pib[[sb]][1:4], function(x) x$reg)
   pbiy <- regs$pbiy[[sy]]$reg
   piy <- regs$piy[[sy]]$reg
-  
+
   for (i in 1:4) {
     coef <- pib[[i]]$coefficients
     coef[is.na(coef)] <- 0
     pib[[i]]$coefficients <- coef
     pib[[i]]$beta <- coef
   }
-  coef <- pbiy$coefficients 
+  coef <- pbiy$coefficients
   coef[is.na(coef)] <- 0
   pbiy$coefficients <- coef
-  pbiy$beta <- coef 
-  
+  pbiy$beta <- coef
+
   S <- 999
   bs <- bootstrap_felm2(sdf, c(pib,list(pbiy,piy)), S=S)
   for (i in 1:4){
     bs[[i]][2,]<-0.0
   }
-  bs[[5]][5,]<-0.0 
+  bs[[5]][5,]<-0.0
 
   addse <- function(di, bdi) {
     se <- di*NA
@@ -327,9 +263,9 @@ for (use.national in c(TRUE,FALSE)) {
     colnames(tbl) <- colnames(di)
     rownames(tbl) <- rep("", nrow(tbl))
     rownames(tbl)[seq(1,nrow(tbl),by=2)] <- relabel(rownames(di))
-  return(tbl)
+    return(tbl)
   }
-    
+
   diall <- dieff_table2(lapply(regs$pib[[sb]][1:4], function(x) x$reg$coef[,1]),
                        regs$pbiy[[sy]]$reg$coef[,1],
                        regs$piy[[sy]]$reg$coef[,1],
@@ -351,45 +287,32 @@ for (use.national in c(TRUE,FALSE)) {
     column_spec(column=ncol(tbl)+1, border_left=TRUE)
   cat(ltbl, file=paste(rootdir,
                        sprintf("tex/tables_and_figures/dieff-cases-constrain-%s.tex",ifelse(use.national, "NI","SI")),
-                       sep="/")) 
+                       sep="/"))
   kable(tbl)
 }
 ```
 
-<!-- ## Deaths (with cases as information) -->
-
-<!-- ```{r deathtables, eval = FALSE, cache=FALSE, warning=FALSE, results='asis'} -->
-<!-- infovars <- list(c("dlogdc", "logdc"), -->
-<!--                  c("dlogdc", "logdc","dlogdc.national", "logdc.national")) #, -->
-<!-- df$zero <- 0 -->
-<!-- L <- 21 -->
-<!-- sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L) -->
-<!-- regs <- mainregressions(sdf, -->
-<!--                         "dlogdd", pols, bvars, infovars, "zero", xlist, ilist, iv, L=L) -->
-<!-- showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy); -->
-<!-- savetextables(NULL, regs$pbiy, regs$piy, prefix="deaths-casesinfo") -->
-<!-- ``` -->
 
 ## Deaths (with deaths as information)
 
 ```{r deathtablesd, eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 df$zero <- 0
 infovarsd <- list(c("dlogdd", "logdd"),
-                  c("dlogdd", "logdd","dlogdd.national", "logdd.national")) 
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
 pols = c("pmaskbus","pk12","pshelter","pindex")
 iv <- list("0","0")
 #pols = c("pmaskbus","pmaskall","pk12","pshelter","pindex")
 L <- L.d
-sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L) 
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
 regs <- mainregressions(sdf,
-                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L) 
+                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L)
 showhtmltables(regs$pib[[1]], regs$pbiy, regs$piy);
 savetextables(regs$pib[[1]], NULL, NULL, prefix="behavior-deathsinfo")
 savetextables(c(regs$pib[[1]][1:4], regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-NI")
 savetextables(c(regs$pib[[1]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-stateinfo")
 savetextables(c(regs$pib[[2]][1:4]), NULL, NULL, prefix="behavior-deathsinfo-nationinfo")
 savetextables(NULL, regs$pbiy, regs$piy, prefix="deaths-deathsinfo")
-savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="deaths-deathsinfo-nosplit") 
+savetextables(NULL, regs$pbiy[c(1,3)], regs$piy[c(1,3)], prefix="deaths-deathsinfo-nosplit")
 ```
 
 ```{r dieff-deaths, eval = TRUE, cache=FALSE, results='asis', warning=FALSE}
@@ -405,7 +328,7 @@ for (use.national in c(TRUE,FALSE)) {
   for (i in 1:4){
     bs[[i]][2,]<-0.0
   }
-  bs[[5]][5,]<-0.0 
+  bs[[5]][5,]<-0.0
 
   diall <- dieff_table(lapply(regs$pib[[sb]][1:4], function(x) x$reg$coef[,1]),
                        regs$pbiy[[sy]]$reg$coef[,1],
@@ -435,7 +358,7 @@ for (use.national in c(TRUE,FALSE)) {
   kable(tbl)
 }
 ```
- 
+
 ```{r dieff-deaths2, eval = TRUE, cache=FALSE, results='asis', warning=FALSE}
 
 
@@ -443,7 +366,7 @@ pols <- c("pmaskbus","pk12","pshelter","pindex")
 L <- L.d
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
 regs <- mainregressions2(sdf,
-                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L) 
+                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L)
 
 for (use.national in c(TRUE,FALSE)) {
   sb <- ifelse(use.national, 2, 1)
@@ -483,21 +406,21 @@ for (use.national in c(TRUE,FALSE)) {
   kable(tbl)
 }
 ```
- 
+
 
 
 ## Robustness Check
 ```{r regsrobust,  eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 infovars <- list(c("dlogdc", "logdc"),
-                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))  
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
 tvars <- "dlogtests"
 interactions <-list("month", statevars)
 ilist <- list(interactions, interactions)
 iv <- list("0","0") #,"(testratedc ~ lag(testratedc,14))")
-  
+
 # pi-y with log(vote)
-xlist <-list(c("logvote"), c("logvote")) 
-L <- L.c
+xlist <-list(c("logvote"), c("logvote"))
+L <- 14
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
 regs <- mainregressions(sdf,
                         "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
@@ -506,36 +429,36 @@ savetextables(NULL, NULL, NULL, prefix="policy",ip = regs$ip[1:6])
 
 
 # interactions <-list("lag(month,L)", statevars)
-# ilist <- list(interactions, interactions) 
+# ilist <- list(interactions, interactions)
 
 coef.vec.1 <- coef.vec.2 <- coef.vec.3 <- coef.vec.4 <-  rep(0.0, 40)
-se.vec.1 <- se.vec.2 <- se.vec.3 <- se.vec.4 <- rep(0.0, 40) 
+se.vec.1 <- se.vec.2 <- se.vec.3 <- se.vec.4 <- rep(0.0, 40)
 
-# case growth robustness 
+# case growth robustness
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
 piy <- list()
-yvar <- "dlogdc" 
-# pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 
-pols <- c("pmaskbus","pk12","pshelter","pindex") 
-for (k in 1:length(infovars)) { 
-  # (1) baseline 
+yvar <- "dlogdc"
+# pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
+pols <- c("pmaskbus","pk12","pshelter","pindex")
+for (k in 1:length(infovars)) {
+  # (1) baseline
    xlist <-list("","")
-   tvars <- "dlogtests" 
+   tvars <- "dlogtests"
    iv <- list("0","0")
-  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)  
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   piy[[(1+8*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
-              ilist[[k]], 0, L=L) 
-  # (2) excluding NY 
+              ilist[[k]], 0, L=L)
+  # (2) excluding NY
    xlist <-list("","")
-  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L) 
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   sdf2 <- sdf[which(sdf$state!='New York'),]
   piy[[(2+8*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
               ilist[[k]], 0, L=L)
-  # (3) adding mask wearing rate  
+  # (3) adding mask wearing rate
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   xlist <-list(c("mask_percent"), c("mask_percent"))
   piy[[(3+8*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
@@ -558,21 +481,21 @@ for (k in 1:length(infovars)) {
                 tvars, xlist[[k]]),
               ilist[[k]], 0, L=L)
   # (6) (2)-(5)
-   sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L) 
+   sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L)
    sdf2 <- sdf[which(sdf$state!='New York'),]
   xlist <-list(c("mask_percent","logvote"), c("mask_percent","logvote"))
    piy[[(6+8*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", bvars, L+14),
                 sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
-              ilist[[k]], 0, L=L) 
+              ilist[[k]], 0, L=L)
    # (7) weekly dummy
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   xlist <-list("week", "week")
   piy[[(7+8*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
-              ilist[[k]], 0, L=L) 
+              ilist[[k]], 0, L=L)
    # (8) iv
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   xlist <-list("", "")
@@ -581,48 +504,48 @@ for (k in 1:length(infovars)) {
   piy[[(8+8*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovars[[k]], L),
                 tvars, xlist[[k]]),
-              ilist[[k]], iv, L=L) 
+              ilist[[k]], iv, L=L)
 }
-     
+
 for (j in 1:4) {
-  for (k in c(1:8)) { 
+  for (k in c(1:8)) {
     coef.vec.1[[10*(j-1)+k]] <- piy[[k]]$reg$coefficients[[1+j]]
     se.vec.1[[10*(j-1)+k]] <- piy[[k]]$reg$se[[1+j]]
     coef.vec.2[[10*(j-1)+k]] <- piy[[7+k]]$reg$coefficients[[1+j]]
-    se.vec.2[[10*(j-1)+k]] <- piy[[7+k]]$reg$se[[1+j]] 
-  } 
-}   
-  
-colnames(piy[[1]]$reg$response) <- "dlogdc" 
+    se.vec.2[[10*(j-1)+k]] <- piy[[7+k]]$reg$se[[1+j]]
+  }
+}
+
+colnames(piy[[1]]$reg$response) <- "dlogdc"
 showhtmltables(NULL, NULL, piy);
-savetextables(NULL, NULL,  piy[1:6], prefix="cases-robust") 
- 
+savetextables(NULL, NULL,  piy[1:6], prefix="cases-robust")
+
 
 # death growth
-L <- L.d 
+L <- L.d
 piy <- list()
 yvar <- "dlogdd"
 infovarsd <- list(c("dlogdd", "logdd"),
-                  c("dlogdd", "logdd","dlogdd.national", "logdd.national")) 
-#pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 
-pols <- c("pmaskbus","pk12","pshelter","pindex") 
-for (k in 1:length(infovars)) {  
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
+#pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
+pols <- c("pmaskbus","pk12","pshelter","pindex")
+for (k in 1:length(infovars)) {
   # (1) baseline
   xlist <-list("","")
-  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)  
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   piy[[(1+8*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovarsd[[k]], L),
                  xlist[[k]]),
-              ilist[[k]], 0, L=L)   
-  # (2) excluding NY  
+              ilist[[k]], 0, L=L)
+  # (2) excluding NY
   xlist <-list("","")
-  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L) 
+  sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   sdf2 <- sdf[which(sdf$state!='New York'),]
   piy[[(2+8*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovarsd[[k]], L),
                  xlist[[k]]),
-              ilist[[k]], 0, L=L) 
-  # (3) adding mask wearing rate 
+              ilist[[k]], 0, L=L)
+  # (3) adding mask wearing rate
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   xlist <-list(c("mask_percent"), c("mask_percent"))
   piy[[(3+8*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
@@ -645,44 +568,44 @@ for (k in 1:length(infovars)) {
                  xlist[[k]]),
               ilist[[k]], 0, L=L)
   # (6) (2)-(5)
-   sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L) 
+   sdf <- subset(df, df$date>=as.Date("2020-02-22")) #+L)
    sdf2 <- sdf[which(sdf$state!='New York'),]
   xlist <-list(c("mask_percent","logvote"), c("mask_percent","logvote"))
    piy[[(6+8*(k-1))]] <- policyreg(sdf2, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", bvars, L+14),
                 sprintf("lag(%s, %d)", infovarsd[[k]], L),
                 xlist[[k]]),
-              ilist[[k]], 0, L=L) 
+              ilist[[k]], 0, L=L)
    # (7) weekly dummy
   sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
   xlist <-list("week", "week")
   piy[[(7+8*(k-1))]] <- policyreg(sdf, yvar, pols, NULL,
               c(sprintf("lag(%s, %d)", infovarsd[[k]], L),
                  xlist[[k]]),
-              ilist[[k]], 0, L=L)  
+              ilist[[k]], 0, L=L)
    # (8) iv = baseline because there is no testing vars in death equation
-  piy[[(8+8*(k-1))]] <- piy[[(1+8*(k-1))]] 
-} 
+  piy[[(8+8*(k-1))]] <- piy[[(1+8*(k-1))]]
+}
 for (j in 1:4) {
-  for (k in c(1:8)) { 
+  for (k in c(1:8)) {
     coef.vec.3[[10*(j-1)+k]] <- piy[[k]]$reg$coefficients[[1+j]]
     se.vec.3[[10*(j-1)+k]] <- piy[[k]]$reg$se[[1+j]]
     coef.vec.4[[10*(j-1)+k]] <- piy[[7+k]]$reg$coefficients[[1+j]]
-    se.vec.4[[10*(j-1)+k]] <- piy[[7+k]]$reg$se[[1+j]] 
-  } 
-}  
+    se.vec.4[[10*(j-1)+k]] <- piy[[7+k]]$reg$se[[1+j]]
+  }
+}
 
-colnames(piy[[1]]$reg$response) <- "dlogdd"  
+colnames(piy[[1]]$reg$response) <- "dlogdd"
 showhtmltables(NULL, NULL, piy);
 savetextables(NULL, NULL,  piy[1:6], prefix="deaths-robust")
-  
+
 
 ```
 
 
 ## Fixed Effects
 ```{r regsfe,  eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
- 
+
 
 
 source(paste(rootdir,"cases_and_policies/rmd/debiasedfe.R", sep="/"))
@@ -692,7 +615,7 @@ set.seed(88) # seed for replication
 num_boot <- 500 # number of bootstraps
 ncores <- 1 # number of cpus (speed)
 # # nonpar will throw warning wrt multiple splitting bias correction
- 
+
 # # # Compute standard errors
 # result <- structure(vapply(result_boot$t, as.double, numeric(1)), dim = dim(result_boot$t))
 # tot_bse <- apply(result, 2, function(x) {
@@ -703,67 +626,67 @@ ncores <- 1 # number of cpus (speed)
 # df$month.c <- panellag(df$month,df$state,df$date,L.c)
 # df$month.d <- panellag(df$month,df$state,df$date,L.d)
 df$month.c <- df$month.d <- df$month
- 
+
 bse <- function(sdf,  yvar,  pols, bv, x,  iv,  L, fe) {
-   bootstat_fe <- function(data, form) { 
-    m <- reg_fe(data,  yvar,  pols, bv, x,  iv,  L, fe)   
+   bootstat_fe <- function(data, form) {
+    m <- reg_fe(data,  yvar,  pols, bv, x,  iv,  L, fe)
     return(as.vector(m$bc2))
   }
   result_boot <- boot(data = sdf, statistic = bootstat_fe, sim = "parametric", ran.gen = data_wb, # data_rg,
                       mle = 0, parallel = "multicore", ncpus = ncores, R = num_boot)
   # Compute standard errors
   result <- structure(vapply(result_boot$t, as.double, numeric(1)), dim = dim(result_boot$t))
-  tot_bse <- apply(result, 2, function(x) { 
+  tot_bse <- apply(result, 2, function(x) {
     return((quantile(x, .75, na.rm = TRUE) - quantile(x, .25, na.rm = TRUE))/(qnorm(.75) - qnorm(.25)))
   })
   return(tot_bse)
-} 
+}
 
 
-  
-# df$pindex <- (df$pmovie+df$prestaurant+df$pnonessential)/3 
+
+# df$pindex <- (df$pmovie+df$prestaurant+df$pnonessential)/3
 
 fe <- "state + week"
-# fe <- "state + month" 
+# fe <- "state + month"
 iv <- 0
 yvar <- "dlogdc"
 bv <- NULL
 infovars <- list(c("dlogdc", "logdc"),
                  c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
-tvars <- "dlogtests"  
+tvars <- "dlogtests"
 L <- L.c
 
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
 piy <- list()
-for (k in 1:length(infovars)) {  
-  # pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 
+for (k in 1:length(infovars)) {
+  # pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
   pols = c("pmaskbus","pk12","pshelter","pindex")
-  x <- c(sprintf("lag(%s, %d)", infovars[[k]], L), tvars) 
+  x <- c(sprintf("lag(%s, %d)", infovars[[k]], L), tvars)
   m <-  reg_fe(sdf, yvar, pols, bv, x, iv, L, fe)
-  piy[[(1+4*(k-1))]] <- m 
-  m$reg$beta[1:(6+2*(k-1))] <- m$bc2[1:(6+2*(k-1))]  
-  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe) 
+  piy[[(1+4*(k-1))]] <- m
+  m$reg$beta[1:(6+2*(k-1))] <- m$bc2[1:(6+2*(k-1))]
+  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe)
   z <- m$bc2/se
   pval <- 2*pnorm(-abs(z))
-  m$reg$cse[1:(6+2*(k-1))] <- se[1:(6+2*(k-1))] 
-  m$reg$ctval[1:(6+2*(k-1))] <- z[1:(6+2*(k-1))]   
+  m$reg$cse[1:(6+2*(k-1))] <- se[1:(6+2*(k-1))]
+  m$reg$ctval[1:(6+2*(k-1))] <- z[1:(6+2*(k-1))]
   m$reg$cpval[1:(6+2*(k-1))] <- pval[1:(6+2*(k-1))]
-  # m$reg$beta[1:(9+2*(k-1))] <- m$bc2[1:(9+2*(k-1))]  
+  # m$reg$beta[1:(9+2*(k-1))] <- m$bc2[1:(9+2*(k-1))]
   piy[[(2+4*(k-1))]] <- m
-  #pols <- c("pmaskbus","pk12","pshelter","pindex")  
-  pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 
-  m <-  reg_fe(sdf, yvar, pols, bv, x, iv, L, fe) 
-  piy[[(3+4*(k-1))]] <- m  
-  # m$reg$beta[1:(6+2*(k-1))] <- m$bc2[1:(6+2*(k-1))] 
+  #pols <- c("pmaskbus","pk12","pshelter","pindex")
+  pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
+  m <-  reg_fe(sdf, yvar, pols, bv, x, iv, L, fe)
+  piy[[(3+4*(k-1))]] <- m
+  # m$reg$beta[1:(6+2*(k-1))] <- m$bc2[1:(6+2*(k-1))]
   m$reg$beta[1:(9+2*(k-1))] <- m$bc2[1:(9+2*(k-1))]
-  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe) 
+  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe)
   z <- m$bc2/se
   pval <- 2*pnorm(-abs(z))
-  m$reg$cse[1:(9+2*(k-1))] <- se[1:(9+2*(k-1))] 
-  m$reg$ctval[1:(9+2*(k-1))] <- z[1:(9+2*(k-1))]   
-  m$reg$cpval[1:(9+2*(k-1))] <- pval[1:(9+2*(k-1))]  
-  piy[[(4+4*(k-1))]] <- m 
-}  
+  m$reg$cse[1:(9+2*(k-1))] <- se[1:(9+2*(k-1))]
+  m$reg$ctval[1:(9+2*(k-1))] <- z[1:(9+2*(k-1))]
+  m$reg$cpval[1:(9+2*(k-1))] <- pval[1:(9+2*(k-1))]
+  piy[[(4+4*(k-1))]] <- m
+}
 
 # for (j in 1:4) {
 #   # coef.vec.1[[10*(j-1)+9]] <- piy[[1]]$reg$beta[[j]]
@@ -774,75 +697,78 @@ for (k in 1:length(infovars)) {
 #   # se.vec.2[[10*(j-1)+9]] <- piy[[5]]$reg$se[[j]]
 #   coef.vec.2[[10*(j-1)+10]] <- piy[[6]]$reg$beta[[j]]
 #   se.vec.2[[10*(j-1)+10]] <- piy[[6]]$reg$cse[[j]]
-# } 
-  
+# }
+
 colnames(piy[[1]]$reg$response) <- "dlogdc"
 showhtmltables(NULL, NULL,  piy);
 prefix="cases-fe"
-#savetextables(NULL, NULL, piy[1:4], prefix="cases-fe")
-   ylbl <- colnames(piy[[1]]$reg$response)
-    if (ylbl=="dlogdd") ylbl <- "Death Growth"
-    if (ylbl=="dlogdc") ylbl <- "Case Growth"
+#savetextables(NULL, NULL, piy[1:4], prefix="cases-fe") copying and
 
-    tbl <- capture.output(stargazer(
-        lapply(piy[1:4], function(x) x$reg),
-        type="latex",
-        dep.var.labels.include=FALSE,
-        title=ylbl,
-        # omit=omit,
-        # omit.labels=omit.labels,
-        column.labels=c(yvar),
-        column.separate=c(length(piy[1:4])),
-        # add.lines=list(c("$\\sum_j \\mathrm{Policy}_j$",
-        #                  sapply(piy, function(x) printstars(x$peff[1], x$peff[2]))),
-        #                c("",
-        #                  sprintf("(%.3f)",sapply(piy, function(x) x$peff[2])))
-        #                ),
-        omit.stat=c("f", "ser"), model.names=FALSE,
-        no.space=TRUE,
-        column.sep.width="1pt",
-        df=FALSE, header=FALSE,
-        model.numbers=TRUE))
-    tbl <- relabel(tbl)
-    tbl <- gsub("Model (\\d)", "\\(\\1\\)", tbl)
-    #tbl <- gsub("No","Yes", tbl)
-    texfile <- sprintf("%s/tex/tables_and_figures/%s-piy.tex",rootdir,prefix)
-    cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
-     
+# pasting this is bad style and seems like it might create maintenance
+# problems ...
+ylbl <- colnames(piy[[1]]$reg$response)
+if (ylbl=="dlogdd") ylbl <- "Death Growth"
+if (ylbl=="dlogdc") ylbl <- "Case Growth"
+
+tbl <- capture.output(stargazer(
+    lapply(piy[1:4], function(x) x$reg),
+    type="latex",
+    dep.var.labels.include=FALSE,
+    title=ylbl,
+    # omit=omit,
+    # omit.labels=omit.labels,
+    column.labels=c(yvar),
+    column.separate=c(length(piy[1:4])),
+    # add.lines=list(c("$\\sum_j \\mathrm{Policy}_j$",
+    #                  sapply(piy, function(x) printstars(x$peff[1], x$peff[2]))),
+    #                c("",
+    #                  sprintf("(%.3f)",sapply(piy, function(x) x$peff[2])))
+    #                ),
+    omit.stat=c("f", "ser"), model.names=FALSE,
+    no.space=TRUE,
+    column.sep.width="1pt",
+    df=FALSE, header=FALSE,
+    model.numbers=TRUE))
+tbl <- relabel(tbl)
+tbl <- gsub("Model (\\d)", "\\(\\1\\)", tbl)
+#tbl <- gsub("No","Yes", tbl)
+texfile <- sprintf("%s/tex/tables_and_figures/%s-piy.tex",rootdir,prefix)
+cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
+
 yvar <- "dlogdd"
 infovars <- list(c("dlogdd", "logdd"),
-                  c("dlogdd", "logdd","dlogdd.national", "logdd.national")) 
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
 L <- L.d
 sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
-piy <- list() 
-for (k in 1:length(infovars)) {  
-  pols = c("pmaskbus","pk12","pshelter","pindex") 
+piy <- list()
+for (k in 1:length(infovars)) {
+  pols = c("pmaskbus","pk12","pshelter","pindex")
   x <- sprintf("lag(%s, %d)", infovars[[k]], L)
   m <-  reg_fe(sdf, yvar, pols, bv, x, iv, L, fe)
   piy[[(1+4*(k-1))]] <- m
-  m$reg$beta[1:(5+2*(k-1))] <- m$bc2[1:(5+2*(k-1))]  
-  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe)  
+  m$reg$beta[1:(5+2*(k-1))] <- m$bc2[1:(5+2*(k-1))]
+  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe)
   z <- m$bc2/se
   pval <- 2*pnorm(-abs(z))
-  m$reg$cse[1:(5+2*(k-1))]  <- se[1:(5+2*(k-1))] 
-  m$reg$ctval[1:(5+2*(k-1))]  <- z[1:(5+2*(k-1))]    
-  m$reg$cpval[1:(5+2*(k-1))]  <- pval[1:(5+2*(k-1))]  
-  #m$reg$beta[1:(8+2*(k-1))] <- m$bc2[1:(8+2*(k-1))]  
+  m$reg$cse[1:(5+2*(k-1))]  <- se[1:(5+2*(k-1))]
+  m$reg$ctval[1:(5+2*(k-1))]  <- z[1:(5+2*(k-1))]
+  m$reg$cpval[1:(5+2*(k-1))]  <- pval[1:(5+2*(k-1))]
+  #m$reg$beta[1:(8+2*(k-1))] <- m$bc2[1:(8+2*(k-1))]
   piy[[(2+4*(k-1))]] <- m
-  # pols <- c("pmaskbus","pk12","pshelter","pindex")  
-  pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential") 
-  m <-  reg_fe(sdf, yvar, pols, bv, x, iv, L, fe)  
-  piy[[(3+4*(k-1))]] <- m 
-  #m$reg$beta[1:(5+2*(k-1))] <- m$bc2[1:(5+2*(k-1))]  
-  m$reg$beta[1:(8+2*(k-1))] <- m$bc2[1:(8+2*(k-1))]  
-  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe)  
+  # pols <- c("pmaskbus","pk12","pshelter","pindex")
+  pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
+  m <-  reg_fe(sdf, yvar, pols, bv, x, iv, L, fe)
+  piy[[(3+4*(k-1))]] <- m
+  #m$reg$beta[1:(5+2*(k-1))] <- m$bc2[1:(5+2*(k-1))]
+  m$reg$beta[1:(8+2*(k-1))] <- m$bc2[1:(8+2*(k-1))]
+  se <- bse(sdf,  yvar,  pols, bv, x,  iv,  L, fe)
   z <- m$bc2/se
   pval <- 2*pnorm(-abs(z))
-  m$reg$cse[1:(8+2*(k-1))]  <- se[1:(8+2*(k-1))] 
-  m$reg$ctval[1:(8+2*(k-1))]  <- z[1:(8+2*(k-1))]    
-  m$reg$cpval[1:(8+2*(k-1))]  <- pval[1:(8+2*(k-1))]  
+  m$reg$cse[1:(8+2*(k-1))]  <- se[1:(8+2*(k-1))]
+  m$reg$ctval[1:(8+2*(k-1))]  <- z[1:(8+2*(k-1))]
+  m$reg$cpval[1:(8+2*(k-1))]  <- pval[1:(8+2*(k-1))]
   piy[[(4+4*(k-1))]] <- m
-} 
+}
 
 # for (j in 1:4) {
 #   # coef.vec.3[[10*(j-1)+9]] <- piy[[1]]$reg$beta[[j]]
@@ -853,8 +779,8 @@ for (k in 1:length(infovars)) {
 #   # se.vec.4[[10*(j-1)+9]] <- piy[[5]]$reg$se[[j]]
 #   coef.vec.4[[10*(j-1)+10]] <- piy[[6]]$reg$beta[[j]]
 #   se.vec.4[[10*(j-1)+10]] <- piy[[6]]$reg$cse[[j]]
-# } 
-  
+# }
+
 
 colnames(piy[[1]]$reg$response) <- "dlogdd"
 showhtmltables(NULL, NULL,  piy);
@@ -888,30 +814,29 @@ prefix="deaths-fe"
     #tbl <- gsub("No","Yes", tbl)
     texfile <- sprintf("%s/tex/tables_and_figures/%s-piy.tex",rootdir,prefix)
     cat(paste(tbl[c(-1,-2,-3,-4, -length(tbl))], collapse="\n"), file=texfile)
-
 ```
 
-## DML 
-```{r regsdml,  eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
+## DML
+```{r regsdml,  eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
 
 
 df$logpop <- log(df$Population.2018)
-df$logsq <- log(df$Square.Miles) 
+df$logsq <- log(df$Square.Miles)
 df$repub <- as.factor(df$party)
-df$party_dum <- ifelse(df$party == "republican", 0, 1) 
+df$party_dum <- ifelse(df$party == "republican", 0, 1)
 df$month3 <- ifelse(df$month==3,0,1)
 df$month4 <- ifelse(df$month==4,0,1)
-df$month5 <- ifelse(df$month==5,0,1) 
-df$month6 <- ifelse(df$month==6,0,1)  
+df$month5 <- ifelse(df$month==5,0,1)
+df$month6 <- ifelse(df$month==6,0,1)
 L <- L.c
- 
-pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")  
+
+pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
 infovars <- list(c("dlogdc", "logdc"),
                  c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
 infovarsd <- list(c("dlogdd", "logdd"),
-                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))  
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
 bvars <- c("workplaces","retail","grocery","transit")
-vars <- c(infovars[[2]],infovarsd[[2]],pols,"pindex") 
+vars <- c(infovars[[2]],infovarsd[[2]],pols,"pindex")
 for(i in 1:length(vars)) {
   L<-L.c
   v <- sprintf("%s.L14",vars[i])
@@ -919,8 +844,8 @@ for(i in 1:length(vars)) {
   L<-L.d
   v <- sprintf("%s.L21",vars[i])
   df[,v] <- panellag(df[,vars[i]],df$state,df$date, lag=L)
-}  
-  
+}
+
 for(i in 1:length(bvars)) {
   L<-L.c
   v <- sprintf("%s.L14",bvars[i])
@@ -928,15 +853,15 @@ for(i in 1:length(bvars)) {
   L<-L.d
   v <- sprintf("%s.L21",bvars[i])
   df[,v] <- panellag(df[,bvars[i]],df$state,df$date, lag=L+14)
-}  
- 
- 
+}
+
+
 svars <- c("logpop","logsq","Percent.Unemployed..2018.",
                "Percent.living.under.the.federal.poverty.line..2018.",
                "Percent.at.risk.for.serious.illness.due.to.COVID","party_dum")
-mvars.c <- mvars.d <- mvars <- c("month4","month5","month6")  
-# mvars.c <- c("month4.c","month5.c","month6.c") 
-# mvars.d <- c("month4.d","month5.d","month6.d") 
+mvars.c <- mvars.d <- mvars <- c("month4","month5","month6")
+# mvars.c <- c("month4.c","month5.c","month6.c")
+# mvars.d <- c("month4.d","month5.d","month6.d")
 ijs <- expand.grid(1:length(svars), 1:length(mvars.c))
 msvars.c <- vector(mode="character", length=lengths(ijs)[[1]])
 msvars.d <- vector(mode="character", length=lengths(ijs)[[1]])
@@ -947,62 +872,62 @@ for (ij in (1:lengths(ijs)[[1]])){
   v <-  sprintf("%s.%s",svars[ijs[[1]][ij]],mvars.d[ijs[[2]][ij]])
   msvars.d[ij] <- v
   df[,v] <- df[,svars[ijs[[1]][ij]]]*df[,mvars.d[ijs[[2]][ij]]]
-}    
+}
 
-bvars.c <- c("workplaces.L14","retail.L14","grocery.L14","transit.L14") 
+bvars.c <- c("workplaces.L14","retail.L14","grocery.L14","transit.L14")
 bvars.d <- c("workplaces.L21","retail.L21","grocery.L21","transit.L21")
 
- 
-wvars <- c(svars,mvars.c,msvars.c,"month3","mask_percent","logvote","dlogtests") 
-wvars.d <- c(svars,mvars.d,msvars.d,"month3","mask_percent","logvote")  
-xvars <- c(bvars.c,"dlogdc.L14","logdc.L14")  
-xvars.national <- c(bvars.c,"dlogdc.L14","logdc.L14","dlogdc.national.L14","logdc.national.L14") 
-xvars.d <- c(bvars.d,"dlogdd.L21","logdd.L21")  
+
+wvars <- c(svars,mvars.c,msvars.c,"month3","mask_percent","logvote","dlogtests")
+wvars.d <- c(svars,mvars.d,msvars.d,"month3","mask_percent","logvote")
+xvars <- c(bvars.c,"dlogdc.L14","logdc.L14")
+xvars.national <- c(bvars.c,"dlogdc.L14","logdc.L14","dlogdc.national.L14","logdc.national.L14")
+xvars.d <- c(bvars.d,"dlogdd.L21","logdd.L21")
 xvars.national.d <- c(bvars.d,"dlogdd.L21","logdd.L21","dlogdd.national.L21","logdd.national.L21")
 
 
-# wvars <- c(bvars.c,svars,mvars.c,msvars.c,"month3","mask_percent","logvote","dlogtests") 
-# wvars.d <- c(bvars.d,svars,mvars.d,msvars.d,"month3","mask_percent","logvote") 
-# xvars <- c("dlogdc.L14","logdc.L14")  
-# xvars.national <- c("dlogdc.L14","logdc.L14","dlogdc.national.L14","logdc.national.L14") 
-# xvars.d <- c("dlogdd.L21","logdd.L21")  
+# wvars <- c(bvars.c,svars,mvars.c,msvars.c,"month3","mask_percent","logvote","dlogtests")
+# wvars.d <- c(bvars.d,svars,mvars.d,msvars.d,"month3","mask_percent","logvote")
+# xvars <- c("dlogdc.L14","logdc.L14")
+# xvars.national <- c("dlogdc.L14","logdc.L14","dlogdc.national.L14","logdc.national.L14")
+# xvars.d <- c("dlogdd.L21","logdd.L21")
 # xvars.national.d <- c("dlogdd.L21","logdd.L21","dlogdd.national.L21","logdd.national.L21")
- 
- 
-# pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pmovie.L14","prestaurant.L14","pnonessential.L14") 
+
+
+# pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pmovie.L14","prestaurant.L14","pnonessential.L14")
 # pols.L21 <- c("pmaskbus.L21","pk12.L21","pshelter.L21","pmovie.L21","prestaurant.L21","pnonessential.L21")
-pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pindex.L14") 
-pols.L21 <- c("pmaskbus.L21","pk12.L21","pshelter.L21","pindex.L21") 
- 
- 
-AM<- function(yv, xv, wv, sdf, reg,  steps=5){  
+pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pindex.L14")
+pols.L21 <- c("pmaskbus.L21","pk12.L21","pshelter.L21","pindex.L21")
+
+
+AM<- function(yv, xv, wv, sdf, reg,  steps=5){
  y <- sdf[,yv]
  w <- sdf[,wv]
  sdf[,"y"] <- y
  # Initialize
  fmla <- as.formula(paste("y", "~",  paste(xv, collapse=" + "), sep=" "))
- g1 <- predict(lm(fmla, data=sdf)) 
+ g1 <- predict(lm(fmla, data=sdf))
  m1 <- predict(reg(w,as.vector(y- g1)))
  i<-1
  while(i<= steps) {
   sdf$y <- y-m1
-  g1 <- predict(lm(fmla, data=sdf))  
+  g1 <- predict(lm(fmla, data=sdf))
   m1 <- predict(reg(w,as.vector(y-g1)))
-  i <- i+1 }  
+  i <- i+1 }
  fitx <- lm(fmla, data=sdf)
  fitw <- reg(w,as.vector(y-g1))
  return(list(x=fitx , w = fitw))
-}   
- 
-DML2.for.PLM <- function(xv, wv, dv, yv, reg, sdf, nfold=5) {   
+}
+
+DML2.for.PLM <- function(xv, wv, dv, yv, reg, sdf, nfold=5) {
   unit <- as.double(sdf$state)
   j <-  quantile(unit, c(1:(nfold-1))/nfold)
   I <- vector(mode = "list", length = nfold)
-  I[[1]] <- unit <= j[1] 
+  I[[1]] <- unit <= j[1]
   for (b in 2:(nfold-1)) {
     I[[b]] <- (unit <= j[b])&(unit > j[b-1])
-  } 
-  I[[nfold]] <- unit > j[nfold-1]  
+  }
+  I[[nfold]] <- unit > j[nfold-1]
   nobs <- nrow(sdf)
   ytil <- dtil <- rep(NA, nobs)
   w <- as.matrix(sdf[,wv])
@@ -1011,33 +936,33 @@ DML2.for.PLM <- function(xv, wv, dv, yv, reg, sdf, nfold=5) {
   y <- as.vector(sdf[,yv])
   for(b in 1:nfold){
     I1 <- (I[[b]]==FALSE)
-    I2 <- I[[b]]  
-    yfit <- AM(yv, xv, wv, sdf[I1,], reg)   
-    dfit <- AM(dv, xv, wv, sdf[I1,], reg)   
-    yhat <- predict(yfit$x,newdata=sdf[I2,]) + predict(yfit$w, w[I2,], type="response") 
-    dhat <- predict(dfit$x,newdata=sdf[I2,])+ predict(dfit$w, w[I2,], type="response")  
+    I2 <- I[[b]]
+    yfit <- AM(yv, xv, wv, sdf[I1,], reg)
+    dfit <- AM(dv, xv, wv, sdf[I1,], reg)
+    yhat <- predict(yfit$x,newdata=sdf[I2,]) + predict(yfit$w, w[I2,], type="response")
+    dhat <- predict(dfit$x,newdata=sdf[I2,])+ predict(dfit$w, w[I2,], type="response")
     dtil[I2] <- (d[I2] - dhat) #record residual
     ytil[I2] <- (y[I2] - yhat) #record residual
     cat(b," ")
-  }  
+  }
 sdf$ytil <- ytil
-sdf$dtil <- dtil 
+sdf$dtil <- dtil
 rfit <- felm(ytil ~ dtil| 0| 0 | state, data=sdf) #estimate the main parameter by regressing one residual on the other
-coef.est <- coef(rfit)[2] #extract coefficient 
-se <- sqrt(vcov(rfit)[2,2]) 
+coef.est <- coef(rfit)[2] #extract coefficient
+se <- sqrt(vcov(rfit)[2,2])
 cat(sprintf("\ncoef (se) = %g (%g)\n", coef.est , se))
 return( list(coef.est = coef.est , se=se) )
-} 
+}
 
-# DML2.for.PLM <- function(x, d, y, dreg, yreg, sdf, nfold=5) {   
+# DML2.for.PLM <- function(x, d, y, dreg, yreg, sdf, nfold=5) {
 #   unit <- as.double(sdf$state)
 #   j <-  quantile(unit, c(1:(nfold-1))/nfold)
 #   I <- vector(mode = "list", length = nfold)
-#   I[[1]] <- unit <= j[1] 
+#   I[[1]] <- unit <= j[1]
 #   for (b in 2:(nfold-1)) {
 #     I[[b]] <- (unit <= j[b])&(unit > j[b-1])
-#   } 
-#   I[[nfold]] <- unit > j[nfold-1]  
+#   }
+#   I[[nfold]] <- unit > j[nfold-1]
 #   nobs <- nrow(x)
 #   ytil <- dtil <- rep(NA, nobs)
 #   for(b in 1:nfold){
@@ -1050,73 +975,73 @@ return( list(coef.est = coef.est , se=se) )
 #     dtil[I2] <- (d[I2] - dhat) #record residual
 #     ytil[I2] <- (y[I2] - yhat) #record residual
 #     cat(b," ")
-#   }  
+#   }
 # sdf$ytil <- ytil
-# sdf$dtil <- dtil 
+# sdf$dtil <- dtil
 # rfit <- felm(ytil ~ dtil| 0| 0 | state, data=sdf) #estimate the main parameter by regressing one residual on the other
-# coef.est <- coef(rfit)[2] #extract coefficient 
-# se <- sqrt(vcov(rfit)[2,2]) 
+# coef.est <- coef(rfit)[2] #extract coefficient
+# se <- sqrt(vcov(rfit)[2,2])
 # cat(sprintf("\ncoef (se) = %g (%g)\n", coef.est , se))
 # return( list(coef.est = coef.est , se=se) )
 # }
- 
-  
+
+
 nfold <- 10
 
 penalty = list(homoscedastic = FALSE, X.dependent.lambda =
   FALSE, lambda.start = NULL, c = 1.7, gamma = 0.1)
-reg.lasso <- function(x,y){ rlasso(x, y, penalty=penalty) } #ML method= rlasso 
+reg.lasso <- function(x,y){ rlasso(x, y, penalty=penalty) } #ML method= rlasso
 # dreg <- function(x,d){ cv.glmnet(x, d) } #ML method= rlasso
-# yreg <- function(x,y){ cv.glmnet(x, y) } #ML method = rlasso 
-reg.RF <- function(x,y){ randomForest(x, y, maxnodes=8) } #ML method=Forest 
-for (j in 1:4){  
-  sdf <- subset(df, df$date>=as.Date(sprintf("2020-03-%s",7+L.c))) 
-  # y = sdf$dlogdc 
-  yv <- "dlogdc" 
-  wv <- wvars         
-  if (j==1){ 
+# yreg <- function(x,y){ cv.glmnet(x, y) } #ML method = rlasso
+reg.RF <- function(x,y){ randomForest(x, y, maxnodes=8) } #ML method=Forest
+for (j in 1:4){
+  sdf <- subset(df, df$date>=as.Date(sprintf("2020-03-%s",7+L.c)))
+  # y = sdf$dlogdc
+  yv <- "dlogdc"
+  wv <- wvars
+  if (j==1){
     dv <- "pmaskbus.L14"
     p <- pols.L14[-1]
     # d = sdf$pmaskbus.L14
   } else if (j==2) {
-    dv <- "pk12.L14"  
+    dv <- "pk12.L14"
     p <- pols.L14[-2]
     # d = sdf$pk12.L14
   } else if (j==3) {
-    dv <- "pshelter.L14" 
+    dv <- "pshelter.L14"
     p <- pols.L14[-3]
-    # d = sdf$pshelter.L14 
+    # d = sdf$pshelter.L14
   } else if (j==4) {
-    dv <- "pindex.L14" 
+    dv <- "pindex.L14"
     p <- pols.L14[1:3]
-    # d = sdf$pindex.L14 
-  } 
+    # d = sdf$pindex.L14
+  }
   # case growth without national
-  # x = as.matrix(cbind(sdf[,p],sdf[,xvars]))  
-  xv <- c(xvars,p)        
+  # x = as.matrix(cbind(sdf[,p],sdf[,xvars]))
+  xv <- c(xvars,p)
   set.seed(1)
   DML2.lasso <- DML2.for.PLM(xv, wv, dv, yv, reg.lasso, sdf, nfold = nfold)
   coef.vec.1[[10*(j-1)+9]] <- DML2.lasso$coef.est
   se.vec.1[[10*(j-1)+9]] <- DML2.lasso$se
   set.seed(1)
-  DML2.RF <- DML2.for.PLM(xv, wv, dv, yv, reg.RF, sdf, nfold=nfold) 
+  DML2.RF <- DML2.for.PLM(xv, wv, dv, yv, reg.RF, sdf, nfold=nfold)
   coef.vec.1[[10*(j-1)+10]] <- DML2.RF$coef.est
-  se.vec.1[[10*(j-1)+10]] <- DML2.RF$se 
+  se.vec.1[[10*(j-1)+10]] <- DML2.RF$se
   # case growth with national
   xv <- c(xvars.national,p)
-  # x = as.matrix(cbind(sdf[,p],sdf[,xvars.national]))  
+  # x = as.matrix(cbind(sdf[,p],sdf[,xvars.national]))
   set.seed(1)
   DML2.lasso <- DML2.for.PLM(xv, wv, dv, yv, reg.lasso, sdf, nfold = nfold)
   coef.vec.2[[10*(j-1)+9]] <- DML2.lasso$coef.est
-  se.vec.2[[10*(j-1)+9]] <- DML2.lasso$se 
+  se.vec.2[[10*(j-1)+9]] <- DML2.lasso$se
   set.seed(1)
-  DML2.RF <- DML2.for.PLM(xv, wv, dv, yv, reg.RF, sdf, nfold = nfold) 
+  DML2.RF <- DML2.for.PLM(xv, wv, dv, yv, reg.RF, sdf, nfold = nfold)
   coef.vec.2[[10*(j-1)+10]] <- DML2.RF$coef.est
-  se.vec.2[[10*(j-1)+10]] <- DML2.RF$se 
+  se.vec.2[[10*(j-1)+10]] <- DML2.RF$se
   ## death growth
-  sdf <- subset(df, df$date>=as.Date(sprintf("2020-03-%s",7+L.d))) 
-  yv <- "dlogdd" 
-  wv <- wvars.d         
+  sdf <- subset(df, df$date>=as.Date(sprintf("2020-03-%s",7+L.d)))
+  yv <- "dlogdd"
+  wv <- wvars.d
   # y = sdf$dlogdd
   # sdf <- sdf[which(sdf$state!='New York'),]
     if (j==1){
@@ -1130,43 +1055,43 @@ for (j in 1:4){
   } else if (j==3) {
     dv <- "pshelter.L21"
     p <- pols.L21[-3]
-    # d = sdf$pshelter.L21 
+    # d = sdf$pshelter.L21
   } else if (j==4) {
     dv <- "pindex.L21"
     p <- pols.L21[1:3]
-    # d = sdf$pindex.L21 
-  } 
+    # d = sdf$pindex.L21
+  }
   # death growth without national
-  # x = as.matrix(cbind(sdf[,p],sdf[,xvars.d]))  
-  xv <- c(xvars.d,p)           
+  # x = as.matrix(cbind(sdf[,p],sdf[,xvars.d]))
+  xv <- c(xvars.d,p)
   set.seed(1)
   DML2.lasso <- DML2.for.PLM(xv, wv, dv, yv, reg.lasso, sdf, nfold = nfold)
   coef.vec.3[[10*(j-1)+9]] <- DML2.lasso$coef.est
-  se.vec.3[[10*(j-1)+9]] <- DML2.lasso$se  
+  se.vec.3[[10*(j-1)+9]] <- DML2.lasso$se
   set.seed(1)
   DML2.RF <- DML2.for.PLM(xv, wv, dv, yv, reg.RF, sdf, nfold = nfold)
   coef.vec.3[[10*(j-1)+10]] <- DML2.RF$coef.est
-  se.vec.3[[10*(j-1)+10]] <- DML2.RF$se  
+  se.vec.3[[10*(j-1)+10]] <- DML2.RF$se
   # death growth with national vars
-  # x = as.matrix(cbind(sdf[,p],sdf[,xvars.national.d]))    
-  xv <- c(xvars.national.d,p)           
+  # x = as.matrix(cbind(sdf[,p],sdf[,xvars.national.d]))
+  xv <- c(xvars.national.d,p)
   set.seed(1)
   DML2.lasso <- DML2.for.PLM(xv, wv, dv, yv, reg.lasso, sdf, nfold = nfold)
   coef.vec.4[[10*(j-1)+9]] <- DML2.lasso$coef.est
-  se.vec.4[[10*(j-1)+9]] <- DML2.lasso$se  
+  se.vec.4[[10*(j-1)+9]] <- DML2.lasso$se
   set.seed(1)
   DML2.RF <- DML2.for.PLM(xv, wv, dv, yv, reg.RF, sdf, nfold = nfold)
   coef.vec.4[[10*(j-1)+10]] <- DML2.RF$coef.est
-  se.vec.4[[10*(j-1)+10]] <- DML2.RF$se 
+  se.vec.4[[10*(j-1)+10]] <- DML2.RF$se
 }
- 
- 
-# WARNINGS!  dplyr and dotwhisker seem to interfare with our regression codes --- need to call them only after calling regression codes; otherwise, they will improperly change our regression results 
+
+
+# WARNINGS!  dplyr and dotwhisker seem to interfare with our regression codes --- need to call them only after calling regression codes; otherwise, they will improperly change our regression results
 library(dplyr)
-library(dotwhisker) 
+library(dotwhisker)
 var.names <- c("(1) baseline    ","(2) excluding NY","(3) mask wearing","(4) Trump's vote ","(5) behavior vars"," (6) all of (2)-(5)  ","(7) Weekly dummy","(8) IV for dlogtest","(9) DML (Lasso)", "(10) DML (RF)  ") #, "(10) FE with BC")
 
- 
+
 
 # mask coefficient
 k <- 10
@@ -1179,22 +1104,22 @@ ij <- c(1:k)
                          stringsAsFactors = FALSE)
  # Draw dot-and-whisker plot
 fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
-    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99), 
+    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99),
            legend.title = element_blank(), legend.background =
-              element_rect(color="gray90")) + 
+              element_rect(color="gray90")) +
     xlab("coefficients of masks for employees") +
-    geom_vline(xintercept = 0, colour = "grey60", linetype = 2) + 
-  theme(text=element_text(family="Times New Roman", face="bold", size=8)) + 
+    geom_vline(xintercept = 0, colour = "grey60", linetype = 2) +
+  theme(text=element_text(family="Times New Roman", face="bold", size=8)) +
    xlim(-0.35, 0.35) +theme(
   legend.title = element_text(size = 6),
   legend.text = element_text(size = 6)
-  )# + ggtitle("Mask Mandates")  
-p <- "pmaskbus"   
+  )# + ggtitle("Mask Mandates")
+p <- "pmaskbus"
 figdev(sprintf("%s/tex/tables_and_figures/%s-whisker-%s.pdf", rootdir, p, L.c), width=4, height=3)
 print(fig)
 dev.off()
 fig
- 
+
 # school coefficient
 ij <- c(11:(10+k))
  results_df <- data.frame(term = rep(var.names, times = 4),
@@ -1202,29 +1127,29 @@ ij <- c(11:(10+k))
                          std.error = c(se.vec.1[ij], se.vec.2[ij],se.vec.3[ij], se.vec.4[ij]),
                          model = c(rep("case w/o national", k), rep("case w/ national", k),
                                    rep("death w/o national",k), rep("death w/ national", k)),
-                         stringsAsFactors = FALSE) 
-fig <- dwplot(results_df, conf.level = .90) + theme_bw() +  
+                         stringsAsFactors = FALSE)
+fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
     theme(
-       legend.justification=c(.01, .999), legend.position=c(.01,.99), 
+       legend.justification=c(.01, .999), legend.position=c(.01,.99),
     # legend.position = c(.95, .95),
     # legend.justification = c("right", "top"),
-    # legend.box.just = "right", 
+    # legend.box.just = "right",
            legend.title = element_blank(), legend.background =
-              element_rect(color="gray90")) + 
+              element_rect(color="gray90")) +
     xlab("coefficients of closed K-12 schools") +
     geom_vline(xintercept = 0, colour = "grey60", linetype = 2) +
-  theme(text=element_text(family="Times New Roman", face="bold", size=8)) + 
+  theme(text=element_text(family="Times New Roman", face="bold", size=8)) +
   xlim(-1.3, 0.3)  +theme(
   legend.title = element_text(size = 6),
   legend.text = element_text(size = 6)
-  )# + ggtitle("School Closures")  
-p <- "pk12" 
+  )# + ggtitle("School Closures")
+p <- "pk12"
 figdev(sprintf("%s/tex/tables_and_figures/%s-whisker-%s.pdf", rootdir, p, L.c), width=4, height=3)
 print(fig)
 dev.off()
 fig
 
- 
+
 # stay-at-home coefficient
 ij <- c(21:(20+k))
  results_df <- data.frame(term = rep(var.names, times = 4),
@@ -1232,26 +1157,26 @@ ij <- c(21:(20+k))
                          std.error = c(se.vec.1[ij], se.vec.2[ij],se.vec.3[ij], se.vec.4[ij]),
                          model = c(rep("case w/o national", k), rep("case w/ national", k),
                                    rep("death w/o national",k), rep("death w/ national", k)),
-                         stringsAsFactors = FALSE) 
+                         stringsAsFactors = FALSE)
 fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
-    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99), 
+    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99),
            legend.title = element_blank(), legend.background =
-              element_rect(color="gray90")) + 
+              element_rect(color="gray90")) +
     xlab("coefficients of stay-at-home") +
     geom_vline(xintercept = 0, colour = "grey60", linetype = 2) +
-  theme(text=element_text(family="Times New Roman", face="bold", size=8)) + 
+  theme(text=element_text(family="Times New Roman", face="bold", size=8)) +
    xlim(-0.35, 0.35) +theme(
   legend.title = element_text(size = 6),
   legend.text = element_text(size = 6)
   )
-# + ggtitle("Stay-at-home Orders")  
-p <- "pshelter" 
+# + ggtitle("Stay-at-home Orders")
+p <- "pshelter"
 figdev(sprintf("%s/tex/tables_and_figures/%s-whisker-%s.pdf", rootdir, p, L.c), width=4, height=3)
 print(fig)
 dev.off()
 fig
 
- 
+
 # pindex coefficient
 ij <- c(31:(30+k))
  results_df <- data.frame(term = rep(var.names, times = 4),
@@ -1259,19 +1184,19 @@ ij <- c(31:(30+k))
                          std.error = c(se.vec.1[ij], se.vec.2[ij],se.vec.3[ij], se.vec.4[ij]),
                          model = c(rep("case w/o national", k), rep("case w/ national", k),
                                    rep("death w/o national",k), rep("death w/ national", k)),
-                         stringsAsFactors = FALSE) 
+                         stringsAsFactors = FALSE)
 fig <- dwplot(results_df, conf.level = .90) + theme_bw() +
-    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99), 
+    theme(       legend.justification=c(.01, .999), legend.position=c(.62, .99),
            legend.title = element_blank(), legend.background =
-              element_rect(color="gray90")) + 
+              element_rect(color="gray90")) +
     xlab("coefficients of average of three policy variables") +
     # geom_vline(xintercept = 0, colour = "grey60", linetype = 2) +
-  theme(text=element_text(family="Times New Roman", face="bold", size=8)) + 
+  theme(text=element_text(family="Times New Roman", face="bold", size=8)) +
   xlim(-0.35, 0.35) +theme(
   legend.title = element_text(size = 6),
   legend.text = element_text(size = 6)
-  )# + ggtitle("Average of Four Policy Variables")  
-p <- "pindex" 
+  )# + ggtitle("Average of Four Policy Variables")
+p <- "pindex"
 figdev(sprintf("%s/tex/tables_and_figures/%s-whisker-%s.pdf", rootdir, p, L.c), width=4, height=3)
 print(fig)
 dev.off()
@@ -1336,7 +1261,7 @@ pfigure <- function(df, pol, stlab=1, outcome="dlogdc", L=14) {
   return(fig)
 }
 fig <- pfigure(df, "pmaskbus", stlab=-1,L=L.c) + ggtitle(TeX(relabel("dlogdc given pmaskbus"))) + ylab(TeX(relabel("dlogdc")))
- 
+
 p <- "pmaskbus"
 figdev(sprintf("%s/tex/tables_and_figures/%s-cases-%s.pdf", rootdir, p, L.c), width=4, height=3)
 print(fig)
@@ -1380,7 +1305,7 @@ p <- "pmaskbus"
 figdev(sprintf("%s/tex/tables_and_figures/%s-deaths-%s.pdf", rootdir, p, L.d),width=4, height=3)
 print(fig)
 dev.off()
-fig 
+fig
 
 
 

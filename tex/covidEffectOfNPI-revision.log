@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.5.16)  26 AUG 2020 08:17
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Arch Linux) (preloaded format=xelatex 2020.8.5)  27 AUG 2020 14:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -6,39 +6,39 @@ entering extended mode
 **covidEffectOfNPI-revision.tex
 (./covidEffectOfNPI-revision.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-05-14>
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amscls/amsart.cls
-Document Class: amsart 2017/10/31 v2.20.4
+L3 programming layer <2020-06-03>
+(/usr/share/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
 \linespacing=\dimen134
 \normalparindent=\dimen135
 \normaltopskip=\skip47
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/01/20 v2.17e AMS math features
 \@mathmargin=\skip48
 
 For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks15
 \ex@=\dimen136
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen137
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count167
+\inf@bad=\count163
 LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count168
-\leftroot@=\count169
+\uproot@=\count164
+\leftroot@=\count165
 LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count170
-\DOTSCASE@=\count171
+\classnum@=\count166
+\DOTSCASE@=\count167
 LaTeX Info: Redefining \ldots on input line 486.
 LaTeX Info: Redefining \dots on input line 489.
 LaTeX Info: Redefining \cdots on input line 610.
@@ -47,15 +47,15 @@ LaTeX Info: Redefining \cdots on input line 610.
 \big@size=\dimen138
 LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count172
-\c@MaxMatrixCols=\count173
+\macc@depth=\count168
+\c@MaxMatrixCols=\count169
 \dotsspace@=\muskip16
-\c@parentequation=\count174
-\dspbrk@lvl=\count175
+\c@parentequation=\count170
+\dspbrk@lvl=\count171
 \tag@help=\toks16
-\row@=\count176
-\column@=\count177
-\maxfields@=\count178
+\row@=\count172
+\column@=\count173
+\maxfields@=\count174
 \andhelp@=\toks17
 \eqnshift@=\dimen139
 \alignsep@=\dimen140
@@ -70,13 +70,13 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 398
+LaTeX Font Info:    Trying to load font information for U+msa on input line 397
 .
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
@@ -87,14 +87,14 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \copyins=\insert199
 \abstractbox=\box47
 \listisep=\skip51
-\c@part=\count179
-\c@section=\count180
-\c@subsection=\count181
-\c@subsubsection=\count182
-\c@paragraph=\count183
-\c@subparagraph=\count184
-\c@figure=\count185
-\c@table=\count186
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
 \abovecaptionskip=\skip52
 \belowcaptionskip=\skip53
 \captionindent=\dimen145
@@ -108,164 +108,173 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \thm@headsep=\skip56
 \dth@everypar=\toks25
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks26
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: xetex.def on input line 105.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+(/usr/share/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen146
 \Gin@req@width=\dimen147
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+(/usr/share/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-04 v0.32 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package pdftexcmds Info: \pdfdraftmode not found.
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+(/usr/share/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hycolor/hycolor.sty
+(/usr/share/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+(/usr/share/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/auxhook/auxhook.sty
+(/usr/share/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen148
-\Hy@linkcounter=\count187
-\Hy@pagecounter=\count188
+\Hy@linkcounter=\count183
+\Hy@pagecounter=\count184
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
+(/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+(/usr/share/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count189
-Package hyperref Info: Hyper figures OFF on input line 4547.
-Package hyperref Info: Link nesting OFF on input line 4552.
-Package hyperref Info: Hyper index ON on input line 4555.
-Package hyperref Info: Plain pages OFF on input line 4562.
-Package hyperref Info: Backreferencing OFF on input line 4567.
+\Hy@SavedSpaceFactor=\count185
+Package hyperref Info: Hyper figures OFF on input line 4464.
+Package hyperref Info: Link nesting OFF on input line 4469.
+Package hyperref Info: Hyper index ON on input line 4472.
+Package hyperref Info: Plain pages OFF on input line 4479.
+Package hyperref Info: Backreferencing OFF on input line 4484.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count190
+Package hyperref Info: Bookmarks ON on input line 4717.
+\c@Hy@tempcnt=\count186
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
+(/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5159.
+LaTeX Info: Redefining \url on input line 5076.
 \XeTeXLinkMargin=\dimen149
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+(/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count191
+\Fld@menulength=\count187
 \Field@Width=\dimen150
 \Fld@charsize=\dimen151
-Package hyperref Info: Hyper figures OFF on input line 6430.
-Package hyperref Info: Link nesting OFF on input line 6435.
-Package hyperref Info: Hyper index ON on input line 6438.
-Package hyperref Info: backreferencing OFF on input line 6445.
-Package hyperref Info: Link coloring OFF on input line 6450.
-Package hyperref Info: Link coloring with OCG OFF on input line 6455.
-Package hyperref Info: PDF/A mode OFF on input line 6460.
-LaTeX Info: Redefining \ref on input line 6500.
-LaTeX Info: Redefining \pageref on input line 6504.
+Package hyperref Info: Hyper figures OFF on input line 6347.
+Package hyperref Info: Link nesting OFF on input line 6352.
+Package hyperref Info: Hyper index ON on input line 6355.
+Package hyperref Info: backreferencing OFF on input line 6362.
+Package hyperref Info: Link coloring OFF on input line 6367.
+Package hyperref Info: Link coloring with OCG OFF on input line 6372.
+Package hyperref Info: PDF/A mode OFF on input line 6377.
+LaTeX Info: Redefining \ref on input line 6417.
+LaTeX Info: Redefining \pageref on input line 6421.
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+(/usr/share/texmf-dist/tex/generic/atbegshi/atbegshi.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count192
-\c@Item=\count193
-\c@Hfootnote=\count194
+\Hy@abspage=\count188
+\c@Item=\count189
+\c@Hfootnote=\count190
 )
-Package hyperref Info: Driver (autodetected): hpdftex.
+Package hyperref Info: Driver (autodetected): hxetex.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
+(/usr/share/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2020-05-15 v7.00e Hyperref driver for XeTeX
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/atveryend/atveryend.sty
+(/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2020-05-15 v7.00e Hyperref: PDF Unicode definition (HO)
+)
+(/usr/share/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box48
+\c@Hy@AnnotLevel=\count191
+\HyField@AnnotCount=\count192
+\Fld@listcount=\count193
+\c@bookmark@seq@number=\count194
+
+(/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texmf-dist/tex/latex/atveryend/atveryend.sty
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
 )
-\Fld@listcount=\count195
-\c@bookmark@seq@number=\count196
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
-
-(/usr/local/texlive/2020/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+(/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip57
-) (/usr/local/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count197
-\Gm@cntv=\count198
-\c@Gm@tempcnt=\count266
+\Gm@cnth=\count195
+\Gm@cntv=\count196
+\c@Gm@tempcnt=\count197
 \Gm@bindingoffset=\dimen152
 \Gm@wd@mp=\dimen153
 \Gm@odd@mp=\dimen154
@@ -276,48 +285,47 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutvoffset=\dimen159
 \Gm@dimlist=\toks27
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
 \multirow@colwidth=\skip58
-\multirow@cntb=\count267
+\multirow@cntb=\count198
 \multirow@dima=\skip59
 \bigstrutjot=\dimen160
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/verbatim.sty
+(/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks28
 \verbatim@line=\toks29
 \verbatim@in@stream=\read2
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
+(/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count268
+\c@float@type=\count266
 \float@exts=\toks30
-\float@box=\box48
+\float@box=\box49
 \@float@everytoks=\toks31
-\@floatcapt=\box49
+\@floatcapt=\box50
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/rotating.sty
+(/usr/share/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/ifthen.sty
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count269
+\c@r@tfl@t=\count267
 \rotFPtop=\skip60
 \rotFPbot=\skip61
-\rot@float@box=\box50
+\rot@float@box=\box51
 \rot@mess@toks=\toks32
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Driver file: xetex.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
@@ -326,22 +334,22 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/dvipsnam.def
+(/usr/share/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box51
-\UL@hyphenbox=\box52
+(/usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box52
+\UL@hyphenbox=\box53
 \UL@skip=\skip62
 \UL@hook=\toks33
 \UL@height=\dimen161
-\UL@pe=\count270
+\UL@pe=\count268
 \UL@pixel=\dimen162
-\ULC@box=\box53
+\ULC@box=\box54
 Package: ulem 2019/11/18
 \ULdepth=\dimen163
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/booktabs/booktabs.sty
+(/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen164
 \lightrulewidth=\dimen165
@@ -353,40 +361,40 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen171
 \cmidrulekern=\dimen172
 \defaultaddspace=\dimen173
-\@cmidla=\count271
-\@cmidlb=\count272
+\@cmidla=\count269
+\@cmidlb=\count270
 \@aboverulesep=\dimen174
 \@belowrulesep=\dimen175
-\@thisruleclass=\count273
-\@lastruleclass=\count274
+\@thisruleclass=\count271
+\@lastruleclass=\count272
 \@thisrulewidth=\dimen176
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tabu/tabu.sty
+(/usr/share/texmf-dist/tex/latex/tabu/tabu.sty
 Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/array.sty
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
 Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
 \col@sep=\dimen177
-\ar@mcellbox=\box54
+\ar@mcellbox=\box55
 \extrarowheight=\dimen178
 \NC@list=\toks34
 \extratabsurround=\skip63
 \backup@length=\skip64
-\ar@cellbox=\box55
+\ar@cellbox=\box56
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/varwidth/varwidth.sty
+(/usr/share/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box56
-\sift@deathcycles=\count275
+\@vwid@box=\box57
+\sift@deathcycles=\count273
 \@vwid@loff=\dimen179
 \@vwid@roff=\dimen180
 )
-\c@taburow=\count276
-\tabu@nbcols=\count277
-\tabu@cnt=\count278
-\tabu@Xcol=\count279
-\tabu@alloc=\count280
-\tabu@nested=\count281
+\c@taburow=\count274
+\tabu@nbcols=\count275
+\tabu@cnt=\count276
+\tabu@Xcol=\count277
+\tabu@alloc=\count278
+\tabu@nested=\count279
 \tabu@target=\dimen181
 \tabu@spreadtarget=\dimen182
 \tabu@naturalX=\dimen183
@@ -398,19 +406,19 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabustrutrule=\dimen189
 \tabu@thebody=\toks35
 \tabu@footnotes=\toks36
-\tabu@box=\box57
-\tabu@arstrutbox=\box58
-\tabu@hleads=\box59
-\tabu@vleads=\box60
+\tabu@box=\box58
+\tabu@arstrutbox=\box59
+\tabu@hleads=\box60
+\tabu@vleads=\box61
 \tabu@cellskip=\skip65
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/05/10 v3.4j Customizing captions (AR)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption3.sty
+(/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2020/05/10 v1.11 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 61.
 \captionmargin=\dimen190
@@ -423,73 +431,72 @@ Package caption3 Info: TeX engine: e-TeX on input line 61.
 Package caption Info: AMS or SMF document class detected.
 )
 Package caption Info: AMS or SMF document class.
-\c@caption@flags=\count282
-\c@continuedfloat=\count283
+\c@caption@flags=\count280
+\c@continuedfloat=\count281
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: rotating package is loaded.
 )
-\c@subfigure=\count284
-\c@subtable=\count285
+\c@subfigure=\count282
+\c@subtable=\count283
 )
-\c@theorem=\count286
-\c@conjecture=\count287
-\c@corollary=\count288
-\c@lemma=\count289
-\c@proposition=\count290
-\c@assumption=\count291
-\c@definition=\count292
-\c@step=\count293
-\c@remark=\count294
-\c@example=\count295
-\c@mpart=\count296
-\c@problem=\count297
+\c@theorem=\count284
+\c@conjecture=\count285
+\c@corollary=\count286
+\c@lemma=\count287
+\c@proposition=\count288
+\c@assumption=\count289
+\c@definition=\count290
+\c@step=\count291
+\c@remark=\count292
+\c@example=\count293
+\c@mpart=\count294
+\c@problem=\count295
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count298
-\calc@Bcount=\count299
+\calc@Acount=\count296
+\calc@Bcount=\count297
 \calc@Adimen=\dimen197
 \calc@Bdimen=\dimen198
 \calc@Askip=\skip66
 \calc@Bskip=\skip67
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count300
+\calc@Ccount=\count298
 \calc@Cskip=\skip68
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
-x
+(/usr/share/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks37
 \pgfutil@tempdima=\dimen256
 \pgfutil@tempdimb=\dimen257
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
-sts.tex))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box61
-(/usr/local/texlive/2020/texmf-dist/tex/latex/ms/everyshi.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex))
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box62
+
+(/usr/share/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2020/01/08 v3.1.5b (3.1.5b)
 ))
 Package: pgf 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2020/01/08 v3.1.5b (3.1.5b)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks38
 \pgfkeys@temptoks=\toks39
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
-ode.tex
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
 \pgfkeys@tmptoks=\toks40
 ))
 \pgf@x=\dimen258
@@ -504,74 +511,67 @@ ode.tex
 \pgf@yd=\dimen267
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count301
-\c@pgf@countb=\count302
-\c@pgf@countc=\count303
-\c@pgf@countd=\count304
+\c@pgf@counta=\count299
+\c@pgf@countb=\count300
+\c@pgf@countc=\count301
+\c@pgf@countd=\count302
 \t@pgf@toka=\toks41
 \t@pgf@tokb=\toks42
 \t@pgf@tokc=\toks43
-\pgf@sys@id@count=\count305
+\pgf@sys@id@count=\count303
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2020/01/08 v3.1.5b (3.1.5b)
 )
-Driver file for pgf: pgfsys-pdftex.def
+Driver file for pgf: pgfsys-xetex.def
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
-ef
-File: pgfsys-pdftex.def 2020/01/08 v3.1.5b (3.1.5b)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+File: pgfsys-xetex.def 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
-df.def
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2020/01/08 v3.1.5b (3.1.5b)
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
 File: pgfsys-common-pdf.def 2020/01/08 v3.1.5b (3.1.5b)
-)))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
-code.tex
-File: pgfsyssoftpath.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfsyssoftpath@smallbuffer@items=\count306
-\pgfsyssoftpath@bigbuffer@items=\count307
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
-code.tex
+\pgfsys@objnum=\count304
+)))
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfsyssoftpath@smallbuffer@items=\count305
+\pgfsyssoftpath@bigbuffer@items=\count306
+)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2020/01/08 v3.1.5b (3.1.5b)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen268
-\pgfmath@count=\count308
-\pgfmath@box=\box62
+\pgfmath@count=\count307
+\pgfmath@box=\box63
 \pgfmath@toks=\toks44
 \pgfmath@stack@operand=\toks45
 \pgfmath@stack@operation=\toks46
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
-tex
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
-.code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
-nometric.code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
-m.code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
-rison.code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
-code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
-.code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
-code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
-erarithmetics.code.tex)))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count309
-)) (/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
-de.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code
+.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.te
+x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
+.code.tex))) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count308
+)) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@picminx=\dimen269
 \pgf@picmaxx=\dimen270
@@ -588,128 +588,105 @@ File: pgfcorepoints.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@zx=\dimen281
 \pgf@zy=\dimen282
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
-ruct.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@path@lastx=\dimen283
 \pgf@path@lasty=\dimen284
-)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
-.code.tex
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@shorten@end@additional=\dimen285
 \pgf@shorten@start@additional=\dimen286
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
-de.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfpic=\box63
-\pgf@hbox=\box64
-\pgf@layerbox@main=\box65
-\pgf@picture@serial@count=\count310
+\pgfpic=\box64
+\pgf@hbox=\box65
+\pgf@layerbox@main=\box66
+\pgf@picture@serial@count=\count309
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
-ate.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgflinewidth=\dimen287
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
-ations.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.t
+ex
 File: pgfcoretransformations.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@pt@x=\dimen288
 \pgf@pt@y=\dimen289
 \pgf@pt@temp=\dimen290
-)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
-e.tex
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
-ode.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
 File: pgfcoreobjects.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
-ssing.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.te
+x
 File: pgfcorepathprocessing.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
-de.tex
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgfarrowsep=\dimen291
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
-e.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@max=\dimen292
-\pgf@sys@shading@range@num=\count311
-\pgf@shadingcount=\count312
+\pgf@sys@shading@range@num=\count310
+\pgf@shadingcount=\count311
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
-e.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
-code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfexternal@startupbox=\box66
+\pgfexternal@startupbox=\box67
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
-de.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
-ncy.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-)
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
-code.tex
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
-tex
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
 File: pgfcorerdf.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
-e.tex
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfnodeparttextbox=\box67
+\pgfnodeparttextbox=\box68
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
-tex
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
--0-65.sty
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@nodesepstart=\dimen293
 \pgf@nodesepend=\dimen294
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
--1-18.sty
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2020/01/08 v3.1.5b (3.1.5b)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
-) (/usr/local/texlive/2020/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen295
 \pgffor@skip=\dimen296
 \pgffor@stack=\toks47
 \pgffor@toks=\toks48
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
-e.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
-dlers.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
+x
 File: pgflibraryplothandlers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@plot@mark@count=\count313
+\pgf@plot@mark@count=\count312
 \pgfplotmarksize=\dimen297
 )
 \tikz@lastx=\dimen298
@@ -720,52 +697,48 @@ File: pgflibraryplothandlers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \tikz@lastmovetoy=\dimen303
 \tikzleveldistance=\dimen304
 \tikzsiblingdistance=\dimen305
-\tikz@figbox=\box68
-\tikz@figbox@bg=\box69
-\tikz@tempbox=\box70
-\tikz@tempbox@bg=\box71
-\tikztreelevel=\count314
-\tikznumberofchildren=\count315
-\tikznumberofcurrentchild=\count316
-\tikz@fig@count=\count317
-
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
-e.tex
+\tikz@figbox=\box69
+\tikz@figbox@bg=\box70
+\tikz@tempbox=\box71
+\tikz@tempbox@bg=\box72
+\tikztreelevel=\count313
+\tikznumberofchildren=\count314
+\tikznumberofcurrentchild=\count315
+\tikz@fig@count=\count316
+ (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfmatrixcurrentrow=\count318
-\pgfmatrixcurrentcolumn=\count319
-\pgf@matrix@numberofcolumns=\count320
+\pgfmatrixcurrentrow=\count317
+\pgfmatrixcurrentcolumn=\count318
+\pgf@matrix@numberofcolumns=\count319
 )
-\tikz@expandcount=\count321
+\tikz@expandcount=\count320
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibrarytopaths.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+topaths.code.tex
 File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-)))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/units/nicefrac.sty
+))) (/usr/share/texmf-dist/tex/latex/units/nicefrac.sty
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
 \L@UnitsRaiseDisplaystyle=\skip69
 \L@UnitsRaiseTextstyle=\skip70
 \L@UnitsRaiseScriptstyle=\skip71
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/placeins/placeins.sty
+(/usr/share/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibrarypositioning.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+positioning.code.tex
 File: tikzlibrarypositioning.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/mathtools/mathtools.sty
+) (/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2020/03/24 v1.24 mathematical typesetting tools
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/mathtools/mhsetup.sty
+(/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
-\g_MT_multlinerow_int=\count322
+\g_MT_multlinerow_int=\count321
 \l_MT_multwidth_dim=\dimen306
 \origjot=\skip72
 \l_MT_shortvdotswithinadjustabove_dim=\dimen307
@@ -774,10 +747,10 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \l_MT_below_intertext_sep=\dimen310
 \l_MT_above_shortintertext_sep=\dimen311
 \l_MT_below_shortintertext_sep=\dimen312
-\xmathstrut@box=\box72
+\xmathstrut@box=\box73
 \xmathstrut@dim=\dimen313
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/bm.sty
+(/usr/share/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup6
 \symboldletters=\mathgroup7
@@ -785,142 +758,145 @@ Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 209.
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/natbib/natbib.sty
+(/usr/share/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip73
 \bibsep=\skip74
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count323
+\c@NAT@ctr=\count322
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+(/usr/share/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/lscape.sty
+(/usr/share/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
-Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
+
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/afterpage.sty
+(/usr/share/texmf-dist/tex/latex/tools/afterpage.sty
 Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
 \AP@output=\toks49
-\AP@partial=\box73
-\AP@footins=\box74
+\AP@partial=\box74
+\AP@footins=\box75
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/capt-of/capt-of.sty
+(/usr/share/texmf-dist/tex/latex/capt-of/capt-of.sty
 Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/neuralnetwork/neuralnetwork.sty
+(/usr/share/texmf-dist/tex/latex/neuralnetwork/neuralnetwork.sty
 Package: neuralnetwork 2013/07/18 v1.0 Neural network diagrams, Mark Kuckian Co
 wan, mark@battlesnake.co.uk
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+(/usr/share/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count324
+\etb@tempcnta=\count323
 )
-(/usr/local/texlive/2020/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks50
 \XKV@tempa@toks=\toks51
 )
-\XKV@depth=\count325
+\XKV@depth=\count324
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+(/usr/share/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count326
-\c@ALG@rem=\count327
-\c@ALG@nested=\count328
+\c@ALG@line=\count325
+\c@ALG@rem=\count326
+\c@ALG@nested=\count327
 \ALG@tlm=\skip75
 \ALG@thistlm=\skip76
-\c@ALG@Lnr=\count329
-\c@ALG@blocknr=\count330
-\c@ALG@storecount=\count331
-\c@ALG@tmpcounter=\count332
+\c@ALG@Lnr=\count328
+\c@ALG@blocknr=\count329
+\c@ALG@storecount=\count330
+\c@ALG@tmpcounter=\count331
 \ALG@tmplength=\skip77
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibraryshapes.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.code.tex
 File: tikzlibraryshapes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibraryshapes.geometric.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.geometric.code.tex
 File: tikzlibraryshapes.geometric.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
-shapes.geometric.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geomet
+ric.code.tex
 File: pgflibraryshapes.geometric.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibraryshapes.misc.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.misc.code.tex
 File: tikzlibraryshapes.misc.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
-shapes.misc.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.c
+ode.tex
 File: pgflibraryshapes.misc.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibraryshapes.symbols.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.symbols.code.tex
 File: tikzlibraryshapes.symbols.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
-shapes.symbols.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.symbol
+s.code.tex
 File: pgflibraryshapes.symbols.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibraryshapes.arrows.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.arrows.code.tex
 File: tikzlibraryshapes.arrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
-shapes.arrows.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.arrows
+.code.tex
 File: pgflibraryshapes.arrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibraryshapes.callouts.code.tex
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
-shapes.callouts.code.tex))
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-s/tikzlibraryshapes.multipart.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.callouts.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.callou
+ts.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.multipart.code.tex
 File: tikzlibraryshapes.multipart.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
-(/usr/local/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
-shapes.multipart.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multip
+art.code.tex
 File: pgflibraryshapes.multipart.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfnodepartlowerbox=\box75
-\pgfnodeparttwobox=\box76
-\pgfnodepartthreebox=\box77
-\pgfnodepartfourbox=\box78
-\pgfnodeparttwentybox=\box79
-\pgfnodepartnineteenbox=\box80
-\pgfnodeparteighteenbox=\box81
-\pgfnodepartseventeenbox=\box82
-\pgfnodepartsixteenbox=\box83
-\pgfnodepartfifteenbox=\box84
-\pgfnodepartfourteenbox=\box85
-\pgfnodepartthirteenbox=\box86
-\pgfnodeparttwelvebox=\box87
-\pgfnodepartelevenbox=\box88
-\pgfnodeparttenbox=\box89
-\pgfnodepartninebox=\box90
-\pgfnodeparteightbox=\box91
-\pgfnodepartsevenbox=\box92
-\pgfnodepartsixbox=\box93
-\pgfnodepartfivebox=\box94
+\pgfnodepartlowerbox=\box76
+\pgfnodeparttwobox=\box77
+\pgfnodepartthreebox=\box78
+\pgfnodepartfourbox=\box79
+\pgfnodeparttwentybox=\box80
+\pgfnodepartnineteenbox=\box81
+\pgfnodeparteighteenbox=\box82
+\pgfnodepartseventeenbox=\box83
+\pgfnodepartsixteenbox=\box84
+\pgfnodepartfifteenbox=\box85
+\pgfnodepartfourteenbox=\box86
+\pgfnodepartthirteenbox=\box87
+\pgfnodeparttwelvebox=\box88
+\pgfnodepartelevenbox=\box89
+\pgfnodeparttenbox=\box90
+\pgfnodepartninebox=\box91
+\pgfnodeparteightbox=\box92
+\pgfnodepartsevenbox=\box93
+\pgfnodepartsixbox=\box94
+\pgfnodepartfivebox=\box95
 ))))
-(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-File: l3backend-pdfmode.def 2020-05-05 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count333
-\l__pdf_internal_box=\box95
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-xdvipdfmx.def
+File: l3backend-xdvipdfmx.def 2020-06-03 L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count332
+\l__pdf_internal_box=\box96
+\g__pdf_backend_object_int=\count333
+\g__pdf_backend_annotation_int=\count334
 )
 
 LaTeX Warning: Unused global option(s):
@@ -928,11 +904,9 @@ LaTeX Warning: Unused global option(s):
 
 (./covidEffectOfNPI-revision.aux
 
-LaTeX Warning: Label `fig:growthpolicies1' multiply defined.
+LaTeX Warning: Label `fig:WA-mask' multiply defined.
 
 )
-\openout1 = `covidEffectOfNPI-revision.aux'.
-
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
 LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
@@ -942,6 +916,13 @@ LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
 LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
+54.
+ (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 154.
 LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
 LaTeX Font Info:    ... okay on input line 154.
@@ -949,66 +930,45 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
 LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
 LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 154
 .
- (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 154
 .
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count334
-\scratchdimen=\dimen314
-\scratchbox=\box96
-\nofMPsegments=\count335
-\nofMParguments=\count336
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count337
-\MPscratchDim=\dimen315
-\MPnumerator=\count338
-\makeMPintoPDFobject=\count339
-\everyMPtoPDFconversion=\toks53
-) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 \AtBeginShipoutBox=\box97
 Package hyperref Info: Link coloring OFF on input line 154.
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
+(/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(/usr/local/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
-ty
+(/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count340
+\c@section@level=\count335
 )
 LaTeX Info: Redefining \ref on input line 154.
 LaTeX Info: Redefining \pageref on input line 154.
 LaTeX Info: Redefining \nameref on input line 154.
- (./covidEffectOfNPI-revision.out) (./covidEffectOfNPI-revision.out)
-\@outlinefile=\write4
-\openout4 = `covidEffectOfNPI-revision.out'.
 
+(./covidEffectOfNPI-revision.out) (./covidEffectOfNPI-revision.out)
+\@outlinefile=\write4
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
+*geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
+* driver: xetex
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -1043,284 +1003,76 @@ LaTeX Info: Redefining \nameref on input line 154.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-ABD: EveryShipout initializing macros [1{/usr/local/texlive/2020/texmf-var/font
-s/map/pdftex/updmap/pdftex.map}] [2] [3]
+ABD: EveryShipout initializing macros
+(/usr/share/texmf-dist/tex/generic/stringenc/se-ascii-print.def
+File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 
-LaTeX Warning: Reference `fig:US-nop-SI' on page 4 undefined on input line 260.
+) [1] [2]
+[3]
+
+LaTeX Warning: Reference `fig:US-shelter-dgrowth' on page 4 undefined on input 
+line 261.
+
+
+LaTeX Warning: Reference `fig:US-nop-SI' on page 4 undefined on input line 264.
 
 
 
-LaTeX Warning: Reference `fig:US-nop' on page 4 undefined on input line 260.
+LaTeX Warning: Reference `fig:US-nop' on page 4 undefined on input line 264.
 
-<tables_and_figures/us-mask-rel_v1.pdf, id=257, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-mask-rel_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-mask-rel_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-mask-rel_v1.pdf  used on input l
-ine 288.
-(pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-<tables_and_figures/us-mask-rel_deaths_v1.pdf, id=258, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-mask-rel_deaths_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-mask-rel_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-mask-rel_deaths_v1.pdf  used on 
-input line 288.
-(pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
+File: tables_and_figures/us-mask-rel_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-mask-rel_idx.pdf>
+File: tables_and_figures/us-mask-rel_deaths_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-mask-rel_deaths_idx.pdf>
 
-Overfull \hbox (4.98236pt too wide) in paragraph at lines 285--290
+Overfull \hbox (11.33238pt too wide) in paragraph at lines 289--295
  [][] 
  []
 
-<tables_and_figures/us-nb-rel_v1.pdf, id=259, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-nb-rel_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-nb-rel_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-nb-rel_v1.pdf  used on input lin
-e 309.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-shelter-rel_v1.pdf, id=260, 361.35pt x 271.0125pt>
+File: tables_and_figures/us-index-rel_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-index-rel_idx.pdf>
 File: tables_and_figures/us-shelter-rel_v1.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-rel_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-shelter-rel_v1.pdf  used on inpu
-t line 328.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-[4 <./tables_and_figures/us-mask-rel_v1.pdf> <./tables_and_figures/us-mask-rel_
-deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-mask
--rel_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group included in a
- single page
->]
-Underfull \vbox (badness 5217) has occurred while \output is active []
-
- [5 <./tables_and_figures/us-nb-rel_v1.pdf> <./tables_and_figures/us-shelter-re
-l_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-shel
-ter-rel_v1.pdf): PDF inclusion: multiple pdfs with page group included in a sin
-gle page
->] [6] [7] [8]
-Underfull \vbox (badness 1874) has occurred while \output is active []
-
- [9pdfTeX warning (ext4): destination with the same identifier (name{equation.2
-.1}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.497 T
-       he observed variables are generated by setting $\iota = I_{it}$ and p...
-pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.497 T
-       he observed variables are generated by setting $\iota = I_{it}$ and p...
-]pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1
-}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.499 \begin{equation}
-                       \label{eqn:SEMO}\tag{O}pdfTeX warning (ext4): destinatio
-n with the same identifier (name{equation.2.1}) has been already used, duplicat
-e ignored
-<to be read again> 
-                   \relax 
-l.499 \begin{equation}
-                       \label{eqn:SEMO}\tag{O}pdfTeX warning (ext4): destinatio
-n with the same identifier (name{equation.2.1}) has been already used, duplicat
-e ignored
-<to be read again> 
-                   \relax 
-l.499 \begin{equation}
-                       \label{eqn:SEMO}\tag{O}pdfTeX warning (ext4): destinatio
-n with the same identifier (name{equation.2.1}) has been already used, duplicat
-e ignored
-<to be read again> 
-                   \relax 
-l.499 \begin{equation}
-                       \label{eqn:SEMO}\tag{O}pdfTeX warning (ext4): destinatio
-n with the same identifier (name{equation.2.1}) has been already used, duplicat
-e ignored
-<to be read again> 
-                   \relax 
-l.509 \begin{equation}
-                      \label{eq:I}\tag{I}pdfTeX warning (ext4): destination wit
-h the same identifier (name{equation.2.1}) has been already used, duplicate ign
-ored
-<to be read again> 
-                   \relax 
-l.509 \begin{equation}
-                      \label{eq:I}\tag{I}pdfTeX warning (ext4): destination wit
-h the same identifier (name{equation.2.1}) has been already used, duplicate ign
-ored
-<to be read again> 
-                   \relax 
-l.509 \begin{equation}
-                      \label{eq:I}\tag{I}pdfTeX warning (ext4): destination wit
-h the same identifier (name{equation.2.1}) has been already used, duplicate ign
-ored
-<to be read again> 
-                   \relax 
-l.509 \begin{equation}
-                      \label{eq:I}\tag{I} [10]pdfTeX warning (ext4): destinatio
-n with the same identifier (name{equation.2.1}) has been already used, duplicat
-e ignored
-<to be read again> 
-                   \relax 
-l.580 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.580 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.580 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.580 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.587 \begin{equation}
-                      \label{eq:TI} \tag{TR}pdfTeX warning (ext4): destination 
-with the same identifier (name{equation.2.1}) has been already used, duplicate 
-ignored
-<to be read again> 
-                   \relax 
-l.587 \begin{equation}
-                      \label{eq:TI} \tag{TR}pdfTeX warning (ext4): destination 
-with the same identifier (name{equation.2.1}) has been already used, duplicate 
-ignored
-<to be read again> 
-                   \relax 
-l.587 \begin{equation}
-                      \label{eq:TI} \tag{TR}pdfTeX warning (ext4): destination 
-with the same identifier (name{equation.2.1}) has been already used, duplicate 
-ignored
-<to be read again> 
-                   \relax 
-l.587 \begin{equation}
-                      \label{eq:TI} \tag{TR} [11]pdfTeX warning (ext4): destina
-tion with the same identifier (name{equation.2.1}) has been already used, dupli
-cate ignored
-<to be read again> 
-                   \relax 
-l.604 \begin{equation}
-                      \label{eqn:SEM-PO}pdfTeX warning (ext4): destination with
- the same identifier (name{equation.2.1}) has been already used, duplicate igno
-red
-<to be read again> 
-                   \relax 
-l.604 \begin{equation}
-                      \label{eqn:SEM-PO}pdfTeX warning (ext4): destination with
- the same identifier (name{equation.2.1}) has been already used, duplicate igno
-red
-<to be read again> 
-                   \relax 
-l.604 \begin{equation}
-                      \label{eqn:SEM-PO}pdfTeX warning (ext4): destination with
- the same identifier (name{equation.2.1}) has been already used, duplicate igno
-red
-<to be read again> 
-                   \relax 
-l.604 \begin{equation}
-                      \label{eqn:SEM-PO} [12] [13]pdfTeX warning (ext4): destin
-ation with the same identifier (name{equation.2.5}) has been already used, dupl
-icate ignored
-<to be read again> 
-                   \relax 
-l.802   \end{align}
-                    [14] [15] [16] (./tables_and_figures/policies_inregs.tex)
-[17]
-<tables_and_figures/transit.pdf, id=618, 505.89pt x 252.945pt>
+[4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
+(./tables_and_figures/policies_inregs.tex) [17]
 File: tables_and_figures/transit.pdf Graphic file (type pdf)
 <use tables_and_figures/transit.pdf>
-Package pdftex.def Info: tables_and_figures/transit.pdf  used on input line 100
-6.
-(pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/workplaces.pdf, id=619, 505.89pt x 252.945pt>
 File: tables_and_figures/workplaces.pdf Graphic file (type pdf)
 <use tables_and_figures/workplaces.pdf>
-Package pdftex.def Info: tables_and_figures/workplaces.pdf  used on input line 
-1007.
-(pdftex.def)             Requested size: 216.81pt x 108.40527pt.
 
-Overfull \hbox (13.65pt too wide) in paragraph at lines 1005--1009
+Overfull \hbox (13.64635pt too wide) in paragraph at lines 1031--1035
  [][] 
  []
 
-[18 <./tables_and_figures/transit.pdf> <./tables_and_figures/workplaces.pdf>]
-(./tables_and_figures/corr.tex)
-<tables_and_figures/pmaskbus_p.pdf, id=645, 289.08pt x 144.54pt>
+[18] (./tables_and_figures/corr.tex)
 File: tables_and_figures/pmaskbus_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus_p.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus_p.pdf  used on input line 
-1065.
-(pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pk12_p.pdf, id=646, 289.08pt x 144.54pt>
 File: tables_and_figures/pk12_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12_p.pdf>
-Package pdftex.def Info: tables_and_figures/pk12_p.pdf  used on input line 1067
-.
-(pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pshelter_p.pdf, id=647, 289.08pt x 144.54pt>
 File: tables_and_figures/pshelter_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter_p.pdf>
-Package pdftex.def Info: tables_and_figures/pshelter_p.pdf  used on input line 
-1069.
-(pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pmovie_p.pdf, id=648, 289.08pt x 144.54pt>
 File: tables_and_figures/pmovie_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie_p.pdf>
-Package pdftex.def Info: tables_and_figures/pmovie_p.pdf  used on input line 10
-71.
-(pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/prestaurant_p.pdf, id=649, 289.08pt x 144.54pt>
 File: tables_and_figures/prestaurant_p.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant_p.pdf>
-Package pdftex.def Info: tables_and_figures/prestaurant_p.pdf  used on input li
-ne 1073.
-(pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pnonessential_p.pdf, id=650, 289.08pt x 144.54pt>
 File: tables_and_figures/pnonessential_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential_p.pdf>
-Package pdftex.def Info: tables_and_figures/pnonessential_p.pdf  used on input 
-line 1075.
-(pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
-[20 <./tables_and_figures/pmaskbus_p.pdf> <./tables_and_figures/pk12_p.pdf> <./
-tables_and_figures/pshelter_p.pdf> <./tables_and_figures/pmovie_p.pdf> <./table
-s_and_figures/prestaurant_p.pdf> <./tables_and_figures/pnonessential_p.pdf>]
+ [19] [20]
 (./tables_and_figures/behavior-NI-pib.tex)
 
-LaTeX Warning: Float too large for page by 17.57816pt on input line 1178.
+LaTeX Warning: Float too large for page by 17.5521pt on input line 1204.
 
 (./tables_and_figures/behavior-deathsinfo-NI-pib.tex)
 
-LaTeX Warning: Float too large for page by 1.11406pt on input line 1178.
+LaTeX Warning: Float too large for page by 1.088pt on input line 1204.
 
 [21] [22]
-<tables_and_figures/pmaskbus-cases-14.pdf, id=725, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus-cases-14.pdf  used on inpu
-t line 1207.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pmaskbus-deaths-21.pdf, id=726, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus-deaths-21.pdf  used on inp
-ut line 1209.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1206--1211
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1232--1237
  [][] 
  []
 
@@ -1329,19 +1081,13 @@ Overfull \hbox (20.00002pt too wide) in paragraph at lines 1206--1211
 
 
 
- <./tables_and_figures/pmaskbus-cases-14.pdf> <./tables_and_figures/pmaskbus-de
-aths-21.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pmaskbu
-s-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in a si
-ngle page
->] (./tables_and_figures/cases-pbiy.tex)
-Overfull \hbox (2.06758pt too wide) in paragraph at lines 1--1279
+] (./tables_and_figures/cases-pbiy.tex)
+Overfull \hbox (1.9795pt too wide) in paragraph at lines 1--1305
  [][] 
  []
 
 (./tables_and_figures/deaths-deathsinfo-pbiy.tex)
-Overfull \hbox (2.06758pt too wide) in paragraph at lines 1--1279
+Overfull \hbox (1.9795pt too wide) in paragraph at lines 1--1305
  [][] 
  []
 
@@ -1351,12 +1097,12 @@ Overfull \hbox (2.06758pt too wide) in paragraph at lines 1--1279
 
 
 ] [26] [27] (./tables_and_figures/cases-piy.tex)
-Overfull \hbox (2.06758pt too wide) in paragraph at lines 1--1734
+Overfull \hbox (1.9795pt too wide) in paragraph at lines 1--1760
  [][] 
  []
 
 (./tables_and_figures/deaths-deathsinfo-piy.tex)
-Overfull \hbox (2.06758pt too wide) in paragraph at lines 1--1734
+Overfull \hbox (1.9795pt too wide) in paragraph at lines 1--1760
  [][] 
  []
 
@@ -1379,623 +1125,252 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ]
 [34]
-<tables_and_figures/pmaskbus-whisker-14.pdf, id=957, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-whisker-14.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus-whisker-14.pdf  used on in
-put line 1809.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pmaskbus-whisker-7.pdf, id=958, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-whisker-7.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus-whisker-7.pdf  used on inp
-ut line 1811.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1807--1813
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1833--1839
  [][] 
  []
 
-<tables_and_figures/pk12-whisker-14.pdf, id=959, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-whisker-14.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-whisker-14.pdf  used on input 
-line 1820.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pk12-whisker-7.pdf, id=960, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-whisker-7.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-whisker-7.pdf  used on input l
-ine 1822.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1818--1824
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1844--1850
  [][] 
  []
 
-<tables_and_figures/pshelter-whisker-14.pdf, id=961, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-whisker-14.pdf>
-Package pdftex.def Info: tables_and_figures/pshelter-whisker-14.pdf  used on in
-put line 1840.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pshelter-whisker-7.pdf, id=962, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-whisker-7.pdf>
-Package pdftex.def Info: tables_and_figures/pshelter-whisker-7.pdf  used on inp
-ut line 1842.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1838--1844
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1864--1870
  [][] 
  []
 
-<tables_and_figures/pindex-whisker-14.pdf, id=963, 289.08pt x 216.81pt>
 File: tables_and_figures/pindex-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pindex-whisker-14.pdf>
-Package pdftex.def Info: tables_and_figures/pindex-whisker-14.pdf  used on inpu
-t line 1851.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pindex-whisker-7.pdf, id=964, 289.08pt x 216.81pt>
 File: tables_and_figures/pindex-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pindex-whisker-7.pdf>
-Package pdftex.def Info: tables_and_figures/pindex-whisker-7.pdf  used on input
- line 1853.
-(pdftex.def)             Requested size: 216.81pt x 162.60709pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 1849--1855
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 1875--1881
  [][] 
  []
 
-<tables_and_figures/pk12-cases-14.pdf, id=965, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-cases-14.pdf  used on input li
-ne 1868.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pk12-deaths-21.pdf, id=966, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-deaths-21.pdf  used on input l
-ine 1870.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 
-Overfull \hbox (5.2584pt too wide) in paragraph at lines 1867--1878
+Overfull \hbox (5.2584pt too wide) in paragraph at lines 1893--1904
  [][] 
  []
 
-[35] [36 <./tables_and_figures/pmaskbus-whisker-14.pdf> <./tables_and_figures/p
-maskbus-whisker-7.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pmaskbu
-s-whisker-7.pdf): PDF inclusion: multiple pdfs with page group included in a si
-ngle page
-> <./tables_and_figures/pk12-whisker-14.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pk12-wh
-isker-14.pdf): PDF inclusion: multiple pdfs with page group included in a singl
-e page
-> <./tables_and_figures/pk12-whisker-7.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pk12-wh
-isker-7.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
->] [37 <./tables_and_figures/pshelter-whisker-14.pdf> <./tables_and_figures/psh
-elter-whisker-7.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pshelte
-r-whisker-7.pdf): PDF inclusion: multiple pdfs with page group included in a si
-ngle page
-> <./tables_and_figures/pindex-whisker-14.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pindex-
-whisker-14.pdf): PDF inclusion: multiple pdfs with page group included in a sin
-gle page
-> <./tables_and_figures/pindex-whisker-7.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pindex-
-whisker-7.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
->] [38 <./tables_and_figures/pk12-cases-14.pdf> <./tables_and_figures/pk12-deat
-hs-21.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pk12-de
-aths-21.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
->] (./tables_and_figures/cases-fe-piy.tex)
-Overfull \hbox (2.06758pt too wide) in paragraph at lines 1--1926
+[35] [36] [37] [38] (./tables_and_figures/cases-fe-piy.tex)
+Overfull \hbox (1.9795pt too wide) in paragraph at lines 1--1952
  [][] 
  []
 
 (./tables_and_figures/deaths-fe-piy.tex)
-Overfull \hbox (2.06758pt too wide) in paragraph at lines 1--1926
+Overfull \hbox (1.9795pt too wide) in paragraph at lines 1--1952
  [][] 
  []
 
 [39
 
 ]
+File: tables_and_figures/Washington-mask-dgrowth_idx.pdf Graphic file (type pdf
+)
+<use tables_and_figures/Washington-mask-dgrowth_idx.pdf>
+File: tables_and_figures/Washington-mask-dcases_idx.pdf Graphic file (type pdf)
 
-./covidEffectOfNPI-revision.tex:1944: LaTeX Error: File `tables_and_figures/Was
-hington-mask-growth' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1944 ...bles_and_figures/Washington-mask-growth}
-                                                  
-? 
-<tables_and_figures/Washington-mask-dgrowth_v1.pdf, id=1089, 361.35pt x 271.012
-5pt>
-File: tables_and_figures/Washington-mask-dgrowth_v1.pdf Graphic file (type pdf)
-
-<use tables_and_figures/Washington-mask-dgrowth_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-mask-dgrowth_v1.pdf  use
-d on input line 1946.
-(pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-dcases_v1.pdf, id=1090, 361.35pt x 271.0125
-pt>
-File: tables_and_figures/Washington-mask-dcases_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/Washington-mask-dcases_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-mask-dcases_v1.pdf  used
- on input line 1947.
-(pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-
-./covidEffectOfNPI-revision.tex:1951: LaTeX Error: File `tables_and_figures/Was
-hington-mask-growth_deaths' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1951 ...d_figures/Washington-mask-growth_deaths}
-                                                  
-? 
-<tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf, id=1091, 361.35pt x 
-271.0125pt>
-File: tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf Graphic file (ty
+<use tables_and_figures/Washington-mask-dcases_idx.pdf>
+File: tables_and_figures/Washington-mask-dgrowth_deaths_idx.pdf Graphic file (t
+ype pdf)
+<use tables_and_figures/Washington-mask-dgrowth_deaths_idx.pdf>
+File: tables_and_figures/Washington-mask-dcases_deaths_idx.pdf Graphic file (ty
 pe pdf)
-<use tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-mask-dgrowth_deaths_v1.p
-df  used on input line 1952.
-(pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-dcases_deaths_v1.pdf, id=1092, 361.35pt x 2
-71.0125pt>
-File: tables_and_figures/Washington-mask-dcases_deaths_v1.pdf Graphic file (typ
-e pdf)
-<use tables_and_figures/Washington-mask-dcases_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-mask-dcases_deaths_v1.pd
-f  used on input line 1953.
-(pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-[40
+<use tables_and_figures/Washington-mask-dcases_deaths_idx.pdf>
 
- <./tables_and_figures/Washington-mask-dgrowth_v1.pdf> <./tables_and_figures/Wa
-shington-mask-dcases_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/Washing
-ton-mask-dcases_v1.pdf): PDF inclusion: multiple pdfs with page group included 
-in a single page
-> <./tables_and_figures/Washington-mask-dgrowth_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/Washing
-ton-mask-dgrowth_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group i
-ncluded in a single page
-> <./tables_and_figures/Washington-mask-dcases_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/Washing
-ton-mask-dcases_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group in
-cluded in a single page
->]
-<tables_and_figures/us-mask-dgrowth_v1.pdf, id=1176, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-mask-dgrowth_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-mask-dgrowth_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_v1.pdf  used on inp
-ut line 2026.
-(pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-File: tables_and_figures/us-mask-rel_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-mask-rel_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-mask-rel_v1.pdf  used on input l
-ine 2028.
-(pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-<tables_and_figures/us-mask-dgrowth_deaths_v1.pdf, id=1177, 361.35pt x 271.0125
-pt>
-File: tables_and_figures/us-mask-dgrowth_deaths_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-mask-dgrowth_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_deaths_v1.pdf  used
- on input line 2032.
-(pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-File: tables_and_figures/us-mask-rel_deaths_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-mask-rel_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-mask-rel_deaths_v1.pdf  used on 
-input line 2034.
-(pdftex.def)             Requested size: 212.47618pt x 159.35838pt.
-
-Overfull \hbox (11.33238pt too wide) in paragraph at lines 2024--2036
+Overfull \hbox (11.33238pt too wide) in paragraph at lines 1984--1998
  [][] 
  []
 
+File: tables_and_figures/us-mask-dgrowth_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-mask-dgrowth_idx.pdf>
+File: tables_and_figures/us-mask-rel_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-mask-rel_idx.pdf>
+File: tables_and_figures/us-mask-dgrowth_deaths_idx.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `fig:MA-mask' on page 41 undefined on input line 2049.
+<use tables_and_figures/us-mask-dgrowth_deaths_idx.pdf>
+File: tables_and_figures/us-mask-rel_deaths_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-mask-rel_deaths_idx.pdf>
 
+Overfull \hbox (11.33238pt too wide) in paragraph at lines 2066--2078
+ [][] 
+ []
 
-
-LaTeX Warning: Reference `fig:IL-mask' on page 41 undefined on input line 2049.
-
-
-<tables_and_figures/Washington-nb-dgrowth_v1.pdf, id=1180, 361.35pt x 271.0125p
-t>
-File: tables_and_figures/Washington-nb-dgrowth_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/Washington-nb-dgrowth_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-nb-dgrowth_v1.pdf  used 
-on input line 2075.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/Washington-nb-dcases_v1.pdf, id=1181, 361.35pt x 271.0125pt
->
-File: tables_and_figures/Washington-nb-dcases_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/Washington-nb-dcases_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-nb-dcases_v1.pdf  used o
-n input line 2077.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf, id=1182, 361.35pt x 27
-1.0125pt>
-File: tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf Graphic file (type
- pdf)
-<use tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf
-  used on input line 2080.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/Washington-nb-dcases_deaths_v1.pdf, id=1183, 361.35pt x 271
-.0125pt>
-File: tables_and_figures/Washington-nb-dcases_deaths_v1.pdf Graphic file (type 
-pdf)
-<use tables_and_figures/Washington-nb-dcases_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/Washington-nb-dcases_deaths_v1.pdf 
- used on input line 2081.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-
-Overfull \vbox (1.25935pt too high) has occurred while \output is active []
-
-
-[41]
-<tables_and_figures/us-nb-dgrowth_v1.pdf, id=1191, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-nb-dgrowth_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-nb-dgrowth_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-nb-dgrowth_v1.pdf  used on input
- line 2098.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-File: tables_and_figures/us-nb-rel_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-nb-rel_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-nb-rel_v1.pdf  used on input lin
-e 2100.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-nb-dgrowth_deaths_v1.pdf, id=1192, 361.35pt x 271.0125pt
->
-File: tables_and_figures/us-nb-dgrowth_deaths_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-nb-dgrowth_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-nb-dgrowth_deaths_v1.pdf  used o
-n input line 2104.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-nb-rel_deaths_v1.pdf, id=1193, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-nb-rel_deaths_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-nb-rel_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-nb-rel_deaths_v1.pdf  used on in
-put line 2106.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
- [42 <./tables_and_figures/us-mask-dgrowth_v1.pdf> <./tables_and_figures/us-mas
-k-dgrowth_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-mask
--dgrowth_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group included 
-in a single page
->]
-<tables_and_figures/us-shelter-dgrowth_v1.pdf, id=1229, 361.35pt x 271.0125pt>
-File: tables_and_figures/us-shelter-dgrowth_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-shelter-dgrowth_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-shelter-dgrowth_v1.pdf  used on 
-input line 2127.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-File: tables_and_figures/us-shelter-rel_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-shelter-rel_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-shelter-rel_v1.pdf  used on inpu
-t line 2129.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf, id=1230, 361.35pt x 271.0
-125pt>
-File: tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf Graphic file (type pd
-f)
-<use tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-shelter-dgrowth_deaths_v1.pdf  u
-sed on input line 2133.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
-<tables_and_figures/us-shelter-rel_deaths_v1.pdf, id=1231, 361.35pt x 271.0125p
-t>
-File: tables_and_figures/us-shelter-rel_deaths_v1.pdf Graphic file (type pdf)
-<use tables_and_figures/us-shelter-rel_deaths_v1.pdf>
-Package pdftex.def Info: tables_and_figures/us-shelter-rel_deaths_v1.pdf  used 
-on input line 2135.
-(pdftex.def)             Requested size: 195.12767pt x 146.34456pt.
- [43 <./tables_and_figures/Washington-nb-dgrowth_v1.pdf> <./tables_and_figures/
-Washington-nb-dcases_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/Washing
-ton-nb-dcases_v1.pdf): PDF inclusion: multiple pdfs with page group included in
- a single page
-> <./tables_and_figures/Washington-nb-dgrowth_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/Washing
-ton-nb-dgrowth_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group inc
-luded in a single page
-> <./tables_and_figures/Washington-nb-dcases_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/Washing
-ton-nb-dcases_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group incl
-uded in a single page
->] [44 <./tables_and_figures/us-nb-dgrowth_v1.pdf> <./tables_and_figures/us-nb-
-dgrowth_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-nb-d
-growth_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group included in
- a single page
-> <./tables_and_figures/us-nb-rel_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-nb-r
-el_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group included in a s
-ingle page
->] [45 <./tables_and_figures/us-shelter-dgrowth_v1.pdf> <./tables_and_figures/u
-s-shelter-dgrowth_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-shel
-ter-dgrowth_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group includ
-ed in a single page
-> <./tables_and_figures/us-shelter-rel_deaths_v1.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/us-shel
-ter-rel_deaths_v1.pdf): PDF inclusion: multiple pdfs with page group included i
-n a single page
->]
-
-LaTeX Warning: Reference `fig:US-nop-SI' on page 46 undefined on input line 217
-5.
-
-[46
-
-] (./covidEffectOfNPI-revision.bbl [47
+[40
 
 ]
+File: tables_and_figures/us-index-dgrowth_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-index-dgrowth_idx.pdf>
+File: tables_and_figures/us-index-rel_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-index-rel_idx.pdf>
+File: tables_and_figures/us-index-dgrowth_deaths_idx.pdf Graphic file (type pdf
+)
+<use tables_and_figures/us-index-dgrowth_deaths_idx.pdf>
+File: tables_and_figures/us-index-rel_deaths_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-index-rel_deaths_idx.pdf>
+ [41]
+File: tables_and_figures/us-shelter-dgrowth_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-shelter-dgrowth_idx.pdf>
+File: tables_and_figures/us-shelter-rel_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-shelter-rel_idx.pdf>
+File: tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf Graphic file (type p
+df)
+<use tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf>
+File: tables_and_figures/us-shelter-rel_deaths_idx.pdf Graphic file (type pdf)
+<use tables_and_figures/us-shelter-rel_deaths_idx.pdf>
+ [42] [43] [44] (./covidEffectOfNPI-revision.bbl [45
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [47]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [48]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [49]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ [49])
+[50]
 
- [50])
-[51]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Delta' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Delta' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathop' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathop' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathgroup' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathgroup' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\symoperators' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\symoperators' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@ifnextchar' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Delta' on input line 2366.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 2307.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 2366.
 
 (./tables_and_figures/casecor.tex) (./tables_and_figures/casediff.tex)
-<tables_and_figures/casesdeaths_q.pdf, id=1482, 505.89pt x 505.89pt>
 File: tables_and_figures/casesdeaths_q.pdf Graphic file (type pdf)
 <use tables_and_figures/casesdeaths_q.pdf>
-Package pdftex.def Info: tables_and_figures/casesdeaths_q.pdf  used on input li
-ne 2340.
-(pdftex.def)             Requested size: 346.90308pt x 303.53633pt.
 
 (./tables_and_figures/newcasecor.tex) (./tables_and_figures/weekcasecor.tex
-[52]) (./tables_and_figures/weekdeathcor.tex)
-<tables_and_figures/casequantiles.pdf, id=1498, 505.89pt x 252.945pt>
+[51]) (./tables_and_figures/weekdeathcor.tex)
 File: tables_and_figures/casequantiles.pdf Graphic file (type pdf)
 <use tables_and_figures/casequantiles.pdf>
-Package pdftex.def Info: tables_and_figures/casequantiles.pdf  used on input li
-ne 2411.
-(pdftex.def)             Requested size: 325.215pt x 162.60985pt.
-<tables_and_figures/deathquantiles.pdf, id=1499, 505.89pt x 252.945pt>
 File: tables_and_figures/deathquantiles.pdf Graphic file (type pdf)
 <use tables_and_figures/deathquantiles.pdf>
-Package pdftex.def Info: tables_and_figures/deathquantiles.pdf  used on input l
-ine 2413.
-(pdftex.def)             Requested size: 325.215pt x 162.60985pt.
- [53 <./tables_and_figures/casesdeaths_q.pdf>] [54 <./tables_and_figures/casequ
-antiles.pdf> <./tables_and_figures/deathquantiles.pdf>]
+ [52] [53]
 File: tables_and_figures/workplaces.pdf Graphic file (type pdf)
 <use tables_and_figures/workplaces.pdf>
-Package pdftex.def Info: tables_and_figures/workplaces.pdf  used on input line 
-2463.
-(pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/retail.pdf, id=1540, 505.89pt x 252.945pt>
 File: tables_and_figures/retail.pdf Graphic file (type pdf)
 <use tables_and_figures/retail.pdf>
-Package pdftex.def Info: tables_and_figures/retail.pdf  used on input line 2465
-.
-(pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/grocery.pdf, id=1541, 505.89pt x 252.945pt>
 File: tables_and_figures/grocery.pdf Graphic file (type pdf)
 <use tables_and_figures/grocery.pdf>
-Package pdftex.def Info: tables_and_figures/grocery.pdf  used on input line 246
-7.
-(pdftex.def)             Requested size: 216.81pt x 108.40527pt.
 File: tables_and_figures/transit.pdf Graphic file (type pdf)
 <use tables_and_figures/transit.pdf>
-Package pdftex.def Info: tables_and_figures/transit.pdf  used on input line 246
-9.
-(pdftex.def)             Requested size: 216.81pt x 108.40527pt.
 
-Overfull \hbox (20.00002pt too wide) in paragraph at lines 2462--2475
+Overfull \hbox (20.00002pt too wide) in paragraph at lines 2521--2534
 [][] 
  []
 
 File: tables_and_figures/pmaskbus-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus-cases-14.pdf  used on inpu
-t line 2516.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 File: tables_and_figures/pmaskbus-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/pmaskbus-deaths-21.pdf  used on inp
-ut line 2518.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 File: tables_and_figures/pk12-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-cases-14.pdf  used on input li
-ne 2520.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 File: tables_and_figures/pk12-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/pk12-deaths-21.pdf  used on input l
-ine 2522.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pshelter-cases-14.pdf, id=1552, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/pshelter-cases-14.pdf  used on inpu
-t line 2524.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pshelter-deaths-21.pdf, id=1553, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/pshelter-deaths-21.pdf  used on inp
-ut line 2526.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 
-Overfull \hbox (5.2584pt too wide) in paragraph at lines 2515--2535
+Overfull \hbox (5.2584pt too wide) in paragraph at lines 2574--2594
  [][] 
  []
 
-<tables_and_figures/pmovie-cases-14.pdf, id=1554, 289.08pt x 216.81pt>
 File: tables_and_figures/pmovie-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/pmovie-cases-14.pdf  used on input 
-line 2549.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pmovie-deaths-21.pdf, id=1555, 289.08pt x 216.81pt>
 File: tables_and_figures/pmovie-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/pmovie-deaths-21.pdf  used on input
- line 2551.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/prestaurant-cases-14.pdf, id=1556, 289.08pt x 216.81pt>
 File: tables_and_figures/prestaurant-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/prestaurant-cases-14.pdf  used on i
-nput line 2553.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/prestaurant-deaths-21.pdf, id=1557, 289.08pt x 216.81pt>
 File: tables_and_figures/prestaurant-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/prestaurant-deaths-21.pdf  used on 
-input line 2555.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pnonessential-cases-14.pdf, id=1558, 289.08pt x 216.81pt>
 File: tables_and_figures/pnonessential-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential-cases-14.pdf>
-Package pdftex.def Info: tables_and_figures/pnonessential-cases-14.pdf  used on
- input line 2557.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pnonessential-deaths-21.pdf, id=1559, 289.08pt x 216.81pt>
 File: tables_and_figures/pnonessential-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential-deaths-21.pdf>
-Package pdftex.def Info: tables_and_figures/pnonessential-deaths-21.pdf  used o
-n input line 2559.
-(pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
 
-Overfull \hbox (5.2584pt too wide) in paragraph at lines 2548--2567
+Overfull \hbox (5.2584pt too wide) in paragraph at lines 2607--2626
  [][] 
  []
 
-[55 <./tables_and_figures/retail.pdf> <./tables_and_figures/grocery.pdf>]
-[56 <./tables_and_figures/pshelter-cases-14.pdf> <./tables_and_figures/pshelter
--deaths-21.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pshelte
-r-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in a si
-ngle page
->] [57 <./tables_and_figures/pmovie-cases-14.pdf> <./tables_and_figures/pmovie-
-deaths-21.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pmovie-
-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in a sing
-le page
-> <./tables_and_figures/prestaurant-cases-14.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/prestau
-rant-cases-14.pdf): PDF inclusion: multiple pdfs with page group included in a 
-single page
-> <./tables_and_figures/prestaurant-deaths-21.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/prestau
-rant-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in a
- single page
-> <./tables_and_figures/pnonessential-cases-14.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pnoness
-ential-cases-14.pdf): PDF inclusion: multiple pdfs with page group included in 
-a single page
-> <./tables_and_figures/pnonessential-deaths-21.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/pnoness
-ential-deaths-21.pdf): PDF inclusion: multiple pdfs with page group included in
- a single page
->] (./tables_and_figures/policies.tex) [58
+[54] [55] [56] (./tables_and_figures/policies.tex) [57
 
 
-] [59
+] [58
 
 
-] [60]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2708.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2708.
+] [59]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2767.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2767.
 
 (./covidEffectOfNPI-revision.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2708.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2708.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2767.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2767.
 
 Package rerunfilecheck Info: File `covidEffectOfNPI-revision.out' has not chang
 ed.
-(rerunfilecheck)             Checksum: BEB3FA6E5E4E9CA46A8F896178299256;2566.
+(rerunfilecheck)             Checksum: C4AFC7E05615A167C609F8B1E8EA5246;2836.
 
 
 LaTeX Warning: There were undefined references.
@@ -2003,53 +1378,15 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2708.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2767.
  ) 
 Here is how much of TeX's memory you used:
- 25239 strings out of 480480
- 484348 string characters out of 5899675
- 800642 words of memory out of 5000000
- 40169 multiletter control sequences out of 15000+600000
- 549376 words of font info for 86 fonts, out of 8000000 for 9000
- 1302 hyphenation exceptions out of 8191
- 60i,21n,79p,2224b,995s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/lo
-cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></
-usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb
-></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></
-usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/loca
-l/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/
-texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texliv
-e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2020
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2020/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2020/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2020/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2020/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2020/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/font
-s/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2020/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmtt9.pfb>
-Output written on covidEffectOfNPI-revision.pdf (60 pages, 3036087 bytes).
-PDF statistics:
- 1918 PDF objects out of 2073 (max. 8388607)
- 1596 compressed objects within 16 object streams
- 276 named destinations out of 1000 (max. 500000)
- 562 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 27997 strings out of 479284
+ 513535 string characters out of 5886221
+ 831704 words of memory out of 5000000
+ 44826 multiletter control sequences out of 15000+600000
+ 547754 words of font info for 96 fonts, out of 8000000 for 9000
+ 1509 hyphenation exceptions out of 8191
+ 60i,21n,79p,2224b,991s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+Output written on covidEffectOfNPI-revision.pdf (59 pages).

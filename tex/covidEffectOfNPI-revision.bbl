@@ -1,4 +1,4 @@
-\begin{thebibliography}{82}
+\begin{thebibliography}{81}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -576,17 +576,6 @@ Tinbergen, Jan. 1940.
 \newblock \enquote{On a method of statistical business-cycle research. A
   reply.}
 \newblock \emph{The Economic Journal} :141--154.
-
-\bibitem[{Wang et~al.(2020)Wang, Tian, Zhang, Zhang, Guo, Wu, Zhang, Kan, Jia,
-  Huo, Liu, Wang, Sun, Wang, Yang, and MacIntyre}]{Wang2020}
-Wang, Yu, Huaiyu Tian, Li~Zhang, Man Zhang, Dandan Guo, Wenting Wu, Xingxing
-  Zhang, Ge~Lin Kan, Lei Jia, Da~Huo, Baiwei Liu, Xiaoli Wang, Ying Sun, Quanyi
-  Wang, Peng Yang, and C.~Raina MacIntyre. 2020.
-\newblock \enquote{Reduction of secondary transmission of SARS-CoV-2 in
-  households by face mask use, disinfection and social distancing: a cohort
-  study in Beijing, China.}
-\newblock \emph{BMJ Global Health} 5~(5).
-\newblock \urlprefix\url{https://gh.bmj.com/content/5/5/e002794}.
 
 \bibitem[{Wheaton and Thompson(2020)}]{wheaton2020}
 Wheaton, William~C. and Anne~Kinsella Thompson. 2020.
