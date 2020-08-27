@@ -1,4 +1,4 @@
-\begin{thebibliography}{63}
+\begin{thebibliography}{81}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -42,6 +42,15 @@ Andersen, Martin. 2020.
 \newblock \enquote{Early Evidence on Social Distancing in Response to COVID-19
   in the United States.}
 \newblock Tech. rep., UNC Greensboro.
+
+\bibitem[{Anfinrud et~al.(2020)Anfinrud, Stadnytskyi, Bax, and
+  Bax}]{Anfinrud2020}
+Anfinrud, Philip, Valentyn Stadnytskyi, Christina~E. Bax, and Adriaan Bax.
+  2020.
+\newblock \enquote{Visualizing Speech-Generated Oral Fluid Droplets with Laser
+  Light Scattering.}
+\newblock \emph{New England Journal of Medicine} 382~(21):2061--2063.
+\newblock \urlprefix\url{https://www.nejm.org/doi/full/10.1056/NEJMc2007800}.
 
 \bibitem[{Atkeson(2020{\natexlab{a}})}]{atkeson2020b}
 Atkeson, Andrew. 2020{\natexlab{a}}.
@@ -105,6 +114,13 @@ Chen, Shuowen, Victor Chernozhukov, and Iv{\'a}n Fern{\'a}ndez-Val. 2019.
   growth.}
 \newblock In \emph{AEA Papers and Proceedings}, vol. 109. 77--82.
 
+\bibitem[{Chen et~al.(2020)Chen, Chernozhukov, Fernandez-Val, Kasahara, and
+  Schrimpf}]{chen2020}
+Chen, Shuowen, Victor Chernozhukov, Ivan Fernandez-Val, Hiroyuki Kasahara, and
+  Paul Schrimpf. 2020.
+\newblock \enquote{Cross-Over Jackknife Bias Correction for Non-Stationary
+  Nonlinear Panel Data.}
+
 \bibitem[{Chernozhukov et~al.(2018)Chernozhukov, Chetverikov, Demirer, Duflo,
   Hansen, Newey, and Robins}]{chernozhukov18}
 Chernozhukov, Victor, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian
@@ -121,6 +137,27 @@ Chetty, Raj, John~N Friedman, Nathaniel Hendren, and Michael Stepner. 2020.
 \newblock \enquote{Real-Time Economics: A New Platform to Track the Impacts of
   COVID-19 on People, Businesses, and Communities Using Private Sector Data.}
 \newblock Tech. rep., Mimeo.
+
+\bibitem[{Chu et~al.(2020)Chu, Akl, Duda, Solo, Yaacoub, Sch{\"u}nemann,
+  El-harakeh, Bognanni, Lotfi, Loeb, Hajizadeh, Bak, Izcovich, Cuello-Garcia,
+  Chen, Harris, Borowiack, Chamseddine, Sch{\"u}nemann, Morgano,
+  Muti~Sch{\"u}nemann, Chen, Zhao, Neumann, Chan, Khabsa, Hneiny, Harrison,
+  Smith, Rizk, Giorgi~Rossi, AbiHanna, El-khoury, Stalteri, Baldeh, Piggott,
+  Zhang, Saad, Khamis, and Reinap}]{Chu2020}
+Chu, Derek~K, Elie~A Akl, Stephanie Duda, Karla Solo, Sally Yaacoub, Holger~J
+  Sch{\"u}nemann, Amena El-harakeh, Antonio Bognanni, Tamara Lotfi, Mark Loeb,
+  Anisa Hajizadeh, Anna Bak, Ariel Izcovich, Carlos~A Cuello-Garcia, Chen Chen,
+  David~J Harris, Ewa Borowiack, Fatimah Chamseddine, Finn Sch{\"u}nemann,
+  Gian~Paolo Morgano, Giovanna E~U Muti~Sch{\"u}nemann, Guang Chen, Hong Zhao,
+  Ignacio Neumann, Jeffrey Chan, Joanne Khabsa, Layal Hneiny, Leila Harrison,
+  Maureen Smith, Nesrine Rizk, Paolo Giorgi~Rossi, Pierre AbiHanna, Rayane
+  El-khoury, Rosa Stalteri, Tejan Baldeh, Thomas Piggott, Yuan Zhang, Zahra
+  Saad, Assem Khamis, and Marge Reinap. 2020.
+\newblock \enquote{Physical distancing, face masks, and eye protection to
+  prevent person-to-person transmission of SARS-CoV-2 and COVID-19: a
+  systematic review and meta-analysis.}
+\newblock \emph{The Lancet} 395~(10242):1973--1987.
+\newblock \urlprefix\url{https://doi.org/10.1016/S0140-6736(20)31142-9}.
 
 \bibitem[{Coibion, Gorodnichenko, and Weber(2020)}]{coibion2020labor}
 Coibion, Olivier, Yuriy Gorodnichenko, and Michael Weber. 2020.
@@ -196,10 +233,10 @@ Gupta, Sumedha, Thuy~D Nguyen, Felipe~Lozano Rojas, Shyam Raman, Byungkyu Lee,
 \newblock Working Paper 27027, National Bureau of Economic Research.
 \newblock \urlprefix\url{http://www.nber.org/papers/w27027}.
 
-\bibitem[{Haavelmo(1944)}]{haavelmo1944}
+\bibitem[{Haavelmo(1944)}]{haavelmo:1944}
 Haavelmo, Trygve. 1944.
-\newblock \enquote{The probability approach in econometrics.}
-\newblock \emph{Econometrica: Journal of the Econometric Society} :iii--115.
+\newblock \enquote{The Probability Approach in Econometrics.}
+\newblock \emph{Econometrica} 12:iii--vi+1--115.
 
 \bibitem[{Harris(2020)}]{NBERw27021}
 Harris, Jeffrey~E. 2020.
@@ -207,6 +244,24 @@ Harris, Jeffrey~E. 2020.
   York City.}
 \newblock Working Paper 27021, National Bureau of Economic Research.
 \newblock \urlprefix\url{http://www.nber.org/papers/w27021}.
+
+\bibitem[{He et~al.(2020)He, Lau, Wu, Deng, Wang, Hao, Lau, Wong, Guan, Tan,
+  Mo, Chen, Liao, Chen, Hu, Zhang, Zhong, Wu, Zhao, Zhang, Cowling, Li, and
+  Leung}]{He2020}
+He, Xi, Eric H.~Y. Lau, Peng Wu, Xilong Deng, Jian Wang, Xinxin Hao, Yiu~Chung
+  Lau, Jessica~Y. Wong, Yujuan Guan, Xinghua Tan, Xiaoneng Mo, Yanqing Chen,
+  Baolin Liao, Weilie Chen, Fengyu Hu, Qing Zhang, Mingqiu Zhong, Yanrong Wu,
+  Lingzhai Zhao, Fuchun Zhang, Benjamin~J. Cowling, Fang Li, and Gabriel~M.
+  Leung. 2020.
+\newblock \enquote{Temporal dynamics in viral shedding and transmissibility of
+  COVID-19.}
+\newblock \emph{Nature Medicine} 26~(5):672--675.
+\newblock \urlprefix\url{https://doi.org/10.1038/s41591-020-0869-5}.
+
+\bibitem[{Heckman and Pinto(2013)}]{heckman:pinto}
+Heckman, James~J and Rodrigo Pinto. 2013.
+\newblock \enquote{Causal analysis after Haavelmo.}
+\newblock Tech. rep., National Bureau of Economic Research.
 
 \bibitem[{Hern\'{a}n and Robins(2020)}]{hernanrobins2020book}
 Hern\'{a}n, M.A. and J.M. Robins. 2020.
@@ -285,11 +340,27 @@ Keppo, Juusi, Elena Quercioli, Mariana Kudlyak, Lones Smith, and Andrea Wilson.
   and COVID-19 pandemics.}
 \newblock In \emph{Virtual Macro Seminar}.
 
-\bibitem[{Lee et~al.(2020)Lee, Kim, Lee, Lee, Kim, Rhee, Park, Son, Yu, Park,
-  Choo, Park, Loeb, and Kim}]{Lee2020jama}
+\bibitem[{Kovacs, Dunaiski, and Tukiainen(2020)}]{kovacs2020}
+Kovacs, Roxanne, Maurice Dunaiski, and Janne Tukiainen. 2020.
+\newblock \enquote{Compulsory Face Mask Policies Do not Affect Community
+  Mobility in Germany.}
+\newblock
+  \urlprefix\url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3620070}.
+
+\bibitem[{Lee et~al.(2020{\natexlab{a}})Lee, Kim, Lee, Lee, Kim, Rhee, Park,
+  Son, Yu, Park, Choo, Park, Loeb, and Kim}]{Lee2020}
 Lee, Seungjae, Tark Kim, Eunjung Lee, Cheolgu Lee, Hojung Kim, Heejeong Rhee,
   Se~Yoon Park, Hyo-Ju Son, Shinae Yu, Jung~Wan Park, Eun~Ju Choo, Suyeon Park,
-  Mark Loeb, and Tae~Hyong Kim. 2020.
+  Mark Loeb, and Tae~Hyong Kim. 2020{\natexlab{a}}.
+\newblock \enquote{{Clinical Course and Molecular Viral Shedding Among
+  Asymptomatic and Symptomatic Patients With SARS-CoV-2 Infection in a
+  Community Treatment Center in the Republic of Korea}.}
+\newblock \emph{JAMA Internal Medicine}
+  \urlprefix\url{https://doi.org/10.1001/jamainternmed.2020.3862}.
+
+\bibitem[{Lee et~al.(2020{\natexlab{b}})Lee, Kim, Lee, Lee, Kim, Rhee, Park,
+  Son, Yu, Park, Choo, Park, Loeb, and Kim}]{Lee2020jama}
+---{}---{}---. 2020{\natexlab{b}}.
 \newblock \enquote{{Clinical Course and Molecular Viral Shedding Among
   Asymptomatic and Symptomatic Patients With SARS-CoV-2 Infection in a
   Community Treatment Center in the Republic of Korea}.}
@@ -354,11 +425,42 @@ Mitze, Timo, Reinhold Kosfeld, Johannes Rode, and Klaus W{\"a}lde. 2020.
 \newblock \enquote{Face Masks Considerably Reduce Covid-19 Cases in Germany.}
 \newblock \emph{Covid Economics,} 27.
 
+\bibitem[{Miyazawa and Kaneko(2020)}]{miyazawa2020}
+Miyazawa, Daisuke and Gen Kaneko. 2020.
+\newblock \enquote{Face mask wearing rate predicts countrys COVID-19 death
+  rates.}
+\newblock \emph{medRxiv}
+  \urlprefix\url{https://doi.org/10.1101/2020.06.22.20137745}.
+
 \bibitem[{Neyman(1925)}]{neyman:PO}
 Neyman. 1925.
 \newblock \enquote{On the application of probability theory to agricultural
   experiments. Essay on principles. Section 9.}
 \newblock \emph{Statistical Science (1990)} :465--472.
+
+\bibitem[{Ollila et~al.(2020)Ollila, Partinen, Koskela, Savolainen, Rotkirch,
+  and Laine}]{ollila2020}
+Ollila, Hanna~M, Markku Partinen, Jukka Koskela, Riikka Savolainen, Anna
+  Rotkirch, and Liisa~T Laine. 2020.
+\newblock \enquote{Face masks prevent transmission of respiratory diseases: a
+  meta-analysis of randomized controlled trials.}
+\newblock \emph{medRxiv}
+  \urlprefix\url{https://www.medrxiv.org/content/early/2020/08/04/2020.07.31.20166116}.
+
+\bibitem[{Pearl(1995)}]{pearl:biometrika}
+Pearl, Judea. 1995.
+\newblock \enquote{Causal diagrams for empirical research.}
+\newblock \emph{Biometrika} 82~(4):669--688.
+
+\bibitem[{Pearl(2009)}]{pearl:causality}
+---{}---{}---. 2009.
+\newblock \emph{Causality}.
+\newblock Cambridge university press.
+
+\bibitem[{Pearl and Mackenzie(2018)}]{pearl:why}
+Pearl, Judea and Dana Mackenzie. 2018.
+\newblock \emph{The book of why: the new science of cause and effect}.
+\newblock Basic Books.
 
 \bibitem[{Pei, Kandula, and Shaman(2020)}]{pei2020}
 Pei, Sen, Sasikiran Kandula, and Jeffrey Shaman. 2020.
@@ -373,6 +475,12 @@ Peters, Jonas, Dominik Janzing, and Sch\''{o}lkopf Bernhard. 2017.
   algorithms}.
 \newblock Mass.
 
+\bibitem[{Prather, Wang, and Schooley(2020)}]{Prather2020}
+Prather, Kimberly~A., Chia~C. Wang, and Robert~T. Schooley. 2020.
+\newblock \enquote{Reducing transmission of SARS-CoV-2.}
+\newblock \emph{Science} 368~(6498):1422--1424.
+\newblock \urlprefix\url{https://science.sciencemag.org/content/368/6498/1422}.
+
 \bibitem[{Raifman et~al.(2020)Raifman, Nocka, Jones, Bor, Lipson, Jay, Chan,
   Brahim, Hoffman, Corkish, Ferrara, Long, Baroni, Contador, Simon, Simko,
   Scheckman, Brewer, Kulkarni, Heykoop, Patel, Vidyasagaran, Chiao, Safon, and
@@ -385,6 +493,11 @@ Raifman, Julia, Kristen Nocka, David Jones, Jacob Bor, Sarah~Ketchen Lipson,
   Safon, and Samantha Burkhart. 2020.
 \newblock \enquote{COVID-19 US state policy database.}
 \newblock \urlprefix\url{https://tinyurl.com/statepolicies}.
+
+\bibitem[{Robins, Richardson, and Shpitser(2020)}]{richardson:mediation}
+Robins, James~M, Thomas~S Richardson, and Ilya Shpitser. 2020.
+\newblock \enquote{An interventionist approach to mediation analysis.}
+\newblock \emph{arXiv preprint arXiv:2008.06019} .
 
 \bibitem[{Rubin(1974)}]{rubin1974}
 Rubin, Donald~B. 1974.
@@ -399,6 +512,15 @@ Sanche, Steven, Yen~Ting Lin, Chonggang Xu, Ethan Romero-Severson, Nick
 \newblock \enquote{High Contagiousness and Rapid Spread of Severe Acute
   Respiratory Syndrome Coronavirus 2.}
 \newblock \emph{Emerging Infectious Diseases} 26~(7).
+
+\bibitem[{Seres et~al.(2020)Seres, Balleyer, Cerutti, Friedrichsen, and
+  S{\"u}er}]{seres2020}
+Seres, Gyula, Anna~Helen Balleyer, Nicola Cerutti, Jana Friedrichsen, and
+  M{\"u}ge S{\"u}er. 2020.
+\newblock \enquote{Face Mask Use and Physical Distancing before and after
+  Mandatory Masking: Evidence from Public Waiting Lines.}
+\newblock
+  \urlprefix\url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3641367}.
 
 \bibitem[{Siordia(2020)}]{siorda2020}
 Siordia, Juan~A. 2020.
@@ -431,9 +553,9 @@ Szablewski, Christine~M., Karen~T. Chang, Marie~M. Brown, Victoria~T. Chu,
   Anna~R. Yousaf, Ndubuisi Anyalechi, Peter~A. Aryee, Hannah~L. Kirking,
   Maranda Lumsden, Erin Mayweather, and et~al. 2020.
 \newblock \enquote{SARS-CoV-2 Transmission and Infection Among Attendees of an
-  Overnight Camp — Georgia, June 2020.}
+  Overnight Camp --- Georgia, June 2020.}
 \newblock \emph{MMWR. Morbidity and Mortality Weekly Report}
-  69~(31):1023–1025.
+  69~(31):1023--1025.
 
 \bibitem[{Tian et~al.(2020)Tian, Li, Qi, Tang, Tang, Liu, Li, Cheng, Li, Shi,
   Liu, and Tang}]{tian2020calibrated}
@@ -449,16 +571,33 @@ Tinbergen, J. 1930.
   example.}
 \newblock Tech. rep., Zeitschrift fur Nationalokonomie.
 
+\bibitem[{Tinbergen(1940)}]{tinbergen:1940}
+Tinbergen, Jan. 1940.
+\newblock \enquote{On a method of statistical business-cycle research. A
+  reply.}
+\newblock \emph{The Economic Journal} :141--154.
+
 \bibitem[{Wheaton and Thompson(2020)}]{wheaton2020}
 Wheaton, William~C. and Anne~Kinsella Thompson. 2020.
 \newblock \enquote{The Geography of Covid-19 Growth in the US: Counties and
   Metropolitan Areas.}
 \newblock Tech. rep., MIT.
 
+\bibitem[{White and Chalak(2009)}]{white:chalak}
+White, Halbert and Karim Chalak. 2009.
+\newblock \enquote{Settable Systems: An Extension of Pearl's Causal Model with
+  Optimization, Equilibrium, and Learning.}
+\newblock \emph{Journal of Machine Learning Research} 10~(8).
+
 \bibitem[{White~House(2020)}]{whitehouse2020}
 White~House, The. 2020.
 \newblock \enquote{Guidelines for Opening Up America Again.}
 \newblock \urlprefix\url{https://www.whitehouse.gov/openingamerica/}.
+
+\bibitem[{Wold(1954)}]{wold:1954}
+Wold, Herman. 1954.
+\newblock \enquote{Causality and econometrics.}
+\newblock \emph{Econometrica: Journal of the Econometric Society} :162--177.
 
 \bibitem[{Wright et~al.(2020)Wright, Sonin, Driscoll, and Wilson}]{wright2020}
 Wright, Austin~L., Konstantin Sonin, Jesse Driscoll, and Jarnickae Wilson.

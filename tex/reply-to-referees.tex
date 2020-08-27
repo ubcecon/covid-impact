@@ -19,6 +19,10 @@
 \usepackage{graphicx}
 \def\bs{\boldsymbol}
 
+
+\usepackage{xr}
+\externaldocument{covidEffectOfNPI-revision}
+
 %\renewcommand{\sout}[1]{}
 %\renewcommand{\bf}{}
 
@@ -56,7 +60,11 @@ Major changes are:}
 {
 \begin{enumerate}
 
-\item   
+\item   We  state the limitations of our work with cautious notes on interpreting our causal model.
+\item   Following the editor's suggestion, Section 2 is reorganized and we improve our discussion on the testable restrictions. Tables 7 and 9 in Section 3 provide   an  over-identification test for no indirect effect of mask policy on case/death growth via behavior.
+\item   Following suggestions by the editor and the referees, we provide various sensitivity checks as well as the results of debiased fixed effects estimator  in Section 4.
+\item   We improve the figures for counterfactual experiments so that they are now easier to understand. 
+\item  We adjusted the timing of monthly dummies for estimating behavior equation ($PI \to B$)  in Table 3.  In the previous version, the definition of monthly dummies for behavior equation ($PI \to B$) is different from that for case growth equation ($BPI \to Y$)  or ($PI \to Y$). This issue is now fixed.
 %\item We made some grammatical adjustments.
 \end{enumerate}
 
@@ -68,7 +76,7 @@ Major changes are:}
 \refreplyheading
  
 \changes
-\subsection*{Reply to Comments}
+\subsection*{Reply to Editor's Comments}
 \begin{itemize}
 
 \item   \textit{``I particularly like your mapping of your estimating equation to the SIR model. But, it would be nice to discuss further the assumptions in light of the SIR model. For example, how do the orthogonality assumptions in (1) relate to the assumptions on top of page (14)? and just to be clear, you have a "causal model" yet for identification you rely on projections in the random effects specification (and no exclusion restriction). For example, what do you rule out vis a vis "diff in diff" type event study models with fixed effects? How about a brief discussion of the "invariance assumption" and why you think it would hold in your counterfactual exercise. ''}
@@ -84,8 +92,7 @@ The fixed effect estimates lump state-level confounders in one unobservable comp
 the use of fixed effects to estimate the model. We present fixed effects as part of Sensitivity analysis.
 
 The invariance assumption is similar to standard assumptions in Structural VAR literature, starting with Sims (1972).
-
-
+ 
 
 \item   \textit{``It might make sense to reorganize Section 2 (which is the heart of the theory in the paper) into a simpler to read section  where the assumptions that are required for causal interpretation are laid out. Also, one easier threshold is that your system of estimating equations provide a direct "predictive effect" of various policies. These predictive (not causal) in my opinion would still be very useful. ''}
 
@@ -108,7 +115,7 @@ our findings uncover predictive effects (association) of observed policies and b
 \refreplyheading
 
 \changes
-\subsection*{Reply to Comments}
+\subsection*{Reply to Referee 1's Comments}
 \begin{itemize}
 
 \item  \textit{``I think it would be helpful if the authors clearly state the limitations of their work and
@@ -228,7 +235,10 @@ preferring the random effects model could be that there could be substantial mea
 errors in behavior and policy variables. Fixed effects estimators could suffer more from measurement
 errors.''}
 
-Following your suggestion, we have added a comment on this on page xx in Section 4.2.
+Following your suggestion, we have added the following paragraph:
+\begin{quote}
+The results in Table \ref{tab:PtoY-fe} should be interpreted with caution. The fixed effects approach may not be preferred to random effects approach here because the former relies on long time and cross-sectional histories but, in our data, the effective time-dimension is short and a number of states is not large. Furthermore, the fixed effects approach could suffer more from  measurement errors, which could be a concern for our behavior and policy variables.
+\end{quote}
   
 \item[9.]  \textit{(Multiple testing) ``There are lots of hypotheses and stars in Tables 3-7. Perhaps it might be
 useful to consider multiple testing corrections by controlling the familywise error rate or a
@@ -282,7 +292,7 @@ Following your suggestion, we added the above discussion in footnote 20 (check!)
   \end{itemize}
   
   
-\subsection*{Reply to Minor Comments}
+\subsection*{Reply to Referee 1's Minor Comments}
 \begin{itemize}
 
 
@@ -343,7 +353,7 @@ Following your suggestion, we have consolidated these figures and present figure
 \refreplyheading
 
 \changes
-\subsection*{Reply to Comments}
+\subsection*{Reply to Comments  by C. Jessica E. Metcalf }
 \begin{enumerate}
 
 \item  \textit{``My sense is that the delay between infection and case reporting should be closer to a week (more in specific comments below) and various lines of evidence suggest two waves of death following infection, one early and one late (e.g., in https://science.sciencemag.org/content/369/6500/208: "We identify two clear subpopulations among hospitalized cases: individuals that die quickly after hospital admission (15\% of fatal cases, with a mean time to death of 0.67 days) and individuals who die after longer time periods (85\% of fatal cases, with a mean time to death of 13.2 days) (fig. S3)."). Presumably the preoponderance of weight at the later time should minimize the effects on your estimates... I think a sensitivity analysis to this would be desirable - as well as a reference to some of the literature beyond that written by economists... My sense is that the number is closer to 6 days or a week? But I have not reviewed that literature recently (Table 2 in this seems to suggest that aligns... https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html)"}
@@ -352,7 +362,7 @@ Following your suggestion,   we provide a sensitivity analysis on the delay betw
 
 \item \textit{``the collinearities, and lack of agreement in cases/deaths makes the separate estimates for different policies really rather uncertain? We would all love a crisp statement about the effects of masks.... but I wonder if Figure 1 gives a sufficiently robust sense of the uncertainty  based on the estimates provided?''}
  
-Given  your suggestion, Figure 9 presents whisker-dot-plots for confidence intervals of mask coefficients (as well as other policy variables) across different specifications, timing assumptions, and estimation methods. We believe this figure will provide a sufficient robust sense of the uncertainty on the  estimates. 
+Given  your suggestion, Figure 9 presents whisker-dot-plots for confidence intervals of mask coefficients (as well as other policy variables) across different specifications, timing assumptions, and estimation methods. We believe these figures provide a sufficient robust sense of the uncertainty on the  estimates. 
   
 \item \textit{`` Figure 1 - are the points on the left hand figures the state specific estimates? or? What is the blue enveloppe? Mildly distracting having nothing happen till halfway through April (I know this is purely illustration, but an 'all else equal' in the caption might help?) And then, for what happens next, crudely, log(It/It-1) is diminshed by a factor by masks, etc, and the lag is simply due to the delays until cases? ''}
  
@@ -362,7 +372,7 @@ Black and grey dots represent each state's change in growth rate over time.  Giv
 
 \item \textit{`` p5 - perhaps some papers from beyond the Econ literature would be relevant for a sense of the status of our knowledge of the epidemiogogy?  ''}
 
-We have reviewed and added more references from the epidemiology literature. 
+We have reviewed and added more references from the epidemiology literature. See, for example, footnote 9.
 
 \item \textit{`` p6 - simulations would produce exponential spread of disease - well, yes? The mechanism is reasonably well described, and the conditions to elude exponential growth are fairly crisp - even if you include 'a voluntary behavioral response' the outcome will be exponential growth unless you are in a regime where susceptible depletion is dominating dynamics, or you have shifted Re$<$1.  ''}
  
@@ -378,7 +388,7 @@ We believe that it is better to use the number of cases and deaths rather than t
 
 \item \textit{`` Figure 8 - I do like seeing the data, but it also just raises questions, as you say, confounders + many other things at play.... I wondered if there would be a way to create a visual that captured a bit more of this, and pinpointed the anomalies which are where the inferential power lies. ''}
 
-[This is something we don't do given the time/space constraint.]
+This is an interesting suggestion. We thought about the possibility of providing a version of Figure 8 based on the regression residuals after taking out the effect of confounders etc but, eventually, we decided not to present such results due to the space constraint.  
 
 \end{enumerate}
 

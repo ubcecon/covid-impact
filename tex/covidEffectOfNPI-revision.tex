@@ -207,8 +207,12 @@ See
 
 This paper  quantitatively assesses the impact of various policies adopted by US states on the spread of Covid-19, such as non-essential business closure and mandatory  face masks, paying particular attention to how people adjust their behavior in response to policies as well as new information on cases and deaths.
 
-We present a conceptual framework that spells out the causal structure on how the Covid-19 spread  is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place.  Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.\footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, tinbergen1940, wold1954} and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. See \cite{pearl:biometrika},\cite{pearl:robins},  \cite{pearl:causality}, \cite{white:chalak}, \cite{peters2020book}, \cite{heckman:pinto}, and \cite{hernanrobins2020book}  for modern developments, in computer
-science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986} and \cite{Hines2020} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
+We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information. \footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika, heckman:pinto} and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. See, e.g., \cite{pearl:biometrika},\cite{pearl:robins}, \cite{pearl:causality}, \cite{pearl:why}, \cite{white:chalak}, \cite{peters2020book}, \cite{heckman:pinto}, and \cite{hernanrobins2020book} for modern developments, in computer science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986},\cite{Hines2020}, \cite{richardson:mediation} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
+
+
+
+%We present a conceptual framework that spells out the causal structure on how the Covid-19 spread  is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place.  Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.\footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, tinbergen1940, wold1954} and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. See \cite{pearl:biometrika},\cite{pearl:robins},  \cite{pearl:causality}, \cite{white:chalak}, \cite{peters2020book}, \cite{heckman:pinto}, and \cite{hernanrobins2020book}  for modern developments, in computer
+%science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986} and \cite{Hines2020} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
 %The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, heckman2007}. See \cite{pearl:robins}, \cite{peters2020book}, and \cite{hernanrobins2020book} for  modern developments, especially in computer science and epidemiology), with natural unfolding potential outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. As such it naturally converses in all languages for causal inference.
 
 % It also allows us  to explicitly define counterfactual scenarios to properly evaluate the effect of alternative policies on the spread of Covid-19.
@@ -229,12 +233,16 @@ negative external effects for individual decisions over policy compliance as wel
 
 Using the estimated model, we evaluate the dynamic impact of the following counterfactual policies on Covid-19 cases and deaths: mandating face masks, allowing non-essential businesses to open, not implementing a stay-at-home order, and removing all policies.  The counterfactual experiments show a large impact of  those policies on  the number of cases and deaths.  They also highlight the importance of voluntary behavioral response to infection risks for evaluating the dynamic policy effects.
 
-Figure \ref{fig:US-mask-dgrowth} shows that nationally  implementing mandatory
-face masks  for employees in public businesses on April 1st would have reduced the growth rate of cases (top panel)
-and that of deaths (bottom panel) by more than 10 percentage points in late April. This leads to reductions of $25$\% and $35$\% in reported cases and deaths, respectively,  by the end of May with a 90 percent confidence interval of $[10,45]$\% and $[17,55]$\%, which  roughly implies that as many as 17 to 55
-  thousand lives could have been saved.\footnote{As of May 27, 2020,
-   the US Centers for Disease Control and Prevention  reports 99,031
-   deaths in the US.}
+Our estimates imply that nationally  implementing mandatory
+face masks  for employees in public businesses on April 1st would have reduced the growth rate of cases
+and that of deaths by more than 10 percentage points in late April. As
+shown in Figure \ref{fig:US-mask-dgrowth}, this leads to reductions of
+$20$\% and $35$\% in weekly reported cases and deaths, respectively,
+by the end of May with a 90 percent confidence interval of $[8,32]$\%
+and $[17,50]$\%, which roughly implies that 6 thousand lives could
+have been saved.\footnote{The US averaged roughly one thousand deaths
+  per day during May. Reducing one thousand deaths per day by 20\%
+  over 30 days gives a rough estimate of 6 thousand saved lives.}
 This finding is significant: given this potentially large  benefit of reducing the spread of Covid-19, mandating masks is an attractive policy instrument especially because it involves relatively little economic disruption. These estimates contribute to the ongoing efforts towards designing approaches to minimize risks from reopening \citep{stock2020b}.
 
 
@@ -281,33 +289,41 @@ In our counterfactual experiment of removing all policies, we find that the resu
     \begin{tabular}{cc}
 %     \multicolumn{2}{c}{\textbf{Cases}}     \multicolumn{2}{c}{\textbf{Deaths}}
  %  \\
-     \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_v1}        \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_deaths_v1}
+      \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_idx}
+      & \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_deaths_idx}
     \end{tabular}
+    \begin{flushleft}
+      \footnotesize This figure shows the estimated relative change in
+      cases if all states had mandated masks on April 1st. The thick
+      blue line is the estimated change in weekly cases or deaths
+      relative to the observed number of weekly cases or deaths. The
+      shaded region is a point wise 90\% confidence band.
+    \end{flushleft}
   \end{minipage}
-%    \begin{flushleft}
-%      \footnotesize
-%      In the left column, the dots are the average change in growth in
-%      each state. The blue line is the average across states of the
-%      change in growth. The shaded region is a point-wise 90\% confidence
-%      interval. The right column shows the change in cases or deaths
-%      relative to the baseline of actual policies.
-%    \end{flushleft}
 \end{figure}
 
 \begin{figure}[ht]
  % \caption{National effect of leaving non-essential businesses open\label{fig:US-nb}}
-  \caption{Effect  of   leaving non-essential businesses open on cases in the US  \label{fig:US-nb-dgrowth}}
+  \caption{Effect  of no business closure policies on cases in the US  \label{fig:US-nb-dgrowth}}
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
     %  \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-dgrowth_v1}
 %
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-rel_v1}
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rel_idx}
 %      \\
 %      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-dgrowth_deaths}
 %      &
 %        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-rel_deaths}
     \end{tabular}
+    \begin{flushleft}
+      \footnotesize This figure shows the estimated relative change in
+      cases if no states had never implemented any business closure
+      policies. The thick blue line is the estimated change in weekly
+      cases or deaths relative to the observed number of weekly cases
+      or deaths. The shaded region is a point wise 90\% confidence
+      band.
+    \end{flushleft}
   \end{minipage}
 \end{figure}
 
@@ -315,7 +331,7 @@ In our counterfactual experiment of removing all policies, we find that the resu
 
 \begin{figure}[ht]
  % \caption{National effect of leaving non-essential businesses open\label{fig:US-nb}}
-  \caption{Effect  of  not implementing stay-at-home order on cases in the US  \label{fig:US-shelter-dgrowth}}
+  \caption{Effect  of  not implementing stay-at-home order on cases in the US  \label{fig:US-shelter-dgrowth_idx}}
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
@@ -323,6 +339,13 @@ In our counterfactual experiment of removing all policies, we find that the resu
     %  &
         \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rel_v1}
     \end{tabular}
+    \begin{flushleft}
+      \footnotesize This figure shows the estimated relative change in
+      cases if no states had ever issued stay at home orders. The thick
+      blue line is the estimated change in weekly cases or deaths
+      relative to the observed number of weekly cases or deaths. The
+      shaded region is a point wise 90\% confidence band.
+    \end{flushleft}
   \end{minipage}
 \end{figure}
 
@@ -376,16 +399,14 @@ explained by policy changes.} Another study by  \cite{gupta2020} also found litt
 using mobility measures from PlaceIQ and SafeGraph. Using data from SafeGraph, \cite{anderson2020} show that there has been substantial voluntary social distancing but also provide evidence that mandatory measures such as stay-at-home orders have  been effective at reducing the frequency of visits  outside of one's home.
 % Overall, these evidence suggests the importance of voluntary social distancing behavior when we evaluate the effect of polices.
 
- \cite{pei2020} use county-level observations of reported infections and deaths in conjunction with mobility  data from SafeGraph to estimate how effective reproductive numbers in major metropolitan areas change over time. They conduct simulation of implementing all policies 1-2 weeks earlier and found that it would have resulted in reducing the number of cases and deaths by more than half. However, their study does not  explicitly analyze how policies are related to
-the effective reproduction numbers. % Our study  analyzes how policies  affects the reproduction numbers through their impact on people's behavior.
+ \cite{pei2020} use county-level observations of reported infections and deaths in conjunction with mobility  data from SafeGraph to conduct simulation of implementing all policies 1-2 weeks earlier and found that it would have resulted in reducing the number of cases and deaths by more than half. However, their study does not  explicitly analyze how policies are related to the effective reproduction numbers. % Our study  analyzes how policies  affects the reproduction numbers through their impact on people's behavior.
 
 Epidemiologists use model simulations to predict how cases and deaths evolve for the purpose of policy recommendation. As reviewed by \cite{avery2020}, there exist substantial uncertainty about the values of key epidimiological parameters \citep[see also][]{atkeson2020b,stock2020}. Simulations are often done under strong assumptions about the impact of social distancing policies without connecting to the relevant data  \citep[e.g.,][]{ferguson2020}. Furthermore, simulated models do not take into account that people may limit their contact with other people in response to higher transmission risks.\footnote{See \cite{atkeson2020a} and \cite{stock2020} for the implications of the SIR model for Covid-19 in the US. \cite{NBERw27128} estimate a SIRD model in which time-varying reproduction numbers depend on the daily deaths to capture feedback from daily deaths to future behavior and infections.}  When such a voluntary behavioral response is ignored, simulations would necessarily exhibit exponential spread and over-predict  cases and deaths. In contrast, as cases and deaths rise, a voluntary behavioral response may possibly reduce the effective reproduction number  below 1,  potentially preventing exponential spread. Our counterfactual experiments  illustrate the importance of this voluntary behavioral change.
 
 Whether wearing  masks in public place should be mandatory or not has been one of the most contested policy issues with health authorities of different countries providing contradiction recommendations. Reviewing evidence, \cite{Greenhalghm2020}  recognize that there is no randomized controlled trial evidence for the effectiveness of face masks,  but they state ``indirect evidence exists to support the argument for the public wearing masks in the Covid-19 pandemic."\footnote{The virus remains viable in the air for several hours, for which surgical masks may be effective. Also, a substantial fraction of individual who are infected become infectious before showing symptom onset.}
-\cite{howard2020} also review available medical evidence and conclude that ``mask wearing reduces the transmissibility per contact by reducing transmission of infected droplets in both laboratory and clinical contexts.''  The laboratory findings in \cite{hou2020} suggest that the nasal cavity may be the initial site of infection followed by aspiration to the lung, supporting the argument  ``for the widespread use of masks to prevent aersol, large droplet, and/or mechanical exposure to the nasal passages.''
+\cite{howard2020} also review available medical evidence and conclude that ``mask wearing reduces the transmissibility per contact by reducing transmission of infected droplets in both laboratory and clinical contexts.''  The laboratory findings in \cite{hou2020} suggest that the nasal cavity may be the initial site of infection followed by aspiration to the lung, supporting the argument  ``for the widespread use of masks to prevent aersol, large droplet, and/or mechanical exposure to the nasal passages.''   \cite{He2020} examined temporal patterns of viral shedding in COVID-19 patients and found the highest viral load at the time of symptom onset; this suggests that a significant portion of transmission may have occurred before symptom onset and that universal face masks may be an effective control measure to reduce transmission.\footnote{\cite{Lee2020} find evidence that viral loads in asymptomatic patients are similar to those in symptomatic patients. Aerosol transmission of viruses may occur through aerosols particles released during breathing and speaking by asymptomatic infected individuals; masks reduce such airborne transmission \citep{Prather2020}. \cite{Anfinrud2020} provide visual evidence of speech-generated droplet as well as the effectiveness of cloth masks to reduce the emission of droplets.   \cite{Chu2020} conduct a meta-analysis of observational studies on transmission of the viruses that cause COVID-19 and related diseases and find the effectiveness of mask use for reducing transmission. } \cite{ollila2020} provide a meta-analyhsis of randomized controlled trials of non-surgical face masks in preventing viral respiratory infections in non-hospital and non-household settings, finding that face masks decreased infections across all five studies they reviewed.\footnote{Whether wearing masks creates a false sense of security and leads to decrease in social distancing is also a hotly debated topic.  A randomized field experiment in Berlin, Germany, conducted by \cite{seres2020}  finds that wearing masks actually increases social distancing, providing no evidence that mandatory masks leads to decrease in social distancing.}
 
-Given the lack of experimental evidence on the effect of masks, conducting observational studies  is useful and important. To the best of our knowledge, our paper is the first  empirical study that shows the effectiveness of  mask mandates on reducing the spread of Covid-19 by analyzing the US state-level data. This finding corroborates and is complementary to the medical observational evidence in \cite{howard2020}. Analyzing mitigation measures in New York, Wuhan, and Italy, \cite{zhangr2020} conclude that mandatory face coverings substantially reduced infections. \cite{abaluck2020}  find that the growth rates of cases and of deaths in countries with pre-existing norms that sick people should wear masks are lower by 8 to 10\% than those rates in countries with no pre-existing mask norms. Our finding
-is also corroborated by a completely different causal methodology based on synthetic control
+Given the lack of experimental evidence on the effect of masks in the context of COVID-19, conducting observational studies  is useful and important. To the best of our knowledge, our paper is the first  empirical study that shows the effectiveness of  mask mandates on reducing the spread of Covid-19 by analyzing the US state-level data. This finding corroborates and is complementary to the medical observational evidence in \cite{howard2020}. Analyzing mitigation measures in New York, Wuhan, and Italy, \cite{zhangr2020} conclude that mandatory face coverings substantially reduced infections. \cite{abaluck2020}  find that the growth rates of cases and of deaths in countries with pre-existing norms that sick people should wear masks are lower by 8 to 10\% than those rates in countries with no pre-existing mask norms.\footnote{\cite{miyazawa2020} find that  country's COVID-19 death rates are negatively associated with mask wearing rates.} Our finding is also corroborated by a completely different causal methodology based on synthetic control
 using German data in \cite{Mitze2020}.\footnote{Our study was first released in ArXiv on May 28, 2020 whereas
  \cite{Mitze2020} was released at SSRN on June 8, 2020.}
 
@@ -815,14 +836,21 @@ $$
 summing terms containing $PEB$ and (b) delayed policy effects via direct impact
 by summing terms containing $PED$.
 
-In order to compute the counterfactual relative contrasts for levels variables, for example, confirmed cases $C_{it}$
+[Doesn't this just give us weekly cases instead of cumulative
+cases? I.e. following the notation in \ref{eq:M}, it these $C_{it}$
+should be $\Delta C_{it}$.]
+
+In order to compute the counterfactual relative contrasts for levels
+variables, for example, confirmed cases $C_{it}$
 we would use the formula:
 \begin{equation}
 C^{\star}_{it}/C_{it} = \exp(  \sum_{\bar t=1}^t ( Y^\star_{i\bar t} -  Y_{i\bar t}) ),
 \end{equation}
 and similarly for fatalities. The counterfactual relative contrast for national level variables takes the form:
 \begin{equation}
-C^{\star}_{it}/C_{it} =  \sum_{i=1}^N w_i \exp(  \sum_{\bar t=1}^t ( Y^\star_{i\bar t} -  Y_{i\bar t}) ), \quad w_i = C_{it}/\sum_{i=1}^N C_{it}.
+C^{\star}_{it}/C_{it} =  \sum_{i=1}^N w_i \exp(  \sum_{\bar t=1}^t (
+Y^\star_{i\bar t} -  Y_{i\bar t}) ), \quad w_i = C_{it}/\sum_{i=1}^N
+C_{it}.  \label{eqn:relative_national}
 \end{equation}
 Note this counterfactual contrast is conditional on the actual history $\{C_{it}\}$.  If we'd want unconditional counterfactual,
 we'd need to make assumptions about the evolution of stochastic shocks appearing in $Y_{it}$.\footnote{See, e.g, previous
@@ -949,7 +977,6 @@ $$
 \beta_i(t)S_{it}/N_{it}  - \gamma = X_{i,t-14}' \theta + \epsilon_{it}, \quad \epsilon_{it} \perp X_{i,t-14}.
 $$
 \end{quote}
-
 
 The specification for growth rate in deaths as outcome  is motivated by SIRD as follows. By differentiating (\ref{eq:d}) and (\ref{eq:c}) with respect to $t$ and using (\ref{eq:c2}), we obtain
 \begin{align}
@@ -1157,7 +1184,9 @@ trend in cases and deaths.
 The other policy coefficients are less sensitive to the inclusion of
 national case/death variables. After school closures, business closure policies has the next largest effect followed by stay-at-home
 orders.  The effect of masks for employees is
-small.
+small.\footnote{Similar to our finding, \cite{kovacs2020} find no evidence that introduction of compulsory face mask policies affect community mobility in Germany.}
+
+
 %The comparison of effects across policies should be interpreted
 %with caution.  Differences between policy effects are often
 %statistically insignificant; except for masks for employees, the
@@ -1310,10 +1339,11 @@ variables. We also consider a specification that includes the past cases and cas
 For case growth, $\wcolor W_{it}$ also includes the  test rate growth  $\Delta \log(T)_{it}$  to capture the effect of changing test rates on confirmed cases.
 Equation (\ref{eq:reg-y}) corresponds to (\ref{eq:M})  derived from the SIR model.
 
+
+
 %We also estimate the effect of policies on death growth by estimating  (\ref{eq:reg-y}) with death growth
 %$\Delta \log \Delta D_{it}$  as outcome variable.
 For death growth as the outcome, we take a lag length of $\ell=21$ days. The information variables $\icolor I_{it}$ include  past deaths and death growth rates;  $\wcolor W_{it}$ is the same as that of the case growth equation except that the growth rate of test rates is excluded from $\wcolor W_{it}$ as implied by equation (\ref{eq:M-D}).
-
 
 
 % Tables \ref{tab:BPItoY-c} and  \ref{tab:BPItoY-d} show
@@ -1495,7 +1525,7 @@ If policies are enacted and behavior changes, then future cases/deaths and infor
 \afterpage{
 \begin{table}[!h]
   \caption{\label{tab:dieff-con-si}Direct and Indirect Policy Effects
-    without national case/death variables, \textbf{constraints imposed}}
+    without national case/death variables, \textbf{restrictions imposed}}
 \begin{minipage}{\linewidth}
   \centering
     \scriptsize
@@ -1529,6 +1559,84 @@ If policies are enacted and behavior changes, then future cases/deaths and infor
   \end{minipage}
 \end{table}
 }
+
+
+\afterpage{
+\begin{table}
+  \caption{\label{tab:dieff}Direct and Indirect Policy Effects with national case/death variables}
+\begin{minipage}{\linewidth}
+  \centering
+    \scriptsize
+  \begin{tabular}{c}
+    \textbf{Cases}
+    \\
+    \input{tables_and_figures/dieff-cases-NI}
+    \\ \\
+    \textbf{Deaths}
+    \\
+    \input{tables_and_figures/dieff-deaths-deathsinfo-NI}
+    \\
+  \end{tabular}
+  \smallskip
+  \begin{flushleft}
+      \scriptsize Direct effects capture the effect of policy on case
+      growth holding behavior, information, and confounders
+      constant. Direct effects are given by ${\pcolor \pi}$ in
+      equation (\ref{eq:R1}). Indirect effects capture how policy
+      changes behavior and behavior shift case growth. They are given
+      by ${\bcolor \alpha}$ from (\ref{eq:R1}) times ${\pcolor \beta}$
+      from (\ref{eq:R2}). The total effect is
+      ${\pcolor \pi} + {\pcolor \beta} {\bcolor \alpha}$. Column
+      ``PI$\to$Y Coefficients'' shows the coefficient estimates from
+      \ref{eq:R4}. Columns ``Difference''    are  the differences between
+      the estimates from (\ref{eq:R4}) and the combination of
+      (\ref{eq:R1}) and (\ref{eq:R2}) while column ``Average'' are their averages.
+      Standard errors are computed by
+      bootstrap and clustered on state.
+    %  \ref{tab:PtoY}.
+    \end{flushleft}
+  \end{minipage}
+\end{table}
+\clearpage}
+
+
+\afterpage{
+\begin{table}
+  \caption{\label{tab:dieff-con}Direct and Indirect Policy Effects with national case/death variables, \textbf{restrictions imposed}}
+\begin{minipage}{\linewidth}
+  \centering
+    \scriptsize
+  \begin{tabular}{c}
+    \textbf{Cases}
+    \\
+    \input{tables_and_figures/dieff-cases-constrain-NI}
+    \\ \\
+    \textbf{Deaths}
+    \\
+    \input{tables_and_figures/dieff-deaths-deathsinfo-constrain-NI}
+    \\
+  \end{tabular}
+  \smallskip
+  \begin{flushleft}
+      \scriptsize Direct effects capture the effect of policy on case
+      growth holding behavior, information, and confounders
+      constant. Direct effects are given by ${\pcolor \pi}$ in
+      equation (\ref{eq:R1}). Indirect effects capture how policy
+      changes behavior and behavior shift case growth. They are given
+      by ${\bcolor \alpha}$ from (\ref{eq:R1}) times ${\pcolor \beta}$
+      from (\ref{eq:R2}). The total effect is
+      ${\pcolor \pi} + {\pcolor \beta} {\bcolor \alpha}$. Column
+      ``PI$\to$Y Coefficients'' shows the coefficient estimates from
+      \ref{eq:R4}. Columns ``Difference''    are  the differences between
+      the estimates from (\ref{eq:R4}) and the combination of
+      (\ref{eq:R1}) and (\ref{eq:R2}) while column ``Average'' are their averages.
+      Standard errors are computed by
+      bootstrap and clustered on state.
+    %  \ref{tab:PtoY}.
+    \end{flushleft}
+  \end{minipage}
+\end{table}
+\clearpage}
 
 
 %
@@ -1574,7 +1682,7 @@ If policies are enacted and behavior changes, then future cases/deaths and infor
 %
 %\afterpage{
 %\begin{table}
-%  \caption{\label{tab:dieff}Direct and Indirect Policy Effects with national case/death variables, \textbf{Constraints imposed}}
+%  \caption{\label{tab:dieff}Direct and Indirect Policy Effects with national case/death variables, \textbf{restrictions imposed}}
 %\begin{minipage}{\linewidth}
 %  \centering
 %    \scriptsize
@@ -1643,12 +1751,14 @@ sensitive to the inclusion of national information variables.  Also as
 above, mask mandates have a significant negative effect on growth
 rates.
 
-Similarly to Table  \ref{tab:dieff-si}, the first three columns of  Table \ref{tab:dieff-con-si} report  the estimated direct and indirect effects of policy but imposing that masks for employees only affect cases/deaths directly without affecting behavior and that business closure policies only affects cases/deaths indirectly through its effect on behavior.\footnote{These are computed from estimating the specification in columns (1)-(4) of
+Similarly to Table  \ref{tab:dieff-si}, the first three columns of  Table \ref{tab:dieff-con-si} report  the estimated direct and indirect effects of policy but imposing that masks for employees only affect cases/deaths directly without affecting behavior and that business closure policies only affect  cases/deaths indirectly through their effects on behavior.\footnote{These are computed from estimating the specification in columns (1)-(4) of
 Table \ref{tab:PItoB} and column (1) of Table \ref{tab:BPItoY} but imposing that the coefficient of masks for employees is zero in (\ref{eq:R1}) and that the coefficient of business closure policies is zero in (\ref{eq:R2}).} The estimated total effect of masks for employees in the third column of Table \ref{tab:dieff-con-si} is higher than that of Table  \ref{tab:dieff-si}. Similarly, the total effect of business closure policies is estimated larger in Table \ref{tab:dieff-con-si} than in  Table  \ref{tab:dieff-si}.
 
 Column ``Difference''  in Tables   \ref{tab:dieff-si} and \ref{tab:dieff-con-si}  show the
 difference between the estimate of (\ref{eq:R4}) in column  ``PI$\to$Y Coefficient''   and the implied estimate from
-(\ref{eq:R1})-(\ref{eq:R2}) in   column ``Total.''   Differences  are generally small except for the coefficient of closed K-12 schools and  the sum of all policies in Table   \ref{tab:dieff-si}. The large differences in school closures  may be due to the  difficulty in identifying the effect of school closures given a lack of cross-sectional variations. Imposing the coefficients of masks for employees and business closure policies to be zero in (\ref{eq:R1}) and  (\ref{eq:R2}), respectively, does not increase differences between  ``Total" and  ``PI$\to$Y Coefficient''  as reported in the last column of  Table \ref{tab:dieff-con-si}; if anything the differences in mask coefficients become smaller in Table \ref{tab:dieff-con-si}, suggesting a validity of zero coefficients imposed in estimating the total effect.
+(\ref{eq:R1})-(\ref{eq:R2}) in   column ``Total.''   Differences  are generally small except for the coefficient of closed K-12 schools and  the sum of all policies in Table   \ref{tab:dieff-si}. The large differences in school closures  may be due to the  difficulty in identifying the effect of school closures given a lack of cross-sectional variations. Imposing the coefficients of masks for employees and business closure policies to be zero in (\ref{eq:R1}) and  (\ref{eq:R2}), respectively, does not increase differences between  ``Total" and  ``PI$\to$Y Coefficient''  as reported in the last column of  Table \ref{tab:dieff-con-si}.
+
+ Tables  \ref{tab:dieff} and \ref{tab:dieff-con}  present the results for a specification that includes national information variables, where the estimates on masks for employees are similar to those in  Tables  \ref{tab:dieff-si} and \ref{tab:dieff-con-si}. Column ``Difference''  of Table \ref{tab:dieff-con} indicates that the restrictions of zero coefficients for masks for employees in (\ref{eq:R1}) and for business closure policies in  (\ref{eq:R2}) are not statistically rejected.
 
 
 
@@ -1665,9 +1775,11 @@ difference between the estimate of (\ref{eq:R4}) in column  ``PI$\to$Y Coefficie
 
 Column ``Average'' of  Tables \ref{tab:dieff-si} and \ref{tab:dieff}   reports the average of
 ``Total'' and ``PI$\to$Y Coefficient'' columns.  The average is an appealing and simple way
-to combine the two estimates of the total effect: one relying on the causal structure and another inferred from a direct estimation of equation (PI $\to$ Y).\footnote{Averaging the two estimates theoretically reduces noise, albeit in our case the reductions are small.
-Another approach would be to use precision averaging, which would give similar result. Finally, another approach would be to use generalized method of moments to estimate
-all of the equations jointly. We don't pursue this approach since it is likely to be non-robust under local deviations from correct specification; simple model averaging is more appealing in this case.}  We shall be using the average estimate in generating the counterfactuals in the next section. Turning to the results, the estimates of Tables \ref{tab:dieff-si} and \ref{tab:dieff}  imply that all policies combined would reduce
+to combine the two estimates of the total effect: one relying on the causal structure and another inferred from a direct estimation of equation (PI $\to$ Y).
+%\footnote{Averaging the two estimates theoretically reduces noise, albeit in our case the reductions are small.
+%Another approach would be to use precision averaging, which would give similar result. Finally, another approach would be to use generalized method of moments to estimate
+%all of the equations jointly. We don't pursue this approach since it is likely to be non-robust under local deviations from correct specification; simple model averaging is more appealing in this case.}
+We shall be using the average estimate in generating the counterfactuals in the next section. Turning to the results, the estimates of Tables \ref{tab:dieff-si} and \ref{tab:dieff}  imply that all policies combined would reduce
 \(\Delta \log \Delta D\) by  0.93 and  0.39, respectively. For
 comparison, the median of \(\Delta \log \Delta D_{it}\) reached its
 peak in mid-March of about 1.3 (see Figure \ref{fig:growthq} in the
@@ -1695,11 +1807,11 @@ In this section, we provide sensitivity analysis by estimating (\ref{eq:R4}) wit
  %  \item[(10)]   Add latent state confounders and weekly dummies as components of $W_{it}$, estimated using fixed effects with bias correction.
   % \item Alternative Timing assumption ($\ell=10$ for cases and $\ell=23$ for deaths) on all of the above.
   \end{itemize}
-In Figure \ref{fig:whisker}, ``red'', ``green'', ``blue'', and ``purple" indicate the regression models for case growth without national information variables, case growth with national information variables, death growth without national information variables, and death growth with national information variables, respectively. The left panel of ``(i) baseline timing'' assume that the times from exposure to case confirmation and death reporting are 14 and 21 days, respectively,  while they are 7 and 24 days, respectively, in the right panel of ``(ii) alternative timing.''\footnote{This alternative timing assumption is motivated by the lower bound estimate of median times from exposure to case confirmation or death reporting in Table 2 of \url{https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html}, which are based on data received by CDC through June 29, 2020.  We thank Jessica Metclaf for recommending us to do a sensitivity analysis on the timing assumption while suggesting this reference to us.}
+In Figure \ref{fig:whisker}, ``red'', ``green'', ``blue'', and ``purple" indicate the regression models for case growth without national information variables, case growth with national information variables, death growth without national information variables, and death growth with national information variables, respectively. The left panel of ``(i) baseline timing'' assume that the times from exposure to case confirmation and death reporting are 14 and 21 days, respectively,  while they are 7 and 24 days, respectively, in the right panel of ``(ii) alternative timing.''\footnote{This alternative timing assumption is motivated by the lower bound estimate of median times from exposure to case confirmation or death reporting in Table 2 of \url{https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html}, which are based on data received by CDC through June 29, 2020.  We thank C. Jessica E. Metcalf for recommending us to do a sensitivity analysis on the timing assumption while suggesting this reference to us.}
 
 Panel (A) of Figure  \ref{fig:whisker} illustrates that the estimated coefficients of mask mandates are negative and significant in most specifications, methods, and timing assumptions, confirming the importance of mask policy on reducing case and death growths.  % Comparing (i) baseline timing on the left with (ii) alternative timing on the right,  we notice that the estimated magnitudes of masks for employees are similar to each other.
 
-In Panel (B) of  Figure  \ref{fig:whisker}, many estimates of closures of K-12 schools  suggest that  the effect of school closures is large. The visual evidence on growth rates for states with and without school closures in Figure \ref{fig:growthpolicies1} also suggests that there may be a potentially large effect, though the history is very short.  This evidence is consistent
+In Panel (B) of  Figure  \ref{fig:whisker}, many estimates of closures of K-12 schools  suggest that  the effect of school closures is large. The visual evidence on growth rates for states with and without school closures in Figure \ref{fig:growthpolicies-school} also suggests that there may be a potentially large effect, though the history is very short.  This evidence is consistent
 with the emerging evidence of prevalence of Covid-19 among children  \citep{Lee2020jama,Szablewski2020cdc}. \cite{children:nature} find that although children's
 transmission and susceptibility rates are half that of ages 20-30,
 children's contact rates are much higher.
@@ -1775,7 +1887,7 @@ Panel (C) of Figure  \ref{fig:whisker} indicates that the estimated coefficients
 
 
  \begin{figure}
-  \caption{Case and death growth conditional on school closures \label{fig:growthpolicies1}}
+  \caption{Case and death growth conditional on school closures \label{fig:growthpolicies-school}}
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
@@ -1797,10 +1909,9 @@ Panel (C) of Figure  \ref{fig:whisker} indicates that the estimated coefficients
 
 Table \ref{tab:PtoY-fe} presents the results of estimating (\ref{eq:R4})  with  state fixed effects and weekly dummies.  Because fixed effects estimator could be substantially biased when the time dimension is relatively short, we report not only the standard fixed effects estimator in columns (1) and (3) but also the debiased fixed effects estimator \citep[e.g.,][]{chen2019mastering} in columns (2) and (4), where the state-level clustered bootstrap standard errors are reported in all columns.
 
-The estimated coefficients of masks for employees largely confirms our finding that mandatory mask policy reduces the case and death growths. The estimated coefficients of stay-at-home orders and business closures are negative in columns (1) and (2) but their magnitudes as well as statistical significance are somewhat sensitive to whether bias corrections are applied or not. This sensitivity may be partly due to a high correction between stay-at-home orders variable and business closure policies.
+The estimated coefficients of masks for employees largely confirm our finding that mandatory mask policy reduces the case and death growths. The estimated coefficients of stay-at-home orders and business closures are negative in columns (1) and (2) but their magnitudes as well as statistical significance are somewhat sensitive to whether bias corrections are applied or not. This sensitivity may be partly due to a high correction between stay-at-home orders variable and business closure policies.
 
-The results in Table \ref{tab:PtoY-fe} should be interpreted with caution. The fixed effects approach may not be preferred to random effects approach here because the former relies on long time and cross-sectional histories but, in our data, the effective time-dimension is short and a number of states is not large. Furthermore, the fixed effects approach could suffer more from  measurement errors, which could be a concern for our behavior and policy variables.
-
+The results in Table \ref{tab:PtoY-fe} should be interpreted with caution. The fixed effects approach may not be preferred to random effects approach here because the former relies on long time and cross-sectional histories but, in our data, the effective time-dimension is short and the number of states is not large. Furthermore, the fixed effects approach could suffer more from  measurement errors, which could be a concern for our behavior and policy variables.
 
 
   \afterpage{
@@ -1886,20 +1997,18 @@ business policies only indirect effects.\footnote{Results (not shown)
     \end{tabular}
 
     \begin{flushleft}
-      \footnotesize
-      The vertical (often truncated) text denotes the
-      dates that Washington imposed each policy.  To compute the
-      estimated and counterfactual paths we use the average of two
-      estimated coefficients as reported in column ``Average'' of
-      Table \ref{tab:dieff-con-si}. We set initial
-      $\Delta \log \Delta C$ and $\log \Delta C$ to their values first
-      observed in the state we are simulating. We hold all other
-      regressors at their observed values. The shaded region is a
-      point-wise 90\% confidence interval.
+      \footnotesize The vertical text denotes the dates that
+      Washington imposed each policy.  To compute the estimated and
+      counterfactual paths we use the average of two estimated
+      coefficients as reported in column ``Average'' of Table
+      \ref{tab:dieff-con-si}. We set initial $\Delta \log \Delta C$
+      and $\log \Delta C$ to their values first observed in the state
+      we are simulating. We hold all other regressors at their
+      observed values. The shaded region is a point-wise 90\%
+      confidence interval.
     \end{flushleft}
   \end{minipage}
 \end{figure}
-
 
 
 We first consider the impact of a nationwide mask mandate for
@@ -1932,21 +2041,21 @@ For illustrative purpose, we begin by focusing on Washington State.
 The left column of Figure \ref{fig:WA-mask} shows the change in
 growth rate from mandating masks on April 1st. The shaded region is a
 90\% pointwise confidence interval. As shown, mandating masks on April
-1st lowers the growth of cases or deaths 14 or 21 days later by 0.1 to
-0.15. This effect then gradually declines due to information
+1st lowers the growth of cases or deaths 14 or 21 days later by 0.09 or
+0.14. This effect then gradually declines due to information
 feedback. Mandatory masks reduce past cases or deaths, which leads to
 less cautious behavior, attenuating the impact of the policy. The
 reversal of the decrease in growth in late April is due to our
 comparison of a mask mandate on April 1st with Washington's actual
 mask mandate in early May. By late April, the counterfactual mask
 effect has decayed through information feedback, and we are comparing
-it the undecayed impact of Washington's actual, later mask mandate.
+it to the undecayed impact of Washington's actual, later mask mandate.
 
 The right column of Figure \ref{fig:WA-mask} shows how the changes in
-case and death growth translate into changes in cases and deaths. The
-estimates imply that mandating masks on April 1st would have led to
-about 300 fewer cases and 10 fewer deaths in Washington in total by
-the start of June.
+case and death growth translate into changes in weekly cases and
+deaths. The estimates imply that mandating masks on April 1st would
+have led to about 150 fewer cases and 20 fewer deaths per week in
+Washington by the start of June.
 
 \begin{figure}[ht]
   \caption{Effect of nationally mandating masks for employees on April
@@ -1980,14 +2089,23 @@ the start of June.
 
 
 The results for other states are similar to those for Washington.
-%In
-%the appendix, Figures  \ref{fig:MA-mask} and \ref{fig:IL-mask} display
-%similar results for Massachusetts and Illinois.
-Figure \ref{fig:US-mask} shows the average change in cases and
-deaths across states, where the top panel shows the effect on cases and the bottom panel shows the effect on deaths.
-The point estimates indicate that mandating masks on April 1st
-could have led to 30\% fewer cumulative cases and 34\% fewer
-cumulative deaths by the end of May with their 90 percent intervals given by $[13,46]$\% and $[12,47]$\%, respectively. The result roughly translates into $30$ thousand saved lives.
+Figure \ref{fig:US-mask} shows the national effect of mask mandate on
+April 1st. The top panel shows the effect on cases and the bottom
+panel shows the effect on deaths. The left column shows the change in
+growth rates. Dots are the average change in growth rate in each state
+(i.e. the dots are identical to the solid line in the left panel of
+Figure \label{fig:WA-mask}, except for all states instead of just
+Washington). The solid blue is the national average change in growth
+rate. The shaded region is a 90\% pointwise confidence band for the
+national average change in growth rate. The right column of Figure
+\ref{fig:US-mask} shows the national relative change in weekly cases
+or deaths. The point estimates indicate that mandating masks on April
+1st could have led to 20\% fewer weekly cases and 35\% fewer
+weekly deaths by the end of May with their 90 percent intervals
+given by $[8,32]$\% and $[18,50]$\%, respectively.
+
+%The result roughly
+%translates into $30$ thousand saved lives.
 
 \subsection{Business Closure Policies}
 
@@ -1996,10 +2114,10 @@ counterfactual where there are no business closure policies (no
 restaurant, movie theater, or non-essential business closure).  Figure
 \ref{fig:US-business} shows the national effect of never restricting
 businesses on cases and deaths. The point estimates imply that,
-without business closures, cases and deaths would be about 60\% at the
-end of May. The confidence intervals are wide. A 90 percent confidence
-interval for the increase in cases at the end of May is 0 to
-150\%. The confidence interval for deaths is even wider.
+without business closures, cases and deaths would be about 75\% higher
+at the end of May. The confidence intervals are wide. A 90 percent
+confidence interval for the increase in cases at the end of May is 25\%
+to 140\%. The confidence interval for deaths is even wider, $[10, 250]$\%
 
 
 \begin{figure}[ht]
@@ -2034,10 +2152,10 @@ interval for the increase in cases at the end of May is 0 to
 \subsection{Stay-at-home orders}
 
 We next examine a counterfactual where stay-at-home orders had been never
-issued.  Figure \ref{fig:US-shelter} shows the average effect of no
+issued.  Figure \ref{fig:US-shelter} shows the national effect of no
 stay-at-home orders. On average, without stay-at-home orders, case
 growth rate would have been nearly 0.1 higher in late April. This
-translates to 80\% [25\%,170\%] more cases by the start of June. The
+translates to 60\% [10\%,140\%] more cases per week by the start of June. The
 results for deaths are similar, but slightly less precise, with no
 increase included in a 90 percent confidence interval.
 
@@ -2072,7 +2190,7 @@ increase included in a 90 percent confidence interval.
 
 
 
-\section{Counterfactual Effect of Removing All Policies and its Sensitivity}\label{removing-policies}
+%\section{Counterfactual Effect of Removing All Policies and its Sensitivity}\label{removing-policies}
 
 
 
@@ -2103,22 +2221,22 @@ increase included in a 90 percent confidence interval.
 %  \end{minipage}
 %\end{figure}
 
-We now consider the impact of changing from the observed policies to none.
-Figure \ref{fig:US-nop-SI} shows the average across states of the change
-in case growth and relative increase in cases under a specification without past national case variables.
-Removing policies leads to an increase of above 0.2 in
-case growth throughout April and May. The confidence interval is
-fairly wide, and its upper bound includes a very large increase in
-cases by the end of May.  The right panel displays the national
-increase in aggregate cases without any policy intervention. The
-estimates imply at least a 7 fold increase in cases with a large upper bound by the end of May, or
-at least 14 million additional cases. The estimated impact on deaths is larger than
-cases, and even more imprecise.
+% We now consider the impact of changing from the observed policies to none.
+% Figure \ref{fig:US-nop-SI} shows the average across states of the change
+% in case growth and relative increase in cases under a specification without past national case variables.
+% Removing policies leads to an increase of above 0.2 in
+% case growth throughout April and May. The confidence interval is
+% fairly wide, and its upper bound includes a very large increase in
+% cases by the end of May.  The right panel displays the national
+% increase in aggregate cases without any policy intervention. The
+% estimates imply at least a 7 fold increase in cases with a large upper bound by the end of May, or
+% at least 14 million additional cases. The estimated impact on deaths is larger than
+% cases, and even more imprecise.
 
-[Discussion on the effect of school closures has been moved to
-sensitivity analysis section.]
+% [Discussion on the effect of school closures has been moved to
+% sensitivity analysis section.]
 
-[Do we even still need this section?]
+% [Do we even still need this section?]
 
 %The effect of removing all policies includes the effect of school
 %closures. The visual evidence on growth rates for states with and without school closures,
@@ -2205,7 +2323,13 @@ sensitivity analysis section.]
 
 This paper assesses the effects of policies on the spread of Covid-19 in the US using state-level data on cases, tests, policies, and social distancing behavior measures from Google Mobility Reports. Our findings are summarized as follows.
 
-First, our empirical analysis indicates that mandating face masks has reduced the spread of Covid-19 without affecting people's social distancing behavior measured by Google Mobility Reports. Our counterfactual experiment based on the estimated model suggests that if all states had have adopted mandatory face mask policies on April 1st of 2020, then the number of deaths by the end of May would have been smaller by as much as  $17$ to $55$\%, which roughly translates to $17$ to $55$ thousand saved lives.
+First, our empirical analysis indicates that mandating face masks has
+reduced the spread of Covid-19 without affecting people's social
+distancing behavior measured by Google Mobility Reports. Our
+counterfactual experiment based on the estimated model suggests that
+if all states had have adopted mandatory face mask policies on April
+1st of 2020, then the number of deaths per week
+by the end of May would have been smaller by as much as  $18$ to $50$\%, which roughly translates to $6$ thousand saved lives.
 
 Second, we find that keeping non-essential businesses open would have led to -20 to 60\% more cases  while not implementing stay-at-home orders would have increased cases by 25 to 170 \% by the start of June. % Except for mask mandates, the effect of all other policies on case and death growth is realized through their impact on social distancing behavior.
 
@@ -2573,89 +2697,71 @@ cases while a corresponding delay of roughly three weeks for deaths.
 Tables \ref{tab:dieff} and \ref{tab:dieff-con}  present  the estimates of direct and indirect effects of policies for the specification with past national case/death variables. The effects of school closures and  the sum of policies are estimated substantially smaller in Table \ref{tab:dieff} when national case/death variables are included than in Table \ref{tab:dieff-si}. This sensitivity reflects the difficulty in identifying the aggregate time effect---which is largely captured by national cases/deaths---given little cross-sectional variation in the timing of school closures across states. On the other hand, the estimated effects of policies other than school closures are similar between Table \ref{tab:dieff-si} and Table \ref{tab:dieff}; the effect of other policies are well-identified from cross-sectional variations.
 
 
-\afterpage{
-\begin{table}
-  \caption{\label{tab:dieff}Direct and Indirect Policy Effects with national case/death variables}
-\begin{minipage}{\linewidth}
-  \centering
-    \scriptsize
-  \begin{tabular}{c}
-    \textbf{Cases}
-    \\
-    \input{tables_and_figures/dieff-cases-NI}
-    \\ \\
-    \textbf{Deaths}
-    \\
-    \input{tables_and_figures/dieff-deaths-deathsinfo-NI}
-    \\
-  \end{tabular}
-  \smallskip
-  \begin{flushleft}
-      \scriptsize Direct effects capture the effect of policy on case
-      growth holding behavior, information, and confounders
-      constant. Direct effects are given by ${\pcolor \pi}$ in
-      equation (\ref{eq:R1}). Indirect effects capture how policy
-      changes behavior and behavior shift case growth. They are given
-      by ${\bcolor \alpha}$ from (\ref{eq:R1}) times ${\pcolor \beta}$
-      from (\ref{eq:R2}). The total effect is
-      ${\pcolor \pi} + {\pcolor \beta} {\bcolor \alpha}$. Column
-      ``PI$\to$Y Coefficients'' shows the coefficient estimates from
-      \ref{eq:R4}. Columns ``Difference''    are  the differences between
-      the estimates from (\ref{eq:R4}) and the combination of
-      (\ref{eq:R1}) and (\ref{eq:R2}) while column ``Average'' are their averages.
-      Standard errors are computed by
-      bootstrap and clustered on state.
-    %  \ref{tab:PtoY}.
-    \end{flushleft}
-  \end{minipage}
-\end{table}
-\clearpage}
-
-
-\afterpage{
-\begin{table}
-  \caption{\label{tab:dieff-con}Direct and Indirect Policy Effects with national case/death variables, \textbf{constraints imposed}}
-\begin{minipage}{\linewidth}
-  \centering
-    \scriptsize
-  \begin{tabular}{c}
-    \textbf{Cases}
-    \\
-    \input{tables_and_figures/dieff-cases-constrain-NI}
-    \\ \\
-    \textbf{Deaths}
-    \\
-    \input{tables_and_figures/dieff-deaths-deathsinfo-constrain-NI}
-    \\
-  \end{tabular}
-  \smallskip
-  \begin{flushleft}
-      \scriptsize Direct effects capture the effect of policy on case
-      growth holding behavior, information, and confounders
-      constant. Direct effects are given by ${\pcolor \pi}$ in
-      equation (\ref{eq:R1}). Indirect effects capture how policy
-      changes behavior and behavior shift case growth. They are given
-      by ${\bcolor \alpha}$ from (\ref{eq:R1}) times ${\pcolor \beta}$
-      from (\ref{eq:R2}). The total effect is
-      ${\pcolor \pi} + {\pcolor \beta} {\bcolor \alpha}$. Column
-      ``PI$\to$Y Coefficients'' shows the coefficient estimates from
-      \ref{eq:R4}. Columns ``Difference''    are  the differences between
-      the estimates from (\ref{eq:R4}) and the combination of
-      (\ref{eq:R1}) and (\ref{eq:R2}) while column ``Average'' are their averages.
-      Standard errors are computed by
-      bootstrap and clustered on state.
-    %  \ref{tab:PtoY}.
-    \end{flushleft}
-  \end{minipage}
-\end{table}
-\clearpage}
-
 
 \subsection{Double Machine Learning}
 
 
+To estimate the coefficient of the $j$-th policy variable, $P_{it}^j$, using Double Machine Learning of \cite{chernozhukov18}, we consider a version of (\ref{eq:R4}) as follows:
+\begin{align*}
+Y_{i,t+\ell} & = P_{it}^j \theta_0 + \phi' X_{it} + g_0(W_{it}) + \xi_{it}, && E[\xi_{it}|P_{it}^j,X_{it},W_{it}]=0,\\
+P_{it}^j &= \psi' X_{it} +m_0(W_{it}) +V_{it},&& E[V_{it}|X_{it},W_{it}]=0,
+\end{align*}
+where $X_{it}=((P_{it}^{-j})',B_{it}',I_{it}')'$ collects  policy variables except for the $j$-th policy variables $P_{it}^{-j}$, behavior variables $B_{it}$, and information variables $I_{it}$. The confounding factors $W_{it}$ affect the policy variable $P_{it}^j$ via the function $m_0(W)$ and the outcome variable $Y_{i,t+\ell}$ via the function $g_0(W)$. We apply Lasso  or  Random Forests to estimate $g_0(W)$  for dimension reductions or for capturing non-linearity while the coefficients of $X_{it}$ are estimated under linearity without imposing any dimension reductions.  We omit the details of estimation procedure here. Please see the discussion in Example 1.1 of  \cite{chernozhukov18} for reference.
+
+
+%We also assume that  $E[Y_{it}|X_{it},W_{it}]$  takes a partial linear form with respect to $X_{it}$ given by
+%$E[Y_{it}|X_{it},W_{it}]= \varphi' X_{it} +q_0(W_{it})$.
+%Then, we can rewrite the above partially linear model as
+%\begin{align*}
+%\tilde Y_{i,t+\ell} & = V_{it} \theta_0 +  \xi_{it},&& E[\xi_{it}|P_{it}^j,X_{it},W_{it}]=0,\\
+%\tilde Y_{i,t+\ell} & = Y_{i,t+\ell}-(\varphi' X_{it} +q_0(W_{it})),&&   E[Y_{i,t+\ell}|X_{it},W_{it}]=\varphi' X_{it}+q_0(W_{it}),\\
+%V_{it} & = P_{it}^j - (\psi' X_{it} + m_0(W_{it})) &&    E[ P_{it}^j |X_{it},W_{it}]=\psi' X_{it} +m_0(W_{it}) .
+%\end{align*}
+%
+%We consider a 10-fold partition $({\bf S}_{k})_{k=1}^{10}$ of observations across states such that each fold $\bf S_k$ contains the  panel data set of  $n=5$ or $6$ states.  For each $k=1,...,10$, define $\bf S_{-k}=\cup_{j\neq k} \bf S_{j}$.
+%\begin{enumerate}
+%\item For $k=1,...,10$,  iterate on:
+%\begin{enumerate}
+%\item Apply Lasso or Random Forests while imposing partial linear structure to the subsample $\bf S_{-k}$ to obtain an estimate   $\hat \varphi^{(k)}$, $\hat \psi^{(k)} $, $\hat q^{(k)} _0(W)$, and $\hat m^{(k)} _0(W)$.\footnote{In practice, we obtain an estimator $\hat \varphi^{(k)}$ and $\hat q^{(k)} _0(W)$ by the following iterative procedure. Let $L(\xi)$ denote a loss function (e.g., $L(\xi)=\xi^2$).
+%\begin{enumerate}
+%\item[(i)] Initialize $(\hat \varphi^0,\hat q^{0} _0(W))$.
+%\item[(ii)] For $j=1,2,...,J$ for $J=5$, iterate on:
+%\begin{enumerate}
+%\item[(a)] Update $\hat \varphi^j = \arg\min_\varphi \sum_{(i,t)\in \bf S_{-k} } L( Y_{i,t+\ell} - \varphi-  \hat q^{j-1}_0(W_{it}))$.
+%\item[(b)] Update $\hat q^{j}_0(W) = \arg\min_{q_0} \sum_{(i,t)\in \bf S_{-k} } L(Y_{i,t+\ell}- \hat \varphi^j - q_0(W_{it}))$.
+%\end{enumerate}
+%\item[(iii)] Set $\hat \varphi^{(k)}=\hat \varphi^J$ and $\hat q^{(k)} _0(W)=\hat q^{J}_0(W) $.
+%\end{enumerate}
+%We obtain $\hat \psi^{(k)} $ and $\hat m^{(k)} _0(W)$ by a similar iterative procedure.
+%}
+%\item Using $\hat \varphi^{(k)}$, $\hat \psi^{(k)} $, $\hat q^{(k)} _0(W)$, and $\hat m^{(k)} _0(W)$, compute the predicted residuals for the observations in $\bf S_{k}$ as
+%\begin{align*}
+%\hat{\tilde Y}_{i,t+\ell}    = Y_{i,t+\ell}-((\hat \varphi^{(k)})' X_{it} +\hat q^{(k)}_0(W_{it})),\quad
+%\hat V_{it}    = P_{it}^j - ((\hat \psi^{(k)})' X_{it} + \hat m^{(k)}_0(W_{it})).
+%\end{align*}
+%\end{enumerate}
+%\item Given $\{(\hat{\tilde Y}_{i,t+\ell} ,\hat V_{it}) \}$ in (1), our DML estimator for $\theta_0$ is obtained by regressing $\hat{\tilde Y}_{i,t+\ell}$ on $\hat V_{it}$ with no intercept term.  We compute the asymptotic standard errors for $\hat\theta_0$ clustered at the state-level using $\{(\hat{\tilde Y}_{i,t+\ell} ,\hat V_{it}): i = 1,...,N; t=1,...,T \}$. \end{enumerate}
+
+
 \subsection{Debiased Fixed Effects Estimator}
 
+We apply cross-over Jackknife bias correction as discussed in \cite{chen2020} in details. Here, we briefly describe our debiased fixed effects estimator.
+
+Given our panel data with $N=51$ states and $T=75$ days  for case growth equation (\ref{eq:R4}), consider two subpanels as follows:
+$$
+{\bf S}_1 =  \{(i,t) :  i \leq \lceil N/2 \rceil,  t \leq \lceil T/2 \rceil \} \cup  \{(i,t) : i  \geq \lfloor N/2 + 1 \rfloor, t  \geq \lfloor T/2 + 1\rfloor \}
+$$
+and
+$$
+{\bf S}_2 =  \{(i,t) :  i \leq \lceil N/2 \rceil, t  \geq \lfloor T/2 + 1\rfloor \} \cup  \{(i,t) : i  \geq \lfloor N/2 + 1 \rfloor, t  \leq \lceil  T/2 \rceil \}
+$$
+where $\lceil . \rceil$  and  $\lfloor . \rfloor$ are the ceiling and floor functions.  Each of these two subpanels includes observations for all cross-sectional units and time periods.
+
+We form the debiased fixed effects estimator as
+$$
+\widehat \beta_{\rm BC}  =  2 \widehat \beta -  \widetilde \beta_{{\bf S}_1\cup{\bf S}_2},
+$$
+where $\widehat \beta$ is the standard fixed effects estimator while $\widetilde \beta_{{\bf S}_1\cup{\bf S}_2}$ denotes the fixed effects estimator using the data set  ${\bf S}_1\cup{\bf S}_2$ but treats the states in  ${\bf S}_1$ differently from those in  ${\bf S}_2$ to form the fixed effects estimator; namely, we include approximately twice more state fixed effects to compute $\widetilde \beta_{{\bf S}_1\cup{\bf S}_2}$.\footnote{Alternatively, we may form the cross-over jackknife corrected estimator as $\widehat \beta_{\rm CBC}  =  2 \widehat \beta -  (\widetilde \beta_{{\bf S_1}}+\widetilde \beta_{{\bf S_2}})/2$, where $\widetilde \beta_{{\bf S}_j}$ denotes the fixed effect estimator using the subpanel  ${\bf S}_j$ for $j=1,2$. In our empirical analysis, these two cross-over jackknife bias corrected estimators give  similar result.} We obtain bootstrap standard errors by using multipler bootstrap with state-level clustering.
 
 
 \end{document}

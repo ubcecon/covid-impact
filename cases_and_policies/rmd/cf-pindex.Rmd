@@ -142,6 +142,8 @@ m$coefficients <- subcoefs(di, m$coefficients)
 m$vcv <- V
 m$clustervcv <- V
 m$robustvcv <- V
+m$beta <- m$coefficients
+m$cse <- sqrt(diag(V))
 
 simmodel <- createforwardsim(m, sdf)
 
@@ -186,32 +188,6 @@ grid.arrange(f$figl, f$figp, nrow=2) #,
 ```
 
 ## National
-
-These figures show the average effect on $\Delta \log \Delta C$ across
-states, and the total national effect on cases in past week.
-
-That is for the first figure, we take:
-
-$$
-\hat{E}[\Delta Y_{it}^\ast | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
-\frac{1}{N} \sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \Delta Y_{it}^{\ast,r}
-$$
-
-and plot the difference of the above between two different values of $P_{it}^\ast$
-
-The second figure shows the total change in cases, that is the change in:
-
-$$
-\hat{E}[\exp(Y_{it}^\ast) | Y_{i1}, ..., Y_{iL}, \{X_{it}, P_{it}^\ast\}_{t=1}^T, \theta] =
-\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r}).
-$$
-
-The final figure shows
-$$
-\frac{\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{\ast,r}) - \sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^r)} {\sum_{i=1}^{N} \frac{1}{R} \sum_{r=1}^R \exp(Y_{it}^{r})}
-$$
-that is, the (average over residual draws) change in national cases relative to (average over residual draws) national cases.
-
 
 ```{r nop-all, cache=TRUE}
 abbrv <- unique(df[,c("state","ST")])
@@ -436,9 +412,11 @@ bcoefs <- t(do.call(cbind, lapply(1:S, function(i) {
 })))
 V <- cov(bcoefs)
 m$coefficients <- subcoefs(di, m$coefficients)
+m$beta <- m$coefficients
 m$vcv <- V
 m$clustervcv <- V
 m$robustvcv <- V
+m$cse <- sqrt(diag(V))
 
 simmodel <- createforwardsim(m, sdf, dvar="dlogdd", var="logdd")
 

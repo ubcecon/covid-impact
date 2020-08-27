@@ -1,8 +1,8 @@
 cs$t <- as.numeric(cs$date)
 
-warning("Using data only up to 2020-06-30. Modify lines 4-5 of regprep.R to change")
+warning("Using data only up to 2020-06-03. Modify lines 4-5 of regprep.R to change")
 df <- pdata.frame(subset(cs, cs$date>=as.Date("2020-01-01") &
-                                   cs$date<=as.Date("2020-06-30")),
+                                   cs$date<=as.Date("2020-06-03")),
                   # cs$date<=as.Date("2020-06-30")),
                   index=c("state","t"), stringsAsFactors=FALSE)
 

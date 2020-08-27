@@ -4,59 +4,54 @@ The top-level auxiliary file: covidEffectOfNPI-revision.aux
 The style file: jpe.bst
 Database file #1: covid.bib
 Warning--entry type for "google2020" isn't style-file defined
---line 634 of file covid.bib
+--line 857 of file covid.bib
 Warning--entry type for "whitehouse2020" isn't style-file defined
---line 642 of file covid.bib
+--line 865 of file covid.bib
 Warning--entry type for "midas2020" isn't style-file defined
---line 650 of file covid.bib
-Warning--I didn't find a database entry for "tinbergen1940"
-Warning--I didn't find a database entry for "wold1954"
-Warning--I didn't find a database entry for "pearl:biometrika"
-Warning--I didn't find a database entry for "pearl:causality"
-Warning--I didn't find a database entry for "white:chalak"
-Warning--I didn't find a database entry for "heckman:pinto"
+--line 873 of file covid.bib
 Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
 Warning--missing institution in bartik2020
+Warning--empty note in chen2020
 Warning--empty pages in lsmith
-You've used 63 entries,
+You've used 81 entries,
             3072 wiz_defined-function locations,
-            945 strings with 20579 characters,
-and the built_in function-call counts, 51133 in all, are:
-= -- 3501
-> -- 4403
+            1037 strings with 24593 characters,
+and the built_in function-call counts, 65924 in all, are:
+= -- 4542
+> -- 5640
 < -- 5
-+ -- 1484
-- -- 1394
-* -- 4084
-:= -- 8673
-add.period$ -- 320
-call.type$ -- 63
-change.case$ -- 694
-chr.to.int$ -- 60
-cite$ -- 65
-duplicate$ -- 3358
-empty$ -- 2635
-format.name$ -- 1529
-if$ -- 9721
-int.to.chr$ -- 4
++ -- 1896
+- -- 1783
+* -- 5291
+:= -- 11150
+add.period$ -- 411
+call.type$ -- 81
+change.case$ -- 885
+chr.to.int$ -- 77
+cite$ -- 84
+duplicate$ -- 4311
+empty$ -- 3427
+format.name$ -- 1960
+if$ -- 12556
+int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 781
-newline$ -- 330
-num.names$ -- 252
-pop$ -- 1715
+missing$ -- 999
+newline$ -- 423
+num.names$ -- 324
+pop$ -- 2185
 preamble$ -- 1
-purify$ -- 677
+purify$ -- 867
 quote$ -- 0
-skip$ -- 928
+skip$ -- 1203
 stack$ -- 0
-substring$ -- 1094
-swap$ -- 1703
+substring$ -- 1490
+swap$ -- 2195
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 555
-warning$ -- 2
-while$ -- 275
+type$ -- 711
+warning$ -- 3
+while$ -- 359
 width$ -- 0
-write$ -- 821
-(There were 11 warnings)
+write$ -- 1054
+(There were 6 warnings)

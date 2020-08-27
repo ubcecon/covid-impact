@@ -25,7 +25,7 @@ source(paste(rootdir,"cases_and_policies/rmd/regprep.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/generatetables.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
 
-datelims <- c(as.Date("2020-03-07"), max(df$date))
+figdatelims <- c(as.Date("2020-03-07"), max(df$date))
 ################################################################################
 
 # ```{r cffuncs, cache=FALSE}
@@ -202,7 +202,7 @@ nopstatesim <- function(st, nsim=200, simobs, simcf, data, var="logdc", dvar="dl
 
 cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
                     yvar="cases", data) {
-  xlims <- datelims
+  xlims <- figdatelims
   pds <-
     c("Mandate.face.mask.use.by.employees.in.public.facing.businesses",
       "Date.closed.K.12.schools",
@@ -210,6 +210,12 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
       "Closed.movie.theaters",
       "Closed.restaurants.except.take.out",
       "Closed.non.essential.businesses")
+  shortlbls <- c("Mandate masks",
+                 "Close schools",
+                 "Stay-at-home",
+                 "Close move theaters",
+                 "Close restaurants",
+                 "Close non-essential businesses")
   if (is.null(cfdata)) {
     est <- nopstatesim(st, simobs=simobs, simcf=simcf, data=data)
   } else {
@@ -218,8 +224,9 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
 
   dt  <- c()
   labels <- c()
-  for (lbl in pds) {
-    d <- unique(data[data$state==st,lbl])
+  for (p in 1:length(pds)) {
+    lbl <- shortlbls[p]
+    d <- unique(data[data$state==st,pds[p]])
     i <- which(dt==d)
     if (length(i)==0) {
       if (length(dt)==0)
@@ -233,7 +240,6 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
   }
   labels <- labels[!is.na(dt)]
   dt <- dt[!is.na(dt)]
-
   figl <-
     ggplot(data=est, aes(x=date, y=obs)) +
     geom_line(aes(color="Observed", fill="Observed"), size=1.5) +
@@ -248,14 +254,15 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
     theme(legend.position=c(0.2, 0.8)) +
     ggtitle(TeX(sprintf("%s in past week",yvar))) + xlim(xlims)
 
+  ylo <- min(est$clp)
   figp <- ggplot(data=est, aes(x=date, y=mp)) +
     geom_line(size=1.2) +
     geom_ribbon(aes(ymin=clp, ymax=chp), alpha=0.3) +
     ylab(sprintf("Change in %s in past week", yvar)) + figtheme + colors() + colors_fill() +
     ggtitle(TeX(sprintf("Change in %s",yvar))) +
-    xlim(xlims) +
-    annotate("text",x=dt, y=rep(0.01,length(dt)),
-             label=gsub("\\."," ", labels), size=4, angle=90, hjust=0)
+    xlim(xlims) #+
+    #annotate("text",x=dt, y=rep(ylo,length(dt)),
+    #         label=gsub("\\."," ", labels), size=4, angle=90, hjust=0)
 
 
   figd <- ggplot(data=est, aes(x=date, y=dobs)) +
@@ -273,6 +280,7 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
     ggtitle(TeX(sprintf("$\\Delta \\log \\Delta %s$",toupper(substring(yvar,1,1))))) +
     xlim(xlims)
 
+  ylo <- min(est$cldp)
   figdp <- ggplot(data=est, aes(x=date, y=mdp)) +
     geom_line(size=1.2) +
     geom_ribbon(aes(ymin=cldp, ymax=chdp), alpha=0.3) +
@@ -280,7 +288,7 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
     figtheme + colors() + colors_fill() +
     ggtitle(TeX(sprintf("Change in $\\Delta \\log \\Delta %s$",toupper(substring(yvar,1,1))))) +
     xlim(xlims) +
-    annotate("text",x=dt, y=rep(0.01,length(dt)),
+    annotate("text",x=dt, y=rep(ylo,length(dt)),
              label=gsub("\\."," ", labels), size=4, angle=90, hjust=0)
 
   return(list(figd=figd, figdp=figdp, figl=figl, figp=figp))
@@ -338,7 +346,7 @@ nationalplots <- function(alldf,cfdf, cfname, yvar="cases") {
   figdlog <- ggplot(cfdf, aes(x=date)) +
     #geom_text(aes(y=mdp, label=ST),alpha=0.2) +
     geom_point(aes(y=mdp),alpha=0.2, size=0.5) +
-    xlim(datelims) +
+    xlim(figdatelims) +
     geom_line(data=adf,  aes(x=date, y=mlog, color=""), size=2) + figtheme +
     geom_ribbon(data=adf, aes(ymin=llo, ymax=lhi, fill=""),alpha=0.3) +
     colors() + theme(legend.position="none") +
@@ -351,7 +359,7 @@ nationalplots <- function(alldf,cfdf, cfname, yvar="cases") {
   figc <- ggplot(cfdf, aes(x=date)) +
     #geom_text(aes(y=mp, label=ST),alpha=0.5) +
     geom_point(aes(y=mp),alpha=0.2, size=0.5) +
-    xlim(datelims) +
+    xlim(figdatelims) +
     geom_line(data=adf, aes(x=date, y=mp, color=""), size=2) +
     figtheme +
     geom_ribbon(data=adf, aes(ymin=clo, ymax=chi, fill=""),alpha=0.3) +
@@ -361,7 +369,7 @@ nationalplots <- function(alldf,cfdf, cfname, yvar="cases") {
     ggtitle(sprintf("Effect of %s on %s",cfname, yvar))
 
   figr <- ggplot(adf, aes(x=date, y=rel)) +
-    xlim(datelims) +
+    xlim(figdatelims) +
     geom_line(aes(color=""), size=2) + figtheme +
     geom_ribbon(data=adf, aes(ymin=rlo, ymax=rhi, fill=""),alpha=0.3) +
     colors() + theme(legend.position="none") +
