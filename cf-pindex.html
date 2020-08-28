@@ -553,9 +553,9 @@ C_{i,t+\ell-7} + (\mathsf{b}_D + \mathsf{b}_L) \log \Delta C_{i,t} -
 <li><p>Constrasts of cumulative cases: <span class="math inline">\(S(\theta, \mathbf{\varepsilon}) = C_{it}^*/C_{it}\)</span></p></li>
 </ul>
 <p>The first two examples do not actually depend on <span class="math inline">\(\mathbf{\varepsilon}\)</span>, but the third one does. Inference is by simulation. Let <span class="math inline">\(\hat{\theta}\)</span> denote our point estimates and <span class="math inline">\(\hat{\mathbf{\varepsilon}}\)</span> the associated residuals. We draw <span class="math inline">\(\tilde{\theta}_j\)</span> from the asymptotic distribution of <span class="math inline">\(\hat{\theta}\)</span>. Currently the code then computes</p>
-<p><span class="math display">\[ \tilde{s}_j = \S(\tilde{\theta}_j, \hat{\mathbf{\varepsilon}}) \]</span></p>
+<p><span class="math display">\[ \tilde{s}_j = S(\tilde{\theta}_j, \hat{\mathbf{\varepsilon}}) \]</span></p>
 <p>for <span class="math inline">\(j=1,..., 200\)</span> and plots the mean across <span class="math inline">\(j\)</span> as a point estimate and quantiles across <span class="math inline">\(j\)</span> for confidence intervals. This is fine when <span class="math inline">\(\varepsilon\)</span> does not affect the quantity of interest, but I think the correct thing to when <span class="math inline">\(\varepsilon\)</span> matters is to compute</p>
-<p><span class="math display">\[ \tilde{s}_j = \S(\tilde{\theta}_j, \tilde\mathbf{\varepsilon}}_j) \]</span></p>
+<p><span class="math display">\[ \tilde{s}_j = S(\tilde{\theta}_j, \tilde{\mathbf{\varepsilon}}_j) \]</span></p>
 <p>where <span class="math inline">\(\tilde{\mathbf{\varepsilon}}_j\)</span> are the residuals from using <span class="math inline">\(\tilde{\theta}_j\)</span> as coefficients.</p>
 </div>
 </div>
