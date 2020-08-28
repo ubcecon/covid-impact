@@ -604,7 +604,7 @@ savetextables(NULL, NULL,  piy[1:6], prefix="deaths-robust")
 
 
 ## Fixed Effects
-```{r regsfe,  eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
+```{r regsfe,  eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 
 
 
@@ -817,7 +817,7 @@ prefix="deaths-fe"
 ```
 
 ## DML
-```{r regsdml,  eval = FALSE, cache=FALSE, warning=FALSE, results='asis'}
+```{r regsdml,  eval = TRUE, cache=FALSE, warning=FALSE, results='asis'}
 
 
 df$logpop <- log(df$Population.2018)
