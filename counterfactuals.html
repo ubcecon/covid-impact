@@ -392,7 +392,7 @@ div.tocify {
 <h1 class="title toc-ignore">Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S.</h1>
 <h3 class="subtitle">Counterfactuals</h3>
 <h4 class="author">Victor Chernozhukov, Paul Schrimpf, Hiro Kasahara</h4>
-<h4 class="date">13 August, 2020</h4>
+<h4 class="date">26 August, 2020</h4>
 
 </div>
 
@@ -406,9 +406,13 @@ div.tocify {
 <div id="counterfactuals" class="section level1" number="2">
 <h1 number="2"><span class="header-section-number">2</span> Counterfactuals</h1>
 <pre class="r"><code>source(paste(rootdir,&quot;cases_and_policies/rmd/counterfactuals.R&quot;, sep=&quot;/&quot;))</code></pre>
-<pre><code>## Loading data last updated on  2020-07-31 15:44:29 
+<pre><code>## Loading data last updated on  2020-08-14 15:19:30 
 ## Run  /home/paul/covid/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
-<pre><code>## Warning in eval(ei, envir): Using data only up to 2020-06-02 as in submitted version of paper. Modify lines 4-5 of regprep.R to change</code></pre>
+<pre><code>## Warning in eval(ei, envir): Using data only up to 2020-06-30. Modify lines 4-5 of regprep.R to
+## change</code></pre>
+<pre class="r"><code>source(&quot;smoothtests.R&quot;)</code></pre>
+<pre><code>## Warning in eval(ei, envir): Linearly interpolating and rearranging test counts and creating dlogtest varaible in
+## data frame df.</code></pre>
 <pre class="r"><code>infovars &lt;- list(c(&quot;dlogdc&quot;, &quot;logdc&quot;)) #,
 #c(&quot;dlogdc&quot;, &quot;logdc&quot;))
 #infovars2 &lt;- list(c( &quot;logdc&quot;))
@@ -421,13 +425,13 @@ iv &lt;- list(&quot;0&quot;) #,&quot;(testratedc ~ lag(testratedc,14))&quot;)
 L &lt;- 14
 sdf &lt;- subset(df, df$date&gt;=datelims[1]) #+L)
 regs &lt;- mainregressions(sdf,
-                        &quot;dlogdc&quot;, pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+                         &quot;dlogdc&quot;, pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
 m &lt;- regs$piy[[1]]$reg
 cnames &lt;- c(pols, infovars[[1]])
 di &lt;- dieff_table(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
-                  regs$pbiy[[1]]$reg$coef[,1],
-                  regs$piy[[1]]$reg$coef[,1],
-                  policies=cnames)
+                   regs$pbiy[[1]]$reg$coef[,1],
+                   regs$piy[[1]]$reg$coef[,1],
+                   policies=cnames)
 
 pib &lt;- lapply(regs$pib[[1]][1:4], function(x) x$reg)
 pbiy &lt;- regs$pbiy[[1]]$reg
@@ -467,7 +471,8 @@ simmodel &lt;- createforwardsim(m, sdf)
 cf &lt;- sdf
 cf[,pols] &lt;- 0
 nopmodel &lt;- createforwardsim(m, cf)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>rerunsim=FALSE
 if (!file.exists(&quot;cfnop.Rda&quot;) || rerunsim) {
   cfnoplist &lt;- lapply(unique(sdf$state), function(s)
@@ -546,14 +551,8 @@ Cases without policies in Washington
 </div>
 <pre class="r"><code>#top = textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
 </div>
-</div>
-<div id="r-otherstates-cachetrue-fig.capeffect-of-removing-policies-if-knitris_latex_output-for-st-in-cnew-york-florida-michigan-georgia-massachusetts-f---cfplotsst-cfnop-datadf-grid.arrangeffigd-ffigdp-nrow2-top-textgrobstgpgparfontsize20-font2-grid.arrangeffigl-ffigp-nrow2-top-textgrobstgpgparfontsize20-font2" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> <code>{r otherstates, cache=TRUE, fig.cap="Effect of Removing Policies"} # if (!knitr::is_latex_output()) { #   for( st in c("New York", "Florida", "Michigan", "Georgia", "Massachusetts")) { #     f &lt;- cfplots(st, cfnop, data=df) #     grid.arrange(f$figd, f$figdp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2))) #     grid.arrange(f$figl, f$figp, nrow=2, top =  textGrob(st,gp=gpar(fontsize=20, font=2))) #   } # } #</code></h1>
-</div>
-<div id="r-nop-state-figures-cachetrue-warningfalse-states---cwashingtonillinoismassachusetts-forst-in-states-f---cfplotsst-cfnop-datadf-figdevsprintfstextables_and_figuress-nop-dgrowth_v1.pdfrootdirst-width5height3.75-printffigdp-dev.off-figdevsprintfstextables_and_figuress-nop-growth_v1.pdfrootdirst-width5height3.75-printffigd-ylimc-15-dev.off-figdevsprintfstextables_and_figuress-nop-cases_v1.pdfrootdirst-width5height3.75-printffigl-dev.off-figdevsprintfstextables_and_figuress-nop-dcases_v1.pdfrootdirst-width5height3.75-printffigp-dev.off" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> <code>{r nop-state-figures, cache=TRUE, warning=FALSE} # states &lt;- c("Washington","Illinois","Massachusetts") # for(st in states) { #   f &lt;- cfplots(st, cfnop, data=df) # #   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dgrowth_v1.pdf",rootdir,st), width=5,height=3.75) #   print(f$figdp) #   dev.off() # #   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-growth_v1.pdf",rootdir,st), width=5,height=3.75) #   print(f$figd + ylim(c(-1,5))) #   dev.off() # #   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-cases_v1.pdf",rootdir,st), width=5,height=3.75) #   print(f$figl) #   dev.off() # #   figdev(sprintf("%s/tex/tables_and_figures/%s-nop-dcases_v1.pdf",rootdir,st), width=5,height=3.75) #   print(f$figp) #   dev.off() # } #</code></h1>
-<div id="national" class="section level2" number="4.1">
-<h2 number="4.1"><span class="header-section-number">4.1</span> National</h2>
+<div id="national" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> National</h2>
 <p>These figures show the average effect on <span class="math inline">\(\Delta \log \Delta C\)</span> across states, and the total national effect on cases in past week.</p>
 <p>That is for the first figure, we take:</p>
 <p><span class="math display">\[
@@ -604,13 +603,14 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="counterfactuals_files/figure-html/nop-all-3.png" width="768" /></p>
 </div>
-<div id="non-essential-business-closures" class="section level2" number="4.2">
-<h2 number="4.2"><span class="header-section-number">4.2</span> Non-Essential Business Closures</h2>
+<div id="non-essential-business-closures" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> Non-Essential Business Closures</h2>
 <pre class="r"><code># remove non essential business closure
 cf &lt;- sdf
 cf[,&quot;pnonessential&quot;] &lt;- 0
 nobmodel &lt;- createforwardsim(m, cf)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfnb.Rda&quot;) || rerunsim) {
   cfnblist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf, nresid=1))
   nball &lt;- rbindlist(lapply(cfnblist, getmeans))
@@ -679,8 +679,8 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-2-3.png" width="768" /></p>
 </div>
-<div id="masks" class="section level2" number="4.3">
-<h2 number="4.3"><span class="header-section-number">4.3</span> Masks</h2>
+<div id="masks" class="section level2" number="2.3">
+<h2 number="2.3"><span class="header-section-number">2.3</span> Masks</h2>
 <p>We now look at what happens when all states impose a mask mandate on April 1st.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-04-01&quot;)
@@ -755,14 +755,15 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-3-6.png" width="768" /></p>
 </div>
-<div id="stay-at-home" class="section level2" number="4.4">
-<h2 number="4.4"><span class="header-section-number">4.4</span> Stay at home</h2>
+<div id="stay-at-home" class="section level2" number="2.4">
+<h2 number="2.4"><span class="header-section-number">2.4</span> Stay at home</h2>
 <p>We now look at what happens if stay at home orders were never issued.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;pshelter&quot;] &lt;- 0
 cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
 noshelter &lt;- createforwardsim(m, cf)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfshelter.Rda&quot;) || rerunsim) {
   cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf, nresid=1))
   shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
@@ -829,8 +830,8 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-4-6.png" width="768" /></p>
 </div>
-<div id="shutdown-policies" class="section level2" number="4.5">
-<h2 number="4.5"><span class="header-section-number">4.5</span> Shutdown policies</h2>
+<div id="shutdown-policies" class="section level2" number="2.5">
+<h2 number="2.5"><span class="header-section-number">2.5</span> Shutdown policies</h2>
 <p>We now look at what happens if the four shutdown policies in pindex were never implemented.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;pshelter&quot;] &lt;- 0
@@ -839,7 +840,8 @@ cf[,&quot;prestaurant&quot;] &lt;- 0
 cf[,&quot;pnonessential&quot;] &lt;- 0
 cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
 noindex &lt;- createforwardsim(m, cf)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfindex.Rda&quot;) || rerunsim) {
   cfindexlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf, nresid=1))
   indexall &lt;- rbindlist(lapply(cfindexlist, getmeans))
@@ -908,8 +910,8 @@ figs$r</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-5-6.png" width="768" /></p>
 </div>
 </div>
-<div id="deaths" class="section level1" number="5">
-<h1 number="5"><span class="header-section-number">5</span> Deaths</h1>
+<div id="deaths" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Deaths</h1>
 <pre class="r"><code>infovars &lt;- list(c(&quot;dlogdd&quot;, &quot;logdd&quot;)) #,
 #c(&quot;dlogdc&quot;, &quot;logdc&quot;))
 #infovars2 &lt;- list(c( &quot;logdc&quot;))
@@ -961,7 +963,8 @@ simmodel &lt;- createforwardsim(m, sdf, dvar=&quot;dlogdd&quot;, var=&quot;logdd
 cf &lt;- sdf
 cf[,pols] &lt;- 0
 nopmodel &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>rerunsim=FALSE
 if (!file.exists(&quot;cfnop_deaths.Rda&quot;) || rerunsim) {
   cfnoplist &lt;- lapply(unique(df$state), function(s)
@@ -971,8 +974,8 @@ if (!file.exists(&quot;cfnop_deaths.Rda&quot;) || rerunsim) {
 }
 load(&quot;cfnop_deaths.Rda&quot;)
 cfnop &lt;- do.call(rbind, lapply(cfnoplist, function(x) x$edf))</code></pre>
-<div id="removing-policies-1" class="section level2" number="5.1">
-<h2 number="5.1"><span class="header-section-number">5.1</span> Removing Policies</h2>
+<div id="removing-policies-1" class="section level2" number="3.1">
+<h2 number="3.1"><span class="header-section-number">3.1</span> Removing Policies</h2>
 <pre class="r"><code>st &lt;- &quot;Washington&quot;
 f &lt;- cfplots(st, cfnop, yvar=&quot;deaths&quot;, data=df)</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
@@ -994,8 +997,8 @@ Cases without policies in Washington
 </p>
 </div>
 <pre class="r"><code>#top = textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
-<div id="national-1" class="section level3" number="5.1.1">
-<h3 number="5.1.1"><span class="header-section-number">5.1.1</span> National</h3>
+<div id="national-1" class="section level3" number="3.1.1">
+<h3 number="3.1.1"><span class="header-section-number">3.1.1</span> National</h3>
 <pre class="r"><code>abbrv &lt;- unique(df[,c(&quot;state&quot;,&quot;ST&quot;)])
 cfnop &lt;- merge(cfnop, abbrv, by=&quot;state&quot;)
 
@@ -1028,13 +1031,14 @@ figs$r</code></pre>
 <p><img src="counterfactuals_files/figure-html/nop-all-deaths-3.png" width="768" /></p>
 </div>
 </div>
-<div id="non-essential-business-closures-1" class="section level2" number="5.2">
-<h2 number="5.2"><span class="header-section-number">5.2</span> Non-essential Business Closures</h2>
+<div id="non-essential-business-closures-1" class="section level2" number="3.2">
+<h2 number="3.2"><span class="header-section-number">3.2</span> Non-essential Business Closures</h2>
 <pre class="r"><code># remove non essential business closure
 cf &lt;- sdf
 cf[,&quot;pnonessential&quot;] &lt;- 0
 nobmodel &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfnb_deaths.Rda&quot;) || rerunsim) {
   cfnblist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=nobmodel, data=sdf, var=&quot;logdd&quot;, dvar=&quot;dlogdd&quot;))
   nball &lt;- rbindlist(lapply(cfnblist, getmeans))
@@ -1098,8 +1102,8 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-6-3.png" width="768" /></p>
 </div>
-<div id="masks-1" class="section level2" number="5.3">
-<h2 number="5.3"><span class="header-section-number">5.3</span> Masks</h2>
+<div id="masks-1" class="section level2" number="3.3">
+<h2 number="3.3"><span class="header-section-number">3.3</span> Masks</h2>
 <p>We now look at what happens when all states impose a mask mandate on April 1st.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-04-01&quot;)
@@ -1168,14 +1172,15 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-7-6.png" width="768" /></p>
 </div>
-<div id="stay-at-home-1" class="section level2" number="5.4">
-<h2 number="5.4"><span class="header-section-number">5.4</span> Stay at home</h2>
+<div id="stay-at-home-1" class="section level2" number="3.4">
+<h2 number="3.4"><span class="header-section-number">3.4</span> Stay at home</h2>
 <p>We now look at what happens if stay at home orders were never issued.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;pshelter&quot;] &lt;- 0
 cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
 noshelter &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfshelter_deaths.Rda&quot;) || rerunsim) {
   cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
@@ -1236,8 +1241,8 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="counterfactuals_files/figure-html/unnamed-chunk-8-6.png" width="768" /></p>
 </div>
-<div id="shutdown-policies-1" class="section level2" number="5.5">
-<h2 number="5.5"><span class="header-section-number">5.5</span> Shutdown policies</h2>
+<div id="shutdown-policies-1" class="section level2" number="3.5">
+<h2 number="3.5"><span class="header-section-number">3.5</span> Shutdown policies</h2>
 <p>We now look at what happens if the four shutdown policies in pindex were never implemented.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;pshelter&quot;] &lt;- 0
@@ -1246,7 +1251,8 @@ cf[,&quot;prestaurant&quot;] &lt;- 0
 cf[,&quot;pnonessential&quot;] &lt;- 0
 cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
 noindex &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
-<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or indefinite</code></pre>
+<pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
+## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfindex_deaths.Rda&quot;) || rerunsim) {
   cfindexlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf))
   indexall &lt;- rbindlist(lapply(cfindexlist, getmeans))
