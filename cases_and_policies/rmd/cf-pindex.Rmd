@@ -1,6 +1,6 @@
 ---
 title       : "Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S."
-subtitle    : "Counterfactuals (with policies averaged)"
+subtitle    : "Counterfactuals"
 author      :  Victor Chernozhukov,  Hiro Kasahara, Paul Schrimpf
 job         :
 date        : "`r format(Sys.time(), '%d %B, %Y')`"
@@ -17,7 +17,7 @@ output      :
         #css : 628notes.css
         code_folding: hide
         #lib_dir : deps
-        self_cononontained : true
+        self_contained : true
         fig_width: 8
         fig_height: 6
 ---
@@ -78,8 +78,6 @@ source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
 datelims <- c(as.Date("2020-03-07"), max(df$date))
 ```
 
-# Counterfactuals
-
 
 ```{r cffuncs, cache=FALSE}
 source(paste(rootdir,"cases_and_policies/rmd/counterfactuals.R", sep="/"))
@@ -90,7 +88,7 @@ pols <- c("pmaskbus","pk12","pshelter","pindex")
 source("smoothtests.R")
 ```
 
-```{r statesim, cache=FALSE}
+```{r regressions, cache=FALSE}
 infovars <- list(c("dlogdc", "logdc")) #,
 #c("dlogdc", "logdc"))
 #infovars2 <- list(c( "logdc"))
@@ -106,6 +104,7 @@ regs <- mainregressions2(sdf,
                         "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
 m <- regs$piy[[1]]$reg
 cnames <- c(pols, infovars[[1]])
+
 di <- dieff_table2(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
                   regs$pbiy[[1]]$reg$coef[,1],
                   regs$piy[[1]]$reg$coef[,1],
@@ -145,79 +144,130 @@ m$robustvcv <- V
 m$beta <- m$coefficients
 m$cse <- sqrt(diag(V))
 
-simmodel <- createforwardsim(m, sdf)
-
-# remove policies
-cf <- sdf
-cf[,pols] <- 0
-nopmodel <- createforwardsim(m, cf)
-
-rerunsim=FALSE
-if (!file.exists("cfnop_idx.Rda") || rerunsim) {
-  cfnoplist <- lapply(unique(sdf$state), function(s)
-    nopstatesim(s,simobs=simmodel,simcf=nopmodel,data=sdf))
-  allmeans <- rbindlist(lapply(cfnoplist, getmeans))
-  save(cfnoplist,allmeans, file="cfnop_idx.Rda")
-}
-load("cfnop_idx.Rda")
-cfnop <- do.call(rbind, lapply(cfnoplist, function(x) x$edf))
+rerunsim <- FALSE
 ```
 
-### Removing Policies
+# Method
 
-We now examine the impact changing from the observed policies to
-none. For illustrative purpose, we being by focusing on
-Washington. Figure \ref{fig:WA-nop-dlogdc} shows the observed,
-estimated average, and counterfactual without policies average of
-$\Delta \log \Delta C$ in Washington.
+We compute counterfactuals from the "total effect" version of the model, with behavior concentrated out.
+
+$$
+Y_{i,t+\ell}
+= \mathsf{a}'
+P_{it} + \mathsf{b}' I_{it} +  {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
+$$
+
+We consider a counterfactual change of $P_{it}$ to $P_{it}^*$, while
+$W_{it}$ and $\bar \varepsilon_{it}$ are held constant. In response to
+the policy change, $Y_{i,t+\ell}$ and the part of $I_{it}$ that
+contains $Y_{it}$, change to $Y_{i,t+\ell}^*$ and $I_{it}^*$. To be
+specific, let $C_{it}$ denote cumulative cases in state $i$ on day
+$t$. Our outcome is:
+
+$$
+Y_{i,t+\ell} \equiv \log
+\left(C_{i, t+\ell} - C_{i, t + \ell - 7} \right) - \log
+\left(C_{i, t+\ell-7} - C_{i, t + \ell - 14} \right) \equiv \Delta
+\log \Delta C_{i,t+\ell}
+$$
+
+where $\Delta$ is a 7 day difference operator. Writing the model in
+terms of $\Delta \log \Delta C$ we have:
+
+$$
+\Delta \log \Delta C_{i,t+\ell} = \mathsf{a}' P_{it} + \mathsf{b}_D
+\Delta \log \Delta C_{i,t} + \mathsf{b}_L \log \Delta C_{i,t} +
+{\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
+$$
+
+To simplify computation, we rewrite this model in terms of $\log
+\Delta C$:
+
+$$
+\log \Delta C_{i,t+\ell} = \mathsf{a}' P_{it} + \log \Delta
+C_{i,t+\ell-7} + (\mathsf{b}_D + \mathsf{b}_L) \log \Delta C_{i,t} -
+\mathsf{b}_D \log \Delta C_{i,t-7} + {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
+$$
+
+This equation is used to iteratively compute
+$\log \Delta C_{i,t+\ell}^*$
+conditional on initial $\{\log \Delta C_{i,s}\}_{s=-\ell-7}^{0}$,
+and the entire sequence of $\{W_{i,t}, P_{i,t}^*, \bar \varepsilon_{it} \}_{t=0}^T$.
 
 
+Weekly cases instead of log weekly cases are given simply by
 
-```{r WA-nop-dlogdc, cache=TRUE,fig.cap="Case growth without policies in Washington \\label{fig:WA-nop-dlogdc}"}
-st <- "Washington"
-f <- cfplots(st, cfnop, data=df)
-grid.arrange(f$figd, f$figdp, nrow=2, top =
-                                        textGrob(st,gp=gpar(fontsize=20,font=2)))
+$$ \Delta C_{i,t+\ell}^* = \exp(\log \Delta C_{i,t+\ell}^*)$$
 
-```
+Cumulative cases can be recursively computed as:
+
+$$
+  C_{i,t} = C_{i,t-7} + \Delta C_{i,t} = C_{i,t-7} + \exp(\log \Delta C_{i,t})
+$$
+
+given initial $\{C_{i,s}\}_{s=-7}^0$.
+
+Note that $\log \Delta C_{i,t+\ell}^*$ depends linearly on
+$\bar \varepsilon$, so the residuals (and our decision to condition on
+versus intergrate out) do not matter when considering linear
+constrasts of $\log \Delta C_{it}$ or $\Delta \log \Delta C_{it}$, or
+when considering relative constrasts of $\Delta C_{it}$.
+
+On the other hand, cumulative cases are a nonlinear function of
+$\bar\varepsilon$, so the conditioning on $\bar\varepsilon$ might
+matter (not that there's anything wrong with that).
+
+## Inference
+
+Let $S(\theta, \mathbf{\varepsilon})$ denote some counterfactual
+quantity or contrast of interest, where $\theta = (\mathsf{a},
+\mathsf{b}, \tilde{\delta})$ are the parameters, and
+$\mathbf{\varepsilon}$ is the vector of residuals. Examples of $S$
+that we compute include:
+
+- Contrasts of growth rates: $S(\theta, \mathbf{\varepsilon}) =
+  \Delta \log \Delta C_{it}^* - \Delta \log \Delta C_{it}$
+
+- Relative contrasts of weekly cases: $S(\theta, \mathbf{\varepsilon}) =
+  \Delta C_{it}^*/\Delta C_{it}$
+
+- Constrasts of cumulative cases: $S(\theta, \mathbf{\varepsilon}) =
+  C_{it}^*/C_{it}$
 
 
-```{r WA-nop-cases, cache=TRUE, fig.cap="Cases without policies in Washington \\label{fig:WA-nop-cases}"}
-grid.arrange(f$figl, f$figp, nrow=2) #,
-#top = textGrob(st,gp=gpar(fontsize=20,font=2)))
-```
+The first two examples do not actually depend on
+$\mathbf{\varepsilon}$, but the third one does. Inference is by
+simulation. Let $\hat{\theta}$ denote our point estimates and
+$\hat{\mathbf{\varepsilon}}$ the associated residuals. We draw
+$\tilde{\theta}_j$ from the asymptotic distribution of
+$\hat{\theta}$. Currently the code then computes
 
-## National
+$$ \tilde{s}_j = S(\tilde{\theta}_j, \hat{\mathbf{\varepsilon}}) $$
 
-```{r nop-all, cache=TRUE}
-abbrv <- unique(df[,c("state","ST")])
-cfnop <- merge(cfnop, abbrv, by="state")
+for $j=1,..., 200$ and plots the mean across $j$ as a point estimate
+and quantiles across $j$ for confidence intervals. This is fine when
+$\varepsilon$ does not affect the quantity of interest, but I think
+the correct thing to when $\varepsilon$ matters is to compute
 
-figs <- nationalplots(allmeans,cfnop, "removing policies")
+$$ \tilde{s}_j = S(\tilde{\theta}_j, \tilde{\mathbf{\varepsilon}}_j) $$
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
-figs$g
-dev.off()
+where $\tilde{\mathbf{\varepsilon}}_j$ are the residuals from using
+$\tilde{\theta}_j$ as coefficients.
 
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dcases_idx.pdf",sep="/"), width=5,height=3.75)
-figs$c
-dev.off()
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-rel_idx.pdf",sep="/"), width=5,height=3.75)
-figs$r
-dev.off()
-
-for (f in figs) print(f)
-```
+# Cases
 
 ## Masks
 
 We now look at what happens when all states impose a mask mandate on
-April 1st.
+May 14th.
 
 ```{r mask_sim, cache=FALSE}
+sdf <- subset(df, df$date>=datelims[1]) #+L)
+simmodel <- createforwardsim(m, sdf)
+abbrv <- unique(df[,c("state","ST")])
+
 cf <- df
-cf[,"Mandate.face.mask.use.by.employees.in.public.facing.businesses"]  <- as.Date("2020-04-01")
+cf[,"Mandate.face.mask.use.by.employees.in.public.facing.businesses"]  <- as.Date("2020-03-14")
 cf[,"pmaskbus"] <-
   smoothedpolicy(cf,"Mandate.face.mask.use.by.employees.in.public.facing.businesses",type="ma",bw=6)
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
@@ -232,11 +282,11 @@ load("cfmask_idx.Rda")
 cfmask <- do.call(rbind, lapply(cfmasklist, function(x) x$edf))
 ```
 
-```{r, cache=TRUE}
+```{r, cache=FALSE}
 cfmask <- merge(cfmask, abbrv, by="state")
 for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfmask, data=df)
-  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on April 1st in %s",st)))
+  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on May 14th in %s",st)))
 
   figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
@@ -245,9 +295,11 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  if (st=="Washington") for (fig in f) print(fig)
 }
 
-figs <- nationalplots(maskall, cfmask, "mandating masks on April 1st\n")
+figs <- nationalplots(maskall, cfmask, "mandating masks on May 14th\n")
 
 figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
@@ -275,7 +327,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noshelter <- createforwardsim(m, cf)
 
 if (!file.exists("cfshelter_idx.Rda") || rerunsim) {
-  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf, nresid=1))
+  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
   save(cfshelterlist, shelterall, file="cfshelter_idx.Rda")
 }
@@ -479,11 +531,11 @@ for (f in figs) print(f)
 ## Masks
 
 We now look at what happens when all states impose a mask mandate on
-April 1st.
+May 14th.
 
 ```{r mask_sim-deaths, cache=FALSE}
 cf <- df
-cf[,"Mandate.face.mask.use.by.employees.in.public.facing.businesses"]  <- as.Date("2020-04-01")
+cf[,"Mandate.face.mask.use.by.employees.in.public.facing.businesses"]  <- as.Date("2020-03-14")
 cf[,"pmaskbus"] <-
   smoothedpolicy(cf,"Mandate.face.mask.use.by.employees.in.public.facing.businesses",type="ma",bw=6)
 cf <- subset(cf, cf$date>=datelims[1]) #+L)
@@ -502,7 +554,7 @@ cfmask <- do.call(rbind, lapply(cfmasklist, function(x) x$edf))
 cfmask <- merge(cfmask, abbrv, by="state")
 for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfmask, yvar="deaths", data=df)
-  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on April 1st in %s",st)))
+  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on May 14th in %s",st)))
 
   figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
@@ -513,7 +565,7 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   dev.off()
 }
 
-figs <- nationalplots(maskall, cfmask, "mandating masks on April 1st\n", yvar="deaths")
+figs <- nationalplots(maskall, cfmask, "mandating masks on May 14th\n", yvar="deaths")
 
 figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
@@ -542,7 +594,7 @@ noshelter <-  createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
 
 if (!file.exists("cfshelter_deaths_idx.Rda") || rerunsim) {
-  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf, nresid=1))
+  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
   save(cfshelterlist, shelterall, file="cfshelter_deaths_idx.Rda")
 }
