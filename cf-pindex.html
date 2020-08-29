@@ -407,6 +407,8 @@ div.tocify {
 ## Run  /home/paul/covid/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
 <pre><code>## Warning in eval(ei, envir): Using data only up to 2020-06-03. Modify lines 4-5 of regprep.R to
 ## change</code></pre>
+<pre><code>## Warning in eval(ei, envir): Linearly interpolating and rearranging test counts and creating dlogtest varaible in
+## data frame df.</code></pre>
 <pre class="r"><code>pols &lt;- c(&quot;pmaskbus&quot;,&quot;pk12&quot;,&quot;pshelter&quot;,&quot;pindex&quot;)</code></pre>
 <pre class="r"><code>source(&quot;smoothtests.R&quot;)</code></pre>
 <pre><code>## Warning in eval(ei, envir): Linearly interpolating and rearranging test counts and creating dlogtest varaible in
@@ -452,6 +454,7 @@ regs &lt;- mainregressions2(sdf,
 ## indefinite</code></pre>
 <pre class="r"><code>m &lt;- regs$piy[[1]]$reg
 cnames &lt;- c(pols, infovars[[1]])
+
 di &lt;- dieff_table2(lapply(regs$pib[[1]][1:4], function(x) x$reg$coef[,1]),
                   regs$pbiy[[1]]$reg$coef[,1],
                   regs$piy[[1]]$reg$coef[,1],
@@ -534,7 +537,7 @@ Y_{i,t+\ell} \equiv \log
 C_{i,t+\ell-7} + (\mathsf{b}_D + \mathsf{b}_L) \log \Delta C_{i,t} -
 \mathsf{b}_D \log \Delta C_{i,t-7} + {\tilde {\delta}}&#39; W_{it}   + {\bar \varepsilon}_{it}
 \]</span></p>
-<p>This equation is used to iteratively compute <span class="math inline">\(\log \Delta C_{i,t+\ell}^*\)</span> conditional on initial <span class="math inline">\(\{\log \Delta C_{i,s}\}_{s=-\ell-7}^{0}\)</span>, <span class="math inline">\(\{W_{i,t}, P_{i,t}^*, \bar \varepsilon_{it} \}_{t=0^T}\)</span>.</p>
+<p>This equation is used to iteratively compute <span class="math inline">\(\log \Delta C_{i,t+\ell}^*\)</span> conditional on initial <span class="math inline">\(\{\log \Delta C_{i,s}\}_{s=-\ell-7}^{0}\)</span>, and the entire sequence of <span class="math inline">\(\{W_{i,t}, P_{i,t}^*, \bar \varepsilon_{it} \}_{t=0}^T\)</span>.</p>
 <p>Weekly cases instead of log weekly cases are given simply by</p>
 <p><span class="math display">\[ \Delta C_{i,t+\ell}^* = \exp(\log \Delta C_{i,t+\ell}^*)\]</span></p>
 <p>Cumulative cases can be recursively computed as:</p>
@@ -564,7 +567,11 @@ C_{i,t+\ell-7} + (\mathsf{b}_D + \mathsf{b}_L) \log \Delta C_{i,t} -
 <div id="masks" class="section level2" number="3.1">
 <h2 number="3.1"><span class="header-section-number">3.1</span> Masks</h2>
 <p>We now look at what happens when all states impose a mask mandate on May 14th.</p>
-<pre class="r"><code>cf &lt;- df
+<pre class="r"><code>sdf &lt;- subset(df, df$date&gt;=datelims[1]) #+L)
+simmodel &lt;- createforwardsim(m, sdf)
+abbrv &lt;- unique(df[,c(&quot;state&quot;,&quot;ST&quot;)])
+
+cf &lt;- df
 cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-03-14&quot;)
 cf[,&quot;pmaskbus&quot;] &lt;-
   smoothedpolicy(cf,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;,type=&quot;ma&quot;,bw=6)
@@ -581,7 +588,7 @@ cfmask &lt;- do.call(rbind, lapply(cfmasklist, function(x) x$edf))</code></pre>
 <pre class="r"><code>cfmask &lt;- merge(cfmask, abbrv, by=&quot;state&quot;)
 for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
   f &lt;- cfplots(st, cfmask, data=df)
-  print(f$figp +  ggtitle(sprintf(&quot;Effect of mandating masks on April 1st in %s&quot;,st)))
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of mandating masks on May 14th in %s&quot;,st)))
 
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dgrowth_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figdp)
@@ -590,20 +597,22 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dcases_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  if (st==&quot;Washington&quot;) for (fig in f) print(fig)
 }</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
 
-## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill
-
 ## Warning: Ignoring unknown aesthetics: fill</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-1.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-2.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-3.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-4.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-5.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-6.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-7.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-8.png" width="768" /></p>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
 
 ## Warning: Ignoring unknown aesthetics: fill</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-2.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-3.png" width="768" /></p>
-<pre class="r"><code>figs &lt;- nationalplots(maskall, cfmask, &quot;mandating masks on April 1st\n&quot;)
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-9.png" width="768" /></p>
+<pre><code>## Warning: Ignoring unknown aesthetics: fill
+
+## Warning: Ignoring unknown aesthetics: fill</code></pre>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-10.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-2-11.png" width="768" /></p>
+<pre class="r"><code>figs &lt;- nationalplots(maskall, cfmask, &quot;mandating masks on May 14th\n&quot;)
 
 figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-dgrowth_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
 figs$g</code></pre>
@@ -625,11 +634,13 @@ figs$r</code></pre>
 ##   2</code></pre>
 <pre class="r"><code>for (f in figs) print(f)</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-4.png" width="768" /></p>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-12.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-5.png" width="768" /></p>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-13.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-6.png" width="768" /></p>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-14.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-2-15.png" width="768" /></p>
 </div>
 <div id="stay-at-home" class="section level2" number="3.2">
 <h2 number="3.2"><span class="header-section-number">3.2</span> Stay at home</h2>
@@ -641,7 +652,7 @@ noshelter &lt;- createforwardsim(m, cf)</code></pre>
 <pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
 ## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfshelter_idx.Rda&quot;) || rerunsim) {
-  cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf, nresid=1))
+  cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
   save(cfshelterlist, shelterall, file=&quot;cfshelter_idx.Rda&quot;)
 }
@@ -699,6 +710,8 @@ figs$r</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-5.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-6.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-3-7.png" width="768" /></p>
 </div>
 <div id="averaged-policies" class="section level2" number="3.3">
 <h2 number="3.3"><span class="header-section-number">3.3</span> Averaged policies</h2>
@@ -768,6 +781,8 @@ figs$r</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-4-5.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-4-6.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-4-7.png" width="768" /></p>
 </div>
 </div>
 <div id="deaths" class="section level1" number="4">
@@ -931,12 +946,14 @@ figs$r</code></pre>
 <p><img src="cf-pindex_files/figure-html/nop-all-deaths-2.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/nop-all-deaths-3.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="cf-pindex_files/figure-html/nop-all-deaths-4.png" width="768" /></p>
 </div>
 <div id="masks-1" class="section level2" number="4.2">
 <h2 number="4.2"><span class="header-section-number">4.2</span> Masks</h2>
-<p>We now look at what happens when all states impose a mask mandate on April 1st.</p>
+<p>We now look at what happens when all states impose a mask mandate on May 14th.</p>
 <pre class="r"><code>cf &lt;- df
-cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-04-01&quot;)
+cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-03-14&quot;)
 cf[,&quot;pmaskbus&quot;] &lt;-
   smoothedpolicy(cf,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;,type=&quot;ma&quot;,bw=6)
 cf &lt;- subset(cf, cf$date&gt;=datelims[1]) #+L)
@@ -952,7 +969,7 @@ cfmask &lt;- do.call(rbind, lapply(cfmasklist, function(x) x$edf))</code></pre>
 <pre class="r"><code>cfmask &lt;- merge(cfmask, abbrv, by=&quot;state&quot;)
 for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quot;)) {
   f &lt;- cfplots(st, cfmask, yvar=&quot;deaths&quot;, data=df)
-  print(f$figp +  ggtitle(sprintf(&quot;Effect of mandating masks on April 1st in %s&quot;,st)))
+  print(f$figp +  ggtitle(sprintf(&quot;Effect of mandating masks on May 14th in %s&quot;,st)))
 
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dgrowth_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figdp)
@@ -974,7 +991,7 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
 
 ## Warning: Ignoring unknown aesthetics: fill</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-2.png" width="768" /><img src="cf-pindex_files/figure-html/unnamed-chunk-5-3.png" width="768" /></p>
-<pre class="r"><code>figs &lt;- nationalplots(maskall, cfmask, &quot;mandating masks on April 1st\n&quot;, yvar=&quot;deaths&quot;)
+<pre class="r"><code>figs &lt;- nationalplots(maskall, cfmask, &quot;mandating masks on May 14th\n&quot;, yvar=&quot;deaths&quot;)
 
 figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-dgrowth_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
 figs$g</code></pre>
@@ -1001,6 +1018,8 @@ figs$r</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-5.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-6.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-7.png" width="768" /></p>
 </div>
 <div id="stay-at-home-1" class="section level2" number="4.3">
 <h2 number="4.3"><span class="header-section-number">4.3</span> Stay at home</h2>
@@ -1012,7 +1031,7 @@ noshelter &lt;-  createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logd
 <pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
 ## indefinite</code></pre>
 <pre class="r"><code>if (!file.exists(&quot;cfshelter_deaths_idx.Rda&quot;) || rerunsim) {
-  cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf, nresid=1))
+  cfshelterlist &lt;- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall &lt;- rbindlist(lapply(cfshelterlist, getmeans))
   save(cfshelterlist, shelterall, file=&quot;cfshelter_deaths_idx.Rda&quot;)
 }
@@ -1070,6 +1089,8 @@ figs$r</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-6-5.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-6-6.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-6-7.png" width="768" /></p>
 </div>
 <div id="shutdown-policies" class="section level2" number="4.4">
 <h2 number="4.4"><span class="header-section-number">4.4</span> Shutdown policies</h2>
@@ -1139,6 +1160,8 @@ figs$r</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-7-5.png" width="768" /></p>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-7-6.png" width="768" /></p>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="cf-pindex_files/figure-html/unnamed-chunk-7-7.png" width="768" /></p>
 </div>
 </div>
 
