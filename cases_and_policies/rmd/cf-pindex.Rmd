@@ -259,7 +259,7 @@ $\tilde{\theta}_j$ as coefficients.
 ## Masks
 
 We now look at what happens when all states impose a mask mandate on
-May 14th.
+March 14th.
 
 ```{r mask_sim, cache=FALSE}
 sdf <- subset(df, df$date>=datelims[1]) #+L)
@@ -286,7 +286,7 @@ cfmask <- do.call(rbind, lapply(cfmasklist, function(x) x$edf))
 cfmask <- merge(cfmask, abbrv, by="state")
 for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfmask, data=df)
-  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on May 14th in %s",st)))
+  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on March 14th in %s",st)))
 
   figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
@@ -308,7 +308,7 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   if (st=="Washington") for (fig in f) print(fig)
 }
 
-figs <- nationalplots(maskall, cfmask, "mandating masks on May 14th\n")
+figs <- nationalplots(maskall, cfmask, "mandating masks on March 14th\n")
 
 figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
