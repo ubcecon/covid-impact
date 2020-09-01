@@ -74,7 +74,7 @@ policyreg <- function(df, # data
     b <- sprintf("lag(%s, %d)", bvars, L)
   }
   fmla <- createfmla(yvar, c(p, b, x), interactions, iv=iv)
-  m <- felm(fmla[[1]], data=df)
+  m <- felm(fmla[[1]], data=df, keepX=TRUE)
   w <- rep(1, length(p))
   peff <- c(sum(coef(m)[p]*w), sqrt(t(w) %*% (vcov(m)[p,p]) %*% w ))
   if (!is.null(bvars)) {
