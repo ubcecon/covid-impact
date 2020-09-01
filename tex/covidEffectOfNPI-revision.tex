@@ -281,23 +281,24 @@ In our counterfactual experiment of removing all policies, we find that the resu
 
 
 \begin{figure}[ht]
-  \caption{Effect  of nationally mandating masks for employees on April
-    1st in the US \label{fig:US-mask-dgrowth}}
+  \caption{Effect  of nationally mandating masks for employees on March
+    14th in the US \label{fig:US-mask-dgrowth}}
   \begin{minipage}{\linewidth}
     \centering
     \medskip
     \begin{tabular}{cc}
 %     \multicolumn{2}{c}{\textbf{Cases}}     \multicolumn{2}{c}{\textbf{Deaths}}
  %  \\
-      \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_idx}
-      & \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_deaths_idx}
+      \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rcumu_idx}
+      & \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rcumu_deaths_idx}
     \end{tabular}
     \begin{flushleft}
       \footnotesize This figure shows the estimated relative change in
-      cases if all states had mandated masks on April 1st. The thick
-      blue line is the estimated change in weekly cases or deaths
-      relative to the observed number of weekly cases or deaths. The
-      shaded region is a point wise 90\% confidence band.
+      cumulative cases and deaths if all states had mandated masks on
+      March 14th. The thick blue line is the estimated change in
+      cumulative cases or deaths relative to the observed number of
+      cases or deaths. The shaded region is a point wise 90\%
+      confidence band.
     \end{flushleft}
   \end{minipage}
 \end{figure}
@@ -310,7 +311,8 @@ In our counterfactual experiment of removing all policies, we find that the resu
     \begin{tabular}{cc}
     %  \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-dgrowth_v1}
 %
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rel_idx}
+      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rcumu_idx}
+      & \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rcumu_deaths_idx}
 %      \\
 %      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-dgrowth_deaths}
 %      &
@@ -318,9 +320,9 @@ In our counterfactual experiment of removing all policies, we find that the resu
     \end{tabular}
     \begin{flushleft}
       \footnotesize This figure shows the estimated relative change in
-      cases if no states had never implemented any business closure
-      policies. The thick blue line is the estimated change in weekly
-      cases or deaths relative to the observed number of weekly cases
+      cases and deaths if no states had never implemented any business closure
+      policies. The thick blue line is the estimated change in cumulative
+      cases or deaths relative to the observed number of cumulative cases
       or deaths. The shaded region is a point wise 90\% confidence
       band.
     \end{flushleft}
@@ -331,20 +333,23 @@ In our counterfactual experiment of removing all policies, we find that the resu
 
 \begin{figure}[ht]
  % \caption{National effect of leaving non-essential businesses open\label{fig:US-nb}}
-  \caption{Effect  of  not implementing stay-at-home order on cases in the US  \label{fig:US-shelter-dgrowth_idx}}
+  \caption{Effect  of  not implementing stay-at-home order on cases in the US  \label{fig:US-shelter-dgrowth}}
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
   %    \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-dgrowth_v1}
     %  &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rel_v1}
+         \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rcumu_idx}
+      &
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rcumu_deaths_idx}
     \end{tabular}
     \begin{flushleft}
       \footnotesize This figure shows the estimated relative change in
-      cases if no states had ever issued stay at home orders. The thick
-      blue line is the estimated change in weekly cases or deaths
-      relative to the observed number of weekly cases or deaths. The
-      shaded region is a point wise 90\% confidence band.
+      cases and deaths if no states had ever issued stay at home
+      orders. The thick blue line is the estimated change in cumulative
+      cases or deaths relative to the observed number of cumulative cases
+      or deaths. The shaded region is a point wise 90\% confidence
+      band.
     \end{flushleft}
   \end{minipage}
 \end{figure}
@@ -1960,7 +1965,9 @@ average of two estimated coefficients as reported in column
 excludes the number of past national cases and deaths from information
 variables and constrains masks to have only direct effects and
 business policies only indirect effects.\footnote{Results (not shown)
-  using the unconstrained estimates in Table \ref{tab:dieff-si} are similar.}
+  using the unconstrained estimates in Table \ref{tab:dieff-si} are
+  very similar.} Details of the counterfactual computations are in
+appendix \ref{app:counterfactuals}.
 %In the appendix, we also report additional counterfactual
 %experiment results with the specification that includes the national
 %information variables, and find that they are very similar.
@@ -1981,19 +1988,21 @@ business policies only indirect effects.\footnote{Results (not shown)
   \caption{Effect of mandating masks on April 1st in Washington State \label{fig:WA-mask}}
   \begin{minipage}{\linewidth}
     \centering
-    \begin{tabular}{cc}
-      \multicolumn{2}{c}{\textbf{Cases}} \\
-      %\includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-growth}
-      % &
-        \includegraphics[width=0.49\textwidth]{tables_and_figures/Washington-mask-dgrowth_idx}
-      &        \includegraphics[width=0.49\textwidth]{tables_and_figures/Washington-mask-dcases_idx}
+    \begin{tabular}{ccc}
+      \multicolumn{3}{c}{\textbf{Cases}} \\
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-dgrowth_idx}
+      &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-dcases_idx}
+      &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-rcumu_idx}
       \\
       \\
-      \multicolumn{2}{c}{\textbf{Deaths}}
+      \multicolumn{3}{c}{\textbf{Deaths}}
       \\
-      % \includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-growth_deaths} &
-                                                                                                   \includegraphics[width=0.49\textwidth]{tables_and_figures/Washington-mask-dgrowth_deaths_idx}
-      &      \includegraphics[width=0.49\textwidth]{tables_and_figures/Washington-mask-dcases_deaths_idx}
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-dgrowth_deaths_idx}
+      &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-dcases_deaths_idx}
+      & \includegraphics[width=0.31\textwidth]{tables_and_figures/Washington-mask-rcumu_deaths_idx}
     \end{tabular}
 
     \begin{flushleft}
@@ -2005,24 +2014,26 @@ business policies only indirect effects.\footnote{Results (not shown)
       and $\log \Delta C$ to their values first observed in the state
       we are simulating. We hold all other regressors at their
       observed values. The shaded region is a point-wise 90\%
-      confidence interval.
+      confidence interval. See appendix \ref{app:counterfactuals} for
+      more details.
     \end{flushleft}
   \end{minipage}
 \end{figure}
 
 
 We first consider the impact of a nationwide mask mandate for
-employees beginning on April 1st. As discussed earlier, we find that
+employees beginning on March 14th. As discussed earlier, we find that
 mask mandates reduce case and death growth even when holding behavior
 constant. In other words, mask mandates may reduce infections with
 relatively little economic disruption. This makes mask mandates a
 particularly attractive policy instrument. In this section we examine
-what would have happened to the number of cases if all states had imposed a mask
-mandate on April 1st.\footnote{We feel this is a very plausible
-  counterfactual policy. In a paper made publicly available on
-  April 1st, \cite{abaluck2020} argued for mask usage based on
-  comparisons between countries with and without pre-existing norms of
-  widespread mask usage.}
+what would have happened to the number of cases if all states had
+imposed a mask mandate on March 14th.\footnote{We feel this is a
+  plausible counterfactual policy. Many states began implement
+  business restrictions and school closures in mid March. In a paper
+  made publicly available on April 1st, \cite{abaluck2020} argued for
+  mask usage based on comparisons between countries with and without
+  pre-existing norms of widespread mask usage.}
 
 For illustrative purpose, we begin by focusing on Washington State.
 % The
@@ -2039,41 +2050,42 @@ For illustrative purpose, we begin by focusing on Washington State.
 % interval. The left column shows that the fit of the estimated and
 % observed growth rate is quite good.
 The left column of Figure \ref{fig:WA-mask} shows the change in
-growth rate from mandating masks on April 1st. The shaded region is a
+growth rate from mandating masks on March 14th. The shaded region is a
 90\% pointwise confidence interval. As shown, mandating masks on April
 1st lowers the growth of cases or deaths 14 or 21 days later by 0.09 or
 0.14. This effect then gradually declines due to information
 feedback. Mandatory masks reduce past cases or deaths, which leads to
 less cautious behavior, attenuating the impact of the policy. The
-reversal of the decrease in growth in late April is due to our
-comparison of a mask mandate on April 1st with Washington's actual
-mask mandate in early May. By late April, the counterfactual mask
+reversal of the decrease in growth in late May is due to our
+comparison of a mask mandate on March 14th with Washington's actual
+mask mandate in early May. By late May, the counterfactual mask
 effect has decayed through information feedback, and we are comparing
 it to the undecayed impact of Washington's actual, later mask mandate.
 
-The right column of Figure \ref{fig:WA-mask} shows how the changes in
-case and death growth translate into changes in weekly cases and
-deaths. The estimates imply that mandating masks on April 1st would
-have led to about 150 fewer cases and 20 fewer deaths per week in
-Washington by the start of June.
+The middle column of Figure \ref{fig:WA-mask} shows how the changes in
+case and death growth translate into changes in daily cases and
+deaths. The estimates imply that mandating masks on March 14th would
+have led to about 70 fewer cases and 5 fewer deaths per day throughout
+April and May. Cumulatively, this implies 19\% [9\%,29\%]fewer cases and 26\%
+[14\%,37\%] fewer deaths in Washington by the start of June.
 
 \begin{figure}[ht]
-  \caption{Effect of nationally mandating masks for employees on April
-    1st in the US\label{fig:US-mask}}
+  \caption{Effect of nationally mandating masks for employees on March
+    14th in the US\label{fig:US-mask}}
   \begin{minipage}{\linewidth}
     \centering
     \medskip
     \begin{tabular}{cc}
       \multicolumn{2}{c}{\textbf{Cases}} \\
-      \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-dgrowth_idx}
+      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-dgrowth_idx}
       &
-        \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_idx}
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-rcumu_idx}
       \\
       \\
       \multicolumn{2}{c}{\textbf{Deaths}} \\
-      \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-dgrowth_deaths_idx}
+      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-dgrowth_deaths_idx}
       &
-        \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_deaths_idx}
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-rcumu_deaths_idx}
     \end{tabular}
 
     \begin{flushleft}
@@ -2081,8 +2093,8 @@ Washington by the start of June.
       change in growth in each state. The blue line is the average
       across states of the change in growth. The shaded region is a
       point-wise 90\% confidence interval for the national average
-      change in growth. The right column shows the change in cases or
-      deaths relative to the baseline of actual policies.
+      change in growth. The right column shows the change in
+      cumulative cases or deaths relative to the baseline of actual policies.
     \end{flushleft}
   \end{minipage}
 \end{figure}
@@ -2090,7 +2102,7 @@ Washington by the start of June.
 
 The results for other states are similar to those for Washington.
 Figure \ref{fig:US-mask} shows the national effect of mask mandate on
-April 1st. The top panel shows the effect on cases and the bottom
+March 14th. The top panel shows the effect on cases and the bottom
 panel shows the effect on deaths. The left column shows the change in
 growth rates. Dots are the average change in growth rate in each state
 (i.e. the dots are identical to the solid line in the left panel of
@@ -2098,14 +2110,12 @@ Figure \label{fig:WA-mask}, except for all states instead of just
 Washington). The solid blue is the national average change in growth
 rate. The shaded region is a 90\% pointwise confidence band for the
 national average change in growth rate. The right column of Figure
-\ref{fig:US-mask} shows the national relative change in weekly cases
-or deaths. The point estimates indicate that mandating masks on April
-1st could have led to 20\% fewer weekly cases and 35\% fewer
-weekly deaths by the end of May with their 90 percent intervals
-given by $[8,32]$\% and $[18,50]$\%, respectively.
-
-%The result roughly
-%translates into $30$ thousand saved lives.
+\ref{fig:US-mask} shows the national relative change in cumulative cases
+or deaths. The point estimates indicate that mandating masks on March
+14th could have led to 21\% fewer cumulative cases and 34\% fewer
+deaths by the end of May with their 90 percent intervals
+given by $[9,32]$\% and $[19,47]$\%, respectively.
+The result roughly translates into $30$ thousand saved lives.
 
 \subsection{Business Closure Policies}
 
@@ -2114,10 +2124,11 @@ counterfactual where there are no business closure policies (no
 restaurant, movie theater, or non-essential business closure).  Figure
 \ref{fig:US-business} shows the national effect of never restricting
 businesses on cases and deaths. The point estimates imply that,
-without business closures, cases and deaths would be about 75\% higher
+without business closures, cases and deaths would be about 40\% higher
 at the end of May. The confidence intervals are wide. A 90 percent
-confidence interval for the increase in cases at the end of May is 25\%
-to 140\%. The confidence interval for deaths is even wider, $[10, 250]$\%
+confidence interval for the increase in cases at the end of May is
+$[17,78]$\%.
+The confidence interval for deaths is even wider, $[1, 97]$\%
 
 
 \begin{figure}[ht]
@@ -2128,13 +2139,13 @@ to 140\%. The confidence interval for deaths is even wider, $[10, 250]$\%
       \multicolumn{2}{c}{\textbf{Cases}} \\
       \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-dgrowth_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rel_idx}
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rcumu_idx}
       \\
       \\
       \multicolumn{2}{c}{\textbf{Deaths}} \\
       \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-dgrowth_deaths_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rel_deaths_idx}
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rcumu_deaths_idx}
     \end{tabular}
 
     \begin{flushleft}
@@ -2142,8 +2153,8 @@ to 140\%. The confidence interval for deaths is even wider, $[10, 250]$\%
       change in growth in each state. The blue line is the average
       across states of the change in growth. The shaded region is a
       point-wise 90\% confidence interval for the national average
-      change in growth. The right column shows the change in cases or
-      deaths relative to the baseline of actual policies.
+      change in growth. The right column shows the change in
+      cumulative cases or deaths relative to the baseline of actual policies.
     \end{flushleft}
   \end{minipage}
 \end{figure}
@@ -2154,10 +2165,10 @@ to 140\%. The confidence interval for deaths is even wider, $[10, 250]$\%
 We next examine a counterfactual where stay-at-home orders had been never
 issued.  Figure \ref{fig:US-shelter} shows the national effect of no
 stay-at-home orders. On average, without stay-at-home orders, case
-growth rate would have been nearly 0.1 higher in late April. This
-translates to 60\% [10\%,140\%] more cases per week by the start of June. The
-results for deaths are similar, but slightly less precise, with no
-increase included in a 90 percent confidence interval.
+growth rate would have been nearly 0.075 higher in late April. This
+translates to 37\% $[6,63]$\% more cases per week by the start of June. The
+estimated effect for deaths is a bit smaller, with no
+increase included in a 90 percent confidence interval, $[-7,50]$\%.
 
 \begin{figure}[ht]
   \caption{Effect of having no stay-at-home orders in the US\label{fig:US-shelter}}
@@ -2167,13 +2178,13 @@ increase included in a 90 percent confidence interval.
       \multicolumn{2}{c}{\textbf{Cases}} \\
       \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-dgrowth_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rel_idx}
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rcumu_idx}
       \\
       \\
       \multicolumn{2}{c}{\textbf{Deaths}} \\
       \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-dgrowth_deaths_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rel_deaths_idx}
+        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rcumu_deaths_idx}
     \end{tabular}
 
     \begin{flushleft}
@@ -2181,7 +2192,8 @@ increase included in a 90 percent confidence interval.
       change in growth in each state. The blue line is the average
       across states of the change in growth. The shaded region is a
       point-wise 90\% confidence interval for the national average
-      change in growth. The right column shows the change in cases or
+      change in growth. The right column shows the change in
+      cumulative cases or
       deaths relative to the baseline of actual policies.
     \end{flushleft}
   \end{minipage}
@@ -2189,132 +2201,6 @@ increase included in a 90 percent confidence interval.
 
 
 
-
-%\section{Counterfactual Effect of Removing All Policies and its Sensitivity}\label{removing-policies}
-
-
-
-
-%We now consider the impact of changing from the observed policies to
-%none.  Figure \ref{fig:WA-nb} shows the effect of removing all
-%policies in Washington. The left column shows that without any policy
-%intervention, case and death growth would have been higher by
-%about 0.1 and 0.2. The confidence intervals are wide relative to the
-%mean effect. In the right column, we see that the upper bounds of the
-%confidence intervals include large increases in cases, and especially
-%deaths.
-
-%\begin{figure}[ht]
-%  \caption{Effect of removing all policies in
-%    Washington \label{fig:WA-nop}}
-%  \begin{minipage}{\linewidth}
-%    \centering
-%    \begin{tabular}{cc}
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/Washington-nop-dgrowth}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/Washington-nop-dcases}
-%      \\
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/Washington-nop-dgrowth_deaths}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/Washington-nop-dcases_deaths}
-%    \end{tabular}
-%  \end{minipage}
-%\end{figure}
-
-% We now consider the impact of changing from the observed policies to none.
-% Figure \ref{fig:US-nop-SI} shows the average across states of the change
-% in case growth and relative increase in cases under a specification without past national case variables.
-% Removing policies leads to an increase of above 0.2 in
-% case growth throughout April and May. The confidence interval is
-% fairly wide, and its upper bound includes a very large increase in
-% cases by the end of May.  The right panel displays the national
-% increase in aggregate cases without any policy intervention. The
-% estimates imply at least a 7 fold increase in cases with a large upper bound by the end of May, or
-% at least 14 million additional cases. The estimated impact on deaths is larger than
-% cases, and even more imprecise.
-
-% [Discussion on the effect of school closures has been moved to
-% sensitivity analysis section.]
-
-% [Do we even still need this section?]
-
-%The effect of removing all policies includes the effect of school
-%closures. The visual evidence on growth rates for states with and without school closures,
-%presented blow, suggest that there may be a potentially large effect, though the history is very short. The main results presented in Section 3 also support the hypothesis that the school closures were important at lowering the growth rates.  This evidence is consistent
-%with the emerging evidence of prevalence of Covid-19 among children
-%aged 10-17. \cite{children:nature} find that although children's
-%transmission and susceptibility rates are half that of ages 20-30,
-%children's contact rates are much higher.
-%This type of evidence, as well as, evidence that children carry viral
-%loads similar to older people (\cite{children:germany}), led Germany to make the early decision of closing schools.
-%
-%\begin{figure}
-%  \caption{Case and death growth conditional on policies \label{fig:growthpolicies1}}
-%  \begin{minipage}{\linewidth}
-%    \centering
-%    \begin{tabular}{cc}
-%       \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-cases}
-%      &
-%        \includegraphics[width=0.483\textwidth]{tables_and_figures/pk12-deaths}
-%    \end{tabular}
-%    \footnotetext{ In these figures, red points are the case or death
-%      growth rate in states without each policy 14 (or 21 for deaths)
-%      days earlier. Blue points are states with each policy 14 (or 21
-%      for deaths) days earlier. The red line is the average across
-%      states without each policy. The blue line is the average across
-%      states with each policy.}
-%  \end{minipage}
-%\end{figure}
-
-
-%As discussed above, there is little variation across states
-%in the timing of school closures. Consequently, the effect of school
-%closures is difficult to identify statistically, because it is hard to separate it from aggregate time effect, and its estimate is sensitive to an inclusion of some aggregate variables such as national cases. To support this point, Figure \ref{fig:US-nop} shows the
-%effect of removing all policies on cases based on the estimates with national cases
-%included as information. When national case variables are included
-%in the specification, the estimated effect of school closures, and hence that of removing all
-%policies, is much smaller with a 90\% confidence interval of [0,10] fold increases.
-%
-%Given this sensitivity, we conclude that there still exists a lot of uncertainty as to the effect of removing all policies, especially schooling. The impact of not implementing any policies on cases and deaths can be quite large, but  the effect of school closures, hence that of removing all policies, is not well identified statistically from the US state-level data alone, because of the lack of cross-sectional variations.  Any analyses of re-opening plans need to be aware of this uncertainty.  An important research question is how to resolve this uncertainty using additional data sources.
-%
-%\begin{figure}[ht]
-%  \caption{Effect of removing policies on cases in the US under a specification with only state-level cases/deaths as information \label{fig:US-nop-SI}}
-%  \begin{minipage}{\linewidth}
-%    \centering
-%    \begin{tabular}{cc}
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_v1}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_v1}
-%%      \\
-%%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_deaths_v1}
-%%      &
-%%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_deaths_v1}
-%    \end{tabular}
-%  \end{minipage}
-%\end{figure}
-%
-%\begin{figure}[ht]
-%  \caption{Effect of removing policies on cases in the US under a specification with both
-%  state-level cases/deaths and national-level cases/deaths as information \label{fig:US-nop}}
-%  \begin{minipage}{\linewidth}
-%    \centering
-%    \begin{tabular}{cc}
-%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth}
-%      &
-%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel}
-%%      \\
-%%      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-dgrowth_deaths}
-%%      &
-%%        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nop-rel_deaths}
-%    \end{tabular}
-%  \end{minipage}
-%\end{figure}
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \afterpage{\clearpage}
 
@@ -2763,200 +2649,106 @@ $$
 $$
 where $\widehat \beta$ is the standard fixed effects estimator while $\widetilde \beta_{{\bf S}_1\cup{\bf S}_2}$ denotes the fixed effects estimator using the data set  ${\bf S}_1\cup{\bf S}_2$ but treats the states in  ${\bf S}_1$ differently from those in  ${\bf S}_2$ to form the fixed effects estimator; namely, we include approximately twice more state fixed effects to compute $\widetilde \beta_{{\bf S}_1\cup{\bf S}_2}$.\footnote{Alternatively, we may form the cross-over jackknife corrected estimator as $\widehat \beta_{\rm CBC}  =  2 \widehat \beta -  (\widetilde \beta_{{\bf S_1}}+\widetilde \beta_{{\bf S_2}})/2$, where $\widetilde \beta_{{\bf S}_j}$ denotes the fixed effect estimator using the subpanel  ${\bf S}_j$ for $j=1,2$. In our empirical analysis, these two cross-over jackknife bias corrected estimators give  similar result.} We obtain bootstrap standard errors by using multipler bootstrap with state-level clustering.
 
+\subsection{Counterfactuals \label{app:counterfactuals}}
 
-\end{document}
+We compute counterfactuals from the "total effect" version of the
+model, with behavior concentrated out.
 
+$$
+Y_{i,t+\ell}
+= \mathsf{a}'
+P_{it} + \mathsf{b}' I_{it} +  {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
+$$
 
+We consider a counterfactual change of $P_{it}$ to $P_{it}^*$, while
+$W_{it}$ and $\bar \varepsilon_{it}$ are held constant. In response to
+the policy change, $Y_{i,t+\ell}$ and the part of $I_{it}$ that
+contains $Y_{it}$, change to $Y_{i,t+\ell}^*$ and $I_{it}^*$. To be
+specific, let $C_{it}$ denote cumulative cases in state $i$ on day
+$t$. Our outcome is:
 
-% \subsection{Counterfactuals for Massachusetts and
-%   Illinois}
-%  Figures \ref{fig:MA-mask} and \ref{fig:IL-mask} present the fit of estimated cases as well as the counterfactual effect of mandating masks on April 1st in Massachusetts and Illinois, respectively. Figures \ref{fig:MA-nb} and \ref{fig:IL-nb}   show the counterfactual effect of leaving non-essential business open in Massachusetts and Illinois, respectively.
+$$
+Y_{i,t+\ell} \equiv \log
+\left(C_{i, t+\ell} - C_{i, t + \ell - 7} \right) - \log
+\left(C_{i, t+\ell-7} - C_{i, t + \ell - 14} \right) \equiv \Delta
+\log \Delta C_{i,t+\ell}
+$$
 
-% \FloatBarrier
+where $\Delta$ is a 7 day difference operator. Writing the model in
+terms of $\Delta \log \Delta C$ we have:
 
-% \begin{figure}[b]
-%   \caption{Effect of mandating masks on April 1st in Massachusetts \label{fig:MA-mask}}
-%   \begin{minipage}{\linewidth}
-%     \centering
-%     \begin{tabular}{ccc}
-%       \multicolumn{3}{c}{\textbf{Cases}} \\
-%       \includegraphics[width=0.31\textwidth]{tables_and_figures/Massachusetts-mask-growth}
-%       &
-%         \includegraphics[width=0.31\textwidth]{tables_and_figures/Massachusetts-mask-dgrowth_v1}
-%       &        \includegraphics[width=0.31\textwidth]{tables_and_figures/Massachusetts-mask-dcases_v1}
-% \\
-%       \multicolumn{3}{c}{\textbf{Deaths}} \\
-%      \includegraphics[width=0.31\textwidth]{tables_and_figures/Massachusetts-mask-growth_deaths}
-%       &        \includegraphics[width=0.31\textwidth]{tables_and_figures/Massachusetts-mask-dgrowth_deaths_v1}
-%       &      \includegraphics[width=0.31\textwidth]{tables_and_figures/Massachusetts-mask-dcases_deaths_v1}
-%     \end{tabular}
-%     \begin{flushleft}
-%       \footnotesize To compute the estimated and counterfactual paths
-%       we use the average of two estimated coefficients as reported in
-%       column ``Average'' of Table \ref{tab:dieff}. We set initial
-%       $\Delta \log \Delta C$ and $\log \Delta C$ to their values first
-%       observed in the state we are simulating. We hold all other
-%       regressors at their observed values. Error terms are drawn with
-%       replacement from the residuals. We do this many times and report
-%       the average over draws of the residuals. The shaded region is a
-%       point-wise 90\% confidence interval.
-%     \end{flushleft}
-%   \end{minipage}
-% \end{figure}
+$$
+\Delta \log \Delta C_{i,t+\ell} = \mathsf{a}' P_{it} + \mathsf{b}_D
+\Delta \log \Delta C_{i,t} + \mathsf{b}_L \log \Delta C_{i,t} +
+{\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
+$$
 
-% \begin{figure}[h]
-%   \caption{Effect of mandating masks on April 1st in Illinois \label{fig:IL-mask}}
-%   \begin{minipage}{\linewidth}
-%     \centering
-%     \begin{tabular}{ccc}
-%       \multicolumn{3}{c}{\textbf{Cases}} \\
-%       \includegraphics[width=0.31\textwidth]{tables_and_figures/Illinois-mask-growth}
-%       &
-%         \includegraphics[width=0.31\textwidth]{tables_and_figures/Illinois-mask-dgrowth_v1}
-%       &        \includegraphics[width=0.31\textwidth]{tables_and_figures/Illinois-mask-dcases_v1}      \\
-%       \multicolumn{3}{c}{\textbf{Deaths}} \\
-%     \includegraphics[width=0.31\textwidth]{tables_and_figures/Illinois-mask-growth_deaths}
-%       &        \includegraphics[width=0.31\textwidth]{tables_and_figures/Illinois-mask-dgrowth_deaths_v1}
-%       &      \includegraphics[width=0.31\textwidth]{tables_and_figures/Illinois-mask-dcases_deaths_v1}
-%     \end{tabular}
-%     \begin{flushleft}
-%       \footnotesize To compute the estimated and counterfactual paths
-%       we use the average of two estimated coefficients as reported in
-%       column ``Average'' of Table \ref{tab:dieff}. We set initial
-%       $\Delta \log \Delta C$ and $\log \Delta C$ to their values first
-%       observed in the state we are simulating. We hold all other
-%       regressors at their observed values. Error terms are drawn with
-%       replacement from the residuals. We do this many times and report
-%       the average over draws of the residuals. The shaded region is a
-%       point-wise 90\% confidence interval.
-%     \end{flushleft}
-%   \end{minipage}
-% \end{figure}
+To simplify computation, we rewrite this model in terms of $\log
+\Delta C$:
+
+$$
+\log \Delta C_{i,t+\ell} = \mathsf{a}' P_{it} + \log \Delta
+C_{i,t+\ell-7} + (\mathsf{b}_D + \mathsf{b}_L) \log \Delta C_{i,t} -
+\mathsf{b}_D \log \Delta C_{i,t-7} + {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
+$$
+
+This equation is used to iteratively compute
+$\log \Delta C_{i,t+\ell}^*$
+conditional on initial $\{\log \Delta C_{i,s}\}_{s=-\ell-7}^{0}$,
+and the entire sequence of $\{W_{i,t}, P_{i,t}^*, \bar \varepsilon_{it} \}_{t=0}^T$.
 
 
-% \begin{figure}[h]
-%   \caption{Effect of leaving businesses open in Massachusetts \label{fig:MA-nb}}
-%   \begin{minipage}{\linewidth}
-%     \centering
-%     \begin{tabular}{cc}
-%       \multicolumn{2}{c}{\textbf{Cases}} \\
-%       \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nb-dgrowth_v1}
-%        &
-%          \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nb-dcases_v1}
-%       \\
-%       \multicolumn{2}{c}{\textbf{Deaths}} \\
-%         \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nb-dgrowth_deaths_v1}
-%        &      \includegraphics[width=0.45\textwidth]{tables_and_figures/Massachusetts-nb-dcases_deaths_v1}
-%     \end{tabular}
-%   \end{minipage}
-% \end{figure}
+Weekly cases instead of log weekly cases are given simply by
 
+$$ \Delta C_{i,t+\ell}^* = \exp(\log \Delta C_{i,t+\ell}^*)$$
 
-% \begin{figure}[h]
-%   \caption{Effect of leaving businesses open in Illinois \label{fig:IL-nb}}
-%   \begin{minipage}{\linewidth}
-%     \centering
-%     \begin{tabular}{cc}
-%       \multicolumn{2}{c}{\textbf{Cases}} \\
-%       \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nb-dgrowth_v1}
-%       &
-%         \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nb-dcases_v1} \\
-%       \multicolumn{2}{c}{\textbf{Deaths}} \\
-%            \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nb-dgrowth_deaths_v1}
-%       &       \includegraphics[width=0.45\textwidth]{tables_and_figures/Illinois-nb-dcases_deaths_v1}    \end{tabular}
-%   \end{minipage}
-% \end{figure}
+Cumulative cases can be recursively computed as:
 
-\FloatBarrier
+$$
+  C_{i,t} = C_{i,t-7} + \Delta C_{i,t} = C_{i,t-7} + \exp(\log \Delta C_{i,t})
+$$
 
+given initial $\{C_{i,s}\}_{s=-7}^0$.
 
+Note that $\log \Delta C_{i,t+\ell}^*$ depends linearly on
+$\bar \varepsilon$, so the residuals (and our decision to condition on
+versus integrate them out) do not matter when considering linear
+constrasts of $\log \Delta C_{it}$ or $\Delta \log \Delta C_{it}$, or
+when considering relative constrasts of $\Delta C_{it}$.
 
-\subsection{Counterfactuals with National Cases as Information
-  Variables}
+%On the other hand, cumulative cases are a nonlinear function of
+%$\bar\varepsilon$, so conditioning on $\bar\varepsilon$
 
-\fixme
-% DO WE STILL WANT THESE? THESE FIGURES HAVE NOT BEEN UPDATED.
+\subsubsection*{Inference}
 
-Figures \ref{fig:US-mask-SI}-\ref{fig:US-shelter-SI}  present the results of counterfactual analyses that include the national cases/deaths as the information variables. To create this figure, we repeat the same counterfactual
-simulation that we did for Washington with each state. For each state,
-we hold national cases constant, but endogenize state specific
-information. Thus, these figures should be interpreted as an average
-of state specific counterfactuals, and not a national counterfactual.
+Let $S(\theta, \mathbf{\varepsilon})$ denote some counterfactual
+quantity or contrast of interest, where $\theta = (\mathsf{a},
+\mathsf{b}, \tilde{\delta})$ are the parameters, and
+$\mathbf{\varepsilon}$ is the vector of residuals. Examples of $S$
+that we compute include:
 
- The counterfactual results of mask policies, shelter-in-place,
- and closing non-essential businesses remain robust with respect to the inclusion of national case/death variables. This contrasts to the resulting counterfactual of  removing all policies  discussed in section \ref{removing-policies}.
+\begin{itemize}
+\item Contrasts of growth rates: $S(\theta, \mathbf{\varepsilon}) =
+  \Delta \log \Delta C_{it}^* - \Delta \log \Delta C_{it}$
 
+\item Relative contrasts of weekly cases: $S(\theta, \mathbf{\varepsilon}) =
+  \Delta C_{it}^*/\Delta C_{it}$
 
-\begin{figure}[!b]
-  \caption{Effect of mandating masks for employees on April
-    1st
-     under a specification with both
-  state-level cases/deaths and national-level cases/deaths as information
-    \label{fig:US-mask-SI}}
-  \begin{minipage}{\linewidth}
-    \centering
-    \medskip
-    \begin{tabular}{cc}
-      \multicolumn{2}{c}{\textbf{Cases}} \\
-      \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-dgrowth}
-      &
-        \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel}
-      \\
-      \\
-      \multicolumn{2}{c}{\textbf{Deaths}} \\
-      \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-dgrowth_deaths}
-      &
-        \includegraphics[width=0.49\textwidth]{tables_and_figures/us-mask-rel_deaths}
-    \end{tabular}
-  \end{minipage}
-\end{figure}
+\item Relative contrasts of cumulative cases: $S(\theta, \mathbf{\varepsilon}) =
+  \frac{C_{it}^* - C_{it}}{C_{it}}$
+\end{itemize}
 
-\begin{figure}[ht]
-  \caption{Effect of leaving non-essential businesses open      under a specification with both
-  state-level cases/deaths and national-level cases/deaths as information \label{fig:US-nb-SI}}
-  \begin{minipage}{\linewidth}
-    \centering
-    \begin{tabular}{cc}
-      \multicolumn{2}{c}{\textbf{Cases}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-dgrowth}
-      &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-rel}
-      \\
-      \\
-      \multicolumn{2}{c}{\textbf{Deaths}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-dgrowth_deaths}
-      &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-nb-rel_deaths}
-    \end{tabular}
-  \end{minipage}
-\end{figure}
+The first two examples do not actually depend on
+$\mathbf{\varepsilon}$, but the third one does. Inference is by
+simulation. Let $\hat{\theta}$ denote our point estimates and
+$\hat{\mathbf{\varepsilon}}$ the associated residuals. We draw
+$\tilde{\theta}_j$ from the asymptotic distribution of
+$\hat{\theta}$. Let $\tilde{\varepsilon}_j$ denote the
+residuals associated with $\tilde{\theta}_j$. We then compute
 
-\begin{figure}[ht]
-  \caption{Effect of having no stay-at-home orders     under a specification with both
-  state-level cases/deaths and national-level cases/deaths as information \label{fig:US-shelter-SI}}
-  \begin{minipage}{\linewidth}
-    \centering
-    \begin{tabular}{cc}
-      \multicolumn{2}{c}{\textbf{Cases}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-dgrowth}
-      &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rel}
-      \\
-      \\
-      \multicolumn{2}{c}{\textbf{Deaths}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-dgrowth_deaths}
-      &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rel_deaths}
-    \end{tabular}
-  \end{minipage}
-\end{figure}
+$$ \tilde{s}_j = S(\tilde{\theta}_j, \tilde{\varepsilon}_j) $$
 
-\FloatBarrier
-
-$\;$
-
-
-
-
+for $j=1,..., 200$ and plots the mean across $j$ as a point estimate
+and quantiles across $j$ for confidence intervals.
 
 \end{document}

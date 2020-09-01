@@ -296,6 +296,15 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   print(f$figp)
   dev.off()
 
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcumu_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-rcumu_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
+
   if (st=="Washington") for (fig in f) print(fig)
 }
 
@@ -311,6 +320,10 @@ dev.off()
 
 figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rel_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
+dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rcumu_idx.pdf",sep="/"), width=5,height=3.75)
+figs$cr
 dev.off()
 
 for (f in figs) print(f)
@@ -348,6 +361,15 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcumu_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-rcumu_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }
 
 figs <- nationalplots(shelterall, cfshelter, "no stay at home orders")
@@ -363,6 +385,11 @@ dev.off()
 figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rcumu_idx.pdf",sep="/"), width=5,height=3.75)
+figs$cr
+dev.off()
+
 
 for (f in figs) print(f)
 ```
@@ -401,6 +428,15 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcases_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcumu_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-rcumu_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }
 
 figs <- nationalplots(indexall, cfindex, "no shutdown policies")
@@ -416,6 +452,11 @@ dev.off()
 figdev(paste(rootdir,"tex/tables_and_figures/us-index-rel_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-rcumu_idx.pdf",sep="/"), width=5,height=3.75)
+figs$cr
+dev.off()
+
 
 for (f in figs) print(f)
 ```
@@ -478,60 +519,12 @@ cf[,pols] <- 0
 nopmodel <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
 rerunsim=FALSE
-if (!file.exists("cfnop_deaths_idx.Rda") || rerunsim) {
-  cfnoplist <- lapply(unique(df$state), function(s)
-    nopstatesim(s,simobs=simmodel,simcf=nopmodel, data=sdf, var="logdd", dvar="dlogdd"))
-  allmeans <- rbindlist(lapply(cfnoplist, getmeans))
-  save(cfnoplist,allmeans, file="cfnop_deaths_idx.Rda")
-}
-load("cfnop_deaths_idx.Rda")
-cfnop <- do.call(rbind, lapply(cfnoplist, function(x) x$edf))
-```
-
-### Removing Policies
-
-
-```{r WA-nop-dlogdd, cache=TRUE,fig.cap="Case growth without policies in Washington \\label{fig:WA-nop-dlogdc}"}
-st <- "Washington"
-f <- cfplots(st, cfnop, yvar="deaths", data=df)
-grid.arrange(f$figd, f$figdp, nrow=2, top =
-                                        textGrob(st,gp=gpar(fontsize=20,font=2)))
-
-```
-
-```{r WA-nop-deaths, cache=TRUE, fig.cap="Cases without policies in Washington \\label{fig:WA-nop-cases}"}
-grid.arrange(f$figl, f$figp, nrow=2) #,
-#top = textGrob(st,gp=gpar(fontsize=20,font=2)))
-```
-
-## National
-
-
-```{r nop-all-deaths, cache=TRUE}
-abbrv <- unique(df[,c("state","ST")])
-cfnop <- merge(cfnop, abbrv, by="state")
-
-figs <- nationalplots(allmeans,cfnop, "removing policies", yvar="deaths")
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
-figs$g
-dev.off()
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-dcases_deaths_idx.pdf",sep="/"), width=5,height=3.75)
-figs$c
-dev.off()
-
-figdev(paste(rootdir,"tex/tables_and_figures/us-nop-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
-figs$r
-dev.off()
-
-for (f in figs) print(f)
 ```
 
 ## Masks
 
 We now look at what happens when all states impose a mask mandate on
-May 14th.
+March 14th.
 
 ```{r mask_sim-deaths, cache=FALSE}
 cf <- df
@@ -554,7 +547,7 @@ cfmask <- do.call(rbind, lapply(cfmasklist, function(x) x$edf))
 cfmask <- merge(cfmask, abbrv, by="state")
 for (st in c("Washington","Illinois","Massachusetts")) {
   f <- cfplots(st, cfmask, yvar="deaths", data=df)
-  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on May 14th in %s",st)))
+  print(f$figp +  ggtitle(sprintf("Effect of mandating masks on March 14th in %s",st)))
 
   figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dgrowth_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figdp)
@@ -563,9 +556,18 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcases_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-dcumu_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-mask-rcumu_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }
 
-figs <- nationalplots(maskall, cfmask, "mandating masks on May 14th\n", yvar="deaths")
+figs <- nationalplots(maskall, cfmask, "mandating masks on March 14th\n", yvar="deaths")
 
 figdev(paste(rootdir,"tex/tables_and_figures/us-mask-dgrowth_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$g
@@ -578,6 +580,11 @@ dev.off()
 figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-mask-rcumu_deaths_idx.pdf",sep="/"), width=5,height=3.75)
+figs$cr
+dev.off()
+
 
 for (f in figs) print(f)
 ```
@@ -615,6 +622,15 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcases_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-dcumu_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-shelter-rcumu_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }
 
 figs <- nationalplots(shelterall, cfshelter, "no stay at home orders",yvar="deaths")
@@ -629,6 +645,10 @@ dev.off()
 
 figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
+dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-shelter-rcumu_deaths_idx.pdf",sep="/"), width=5,height=3.75)
+figs$cr
 dev.off()
 
 for (f in figs) print(f)
@@ -666,6 +686,15 @@ for (st in c("Washington","Illinois","Massachusetts")) {
   figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcases_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-dcumu_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf("%s/tex/tables_and_figures/%s-index-rcumu_deaths_idx.pdf",rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }
 
 figs <- nationalplots(indexall, cfindex, "no shutdown policies", yvar="deaths")
@@ -681,6 +710,11 @@ dev.off()
 figdev(paste(rootdir,"tex/tables_and_figures/us-index-rel_deaths_idx.pdf",sep="/"), width=5,height=3.75)
 figs$r
 dev.off()
+
+figdev(paste(rootdir,"tex/tables_and_figures/us-index-rcumu_deaths_idx.pdf",sep="/"), width=5,height=3.75)
+figs$cr
+dev.off()
+
 
 for (f in figs) print(f)
 ```

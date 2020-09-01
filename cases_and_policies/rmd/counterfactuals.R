@@ -178,7 +178,7 @@ meanandci <- function(yi, cfyi, date, p=0.9, difflag=7) {
         statframe(dy,"dy"), # growth
         statframe(exp(cfyi),"cf"), # cf weekly cases
         statframe(dcfy,"dcf"), # cf growth
-        statframe(exp(cfyi)-exp(yi),"p"), # change in weekly cases
+        statframe((exp(cfyi)-exp(yi)),"p"), # change in weekly cases
         statframe(dcfy-dy,"dp"), # change in growth
         statframe(exp(cfyi)/exp(yi) - 1, "rel"), # relative weekly
         statframe(apply(exp(yi), 2, cumcases), "cum"), # cumulative cases
@@ -261,12 +261,12 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
     theme(legend.position=c(0.2, 0.8)) +
     ggtitle(TeX(sprintf("%s in past week",yvar))) + xlim(xlims)
 
-  ylo <- min(est$clp)
-  figp <- ggplot(data=est, aes(x=date, y=mp)) +
+  ylo <- min(est$clp/7)
+  figp <- ggplot(data=est, aes(x=date, y=mp/7)) +
     geom_line(size=1.2) +
-    geom_ribbon(aes(ymin=clp, ymax=chp), alpha=0.3) +
-    ylab(sprintf("Change in %s in past week", yvar)) + figtheme + colors() + colors_fill() +
-    ggtitle(TeX(sprintf("Change in %s",yvar))) +
+    geom_ribbon(aes(ymin=clp/7, ymax=chp/7), alpha=0.3) +
+    ylab(sprintf("Change in %s per day", yvar)) + figtheme + colors() + colors_fill() +
+    ggtitle(TeX(sprintf("Change in daily %s",yvar))) +
     xlim(xlims) #+
     #annotate("text",x=dt, y=rep(ylo,length(dt)),
     #         label=gsub("\\."," ", labels), size=4, angle=90, hjust=0)
@@ -329,8 +329,8 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
   figr <- ggplot(data=est, aes(x=date, y=mrel)) +
     geom_line(size=1.2) +
     geom_ribbon(aes(ymin=clrel, ymax=chrel), alpha=0.3) +
-    ylab(sprintf("Relative change in weekly %s", yvar)) + figtheme + colors() + colors_fill() +
-    ggtitle(TeX(sprintf("Relative change in weekly %s",yvar))) +
+    ylab(sprintf("Relative change in daily %s", yvar)) + figtheme + colors() + colors_fill() +
+    ggtitle(TeX(sprintf("Relative change in daily %s",yvar))) +
     xlim(xlims)
 
   return(list(figd=figd, figdp=figdp, figl=figl, figp=figp, figr=figr, figcum=figcum, figdcum=figdcum, figrcum=figrcum))
@@ -428,13 +428,13 @@ nationalplots <- function(alldf,cfdf, cfname, yvar="cases") {
 
   figc <- ggplot(cfdf, aes(x=date)) +
     #geom_text(aes(y=mp, label=ST),alpha=0.5) +
-    geom_point(aes(y=mp),alpha=0.2, size=0.5) +
+    geom_point(aes(y=mp/7),alpha=0.2, size=0.5) +
     xlim(figdatelims) +
-    geom_line(data=adf, aes(x=date, y=mp, color=""), size=2) +
+    geom_line(data=adf, aes(x=date, y=mp/7, color=""), size=2) +
     figtheme +
-    geom_ribbon(data=adf, aes(ymin=clo, ymax=chi, fill=""),alpha=0.3) +
+    geom_ribbon(data=adf, aes(ymin=clo/7, ymax=chi/7, fill=""),alpha=0.3) +
     colors() + theme(legend.position="none") +
-    ylab(sprintf("%s in the past week", yvar)) +
+    ylab(sprintf("%s per day", yvar)) +
     colors_fill() +
     ggtitle(sprintf("Effect of %s on %s",cfname, yvar))
 
@@ -443,7 +443,7 @@ nationalplots <- function(alldf,cfdf, cfname, yvar="cases") {
     geom_line(aes(color=""), size=2) + figtheme +
     geom_ribbon(data=adf, aes(ymin=rlo, ymax=rhi, fill=""),alpha=0.3) +
     colors() + theme(legend.position="none") +
-    ylab(sprintf("relative increase in weekly %s",yvar)) +
+    ylab(sprintf("relative increase in daily %s",yvar)) +
     colors_fill() +
     ggtitle(sprintf("Relative effect of %s",cfname))
 
