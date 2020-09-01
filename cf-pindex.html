@@ -598,6 +598,15 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
   print(f$figp)
   dev.off()
 
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dcumu_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-rcumu_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
+
   if (st==&quot;Washington&quot;) for (fig in f) print(fig)
 }</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
@@ -628,6 +637,12 @@ figs$c</code></pre>
 ##   2</code></pre>
 <pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-rel_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
 figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-rcumu_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$cr</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
@@ -670,6 +685,15 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcases_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcumu_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-rcumu_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
 
@@ -699,6 +723,12 @@ figs$c</code></pre>
 ##   2</code></pre>
 <pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-rel_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
 figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-rcumu_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$cr</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
@@ -741,6 +771,15 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dcases_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dcumu_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-rcumu_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
 
@@ -770,6 +809,12 @@ figs$c</code></pre>
 ##   2</code></pre>
 <pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-rel_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
 figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-rcumu_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$cr</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
@@ -881,76 +926,9 @@ cf[,pols] &lt;- 0
 nopmodel &lt;- createforwardsim(m, cf, dvar=&quot;dlogdd&quot;, var=&quot;logdd&quot;)</code></pre>
 <pre><code>## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either rank-deficient or
 ## indefinite</code></pre>
-<pre class="r"><code>rerunsim=FALSE
-if (!file.exists(&quot;cfnop_deaths_idx.Rda&quot;) || rerunsim) {
-  cfnoplist &lt;- lapply(unique(df$state), function(s)
-    nopstatesim(s,simobs=simmodel,simcf=nopmodel, data=sdf, var=&quot;logdd&quot;, dvar=&quot;dlogdd&quot;))
-  allmeans &lt;- rbindlist(lapply(cfnoplist, getmeans))
-  save(cfnoplist,allmeans, file=&quot;cfnop_deaths_idx.Rda&quot;)
-}
-load(&quot;cfnop_deaths_idx.Rda&quot;)
-cfnop &lt;- do.call(rbind, lapply(cfnoplist, function(x) x$edf))</code></pre>
-<div id="removing-policies" class="section level3" number="4.0.1">
-<h3 number="4.0.1"><span class="header-section-number">4.0.1</span> Removing Policies</h3>
-<pre class="r"><code>st &lt;- &quot;Washington&quot;
-f &lt;- cfplots(st, cfnop, yvar=&quot;deaths&quot;, data=df)</code></pre>
-<pre><code>## Warning: Ignoring unknown aesthetics: fill
-
-## Warning: Ignoring unknown aesthetics: fill</code></pre>
-<pre class="r"><code>grid.arrange(f$figd, f$figdp, nrow=2, top =
-                                        textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
-<div class="figure">
-<img src="cf-pindex_files/figure-html/WA-nop-dlogdd-1.png" alt="Case growth without policies in Washington \label{fig:WA-nop-dlogdc}" width="768" />
-<p class="caption">
-Case growth without policies in Washington 
-</p>
-</div>
-<pre class="r"><code>grid.arrange(f$figl, f$figp, nrow=2) #,</code></pre>
-<div class="figure">
-<img src="cf-pindex_files/figure-html/WA-nop-deaths-1.png" alt="Cases without policies in Washington \label{fig:WA-nop-cases}" width="768" />
-<p class="caption">
-Cases without policies in Washington 
-</p>
-</div>
-<pre class="r"><code>#top = textGrob(st,gp=gpar(fontsize=20,font=2)))</code></pre>
-</div>
-<div id="national" class="section level2" number="4.1">
-<h2 number="4.1"><span class="header-section-number">4.1</span> National</h2>
-<pre class="r"><code>abbrv &lt;- unique(df[,c(&quot;state&quot;,&quot;ST&quot;)])
-cfnop &lt;- merge(cfnop, abbrv, by=&quot;state&quot;)
-
-figs &lt;- nationalplots(allmeans,cfnop, &quot;removing policies&quot;, yvar=&quot;deaths&quot;)
-
-figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-dgrowth_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$g</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
-<pre><code>## png 
-##   2</code></pre>
-<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-dcases_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$c</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
-<pre><code>## png 
-##   2</code></pre>
-<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-nop-rel_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
-figs$r</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<pre class="r"><code>dev.off()</code></pre>
-<pre><code>## png 
-##   2</code></pre>
-<pre class="r"><code>for (f in figs) print(f)</code></pre>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/nop-all-deaths-1.png" width="768" /></p>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/nop-all-deaths-2.png" width="768" /></p>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/nop-all-deaths-3.png" width="768" /></p>
-<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="cf-pindex_files/figure-html/nop-all-deaths-4.png" width="768" /></p>
-</div>
-<div id="masks-1" class="section level2" number="4.2">
-<h2 number="4.2"><span class="header-section-number">4.2</span> Masks</h2>
+<pre class="r"><code>rerunsim=FALSE</code></pre>
+<div id="masks-1" class="section level2" number="4.1">
+<h2 number="4.1"><span class="header-section-number">4.1</span> Masks</h2>
 <p>We now look at what happens when all states impose a mask mandate on March 14th.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;Mandate.face.mask.use.by.employees.in.public.facing.businesses&quot;]  &lt;- as.Date(&quot;2020-03-14&quot;)
@@ -978,6 +956,15 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dcases_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-dcumu_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-mask-rcumu_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
 
@@ -1011,6 +998,12 @@ figs$r</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-mask-rcumu_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$cr</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
 <pre class="r"><code>for (f in figs) print(f)</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-4.png" width="768" /></p>
@@ -1021,8 +1014,8 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-5-7.png" width="768" /></p>
 </div>
-<div id="stay-at-home-1" class="section level2" number="4.3">
-<h2 number="4.3"><span class="header-section-number">4.3</span> Stay at home</h2>
+<div id="stay-at-home-1" class="section level2" number="4.2">
+<h2 number="4.2"><span class="header-section-number">4.2</span> Stay at home</h2>
 <p>We now look at what happens if stay at home orders were never issued.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;pshelter&quot;] &lt;- 0
@@ -1049,6 +1042,15 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcases_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-dcumu_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-shelter-rcumu_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
 
@@ -1082,6 +1084,12 @@ figs$r</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-shelter-rcumu_deahts_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$cr</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
 <pre class="r"><code>for (f in figs) print(f)</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-6-4.png" width="768" /></p>
@@ -1092,8 +1100,8 @@ figs$r</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="cf-pindex_files/figure-html/unnamed-chunk-6-7.png" width="768" /></p>
 </div>
-<div id="shutdown-policies" class="section level2" number="4.4">
-<h2 number="4.4"><span class="header-section-number">4.4</span> Shutdown policies</h2>
+<div id="shutdown-policies" class="section level2" number="4.3">
+<h2 number="4.3"><span class="header-section-number">4.3</span> Shutdown policies</h2>
 <p>We now look at what happens if the three business related shutdown policies in pindex were never implemented.</p>
 <pre class="r"><code>cf &lt;- df
 cf[,&quot;pindex&quot;] &lt;- 0
@@ -1120,6 +1128,15 @@ for (st in c(&quot;Washington&quot;,&quot;Illinois&quot;,&quot;Massachusetts&quo
   figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dcases_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
   print(f$figp)
   dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-dcumu_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figdcum)
+  dev.off()
+
+  figdev(sprintf(&quot;%s/tex/tables_and_figures/%s-index-rcumu_deaths_idx.pdf&quot;,rootdir,st), width=5,height=3.75)
+  print(f$figrcum)
+  dev.off()
+
 }</code></pre>
 <pre><code>## Warning: Ignoring unknown aesthetics: fill
 
@@ -1149,6 +1166,12 @@ figs$c</code></pre>
 ##   2</code></pre>
 <pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-rel_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
 figs$r</code></pre>
+<pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>## png 
+##   2</code></pre>
+<pre class="r"><code>figdev(paste(rootdir,&quot;tex/tables_and_figures/us-index-rcumu_deaths_idx.pdf&quot;,sep=&quot;/&quot;), width=5,height=3.75)
+figs$cr</code></pre>
 <pre><code>## Warning: Removed 7 row(s) containing missing values (geom_path).</code></pre>
 <pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
