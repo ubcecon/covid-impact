@@ -177,7 +177,7 @@ which considerable improved the paper. All mistakes are our own. }
 \date{\today; \textit{First public} version posted to ArXiv:  May 28, 2020}
 
 \begin{abstract}
-The paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks in a causal structural model framework. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our main Lcounterfactual experiments suggest that nationally mandating face masks for employees on April 1st could have reduced the growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 17 to 55 percent less deaths nationally by the end of May, which roughly translates into 17 to 55 thousand saved lives.   We also find that, without stay-at-home orders, cases would have been larger by  25 to 170 percent, which implies that 0.5 to 3.4 million more Americans could have been infected if stay-at-home orders had not been implemented. We find considerable uncertainty over the effects of school closures due to lack of cross-sectional variation;  we could not robustly rule out either large or small effects.  We also carry out sensitivity analyses to find neighborhoods of
+The paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks in a causal structural model framework. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our main Lcounterfactual experiments suggest that nationally mandating face masks for employees on April 1st could have reduced the growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 19 to 47 percent less deaths nationally by the end of May, which roughly translates into 19 to 47 thousand saved lives.   We also find that, without stay-at-home orders, cases would have been larger by  6 to 63 percent and without business closures, cases would have been larger by 17 to 78 percent.  We find considerable uncertainty over the effects of school closures due to lack of cross-sectional variation;  we could not robustly rule out either large or small effects.  We also carry out sensitivity analyses to find neighborhoods of
 the models under which the results hold robustly.  Overall, substantial declines in growth rates are attributable to private behavioral response, but policies played an important role as well.   We stress that our study is observational and should be interpreted with great caution. From a completely agnostic point of view,
 our findings uncover predictive effects (association) of observed policies and behavioral changes  on future health outcomes,
  controlling for informational and other confounding variables.
@@ -211,13 +211,6 @@ We present a conceptual framework that spells out the causal structure on how th
 
 
 
-%We present a conceptual framework that spells out the causal structure on how the Covid-19 spread  is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place.  Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.\footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, tinbergen1940, wold1954} and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. See \cite{pearl:biometrika},\cite{pearl:robins},  \cite{pearl:causality}, \cite{white:chalak}, \cite{peters2020book}, \cite{heckman:pinto}, and \cite{hernanrobins2020book}  for modern developments, in computer
-%science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986} and \cite{Hines2020} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
-%The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo1944, heckman2007}. See \cite{pearl:robins}, \cite{peters2020book}, and \cite{hernanrobins2020book} for  modern developments, especially in computer science and epidemiology), with natural unfolding potential outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. As such it naturally converses in all languages for causal inference.
-
-% It also allows us  to explicitly define counterfactual scenarios to properly evaluate the effect of alternative policies on the spread of Covid-19.
-
-
 Guided by the causal model, our empirical analysis examines how the weekly growth rates of confirmed Covid-19 cases and deaths are determined by (the lags of) policies and behavior using US state-level data. To examine how policies and information affect people's behavior, we also regress social distancing measures  on policy and information variables. Our regression specification for case and death growths is explicitly guided by a SIR model although  our causal approach does not hinge on the validity of a SIR model.
 
 
@@ -233,35 +226,53 @@ negative external effects for individual decisions over policy compliance as wel
 
 Using the estimated model, we evaluate the dynamic impact of the following counterfactual policies on Covid-19 cases and deaths: mandating face masks, allowing non-essential businesses to open, not implementing a stay-at-home order, and removing all policies.  The counterfactual experiments show a large impact of  those policies on  the number of cases and deaths.  They also highlight the importance of voluntary behavioral response to infection risks for evaluating the dynamic policy effects.
 
-Our estimates imply that nationally  implementing mandatory
-face masks  for employees in public businesses on April 1st would have reduced the growth rate of cases
-and that of deaths by more than 10 percentage points in late April. As
-shown in Figure \ref{fig:US-mask-dgrowth}, this leads to reductions of
-$20$\% and $35$\% in weekly reported cases and deaths, respectively,
-by the end of May with a 90 percent confidence interval of $[8,32]$\%
-and $[17,50]$\%, which roughly implies that 6 thousand lives could
-have been saved.\footnote{The US averaged roughly one thousand deaths
-  per day during May. Reducing one thousand deaths per day by 20\%
-  over 30 days gives a rough estimate of 6 thousand saved lives.}
-This finding is significant: given this potentially large  benefit of reducing the spread of Covid-19, mandating masks is an attractive policy instrument especially because it involves relatively little economic disruption. These estimates contribute to the ongoing efforts towards designing approaches to minimize risks from reopening \citep{stock2020b}.
+Our estimates imply that nationally implementing mandatory face masks
+for employees in public businesses on March 14th would have reduced the
+growth rate of cases and that of deaths by approximately 10 percentage
+points in late April. As shown in Figure \ref{fig:US-mask-dgrowth},
+this leads to reductions of $21$\% and $34$\% in cumulative reported
+cases and deaths, respectively, by the end of May with 90 percent
+confidence intervals of $[9,32]$\% and $[19,47]$\%, which roughly
+implies that 34 thousand lives could have been saved.  This finding is
+significant: given this potentially large benefit of reducing the
+spread of Covid-19, mandating masks is an attractive policy instrument
+especially because it involves relatively little economic
+disruption. These estimates contribute to the ongoing efforts towards
+designing approaches to minimize risks from reopening
+\citep{stock2020b}.
 
 
-Figure \ref{fig:US-nb-dgrowth} illustrates how allowing non-essential businesses to remain open could
-have affected the growth of cases.  We estimate that
-non-essential business closures have a small impact on growth rates,
-with a 90\% confidence interval that includes both negative and
-positive effects. When this effect on growth rates is converted to a
-change in levels, the point estimates indicate that keeping
-non-essential businesses open (other than movie theaters, gyms, and
-keeping restaurants in the ``take-out" mode) could have increased
-cases and  deaths by  $15\%$ (with a 90 percent confidence interval of
-$-20\%$ to $60\%$).  These estimates contribute to the ongoing efforts of evaluating various reopening approaches.
+Figure \ref{fig:US-nb-dgrowth} illustrates how never closing any
+businesses (no movie theater closure, no non-essential business
+closure, and no closure of restaurants except take-out)) could have
+affected cases and deaths.  We estimate that business shutdowns have a
+roughly the same impact on growth rates as mask mandates, albeit with
+more uncertainty. The point estimates indicate that keeping all
+businesses open could have increased cumulative cases and deaths by
+$40\%$ at the end of May (with 90 percent confidence intervals of
+$[17,78]$\% for cases and $[1,97]$\% for deaths).
 
+Figure \ref{fig:US-shelter-dgrowth} shows that stay-at-home orders had
+effects of similar magnitude as business closures.  No stay-at-home
+orders could have led to $37$\% more cases by the start of June with a
+90 percent confidence interval given by $6$\% to $63$\%. The estimated
+effect of no stay-at-home orders on deaths is a slightly smaller with
+a 90 percent confidence interval of $-7$\% to $50$\%.  These estimates
+contribute to the ongoing efforts of evaluating various reopening
+approaches.
 
-In Figure \ref{fig:US-shelter-dgrowth}, we find that, without stay-at-home orders, the case
-growth rate would have been nearly 10 percentage points higher in late April. No stay-at-home orders could have led to 80\% more cases by the start of June with a 90 precent confidence interval given by  $25\%$ to $170\%$. This implies that 0.5 to 3.4 million more Americans would have been infected without stay-at-home orders, providing suggestive evidence that reopening via removal of stay-at-home orders could lead to a substantial increase in cases and deaths.
+The above findings are robust to changes to our regression specification, sample selection, methodology, and assumptions about delays between policy changes and changes in recorded cases. In all cases, we find that mask mandates, business closure policies, and stay-at-home orders all reduce growth rates by roughly 0.1. The impact of mask mandates are more precisely estimated than that of business closure policies or stay-at-home orders. This is largely due to the greater variation in the timing of mask mandates across states.
 
-In our counterfactual experiment of removing all policies, we find that the results are sensitive to whether  the number of past national cases/deaths is included  in a specification or not. This sensitivity arises because there is little variation across states in the timing of school closures.  This makes the effect of school closures difficult to identify. In Figure \ref{fig:US-nop-SI}, we show that in a specification that excludes past national cases (which allow for greater attribution of effects to school closures), the number of cases by the end of May could have increased 7-fold or more with a very large upper bound. On the other hand, as shown in Figure \ref{fig:US-nop}, under a specification with past national cases, our counterfactual experiment implies a 0 to 10 fold increase in cases by the end of May.  This highlights the uncertainty regarding the impact of all policies versus private behavioral responses to information. Evaluation of re-opening policies needs to be aware of this uncertainty.
+We also examine the impact of school closures. Unfortunately, there is
+very little variation across states in school closure in the timing of
+school closures.  Across robustness specifications, we obtain point
+estimates of the effect of school closures as low as 0, and as high as
+0.6. In particular, we find that the results are sensitive to whether
+the number of past national cases/deaths is included in a
+specification or not. This highlights the uncertainty regarding the
+impact some policies versus private behavioral responses to
+information. Evaluation of re-opening policies needs to be aware of
+this uncertainty.
 
 
 
@@ -2066,8 +2077,8 @@ The middle column of Figure \ref{fig:WA-mask} shows how the changes in
 case and death growth translate into changes in daily cases and
 deaths. The estimates imply that mandating masks on March 14th would
 have led to about 70 fewer cases and 5 fewer deaths per day throughout
-April and May. Cumulatively, this implies 19\% [9\%,29\%]fewer cases and 26\%
-[14\%,37\%] fewer deaths in Washington by the start of June.
+April and May. Cumulatively, this implies 19\% $[9,29]$\% fewer cases and 26\%
+$[14,37]$\% fewer deaths in Washington by the start of June.
 
 \begin{figure}[ht]
   \caption{Effect of nationally mandating masks for employees on March
@@ -2075,17 +2086,21 @@ April and May. Cumulatively, this implies 19\% [9\%,29\%]fewer cases and 26\%
   \begin{minipage}{\linewidth}
     \centering
     \medskip
-    \begin{tabular}{cc}
-      \multicolumn{2}{c}{\textbf{Cases}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-dgrowth_idx}
+    \begin{tabular}{ccc}
+      \multicolumn{3}{c}{\textbf{Cases}} \\
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-mask-dgrowth_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-rcumu_idx}
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-mask-dcases_idx}
+      &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-mask-rcumu_idx}
       \\
       \\
-      \multicolumn{2}{c}{\textbf{Deaths}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-dgrowth_deaths_idx}
+      \multicolumn{3}{c}{\textbf{Deaths}} \\
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-mask-dgrowth_deaths_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-mask-rcumu_deaths_idx}
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-mask-dcases_deaths_idx}
+     &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-mask-rcumu_deaths_idx}
     \end{tabular}
 
     \begin{flushleft}
@@ -2093,8 +2108,10 @@ April and May. Cumulatively, this implies 19\% [9\%,29\%]fewer cases and 26\%
       change in growth in each state. The blue line is the average
       across states of the change in growth. The shaded region is a
       point-wise 90\% confidence interval for the national average
-      change in growth. The right column shows the change in
-      cumulative cases or deaths relative to the baseline of actual policies.
+      change in growth.  The middle column shows the total national
+      change in daily cases and deaths. Black dots are the changes in each
+      state.  The right column shows the change in cumulative cases or
+      deaths relative to the baseline of actual policies.
     \end{flushleft}
   \end{minipage}
 \end{figure}
@@ -2106,11 +2123,22 @@ March 14th. The top panel shows the effect on cases and the bottom
 panel shows the effect on deaths. The left column shows the change in
 growth rates. Dots are the average change in growth rate in each state
 (i.e. the dots are identical to the solid line in the left panel of
-Figure \label{fig:WA-mask}, except for all states instead of just
+Figure \label{fig:WA-mask}, except for each state instead of just
 Washington). The solid blue is the national average change in growth
 rate. The shaded region is a 90\% pointwise confidence band for the
-national average change in growth rate. The right column of Figure
-\ref{fig:US-mask} shows the national relative change in cumulative cases
+national average change in growth rate.
+
+The middle column shows the changes in cases and deaths per day. Dots
+are the expected change in each state. The thick line is the national
+total change in daily cases or deaths. The shaded region is a
+pointwise 90\% confidence band for the national total change. The
+estimates that a mask mandate in mid March would have decreases cases
+and deaths by about 6000 and 600 respectively throughout April and
+May.
+
+The right column of Figure \ref{fig:US-mask} shows how these daily
+changes compare to the total cumulative cases and deaths. The right
+column shows the national relative change in cumulative cases
 or deaths. The point estimates indicate that mandating masks on March
 14th could have led to 21\% fewer cumulative cases and 34\% fewer
 deaths by the end of May with their 90 percent intervals
@@ -2135,17 +2163,21 @@ The confidence interval for deaths is even wider, $[1, 97]$\%
   \caption{Effect of having no business closure policies in the US\label{fig:US-business}}
   \begin{minipage}{\linewidth}
     \centering
-    \begin{tabular}{cc}
-      \multicolumn{2}{c}{\textbf{Cases}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-dgrowth_idx}
+    \begin{tabular}{ccc}
+      \multicolumn{3}{c}{\textbf{Cases}} \\
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-index-dgrowth_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rcumu_idx}
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-index-dcases_idx}
+      &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-index-rcumu_idx}
       \\
       \\
-      \multicolumn{2}{c}{\textbf{Deaths}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-dgrowth_deaths_idx}
+      \multicolumn{3}{c}{\textbf{Deaths}} \\
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-index-dgrowth_deaths_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-index-rcumu_deaths_idx}
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-index-dcases_deaths_idx}
+      &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-index-rcumu_deaths_idx}
     \end{tabular}
 
     \begin{flushleft}
@@ -2153,8 +2185,10 @@ The confidence interval for deaths is even wider, $[1, 97]$\%
       change in growth in each state. The blue line is the average
       across states of the change in growth. The shaded region is a
       point-wise 90\% confidence interval for the national average
-      change in growth. The right column shows the change in
-      cumulative cases or deaths relative to the baseline of actual policies.
+      change in growth.  The middle column shows the total national
+      change in daily cases and deaths. Black dots are the changes in each
+      state.  The right column shows the change in cumulative cases or
+      deaths relative to the baseline of actual policies.
     \end{flushleft}
   \end{minipage}
 \end{figure}
@@ -2174,17 +2208,22 @@ increase included in a 90 percent confidence interval, $[-7,50]$\%.
   \caption{Effect of having no stay-at-home orders in the US\label{fig:US-shelter}}
   \begin{minipage}{\linewidth}
     \centering
-    \begin{tabular}{cc}
-      \multicolumn{2}{c}{\textbf{Cases}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-dgrowth_idx}
+    \begin{tabular}{ccc}
+      \multicolumn{3}{c}{\textbf{Cases}} \\
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-shelter-dgrowth_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rcumu_idx}
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-shelter-dcases_idx}
+      &
+
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-shelter-rcumu_idx}
       \\
       \\
-      \multicolumn{2}{c}{\textbf{Deaths}} \\
-      \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-dgrowth_deaths_idx}
+      \multicolumn{3}{c}{\textbf{Deaths}} \\
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-shelter-dgrowth_deaths_idx}
       &
-        \includegraphics[width=0.45\textwidth]{tables_and_figures/us-shelter-rcumu_deaths_idx}
+      \includegraphics[width=0.31\textwidth]{tables_and_figures/us-shelter-dcases_deaths_idx}
+      &
+        \includegraphics[width=0.31\textwidth]{tables_and_figures/us-shelter-rcumu_deaths_idx}
     \end{tabular}
 
     \begin{flushleft}
@@ -2192,8 +2231,9 @@ increase included in a 90 percent confidence interval, $[-7,50]$\%.
       change in growth in each state. The blue line is the average
       across states of the change in growth. The shaded region is a
       point-wise 90\% confidence interval for the national average
-      change in growth. The right column shows the change in
-      cumulative cases or
+      change in growth.  The middle column shows the total national
+      change in daily cases and deaths. Black dots are the changes in each
+      state.  The right column shows the change in cumulative cases or
       deaths relative to the baseline of actual policies.
     \end{flushleft}
   \end{minipage}
