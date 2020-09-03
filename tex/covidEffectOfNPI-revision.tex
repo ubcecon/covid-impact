@@ -207,7 +207,9 @@ See
 
 This paper  quantitatively assesses the impact of various policies adopted by US states on the spread of Covid-19, such as non-essential business closure and mandatory  face masks, paying particular attention to how people adjust their behavior in response to policies as well as new information on cases and deaths.
 
-We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information. \footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika, heckman:pinto} and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. See, e.g., \cite{pearl:biometrika},\cite{pearl:robins}, \cite{pearl:causality}, \cite{pearl:why}, \cite{white:chalak}, \cite{peters2020book}, \cite{heckman:pinto}, and \cite{hernanrobins2020book} for modern developments, in computer science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986},\cite{Hines2020}, \cite{richardson:mediation} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
+We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information. \footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika, heckman:pinto}) and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. The work on causal graphs has been
+modernized and put on rigorous footing by  \cite{pearl:biometrika},\cite{pearl:robins}, \cite{pearl:causality}, \cite{pearl:why}, \cite{white:chalak}, \cite{peters2020book}, and \cite{hernanrobins2020book}, with major applications taking place in
+in computer science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986},\cite{Hines2020}, \cite{richardson:mediation} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
 
 
 
@@ -422,7 +424,7 @@ Epidemiologists use model simulations to predict how cases and deaths evolve for
 Whether wearing  masks in public place should be mandatory or not has been one of the most contested policy issues with health authorities of different countries providing contradiction recommendations. Reviewing evidence, \cite{Greenhalghm2020}  recognize that there is no randomized controlled trial evidence for the effectiveness of face masks,  but they state ``indirect evidence exists to support the argument for the public wearing masks in the Covid-19 pandemic."\footnote{The virus remains viable in the air for several hours, for which surgical masks may be effective. Also, a substantial fraction of individual who are infected become infectious before showing symptom onset.}
 \cite{howard2020} also review available medical evidence and conclude that ``mask wearing reduces the transmissibility per contact by reducing transmission of infected droplets in both laboratory and clinical contexts.''  The laboratory findings in \cite{hou2020} suggest that the nasal cavity may be the initial site of infection followed by aspiration to the lung, supporting the argument  ``for the widespread use of masks to prevent aersol, large droplet, and/or mechanical exposure to the nasal passages.''   \cite{He2020} examined temporal patterns of viral shedding in COVID-19 patients and found the highest viral load at the time of symptom onset; this suggests that a significant portion of transmission may have occurred before symptom onset and that universal face masks may be an effective control measure to reduce transmission.\footnote{\cite{Lee2020} find evidence that viral loads in asymptomatic patients are similar to those in symptomatic patients. Aerosol transmission of viruses may occur through aerosols particles released during breathing and speaking by asymptomatic infected individuals; masks reduce such airborne transmission \citep{Prather2020}. \cite{Anfinrud2020} provide visual evidence of speech-generated droplet as well as the effectiveness of cloth masks to reduce the emission of droplets.   \cite{Chu2020} conduct a meta-analysis of observational studies on transmission of the viruses that cause COVID-19 and related diseases and find the effectiveness of mask use for reducing transmission. } \cite{ollila2020} provide a meta-analyhsis of randomized controlled trials of non-surgical face masks in preventing viral respiratory infections in non-hospital and non-household settings, finding that face masks decreased infections across all five studies they reviewed.\footnote{Whether wearing masks creates a false sense of security and leads to decrease in social distancing is also a hotly debated topic.  A randomized field experiment in Berlin, Germany, conducted by \cite{seres2020}  finds that wearing masks actually increases social distancing, providing no evidence that mandatory masks leads to decrease in social distancing.}
 
-Given the lack of experimental evidence on the effect of masks in the context of COVID-19, conducting observational studies  is useful and important. To the best of our knowledge, our paper is the first  empirical study that shows the effectiveness of  mask mandates on reducing the spread of Covid-19 by analyzing the US state-level data. This finding corroborates and is complementary to the medical observational evidence in \cite{howard2020}. Analyzing mitigation measures in New York, Wuhan, and Italy, \cite{zhangr2020} conclude that mandatory face coverings substantially reduced infections. \cite{abaluck2020}  find that the growth rates of cases and of deaths in countries with pre-existing norms that sick people should wear masks are lower by 8 to 10\% than those rates in countries with no pre-existing mask norms.\footnote{\cite{miyazawa2020} find that  country's COVID-19 death rates are negatively associated with mask wearing rates.} Our finding is also corroborated by a completely different causal methodology based on synthetic control
+Given the lack of experimental evidence on the effect of masks in the context of COVID-19, conducting observational studies  is useful and important. To the best of our knowledge, our paper is the first  empirical study that shows the effectiveness of  mask mandates on reducing the spread of Covid-19 by analyzing the US state-level data. This finding corroborates and is complementary to the medical observational evidence in \cite{howard2020}. Analyzing mitigation measures in New York, Wuhan, and Italy, \cite{zhangr2020} conclude that mandatory face coverings substantially reduced infections. \cite{abaluck2020}  find that the growth rates of cases and of deaths in countries with pre-existing norms that sick people should wear masks are lower by 8 to 10\% than those rates in countries with no pre-existing mask norms.\footnote{\cite{miyazawa2020} find that  country's COVID-19 death rates are negatively associated with mask wearing rates.} Our finding is also independently corroborated by a completely different causal methodology based on synthetic control
 using German data in \cite{Mitze2020}.\footnote{Our study was first released in ArXiv on May 28, 2020 whereas
  \cite{Mitze2020} was released at SSRN on June 8, 2020.}
 
@@ -580,7 +582,7 @@ myarrow/.style={-Stealth}]
 
 
 \end{tikzpicture} \end{center}
-\caption{ Dynamic System Induced by Information Structure and SEM}\label{fig:DynS}
+\caption{ Diagram for Information Dynamics in SEM}\label{fig:DynS}
 \end{figure}
 
 
@@ -807,15 +809,80 @@ outcomes, behavior, information by propaging the dynamic equations:
   \begin{aligned}
 & {\ycolor Y^\star_{i,t+\ell}}  & := & Y_{i,t+\ell} ( {\bcolor B^\star_{it} } , {\pcolor P^\star_{it}}, {\icolor I^\star_{it}}), \\
 & {\bcolor B^\star_{it} } & := &   B_{it}({\pcolor P^\star_{it} } ,{\icolor I^\star_{it}}), \\
-& {\icolor I^\star_{it} }& := &  I_{it}({\icolor I^\star_{i,t-\ell}}, {\ycolor Y^*_{it}}, t),  \end{aligned}
+& {\icolor I^\star_{it} }& := &  I ({ t,  {\ycolor Y^*_{it}}, \icolor I^\star_{i,t-\ell}}),  \end{aligned}
 \end{equation}
 with the same initialization as the factual system up to $t \leq 0$. In stating this counterfactual system of equations, we assume that structural outcome equations (SO) and information equations (I) remain invariant, and so do the stochastic shocks, decomposed
 into observable and unobservable parts. Formally, we record this assumption and above discussion as follows.
 
-
 \begin{quote}
 \textsc{Counterfactual Structural Equations Model (CF-SEM)}.  Let $i \in \{1,..., N\}$ be the observational init and $t$ be time periods and $\ell$ the time delay, a positive integer. (1) For each $i$ and $t \leq 0$, the confounder, information, behavior, policy, and outcome variables are determined as in SEM: $W^\star_{it}= W_{it}$, $I^\star_{it}= I_{it}$,  $B^\star_{it} = B_{it}$, $P^\star_{it}=P_{it}$, $Y^\star_{it} =Y_{it}$.  (2) For each $i$ and $t \geq 0$, confounders $W^\star_{it} =W_{it}$ are determined, then information variables $I^\star_{it}$ are determined  by (I), and policy variables $P^\star_{it}$ are set,  the behavior variables $B^\star_{it}$ are determined by setting $\iota = I^\star_{it}$ and $p= P^\star_{it}$ in  (SO) and keeping  the same stochastic shock $\varepsilon^b_{it}$ in (SO), the outcome $Y^\star_{i, t + \ell}$ is realized by setting $\iota = I^\star_{it}$, $p= P^\star_{it}$, and $b = B^\star_{it}$ in  (SO) and keeping the same shochastic shock $\varepsilon^y_{it}$  (SO).
 \end{quote}
+
+Figures \ref{Wright2} and \ref{fig:DynS2} present the causal path diagram for CF-SEM as well as the dynamics
+of counterfactual information in CF-SEM.
+
+\begin{figure}[ht]
+\begin{center}
+\begin {tikzpicture}[-latex, auto, node distance =1.5cm and 3cm, on grid, thick,
+  empty/.style ={circle, top color=white, bottom color = white, draw, white, text=white , minimum width =1.25 cm},
+  policy/.style ={circle, top color=white, bottom color = blue, draw, black, text=black , minimum width =1.25 cm},
+    behavior/.style ={circle, top color=white, bottom color = ForestGreen, draw, black, text=black , minimum width =1.25 cm},
+  observed/.style ={circle, top color=white, bottom color = magenta, draw, black, text=black , minimum width =1.25 cm} ,
+   confounder/.style ={circle, top color=white, bottom color =  gray, draw, black, text=black , minimum width =1.25 cm} ,
+outcome/.style ={circle, top color=white, bottom color = red, draw, black, text=black , minimum width =1.25 cm} ]
+
+\node[policy]   (P) {\tiny $P^\star_{it}$};
+\node[empty] (E) [below=of P] {\tiny $I^\star_{it}$};
+\node[outcome]  (Y)[ right =of E] {\tiny $Y^\star_{i,t+\ell}$};
+\node[behavior] (B) [below =of E] {\tiny $B^\star_{it}$};
+\node[observed] (I) [left =of P] {\tiny $I^\star_{it}$};
+\node[confounder] (W) [left=of B] {\tiny  $W_{it}$};
+\path[->] (P) edge (Y);
+\path[->] (B) edge (Y);
+\path[->] (P) edge (B);
+\path[->] (I) edge (B);
+%\path[->] (I) edge (P);
+\path[->] (W) edge (Y);
+\path[->] (W) edge (B);
+%\path[->] (W) edge (P);
+\path[->] (W) edge (I);
+\path[->] (I) edge (Y);
+
+\end{tikzpicture} \end{center}
+\caption{Causal path diagram for CF-SEM. }\label{Wright2}
+\end{figure}
+
+
+\begin{figure}[ht]
+\begin{center}
+\begin {tikzpicture}[-latex, auto, node distance =3.25 cm and 3cm, on grid, thick,
+  empty/.style ={circle, top color=white, bottom color = white, draw, white, text=white , minimum width =1.25 cm},
+  policy/.style ={circle, top color=white, bottom color = blue, draw, black, text=black , minimum width =1.25 cm},
+    behavior/.style ={circle, top color=white, bottom color = ForestGreen, draw, black, text=black , minimum width =1.25 cm},
+  observed/.style ={circle, top color=white, bottom color = magenta, draw, black, text=black , minimum width =1.25 cm} ,
+   confounder/.style ={circle, top color=white, bottom color =  gray, draw, black, text=black , minimum width =1.25 cm} ,
+outcome/.style ={circle, top color=white, bottom color = red, draw, black, text=black , minimum width =1.25 cm},
+myarrow/.style={-Stealth}]
+
+\node[observed] (I)  {\tiny $I^\star_{i,t-\ell}$};
+\node[outcome]  (Y)[below=of I ]{\tiny $Y^\star_{it}$};
+\node[observed] (In)  [right=of I ]{\tiny $I^\star_{it}$};
+\node[outcome]  (Yn)[below=of In ]{\tiny $Y^\star_{i,t+\ell}$};
+\node[observed] (Inn)  [right=of In ]{\tiny $I^\star_{i,t+\ell}$};
+\node[outcome]  (Ynn)[below=of Inn ]{\tiny $Y^\star_{i,t+2\ell}$};
+ \draw [->] (I) -- node[sloped,font=\small,below] {\tiny CF-SEM(t-$\ell$)} (Y);
+ \draw [->] (I) --  (In);
+ \draw [->] (In) -- node[sloped,font=\small,below] {\tiny CF-SEM(t)} (Yn);
+\draw [->] (Y) --  (In);
+\draw [->] (In) --  (Inn);
+ \draw [->] (Inn) -- node[sloped,font=\small,below] {\tiny CF-SEM(t+$\ell$) } (Ynn);
+\draw [->] (Yn) --  (Inn);
+
+
+\end{tikzpicture} \end{center}
+\caption{ A Diagram for Counterfactual Information Dynamics in CF-SEM}\label{fig:DynS2}
+\end{figure}
+
 
 
 The counterfactual outcome $Y^\star_{i,t+\ell}$  and  factual outcome $Y_{i,t+\ell}$  are given by:
@@ -830,7 +897,7 @@ $$
 In generating these predictions, we explore the assumption of invariance stated above.
 We can write  the counterfactual contrast into the sum of three components:
   \begin{align}
- \underbracket{{\ycolor Y^\star_{i,t+\ell} -  Y_{i,t+\ell} }}_{\text{Predicted CF Change}} & =
+ \underbracket{{\ycolor Y^\star_{i,t+\ell} -  Y_{i,t+\ell} }}_{\text{CF Change}} & =
 \underbracket{{\bcolor\alpha}' {\pcolor\beta}' {\pcolor\left(P^\star_{it} - P_{it} \right)}}_{\text{CF Policy Effect via Behavior}}  +    {\underbracket{\pcolor\pi' \left( P^\star_{it} -  P_{it} \right)}_{\text{CF Direct  Effect}} } \nonumber\\
 &\qquad +  {\underbracket{{\bcolor\alpha}' {\icolor{\gamma}'  \left( I^\star_{it} - I_{it} \right)}+ {\icolor{\mu}'  \left( I^\star_{it} -  I_{it} \right)}}_{\text{ CF Dynamic Effect}}} \nonumber \\
  & =:   \mathrm{PEB}^\star_{it} + \mathrm{PED}^\star_{it} + \mathrm{DynE}^\star_{it}, \label{eqn:DC2}
@@ -852,28 +919,29 @@ $$
 summing terms containing $PEB$ and (b) delayed policy effects via direct impact
 by summing terms containing $PED$.
 
-[Doesn't this just give us weekly cases instead of cumulative
-cases? I.e. following the notation in \ref{eq:M}, it these $C_{it}$
-should be $\Delta C_{it}$.]
-
-In order to compute the counterfactual relative contrasts for levels
-variables, for example, confirmed cases $C_{it}$
-we would use the formula:
-\begin{equation}
-C^{\star}_{it}/C_{it} = \exp(  \sum_{\bar t=1}^t ( Y^\star_{i\bar t} -  Y_{i\bar t}) ),
-\end{equation}
-and similarly for fatalities. The counterfactual relative contrast for national level variables takes the form:
-\begin{equation}
-C^{\star}_{it}/C_{it} =  \sum_{i=1}^N w_i \exp(  \sum_{\bar t=1}^t (
-Y^\star_{i\bar t} -  Y_{i\bar t}) ), \quad w_i = C_{it}/\sum_{i=1}^N
-C_{it}.  \label{eqn:relative_national}
-\end{equation}
-Note this counterfactual contrast is conditional on the actual history $\{C_{it}\}$.  If we'd want unconditional counterfactual,
-we'd need to make assumptions about the evolution of stochastic shocks appearing in $Y_{it}$.\footnote{See, e.g, previous
+All counterfactual quantities and contrasts can be computed from the expressions given
+above. For examples, new cases are linked to growth rates via relation:
+$$
+\Delta C^{\star}_{it} = \exp\left (  \sum_{\bar t=1}^t  Y^\star_{i\bar t} \right) \text{ and } \Delta C_{it} = \exp
+\left (  \sum_{\bar t=1}^t Y_{i\bar t}\right).
+$$
+The cumulative cases can be constructed by summing over the new cases. Various contrasts are
+then calculated from these quantities. For example, the relative contrast of new counterfactual cases
+to the  factual cases is given by:
+$$
+\Delta C^{\star}_{it}/\Delta C_{it} = \exp\left(  \sum_{\bar t=1}^t ( Y^\star_{i\bar t} -  Y_{i\bar t}) \right).
+$$
+We refer to the appendix for further details. Similar calculations apply for fatalities. 
+Note that our analysis is conditional on the factual history and structural stochastic 
+shocks.\footnote{ If we'd want unconditional counterfactual,
+we'd need to make assumptions about the evolution of stochastic shocks appearing in $Y_{it}$. See, e.g, previous
 versions of our paper in ArXiv, where unconditional counterfactuals were calculated by assuming stochastic shocks
 are i.i.d. and resampling them from the empirical distribution. The differences between conditional and unconditional
 contrasts were small in our empirical analysis.}
 
+The estimated counterfactuals are smooth functionals of the underlying parameter estimates. Therefore, we
+construct the confidence intervals for counterfactual quantities and contrasts by bootstrapping the parameter
+estimates. We refer to the appendix for further details.
 
 
 \subsection{Outcome and Key Confounders via SIR model}\label{sec:sirmodel} We next provide details
@@ -2689,72 +2757,60 @@ $$
 $$
 where $\widehat \beta$ is the standard fixed effects estimator while $\widetilde \beta_{{\bf S}_1\cup{\bf S}_2}$ denotes the fixed effects estimator using the data set  ${\bf S}_1\cup{\bf S}_2$ but treats the states in  ${\bf S}_1$ differently from those in  ${\bf S}_2$ to form the fixed effects estimator; namely, we include approximately twice more state fixed effects to compute $\widetilde \beta_{{\bf S}_1\cup{\bf S}_2}$.\footnote{Alternatively, we may form the cross-over jackknife corrected estimator as $\widehat \beta_{\rm CBC}  =  2 \widehat \beta -  (\widetilde \beta_{{\bf S_1}}+\widetilde \beta_{{\bf S_2}})/2$, where $\widetilde \beta_{{\bf S}_j}$ denotes the fixed effect estimator using the subpanel  ${\bf S}_j$ for $j=1,2$. In our empirical analysis, these two cross-over jackknife bias corrected estimators give  similar result.} We obtain bootstrap standard errors by using multipler bootstrap with state-level clustering.
 
-\subsection{Counterfactuals \label{app:counterfactuals}}
+\subsection{Details for Computing Counterfactuals \label{app:counterfactuals}}
 
 We compute counterfactuals from the "total effect" version of the
 model, with behavior concentrated out.
-
 $$
 Y_{i,t+\ell}
 = \mathsf{a}'
 P_{it} + \mathsf{b}' I_{it} +  {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
 $$
-
 We consider a counterfactual change of $P_{it}$ to $P_{it}^*$, while
 $W_{it}$ and $\bar \varepsilon_{it}$ are held constant. In response to
 the policy change, $Y_{i,t+\ell}$ and the part of $I_{it}$ that
 contains $Y_{it}$, change to $Y_{i,t+\ell}^*$ and $I_{it}^*$. To be
 specific, let $C_{it}$ denote cumulative cases in state $i$ on day
 $t$. Our outcome is:
-
 $$
 Y_{i,t+\ell} \equiv \log
 \left(C_{i, t+\ell} - C_{i, t + \ell - 7} \right) - \log
 \left(C_{i, t+\ell-7} - C_{i, t + \ell - 14} \right) \equiv \Delta
 \log \Delta C_{i,t+\ell}
 $$
-
 where $\Delta$ is a 7 day difference operator. Writing the model in
 terms of $\Delta \log \Delta C$ we have:
-
 $$
 \Delta \log \Delta C_{i,t+\ell} = \mathsf{a}' P_{it} + \mathsf{b}_D
 \Delta \log \Delta C_{i,t} + \mathsf{b}_L \log \Delta C_{i,t} +
 {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
 $$
-
 To simplify computation, we rewrite this model in terms of $\log
 \Delta C$:
-
 $$
 \log \Delta C_{i,t+\ell} = \mathsf{a}' P_{it} + \log \Delta
 C_{i,t+\ell-7} + (\mathsf{b}_D + \mathsf{b}_L) \log \Delta C_{i,t} -
 \mathsf{b}_D \log \Delta C_{i,t-7} + {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
 $$
-
 This equation is used to iteratively compute
 $\log \Delta C_{i,t+\ell}^*$
 conditional on initial $\{\log \Delta C_{i,s}\}_{s=-\ell-7}^{0}$,
 and the entire sequence of $\{W_{i,t}, P_{i,t}^*, \bar \varepsilon_{it} \}_{t=0}^T$.
 
-
 Weekly cases instead of log weekly cases are given simply by
-
 $$ \Delta C_{i,t+\ell}^* = \exp(\log \Delta C_{i,t+\ell}^*)$$
 
 Cumulative cases can be recursively computed as:
-
 $$
   C_{i,t} = C_{i,t-7} + \Delta C_{i,t} = C_{i,t-7} + \exp(\log \Delta C_{i,t})
 $$
-
 given initial $\{C_{i,s}\}_{s=-7}^0$.
 
 Note that $\log \Delta C_{i,t+\ell}^*$ depends linearly on
 $\bar \varepsilon$, so the residuals (and our decision to condition on
 versus integrate them out) do not matter when considering linear
-constrasts of $\log \Delta C_{it}$ or $\Delta \log \Delta C_{it}$, or
-when considering relative constrasts of $\Delta C_{it}$.
+constasts of $\log \Delta C_{it}$ or $\Delta \log \Delta C_{it}$, or
+when considering relative contrasts of $\Delta C_{it}$.
 
 %On the other hand, cumulative cases are a nonlinear function of
 %$\bar\varepsilon$, so conditioning on $\bar\varepsilon$
@@ -2785,9 +2841,7 @@ $\hat{\mathbf{\varepsilon}}$ the associated residuals. We draw
 $\tilde{\theta}_j$ from the asymptotic distribution of
 $\hat{\theta}$. Let $\tilde{\varepsilon}_j$ denote the
 residuals associated with $\tilde{\theta}_j$. We then compute
-
-$$ \tilde{s}_j = S(\tilde{\theta}_j, \tilde{\varepsilon}_j) $$
-
+$ \tilde{s}_j = S(\tilde{\theta}_j, \tilde{\varepsilon}_j) $
 for $j=1,..., 200$ and plots the mean across $j$ as a point estimate
 and quantiles across $j$ for confidence intervals.
 
