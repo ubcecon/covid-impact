@@ -177,8 +177,9 @@ which considerable improved the paper. All mistakes are our own. }
 \date{\today; \textit{First public} version posted to ArXiv:  May 28, 2020}
 
 \begin{abstract}
-The paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks in a causal structural model framework. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our main Lcounterfactual experiments suggest that nationally mandating face masks for employees on April 1st could have reduced the growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 19 to 47 percent less deaths nationally by the end of May, which roughly translates into 19 to 47 thousand saved lives.   We also find that, without stay-at-home orders, cases would have been larger by  6 to 63 percent and without business closures, cases would have been larger by 17 to 78 percent.  We find considerable uncertainty over the effects of school closures due to lack of cross-sectional variation;  we could not robustly rule out either large or small effects.  We also carry out sensitivity analyses to find neighborhoods of
-the models under which the results hold robustly.  Overall, substantial declines in growth rates are attributable to private behavioral response, but policies played an important role as well.   We stress that our study is observational and should be interpreted with great caution. From a completely agnostic point of view,
+The paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks in a causal structural model framework. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our main counterfactual experiments suggest that nationally mandating face masks for employees early in the pandemic could have reduced the weekly growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 19 to 47 percent less deaths nationally by the end of May, which roughly translates into 19 to 47 thousand saved lives.   We also find that, without stay-at-home orders, cases would have been larger by  6 to 63 percent and without business closures, cases would have been larger by 17 to 78 percent.  We find considerable uncertainty over the effects of school closures due to lack of cross-sectional variation;  we could not robustly rule out either large or small effects.   Overall, substantial declines in growth rates are attributable to private behavioral response, but policies played an important role as well.   We also carry out sensitivity analyses to find neighborhoods of
+the models under which the results hold robustly:  the results on mask policies appear to be more much more robust than 
+than the results on business closures and stay-at-home orders. Finally, we stress that our study is observational and therefore should be interpreted with great caution. From a completely agnostic point of view,
 our findings uncover predictive effects (association) of observed policies and behavioral changes  on future health outcomes,
  controlling for informational and other confounding variables.
 
@@ -235,7 +236,17 @@ points in late April. As shown in Figure \ref{fig:US-mask-dgrowth},
 this leads to reductions of $21$\% and $34$\% in cumulative reported
 cases and deaths, respectively, by the end of May with 90 percent
 confidence intervals of $[9,32]$\% and $[19,47]$\%, which roughly
-implies that 34 thousand lives could have been saved.  This finding is
+implies that 34 thousand lives could have been saved.\footnote{These estimates
+are slightly lower than those reported in earlier releases of the paper on ArXiv.
+One of the reason is that we chose to focus on a simplified version of the model 
+as our base model, by
+averaging business
+closure policies as measure of shutdown. This produced more stable results when
+conducting sensitivity results, in particular using fixed effects estimators.  
+We also present several variants of base model, including
+one with separate shutdown policies, in which the effects are slightly larger, in line
+with the previous findings, but we focus reporting counterfactuals only 
+for the base model. } This finding is
 significant: given this potentially large benefit of reducing the
 spread of Covid-19, mandating masks is an attractive policy instrument
 especially because it involves relatively little economic
@@ -259,17 +270,24 @@ effects of similar magnitude as business closures.  No stay-at-home
 orders could have led to $37$\% more cases by the start of June with a
 90 percent confidence interval given by $6$\% to $63$\%. The estimated
 effect of no stay-at-home orders on deaths is a slightly smaller with
-a 90 percent confidence interval of $-7$\% to $50$\%.  These estimates
-contribute to the ongoing efforts of evaluating various reopening
-approaches.
+a 90 percent confidence interval of $-7$\% to $50$\%.  
 
-The above findings are robust to changes to our regression specification, sample selection, methodology, and assumptions about delays between policy changes and changes in recorded cases. In all cases, we find that mask mandates, business closure policies, and stay-at-home orders all reduce growth rates by roughly 0.1. The impact of mask mandates are more precisely estimated than that of business closure policies or stay-at-home orders. This is largely due to the greater variation in the timing of mask mandates across states.
+We also conducted sensitivity analysis with respect to changes to our regression specification, sample selection, methodology, and assumptions about delays between policy changes and changes in recorded cases. In particular, we examined whether certain effect
+sizes can be ruled by various more flexible models or by using alternative timing assumptions
+that define forward growth rates. The impact of mask mandates is more robustly and more precisely estimated than that of business closure policies or stay-at-home orders, and the effect of $-.1$ could not be ruled out by any of the models.\footnote{This null
+hypothesis can be generated by looking at the meta-evidence from RCTs on the efficacy of masks in preventing other respiratory
+cold-like deceases. Falsely rejecting this null is very costly in terms of potential loss of life, and so it is a reasonable null choice 
+for the mask policy from decision-theoretic point of view.} This is largely due to the greater variation in the timing of mask mandates across states. The findings of shelter-in-place and business closures policies are considerably less robust. For example, for stay-at-home mandates, models with alternative timing and richer specification for information set suggested smaller effects, albeit
+after application of machine learning tools to reduce dimensionality, the range of effects $[-.15, 0]$ could not be ruled out.  A similar
+wide range of effects could also be not ruled out for business closures.
+
+
 
 We also examine the impact of school closures. Unfortunately, there is
 very little variation across states in school closure in the timing of
 school closures.  Across robustness specifications, we obtain point
 estimates of the effect of school closures as low as 0, and as high as
-0.6. In particular, we find that the results are sensitive to whether
+-0.6. In particular, we find that the results are sensitive to whether
 the number of past national cases/deaths is included in a
 specification or not. This highlights the uncertainty regarding the
 impact some policies versus private behavioral responses to
@@ -294,7 +312,8 @@ this uncertainty.
 
 
 \begin{figure}[ht]
-  \caption{Effect  of nationally mandating masks for employees on March
+  \caption{Relative cumulative effect  on confirmed cases and fatalities 
+  of nationally mandating masks for employees on March
     14th in the US \label{fig:US-mask-dgrowth}}
   \begin{minipage}{\linewidth}
     \centering
@@ -318,7 +337,7 @@ this uncertainty.
 
 \begin{figure}[ht]
  % \caption{National effect of leaving non-essential businesses open\label{fig:US-nb}}
-  \caption{Effect  of no business closure policies on cases in the US  \label{fig:US-nb-dgrowth}}
+  \caption{Relative cumulative effect  of no business closure policies on cases and fatalities in the US  \label{fig:US-nb-dgrowth}}
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
@@ -346,7 +365,7 @@ this uncertainty.
 
 \begin{figure}[ht]
  % \caption{National effect of leaving non-essential businesses open\label{fig:US-nb}}
-  \caption{Effect  of  not implementing stay-at-home order on cases in the US  \label{fig:US-shelter-dgrowth}}
+  \caption{Relative cumulative effect  of  not implementing stay-at-home order on cases and fatalities in the US  \label{fig:US-shelter-dgrowth}}
   \begin{minipage}{\linewidth}
     \centering
     \begin{tabular}{cc}
@@ -1876,7 +1895,7 @@ to changes in behavior from information.
 
 \section{Sensitivity Analysis}\label{sec:sensitivity}
 
-\subsection{Specifications, Timings, and Double Machine Learning}
+\subsection{Specifications, Timings, and Flexible Controls via Machine Learning}
 In this section, we provide sensitivity analysis by estimating (\ref{eq:R4}) with alternative specifications and methods. Figure \ref{fig:whisker} shows  the 90\% confidence intervals of   coefficients of (A) masks for employees, (B)  closed K-12 school, (C) stay-at-home, and (D) the average variable of  closed movie theaters, closed restaurants, and closed non-essential businesses for the following specifications and estimation methods:
   \begin{itemize}
   \item[(1)] Baseline specification  in columns (1) and (3) of Table  \ref{tab:PtoY}.
@@ -1887,7 +1906,7 @@ In this section, we provide sensitivity analysis by estimating (\ref{eq:R4}) wit
    \item[(6)]   Include all additional controls in (3)-(5) with the sample that excludes New York as in (2).
    \item[(7)] Add weekly dummies  to the baseline specification.
    \item[(8)] Baseline specification is estimated by instrumenting $\Delta \log T_{it}$ with one week lagged  logarithm  value of the number of tests per 1000 people.
-   \item[(9)]   Estimated by Double Machine Learning (DML) of \cite{chernozhukov18} with Lasso to reduce dimensionality while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables  as additional controls.   \item[(10)]  Estimated by DML with Random Forest to reduce dimensionality  and capture some nonlinearities while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables as additional controls.
+   \item[(9)]   Estimated by Double Machine Learning (DML) (e.g,,\cite{chernozhukov18}) with Lasso to reduce dimensionality while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables  as additional controls.   \item[(10)]  Estimated by DML with Random Forest to reduce dimensionality  and capture some nonlinearities while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables as additional controls.
  %  \item[(10)]   Add latent state confounders and weekly dummies as components of $W_{it}$, estimated using fixed effects with bias correction.
   % \item Alternative Timing assumption ($\ell=10$ for cases and $\ell=23$ for deaths) on all of the above.
   \end{itemize}
