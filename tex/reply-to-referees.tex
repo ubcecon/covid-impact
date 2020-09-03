@@ -81,7 +81,7 @@ Major changes are:}
 
 \item   \textit{``I particularly like your mapping of your estimating equation to the SIR model. But, it would be nice to discuss further the assumptions in light of the SIR model. For example, how do the orthogonality assumptions in (1) relate to the assumptions on top of page (14)? and just to be clear, you have a "causal model" yet for identification you rely on projections in the random effects specification (and no exclusion restriction). For example, what do you rule out vis a vis "diff in diff" type event study models with fixed effects? How about a brief discussion of the "invariance assumption" and why you think it would hold in your counterfactual exercise. ''}
 
-The testable restrictions of the model are now described better.  Please see the discussion around TR. The SIR model
+Thank you. The testable restrictions of the model are now described better.  Please see the discussion around equation (TR). The SIR model
 for example implies that testing rate is a confounder for case growth rate, but the causal model implies  that testing rate
 does not affect the behavior or policy variables (other than through cases). This is an overidentification restriction.
 To show the power of this approach, we also looked at imposition of other "contextual information": for example, mask
@@ -99,7 +99,7 @@ The invariance assumption is similar to standard assumptions in Structural VAR l
 Following your suggestion, we have reorganized Section 2. 
  We also state the following in abstract:
  \begin{quote}
- We stress that our study is observational and should be interpreted with great caution. 
+ We stress that our study is observational and therefore should be interpreted with great caution. 
  From a completely agnostic point of view,
 our findings uncover predictive effects (association) of observed policies and behavioral changes  on future health outcomes,
  controlling for informational and other confounding variables.
@@ -121,7 +121,8 @@ our findings uncover predictive effects (association) of observed policies and b
 \item  \textit{``I think it would be helpful if the authors clearly state the limitations of their work and
 cautiously warn that their casual impact cannot be interpreted too literally.''}
  
- This point is well taken. We added the following paragraph to Section 2.2. 
+ This point is valid.  We added a cautionary message to the abstract. Furthermore,
+ we added the following paragraph to Section 2.2. 
  \begin{quote}
  Validation of the model by (TR) allows us to check exclusion restrictions brought by contextual knowledge, and check stability of the model by using different data subsets. However, passing the (TR) does not, of course, guarantee that the model is necessarily valid for recovery of causal effects. The only fundamental way to truly validate a causal model for observational data is through a controlled experiment, which is impossible to carry in our setting. We shall however cross-check our results against other scientific evidence and, for example, results from RCT on effectiveness of masks on respiratory deceases (though not in the Covid-19 context).
  \end{quote}
@@ -141,13 +142,14 @@ employees, could the economics profession be persuaded that adopting masks for e
 is sufficiently random conditional on observed confounders? The paper provides some
 discussions; however, more thorough discussions would be highly valuable.''}
   
-We provide various sensitivity checks. First, we now include governor's party affiliation as an additional state-level variable in random effects specification. 
+We provide various sensitivity checks: First, we now include governor's party affiliation as an additional state-level variable in random effects specification. 
 Second, we exclude the state of New York from the sample because it may be viewed as an
 outlier in the early pandemic period and it is  one of the states that adopted mandatory mask policies in April. Third, we added mask wearing rates in Mach and April from survey as an additional regressor to control for unobserved personal risk-aversion and people's initial attitude for mask wearing. Fourth,  we added the log of Trump's vote share in 2016 presidential election as confounder for
 unobserved private behavioral response. Fifth, we report the fixed effects estimator that controls for latent state confounders as components of $W_{it}$.  
-As shown in Figures xx(2)-(4) and (9), the estimated coefficient of masks for employees is not so sensitive with respect to excluding NY as well as adding more controls that are possibly important confounders.  
+As shown in the paper, the estimated coefficient of masks for employees is not so sensitive with respect to excluding NY as well as adding more controls that are possibly important confounders.  The results of other policies are less robust/uncertain and we clearly communicate this in the abstract and in the introduction.
 
-As stated below, we also examine a specification that includes lagged behavior variables as information; employed the Double Machine Learning (DML) with Lasso for dimensionality reduction of confounders as well as the DML with Random Forest for dimensionality reduction and capturing potential nonlinearity of confounders. We find that the estimated coefficients of masks for employees are robust with respect to alternative specifications and methods.
+As stated below, we also examine a specification that includes lagged behavior variables as information; employed the Double Machine Learning (DML) with Lasso for dimensionality reduction of confounders as well as the DML with Random Forest for dimensionality reduction and capturing potential nonlinearity of confounders. We find that the estimated coefficients of masks for employees are robust with respect to alternative specifications and methods. Other coefficients on other policies are less robust
+(but helpful effects of these policies can not be ruled out).
   
   
 \item[2. ]  \textit{(Information structure) ``I think it is really nice that the paper emphasizes the importance of
@@ -159,12 +161,16 @@ structure. I think it would be useful to provide remarks regarding the limitatio
 information structure and acknowledge that the estimation results and in particular the
 simulated counterfactuals are crucially dependent on it.''}
   
-We chose information structure that is parsimonious and yet, we believe, captures the  information that is most relevant for people's behavior. 
+We chose information structure that is parsimonious and yet, we believe, captures the  information that is most relevant for people's behavior (at the minimum, it captures our own behaviors). This information structure is also in line with CDC guidelines
+for policies, which
+is formulated in terms of observed infection of outcomes and not in terms of behavior.
 
-Conditioning on current policy variables that is included in all specifications, the lagged values of policies will  likely add little additional information and, therefore, we decided to exclude lagged values of policies from the information structure. We may re-interpret that the coefficient of current policy variables partially reflects its effect of providing information. 
+Conditioning on current policy variables that is included in all specifications, the lagged values of policies will  likely add little additional information and, therefore, we decided to exclude lagged values of policies from the information structure. We are 
+completely free to interpret that the coefficient of current policy variables has both informational content and behavior-constraining effect.
 
-On the other hand, the lagged values of  behaviors may be a part of the information structure. As a sensitivity check, we estimated a specification that includes  lagged behavior variables as information variables in Section 5.  As shown in specification (5) of Figures xx-xx, the estimated coefficients of mask for employees, closed K-12 schools, stay-at-home orders, and the average of stay-at-home orders and closures of movie theaters, restaurants, and non-essential businesses are not so sensitive to an inclusion of lagged behavior variables as information.
-   
+On the other hand, the lagged values of  behaviors may be a part of the information structure. As a sensitivity check, we estimated a specification that includes  lagged behavior variables as information variables in Section 5. The mask policies 
+appear to be robust withe respect to the inclusion of these variables. The effects of business closures appear to be less
+robust -- the estimated effects become more attenuated, and we report these findings in the conclusion. 
   
 \item[3.]  \textit{(Expectation and Lucas critique) ``Related to the previous comment, what would be the link
 between the current paper's setup and how expectations are formed given the information
@@ -189,7 +195,7 @@ The  lagged values of behavior variable may be also included in the information 
 \end{quote} 
 As a part of sensitivity checks, we now examine if the estimates are sensitive when we include two weeks lagged value of behavior variables in the information set, under which policies depend on past behavior. We find that the estimated coefficients of masks for employees are not sensitive to an inclusion of past behavior variables. 
  
-We think it is reasonable to assume that people's behavior today will not immediately affect today's policy because it takes time for policy makers to gather information on people's behavior and make a policy decision based on gathered information, especially in the early pandemic period.  
+We think it is reasonable to assume that people's behavior today will not immediately affect today's policy because it takes time for policy makers to gather information on people's behavior and make a policy decision based on gathered information, especially in the early pandemic period.   Moreover, CDC guidelines don't seem to rely on people's behavior but on measured infection outcomes.
   
 \item[5.]  \textit{(Details about confidence intervals) ``Starting from Figure 1, confidence intervals are shown
 in the shaded region. It is not clearly stated in the paper how they are obtained. On page 32,
@@ -201,17 +207,8 @@ the average over draws of the residuals. The shaded region is a point-wise 90\%
 confidence interval. It is still unclear how a pointwise confidence interval is obtained. Does this mean that a pointwise
 90\% confidence interval is constructed by simulation or bootstrap? It would be useful if the authors describe how to construct a confidence interval and provide a remark why it is valid.''}
 
-We have the following paragraph:
-\begin{quote}
- To compute the estimated and counterfactual
-paths, we use the   estimate   in
-column ``Average'' of Table \ref{tab:dieff-si}. We set initial
-$\Delta \log \Delta C$ and $\log \Delta C$ to their values first
-observed in the state we are simulating. We now provide
-more details on how counterfactuals are constructed -- see Section 2.
-The shaded region is a point-wise 90\% confidence
-interval.
-\end{quote}
+Thank you! We have added a much more detailed discussion and also an appendix where the details
+are explained.
   
 \item[6.]  \textit{(Replication files) ``It would be great if the authors could post their dataset and replication
 files on public domain such as a GitHub page or ICPSR at https://www.openicpsr.org/
@@ -247,12 +244,13 @@ related concept.''}
 We are not doing any hypothesis testing in this paper: we are constructing point and interval predictions for 2-3 key policies. This
 is in line with with IHME institute is doing (our analysis on masks predates theirs, as we posted our findings
 at the end of May, and they announced their findings in middle of July). The 
-"stars" are reported as a matter of statistical convention, but we never use them in any formal way.
+"asteriks" are reported as a matter of statistical convention, but we never use them in any formal way. We could probably
+erase them and proceed in asterikless fashion.
 
 Furthermore, we believe that testing "no mask effect" hypothesis is actually not an interesting exercise for policy analysis
 or actual policy decisions.   From a decision-theoretic point of view the cost of accepting the false null is extremely high,
-which could result in huge losses. The Neyman-Pearson test with $\alpha=$ small, corresponds to the idea that the cost
-of the null is small (little harm done if the "no mask effect" is falsely accepted), e.g. Amemiya "Introduction to Statistics and Econometrics".  So doing "no mask effect" testing with very low $\alpha$ would correspond to assuming that the cost of deciding that masks are not effective is very low.  Multiple hypothesis testing would further drive $\alpha$ to smaller values, and we are not sure how this would align with the decision-theoretic framework.
+which could result in huge losses. The Neyman-Pearson test with level $\alpha=$ small, corresponds to the idea that the cost
+of falsely rejecting the null is small (little harm done if the "no mask effect" is falsely accepted), e.g. Amemiya "Introduction to Statistics and Econometrics".  So doing "no mask effect" testing with very low $\alpha$ would correspond to assuming that the cost of deciding that masks are not effective is very low.  The potential cost of accepting the null, if it is false, is just huge.   Multiple hypothesis testing would further drive $\alpha$ to smaller values, and we are not sure how this would align with the decision-theoretic framework.
 
 %Remark. Elaborating further on decision-theoretic point, with $H_0$ masks being useless, the policy makers problem is to make a decision 
 %to achieve minimal loss:
@@ -282,7 +280,7 @@ In columns (1)-(4) of Table 3(A),  the estimated values of both $(\gamma_1 +\gam
   
  We also note that the estimated coefficients of  $\Delta \log\Delta D_{it} $ and $\log\Delta D_{it}$ are negative in columns (1)-(4) of  Table 3(B), consistent with a hypothesis that a higher number of deaths as well as a higher growth rate of deaths reduces people's mobility.
  
-Following your suggestion, we added the above discussion in footnote 20 (check!) when we discuss in Table 3A.
+Following your suggestion, we added the above discussion in footnote X (check!) when we discuss in Table 3A.
 
 
 \item[11.]  \textit{Figure 8 is very informative. Perhaps the authors could show this in introduction as well.''}
@@ -336,7 +334,8 @@ fewer cases and 250 fewer deaths in Washington by the start of June.
 What is the time scale of this statement? Does this mean 500 fewer cases weekly or in total
 by the start of June? Please clarify the quantitative statement.''}
 
-It is in total by the start of June. We have modify the sentence as suggested.  
+It is in total by the start of June. We have modified the sentence as suggested.  
+[CHECK]
 
 \item[7.]  \textit{``Some of the figures are difficult to read because there are too many curves. In particular,
 Figures 18, 19, and 21 convey very little information. Please improve the figures and delete
@@ -358,7 +357,7 @@ Following your suggestion, we have consolidated these figures and present figure
 
 \item  \textit{``My sense is that the delay between infection and case reporting should be closer to a week (more in specific comments below) and various lines of evidence suggest two waves of death following infection, one early and one late (e.g., in https://science.sciencemag.org/content/369/6500/208: "We identify two clear subpopulations among hospitalized cases: individuals that die quickly after hospital admission (15\% of fatal cases, with a mean time to death of 0.67 days) and individuals who die after longer time periods (85\% of fatal cases, with a mean time to death of 13.2 days) (fig. S3)."). Presumably the preoponderance of weight at the later time should minimize the effects on your estimates... I think a sensitivity analysis to this would be desirable - as well as a reference to some of the literature beyond that written by economists... My sense is that the number is closer to 6 days or a week? But I have not reviewed that literature recently (Table 2 in this seems to suggest that aligns... https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html)"}
 
-Following your suggestion,   we provide a sensitivity analysis on the delay between infection and case reporting (or death reporting) in Section 4.2. 
+Following your suggestion,   we provide a sensitivity analysis on the delay between infection and case reporting (or death reporting) in Section 4.2. The timing was motivated by a careful reading of Table 2 referenced above.
 
 \item \textit{``the collinearities, and lack of agreement in cases/deaths makes the separate estimates for different policies really rather uncertain? We would all love a crisp statement about the effects of masks.... but I wonder if Figure 1 gives a sufficiently robust sense of the uncertainty  based on the estimates provided?''}
  
@@ -368,11 +367,12 @@ Given  your suggestion, Figure 9 presents whisker-dot-plots for confidence inter
  
 Black and grey dots represent each state's change in growth rate over time.  Given that it may be difficult to digest a counterfactual change in case/death growth in introduction, we decided to focus on relative effect of policies in Figures 1-3.
   
-[We may change the starting date for counterfactual figures.]
+We changed the starting date for counterfactual figures.
 
 \item \textit{`` p5 - perhaps some papers from beyond the Econ literature would be relevant for a sense of the status of our knowledge of the epidemiogogy?  ''}
 
 We have reviewed and added more references from the epidemiology literature. See, for example, footnote 9.
+There are also many more references in the Into other than Econ literature.
 
 \item \textit{`` p6 - simulations would produce exponential spread of disease - well, yes? The mechanism is reasonably well described, and the conditions to elude exponential growth are fairly crisp - even if you include 'a voluntary behavioral response' the outcome will be exponential growth unless you are in a regime where susceptible depletion is dominating dynamics, or you have shifted Re$<$1.  ''}
  
@@ -384,11 +384,19 @@ When such a voluntary behavioral response is ignored, simulations would necessar
 
 \item \textit{`` p20 log delta C\_it is obviously strongly autocorrelated (on top of the other collinearities detailed) - I also wondered if time since start of the outbreak might not do just as well at capturing the dirve in change in behavior? Do numbers of cases and deaths do better? ''}
 
+The autocorrelation component is captured by the lags of this variable in the dynamic specification. In addition,
+we cluster the standard errors by state (capturing the impact of temporal dependence in the series, 
+not accounted for by the lag structure).
+
 We believe that it is better to use the number of cases and deaths rather than time since start of the outbreak as a  general framework to analyze the spread of COVID-19. This is especially true if we analyze the second wave of COVID-19, where time since start of the first outbreak may not be so relevant, and identifying the start of the second outbreak may be difficult. 
+
+
 
 \item \textit{`` Figure 8 - I do like seeing the data, but it also just raises questions, as you say, confounders + many other things at play.... I wondered if there would be a way to create a visual that captured a bit more of this, and pinpointed the anomalies which are where the inferential power lies. ''}
 
 This is an interesting suggestion. We thought about the possibility of providing a version of Figure 8 based on the regression residuals after taking out the effect of confounders etc but, eventually, we decided not to present such results due to the space constraint.  
+
+[Shall we include such figure here in the response?]
 
 \end{enumerate}
 
