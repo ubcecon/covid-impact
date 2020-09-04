@@ -177,9 +177,7 @@ which considerable improved the paper. All mistakes are our own. }
 \date{\today; \textit{First public} version posted to ArXiv:  May 28, 2020}
 
 \begin{abstract}
-The paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks in a causal structural model framework. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our main counterfactual experiments suggest that nationally mandating face masks for employees early in the pandemic could have reduced the weekly growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 19 to 47 percent less deaths nationally by the end of May, which roughly translates into 19 to 47 thousand saved lives.   We also find that, without stay-at-home orders, cases would have been larger by  6 to 63 percent and without business closures, cases would have been larger by 17 to 78 percent.  We find considerable uncertainty over the effects of school closures due to lack of cross-sectional variation;  we could not robustly rule out either large or small effects.   Overall, substantial declines in growth rates are attributable to private behavioral response, but policies played an important role as well.   We also carry out sensitivity analyses to find neighborhoods of
-the models under which the results hold robustly:  the results on mask policies appear to be more much more robust than 
- the results on business closures and stay-at-home orders. Finally, we stress that our study is observational and therefore should be interpreted with great caution. From a completely agnostic point of view,
+The paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks in a causal structural model framework. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our main counterfactual experiments suggest that nationally mandating face masks for employees early in the pandemic could have reduced the weekly growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 19 to 47 percent less deaths nationally by the end of May, which roughly translates into 19 to 47 thousand saved lives.   We also find that, without stay-at-home orders, cases would have been larger by  6 to 63 percent and without business closures, cases would have been larger by 17 to 78 percent.  We find considerable uncertainty over the effects of school closures due to lack of cross-sectional variation;  we could not robustly rule out either large or small effects.   Overall, substantial declines in growth rates are attributable to private behavioral response, but policies played an important role as well.   We also carry out sensitivity analyses to find neighborhoods of the models under which the results hold robustly:  the results on mask policies appear to be  much more robust than   the results on business closures and stay-at-home orders. Finally, we stress that our study is observational and therefore should be interpreted with great caution. From a completely agnostic point of view,
 our findings uncover predictive effects (association) of observed policies and behavioral changes  on future health outcomes,
  controlling for informational and other confounding variables.
 
@@ -495,7 +493,7 @@ outcome/.style ={circle, top color=white, bottom color = red, draw, black, text=
 Our main outcomes of interest are the growth rates in Covid-19 cases and deaths,  behavioral variables include proportion of time spent in transit or shopping and others, policy variables include stay-at-home orders and school and business closures, and the information variables include lagged values of outcome. We provide a detailed description of these variables and their timing in the next section.
 
 
-The causal structure  allows for  the effect of the policy to be either direct or indirect -- through-behavior or through dynamics; and all of these effects are not mutually exclusive. The structure also allows for changes in behavior to be brought by change in policies and information. These are all realistic properties that we expect from the contextual knowledge of the problem. Policies such as closures of schools, non-essential business, and restaurants, alter and constrain behavior in strong ways.  In contrast, policies such as mandating employees to wear masks can potentially affect the Covid-19 transmission directly.  The information variables, such as recent growth in the number of cases, can cause people to spend more time at home, regardless of adopted state policies; these changes in behavior in turn affect the transmission of Covid-19.
+The causal structure  allows for  the effect of the policy to be either direct or indirect -- through-behavior or through dynamics; and all of these effects are not mutually exclusive. The structure also allows for changes in behavior to be brought by change in policies and information. These are all realistic properties that we expect from the contextual knowledge of the problem. Policies such as closures of schools, non-essential business, and restaurants, alter and constrain behavior in strong ways.  In contrast, policies such as mandating employees to wear masks can potentially affect the Covid-19 transmission directly.  The information variables, such as recent growth in the number of cases, can cause people to spend more time at home, regardless of adopted state policies; these changes in behavior in turn affect the transmission of Covid-19.  Importantly, policies can have the informational content as well, guiding behavior rather than constraining it.
 
 The causal ordering induced by this directed acyclical graph is determined by the following
 timing sequence: % \textit{within a period}:%\footnote{Mathematically this corresponds to the factorization of the data likelihood, omitting indexes, $$f_{Y,P,B, I, W} = f_{Y\mid P, B,I, W} f_{B \mid P,I,W } f_{P \mid I, W} f_{I,W}.$$ }
@@ -510,7 +508,8 @@ The model also allows for direct dynamic effects of information variables on the
 
 
 
-Our quantitative model for causal structure in Figure \ref{Wright} is given by the following econometric structural (or potential) outcomes model:\begin{equation} \label{eqn:SEM1} \tag{SO}
+Our quantitative model for causal structure in Figure \ref{Wright} is given by the following econometric structural
+ (or potential) outcomes model:\begin{equation} \label{eqn:SEM1} \tag{SO}
   \begin{aligned}
    &  Y_{i,t+\ell} (b,p,\iota) &:=& {\bcolor \alpha ' b}  +  {\pcolor \pi 'p} +
     {\icolor \mu'\iota } + {\wcolor \delta_Y 'W_{it}} + \varepsilon^y_{it}, \\
@@ -528,7 +527,7 @@ although  linearity is not critical.\footnote{Under some additional independence
 can be replaced by an arbitrary non-additive function $P_{it}(\iota) = p (\iota, W_{it},  \varepsilon^p_{it})$, such that the unconfoundedness condition stated in the next footnote holds.}
 
 
-The exogeneity restrictions on the stochastic components are as follows:
+The exogeneity restrictions on the stochastic shocks are as follows:
 \begin{equation}\label{eqn:SEM2} \tag{E}
 \begin{aligned}
    & \varepsilon^y_{it} &  \perp &  \quad (\varepsilon^b_{it}, \varepsilon^p_{it}, {\wcolor W_{it}}, {\icolor I_{it}}), \\
@@ -672,7 +671,8 @@ the residual after removing the orthogonal projection of $V_{it}$ on ${\wcolor W
 Our main estimation method is the standard correlated random effects estimator, where the random effects
 are parameterized as functions of observable characteristic, ${\wcolor W_{it}}$, which include both state-level and time random effects.  The state-level random effects
 are modeled as a function of state level characteristics, and the time random effects are modeled
-by including month dummies and their interactions with state level characteristics.  The stochastic shocks $\{ \varepsilon_{it}\}_{t=1}^T$ are treated as independent across states $i$ and can be arbitrarily dependent across time $t$ within a state.
+by including month dummies and their interactions with state level characteristics (in the sensitivity analysis,
+we also add weekly dummies).  The stochastic shocks $\{ \varepsilon_{it}\}_{t=1}^T$ are treated as independent across states $i$ and can be arbitrarily dependent across time $t$ within a state.
 
 Another modeling approach is the fixed effects panel data model, where ${\wcolor W_{it}}$ includes
 \text{latent} (unobserved) state level confonders ${\wcolor W_i}$ and  and time level effects ${\wcolor W_t}$,
@@ -691,14 +691,15 @@ the parameters of equations separately, and then compute
  \frac{1}{2} \hat {\mathsf{a}}'  + \frac{1}{2}  ( {\bcolor \hat \alpha '}  {\pcolor \hat \beta' }+{\pcolor\hat \pi'} ) \text{ and }
  \frac{1}{2} \hat{\mathsf{b}}'  + \frac{1}{2}  ( {\bcolor \hat \alpha '}  {\icolor \hat \gamma'} + {\icolor \hat \mu'}),
 \]
-as the estimator of the total policy effect, that concentrates around  their population analogues
+as the estimator of the total policy effect. Under standard regularity conditions,
+these estimators concentrate around  their population analogues
 \[
  \frac{1}{2}  {\mathsf{a}}'  + \frac{1}{2}  ( {\bcolor \alpha '}  {\pcolor \beta' }+{\pcolor \pi'} ) \text{ and }
  \frac{1}{2} {\mathsf{b}}'  + \frac{1}{2}  ( {\bcolor  \alpha '}  {\icolor \gamma'} + {\icolor \mu'}),
 \]
 with approximate deviations controlled by the normal laws, with standard deviations that can be approximated by the bootsrap
 resampling of observational units $i$. Under correct specification the target quantities
-reduce to $  {\bcolor \alpha '}  {\pcolor  \beta' }+{\pcolor \pi'} $ and ${\bcolor  \alpha '}  {\icolor  \gamma'} + {\icolor  \mu'}$, respectively. This construction is not as efficient as generalized method of moments,
+reduce to $$  {\bcolor \alpha '}  {\pcolor  \beta' }+{\pcolor \pi'} \text{ and } {\bcolor  \alpha '}  {\icolor  \gamma'} + {\icolor  \mu'},$$ respectively. This construction is not as efficient as generalized method of moments,
 but has a nicer interpretation under possible misspecification of the model: we are combining predictions
 from two models, one motivated via the causal path, reflecting contextual knowledge, and another from a ``reduced form" model not exploiting the path. The combined estimator can improve on precision of either estimator.
 
@@ -815,12 +816,12 @@ from two models, one motivated via the causal path, reflecting contextual knowle
 
 We  also consider simple counterfactual exercises, where we examine the effects of setting
 a sequence of counterfactual policies for each state:
-\begin{equation} \label{p-cf}\tag{P-CF}
+\begin{equation} \label{p-cf}\tag{CF-P}
 \{{\pcolor P^\star_{it}} \}_{t=1}^T, \quad i=1, \ldots N.
 \end{equation}
 We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. } Given the policies, we generate the counterfactual
 outcomes, behavior, information by propaging the dynamic equations:
-\begin{equation} \label{eqn:CF-SEM} \tag{CEF-SEM}
+\begin{equation} \label{eqn:CF-SEM} \tag{CF-SEM}
   \begin{aligned}
 & {\ycolor Y^\star_{i,t+\ell}}  & := & Y_{i,t+\ell} ( {\bcolor B^\star_{it} } , {\pcolor P^\star_{it}}, {\icolor I^\star_{it}}), \\
 & {\bcolor B^\star_{it} } & := &   B_{it}({\pcolor P^\star_{it} } ,{\icolor I^\star_{it}}), \\
