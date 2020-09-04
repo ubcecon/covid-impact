@@ -179,7 +179,7 @@ which considerable improved the paper. All mistakes are our own. }
 \begin{abstract}
 The paper evaluates the dynamic impact of various policies adopted by US states on the growth rates of confirmed Covid-19  cases and deaths as well as social distancing behavior measured by Google Mobility Reports, where we take into consideration people's voluntarily behavioral response to new information of transmission risks in a causal structural model framework. Our analysis finds that both policies and information on transmission risks are important determinants of Covid-19  cases and deaths and shows that a change in policies explains a large fraction of observed changes in social distancing behavior. Our main counterfactual experiments suggest that nationally mandating face masks for employees early in the pandemic could have reduced the weekly growth rate of cases and deaths  by more than 10 percentage points in late April, and could have led to as much as 19 to 47 percent less deaths nationally by the end of May, which roughly translates into 19 to 47 thousand saved lives.   We also find that, without stay-at-home orders, cases would have been larger by  6 to 63 percent and without business closures, cases would have been larger by 17 to 78 percent.  We find considerable uncertainty over the effects of school closures due to lack of cross-sectional variation;  we could not robustly rule out either large or small effects.   Overall, substantial declines in growth rates are attributable to private behavioral response, but policies played an important role as well.   We also carry out sensitivity analyses to find neighborhoods of
 the models under which the results hold robustly:  the results on mask policies appear to be more much more robust than 
-than the results on business closures and stay-at-home orders. Finally, we stress that our study is observational and therefore should be interpreted with great caution. From a completely agnostic point of view,
+ the results on business closures and stay-at-home orders. Finally, we stress that our study is observational and therefore should be interpreted with great caution. From a completely agnostic point of view,
 our findings uncover predictive effects (association) of observed policies and behavioral changes  on future health outcomes,
  controlling for informational and other confounding variables.
 
@@ -208,9 +208,7 @@ See
 
 This paper  quantitatively assesses the impact of various policies adopted by US states on the spread of Covid-19, such as non-essential business closure and mandatory  face masks, paying particular attention to how people adjust their behavior in response to policies as well as new information on cases and deaths.
 
-We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information. \footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika, heckman:pinto}) and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. The work on causal graphs has been
-modernized and put on rigorous footing by  \cite{pearl:biometrika},\cite{pearl:robins}, \cite{pearl:causality}, \cite{pearl:why}, \cite{white:chalak}, \cite{peters2020book}, and \cite{hernanrobins2020book}, with major applications taking place in
-in computer science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \cite[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986},\cite{Hines2020}, \cite{richardson:mediation} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
+We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths, and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.\footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika, heckman:pinto}) and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. The work on causal graphs has been modernized and put on rigorous footing by  \cite{pearl:biometrika}, \cite{pearl:robins}, \cite{pearl:causality}, \cite{pearl:why}, \cite{white:chalak}, \cite{peters2020book}, and \cite{hernanrobins2020book}, with major applications taking place in computer science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \citet[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986}, \cite{Hines2020}, \cite{richardson:mediation} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
 
 
 
@@ -227,7 +225,7 @@ behavior variables.\footnote{The behavior accounts for the other half. This is i
 negative external effects for individual decisions over policy compliance as well as information acquisition during pandemics.} Our estimates suggest that there are both large policy effects and large behavioral effects on the growth of cases and deaths. Except for mandatory masks, the effect of policies on cases and deaths is indirectly materialized through their impact on behavior; the effect of mandatory mask policy is direct without affecting behavior.
 
 
-Using the estimated model, we evaluate the dynamic impact of the following counterfactual policies on Covid-19 cases and deaths: mandating face masks, allowing non-essential businesses to open, not implementing a stay-at-home order, and removing all policies.  The counterfactual experiments show a large impact of  those policies on  the number of cases and deaths.  They also highlight the importance of voluntary behavioral response to infection risks for evaluating the dynamic policy effects.
+Using the estimated model, we evaluate the dynamic impact of the following three counterfactual policies on Covid-19 cases and deaths: (1) mandating face masks, (2)  allowing all businesses to open, and (3) not implementing a stay-at-home order.  The counterfactual experiments show a large impact of  those policies on  the number of cases and deaths.  They also highlight the importance of voluntary behavioral response to infection risks for evaluating the dynamic policy effects.
 
 Our estimates imply that nationally implementing mandatory face masks
 for employees in public businesses on March 14th would have reduced the
@@ -257,7 +255,7 @@ designing approaches to minimize risks from reopening
 
 Figure \ref{fig:US-nb-dgrowth} illustrates how never closing any
 businesses (no movie theater closure, no non-essential business
-closure, and no closure of restaurants except take-out)) could have
+closure, and no closure of restaurants except take-out) could have
 affected cases and deaths.  We estimate that business shutdowns have a
 roughly the same impact on growth rates as mask mandates, albeit with
 more uncertainty. The point estimates indicate that keeping all
@@ -274,12 +272,12 @@ a 90 percent confidence interval of $-7$\% to $50$\%.
 
 We also conducted sensitivity analysis with respect to changes to our regression specification, sample selection, methodology, and assumptions about delays between policy changes and changes in recorded cases. In particular, we examined whether certain effect
 sizes can be ruled by various more flexible models or by using alternative timing assumptions
-that define forward growth rates. The impact of mask mandates is more robustly and more precisely estimated than that of business closure policies or stay-at-home orders, and the effect of $-.1$ could not be ruled out by any of the models.\footnote{This null
+that define forward growth rates. The impact of mask mandates is more robustly and more precisely estimated than that of business closure policies or stay-at-home orders, and an undesirable effect of increasing the weekly death growth by 5 percentage points is ruled out by any of the  models.\footnote{This null
 hypothesis can be generated by looking at the meta-evidence from RCTs on the efficacy of masks in preventing other respiratory
-cold-like deceases. Falsely rejecting this null is very costly in terms of potential loss of life, and so it is a reasonable null choice 
+cold-like deceases. Falsely rejecting this null is   costly in terms of potential loss of life, and so it is a reasonable null choice 
 for the mask policy from decision-theoretic point of view.} This is largely due to the greater variation in the timing of mask mandates across states. The findings of shelter-in-place and business closures policies are considerably less robust. For example, for stay-at-home mandates, models with alternative timing and richer specification for information set suggested smaller effects, albeit
-after application of machine learning tools to reduce dimensionality, the range of effects $[-.15, 0]$ could not be ruled out.  A similar
-wide range of effects could also be not ruled out for business closures.
+after application of machine learning tools to reduce dimensionality, the range of effects $[0,0.15]$ could not be ruled out.  A similar
+wide range of effects could  not be ruled out for business closures.
 
 
 
@@ -329,7 +327,7 @@ this uncertainty.
       cumulative cases and deaths if all states had mandated masks on
       March 14th. The thick blue line is the estimated change in
       cumulative cases or deaths relative to the observed number of
-      cases or deaths. The shaded region is a point wise 90\%
+      cases or deaths. The shaded region is a pointwise 90\%
       confidence band.
     \end{flushleft}
   \end{minipage}
@@ -352,10 +350,10 @@ this uncertainty.
     \end{tabular}
     \begin{flushleft}
       \footnotesize This figure shows the estimated relative change in
-      cases and deaths if no states had never implemented any business closure
+      cases and deaths if no states had ever implemented any business closure
       policies. The thick blue line is the estimated change in cumulative
       cases or deaths relative to the observed number of cumulative cases
-      or deaths. The shaded region is a point wise 90\% confidence
+      or deaths. The shaded region is a pointwise 90\% confidence
       band.
     \end{flushleft}
   \end{minipage}
@@ -440,7 +438,7 @@ using mobility measures from PlaceIQ and SafeGraph. Using data from SafeGraph, \
 
 Epidemiologists use model simulations to predict how cases and deaths evolve for the purpose of policy recommendation. As reviewed by \cite{avery2020}, there exist substantial uncertainty about the values of key epidimiological parameters \citep[see also][]{atkeson2020b,stock2020}. Simulations are often done under strong assumptions about the impact of social distancing policies without connecting to the relevant data  \citep[e.g.,][]{ferguson2020}. Furthermore, simulated models do not take into account that people may limit their contact with other people in response to higher transmission risks.\footnote{See \cite{atkeson2020a} and \cite{stock2020} for the implications of the SIR model for Covid-19 in the US. \cite{NBERw27128} estimate a SIRD model in which time-varying reproduction numbers depend on the daily deaths to capture feedback from daily deaths to future behavior and infections.}  When such a voluntary behavioral response is ignored, simulations would necessarily exhibit exponential spread and over-predict  cases and deaths. In contrast, as cases and deaths rise, a voluntary behavioral response may possibly reduce the effective reproduction number  below 1,  potentially preventing exponential spread. Our counterfactual experiments  illustrate the importance of this voluntary behavioral change.
 
-Whether wearing  masks in public place should be mandatory or not has been one of the most contested policy issues with health authorities of different countries providing contradiction recommendations. Reviewing evidence, \cite{Greenhalghm2020}  recognize that there is no randomized controlled trial evidence for the effectiveness of face masks,  but they state ``indirect evidence exists to support the argument for the public wearing masks in the Covid-19 pandemic."\footnote{The virus remains viable in the air for several hours, for which surgical masks may be effective. Also, a substantial fraction of individual who are infected become infectious before showing symptom onset.}
+Whether wearing  masks in public place should be mandatory or not has been one of the most contested policy issues with health authorities of different countries providing contradictory recommendations. Reviewing evidence, \cite{Greenhalghm2020}  recognize that there is no randomized controlled trial evidence for the effectiveness of face masks,  but they state ``indirect evidence exists to support the argument for the public wearing masks in the Covid-19 pandemic."\footnote{The virus remains viable in the air for several hours, for which surgical masks may be effective. Also, a substantial fraction of individual who are infected become infectious before showing symptom onset.}
 \cite{howard2020} also review available medical evidence and conclude that ``mask wearing reduces the transmissibility per contact by reducing transmission of infected droplets in both laboratory and clinical contexts.''  The laboratory findings in \cite{hou2020} suggest that the nasal cavity may be the initial site of infection followed by aspiration to the lung, supporting the argument  ``for the widespread use of masks to prevent aersol, large droplet, and/or mechanical exposure to the nasal passages.''   \cite{He2020} examined temporal patterns of viral shedding in COVID-19 patients and found the highest viral load at the time of symptom onset; this suggests that a significant portion of transmission may have occurred before symptom onset and that universal face masks may be an effective control measure to reduce transmission.\footnote{\cite{Lee2020} find evidence that viral loads in asymptomatic patients are similar to those in symptomatic patients. Aerosol transmission of viruses may occur through aerosols particles released during breathing and speaking by asymptomatic infected individuals; masks reduce such airborne transmission \citep{Prather2020}. \cite{Anfinrud2020} provide visual evidence of speech-generated droplet as well as the effectiveness of cloth masks to reduce the emission of droplets.   \cite{Chu2020} conduct a meta-analysis of observational studies on transmission of the viruses that cause COVID-19 and related diseases and find the effectiveness of mask use for reducing transmission. } \cite{ollila2020} provide a meta-analyhsis of randomized controlled trials of non-surgical face masks in preventing viral respiratory infections in non-hospital and non-household settings, finding that face masks decreased infections across all five studies they reviewed.\footnote{Whether wearing masks creates a false sense of security and leads to decrease in social distancing is also a hotly debated topic.  A randomized field experiment in Berlin, Germany, conducted by \cite{seres2020}  finds that wearing masks actually increases social distancing, providing no evidence that mandatory masks leads to decrease in social distancing.}
 
 Given the lack of experimental evidence on the effect of masks in the context of COVID-19, conducting observational studies  is useful and important. To the best of our knowledge, our paper is the first  empirical study that shows the effectiveness of  mask mandates on reducing the spread of Covid-19 by analyzing the US state-level data. This finding corroborates and is complementary to the medical observational evidence in \cite{howard2020}. Analyzing mitigation measures in New York, Wuhan, and Italy, \cite{zhangr2020} conclude that mandatory face coverings substantially reduced infections. \cite{abaluck2020}  find that the growth rates of cases and of deaths in countries with pre-existing norms that sick people should wear masks are lower by 8 to 10\% than those rates in countries with no pre-existing mask norms.\footnote{\cite{miyazawa2020} find that  country's COVID-19 death rates are negatively associated with mask wearing rates.} Our finding is also independently corroborated by a completely different causal methodology based on synthetic control
@@ -462,7 +460,7 @@ $Y_{i,t+\ell}$, is determined last, after all other variables have been determin
 \item  Information variables, $I_{it}$, such as lagged values of outcomes can affect human behavior and  policies, as well as  outcomes;
 \item The confounding factors $W_{it}$, which vary across states and time, affect all other variables.
 \end{itemize}
-The index $i$ denotes observational unit, the state, and $t$ and $t+\ell$ denotes the time, where  $\ell$ represents the time lag  between infection and case confirmation or death.
+The index $i$ denotes observational unit, the state, and $t$ and $t+\ell$ denotes the time, where $\ell$ is a positive integer that represents the time lag  between infection and case confirmation or death.
 \begin{figure}[ht]
 \begin{center}
 \begin {tikzpicture}[-latex, auto, node distance =1.5cm and 3cm, on grid, thick,
@@ -538,16 +536,14 @@ The exogeneity restrictions on the stochastic components are as follows:
 &   \varepsilon^p_{it} &  \perp &  \quad ({\wcolor W_{it}}, {\icolor I_{it}}),
 \end{aligned}
 \end{equation}
-where we say that $V \perp U$ if $\Ep VU = 0$. This is a standard way of representing restrictions on errors in structural equation modeling.\footnote{ An alternative useful
+where we say that $V \perp U$ if $\Ep VU = 0$.\footnote{ An alternative useful
 starting point is to impose the Rubin-Rosenbaum type unconfoudedness condition:
 $$
 Y_{i,t+\ell} (\cdot,\cdot,\cdot)  \indep (P_{it}, B_{it}, I_{it})  \mid W_{it}, \
 B_{it} (\cdot,\cdot)  \indep (P_{it}, I_{it})  \mid W_{it}, \
  P_{it} (\cdot)  \indep  I_{it}  \mid W_{it},
 $$
-which imply, with treating stochastic errors as independent additive components, the orthogonal conditions stated above.
- }\footnote{The structural equations of this form are connected to triangular structural equation models, appearing
- in microeconometrics and macroeconometrics (SVARs), going back to the work of  \cite{strotz1960recursive}. .}
+which imply, with treating stochastic errors as independent additive components, the orthogonal conditions stated above.} This is a standard way of representing restrictions on errors in structural equation modeling.\footnote{The structural equations of this form are connected to triangular structural equation models, appearing in microeconometrics and macroeconometrics (SVARs), going back to the work of  \cite{strotz1960recursive}.}
 
 
 The observed variables are generated by setting $\iota = I_{it}$ and propagating
@@ -561,11 +557,11 @@ the system from the last equation to the first:
 
 The specification of the model above grasps one-period responses, but does not allow
 to answer about multi-period responses.  The dynamics will be induced by the evolution
-of information variables: Information variables include time, lagged and integrated values of outcome:
+of information variables. Our baseline specification assumes that information variables include time, lagged and integrated values of outcome:\footnote{Our empirical analysis also considers a specification in which information variables include lagged national cases/deaths as well as lagged behavior variables.}
 \begin{equation}\label{eq:I}\tag{I}
  {\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-1} })' := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=0}^{t/\ell}
 {\ycolor Y_{i,t - \ell m}} \Big )  \end{equation}
- for  each  $t \in [T]$, where $g$ is deterministic function of time, e.g., month indicators,
+ for  each  $t \in \{0,1,...,T\}$, where $g$ is deterministic function of time, e.g., month indicators,
  and $t/\ell$ is defined as $\lfloor {t/\ell} \rfloor$.
 
 
@@ -609,7 +605,7 @@ Next we combine the above parts together with an appropriate
 initializations to give a formal definition of the model we use.
 
 \begin{quote}
-\textsc{Structural Equations Model (SEM)}.  Let $i \in \{1,..., N\}$ denote the observational init and $t$ be the time periods and $\ell$ the time delay, a non-negative integer.  (1) For each $i$ and $t \leq -\ell$, the confounder, information, behavior, and policy variables $W_{it}, I_{it},  B_{it}, P_{it}$ are determined outside of the model, and the outcome variable $Y_{i, t+\ell}$ is determined outside of the model for $t \leq 0$.  (2) For each $i$ and $t \geq -\ell$, confounders $W_{it}$ are determined, then information variables $I_{it}$ are determined  by (I), and policy variables $P_{it}$ are determined by setting $\iota = I_{it}$  in (P) and realizing the shochastic shock $\varepsilon^p_{it}$ that obeys the exogeneity condition (E),  the behavior variables $B_{it}$ are determined by setting $\iota = I_{it}$ and $p= P_{it}$ in  (SO) and realizing  the shochastic shock $\varepsilon^b_{it}$ that obeys the exogeneity condition (E), the outcome $Y_{i, t + \ell}$ is realized by setting $\iota = I_{it}$, $p= P_{it}$, and $b = B_{it}$ in  (SO) and realizing the shochastic shock $\varepsilon^y_{it}$ that obeys the exogeneity condition (E). \end{quote}
+\textsc{Structural Equations Model (SEM)}.  Let $i \in \{1,..., N\}$ denote the observational unit,  $t$ be the time periods, and $\ell$ be the time delay.  (1) For each $i$ and $t \leq -\ell$, the confounder, information, behavior, and policy variables $W_{it}, I_{it},  B_{it}, P_{it}$ are determined outside of the model, and the outcome variable $Y_{i, t+\ell}$ is determined outside of the model for $t \leq 0$.  (2) For each $i$ and $t \geq -\ell$, confounders $W_{it}$ are  determined, and information variables $I_{it}$ are determined  by (I); policy variables $P_{it}$ are determined by setting $\iota = I_{it}$  in (P) with  a realized stochastic shock $\varepsilon^p_{it}$ that obeys the exogeneity condition (E);  behavior variables $B_{it}$ are determined by setting $\iota = I_{it}$ and $p= P_{it}$ in  (SO) with a shock $\varepsilon^b_{it}$ that obeys (E); finally, the outcome $Y_{i, t + \ell}$ is realized by setting $\iota = I_{it}$, $p= P_{it}$, and $b = B_{it}$ in  (SO) with a shock $\varepsilon^y_{it}$ that obeys (E). \end{quote}
 
 %This formulation uses traditional econometrics language of causal structural equation models.  It appears to fit in well with general formulations of structural causal models developed \cite{pearl:why} and \cite{white:chalak}.
 
@@ -649,8 +645,8 @@ should obey:
 Without any exclusion restrictions, this equality is just a decomposition of total effects
 into direct and indirect components, and is not a testable restriction. However, in our case we rely on the SIR
 model with testing to motivate the presence of change in testing rate as a confounder in the outcome
-equations, but not in the behavior equation (implying that a component of $\delta_B$ and $\delta_P$ is set to 0), implying that (TR) does not necessarily hold and is testable. Furthermore, we estimate (\ref{eq:R2}) on the data set that has many more observations than the data set used to estimate the outcome equations, implying that (TR) is again testable.  Later we  shall also try to
-utilize the contextual knowledge that masks business mandates only affect outcome directly and not by changing mobility, implying again that (TR) is testable. If not rejected by the data, (TR) can be used to sharpen the estimate of the causal effect of mask policies on the outcomes.
+equations, but not in the behavior equation (therefore, a component of $\delta_B$ and $\delta_P$ is set to 0), implying that (TR) does not necessarily hold and is testable. Furthermore, we estimate (\ref{eq:R2}) on the data set that has many more observations than the data set used to estimate the outcome equations, implying that (TR) is again testable.  Later we  shall also try to
+utilize the contextual knowledge that masks business mandates only affect outcome directly and not by changing mobility (i.e., $\beta=0$ for mask policy), implying again that (TR) is testable. If not rejected by the data, (TR) can be used to sharpen the estimate of the causal effect of mask policies on the outcomes.
 
 Validation of the model by (TR) allows us to check exclusion restrictions brought by contextual knowledge,
 and check stability of the model by using different data subsets.  However, passing the (TR) does
@@ -681,7 +677,7 @@ by including month dummies and their interactions with state level characteristi
 Another modeling approach is the fixed effects panel data model, where ${\wcolor W_{it}}$ includes
 \text{latent} (unobserved) state level confonders ${\wcolor W_i}$ and  and time level effects ${\wcolor W_t}$,
 which must be estimated from the data.  This approach is much more demanding of the data and relies on long time and cross-sectional histories to estimate ${\wcolor W_i}$ and ${\wcolor W_t}$, resulting in amplification of uncertainty. In addition, when histories are relatively short,  large biases emerge and they need to be removed using debiasing methods, see e.g., \cite{chen2019mastering} for overview. We present the results
-on debiased fixed effect estimation as parts of our sensitivity analysis. Other approaches we have explored
+on debiased fixed effect estimation with weekly dummies as parts of our sensitivity analysis. Other approaches we have explored
 is to consider more flexible nonlinear model $f(W_{it}, \delta)$ for the way observed confounders enter the model,
 for example partialling out these effects using Random Forest, using the debiased machine learning approach.
 All of these results are reported as parts of the robustness checks.
@@ -691,15 +687,15 @@ All of these results are reported as parts of the robustness checks.
 With exclusion restrictions there are multiple approaches to estimation, for example,
 via generalized method of moments. We shall take a more pragmatic approach where we estimate
 the parameters of equations separately, and then compute
-\begin{equation}
+\[
  \frac{1}{2} \hat {\mathsf{a}}'  + \frac{1}{2}  ( {\bcolor \hat \alpha '}  {\pcolor \hat \beta' }+{\pcolor\hat \pi'} ) \text{ and }
  \frac{1}{2} \hat{\mathsf{b}}'  + \frac{1}{2}  ( {\bcolor \hat \alpha '}  {\icolor \hat \gamma'} + {\icolor \hat \mu'}),
-\end{equation}
+\]
 as the estimator of the total policy effect, that concentrates around  their population analogues
-\begin{equation}
+\[
  \frac{1}{2}  {\mathsf{a}}'  + \frac{1}{2}  ( {\bcolor \alpha '}  {\pcolor \beta' }+{\pcolor \pi'} ) \text{ and }
  \frac{1}{2} {\mathsf{b}}'  + \frac{1}{2}  ( {\bcolor  \alpha '}  {\icolor \gamma'} + {\icolor \mu'}),
-\end{equation}
+\]
 with approximate deviations controlled by the normal laws, with standard deviations that can be approximated by the bootsrap
 resampling of observational units $i$. Under correct specification the target quantities
 reduce to $  {\bcolor \alpha '}  {\pcolor  \beta' }+{\pcolor \pi'} $ and ${\bcolor  \alpha '}  {\icolor  \gamma'} + {\icolor  \mu'}$, respectively. This construction is not as efficient as generalized method of moments,
@@ -819,22 +815,22 @@ from two models, one motivated via the causal path, reflecting contextual knowle
 
 We  also consider simple counterfactual exercises, where we examine the effects of setting
 a sequence of counterfactual policies for each state:
-$$
+\begin{equation} \label{p-cf}\tag{P-CF}
 \{{\pcolor P^\star_{it}} \}_{t=1}^T, \quad i=1, \ldots N.
-$$
+\end{equation}
 We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Although this is beyond the scope of the current paper, counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. } Given the policies, we generate the counterfactual
 outcomes, behavior, information by propaging the dynamic equations:
 \begin{equation} \label{eqn:CF-SEM} \tag{CEF-SEM}
   \begin{aligned}
 & {\ycolor Y^\star_{i,t+\ell}}  & := & Y_{i,t+\ell} ( {\bcolor B^\star_{it} } , {\pcolor P^\star_{it}}, {\icolor I^\star_{it}}), \\
 & {\bcolor B^\star_{it} } & := &   B_{it}({\pcolor P^\star_{it} } ,{\icolor I^\star_{it}}), \\
-& {\icolor I^\star_{it} }& := &  I ({ t,  {\ycolor Y^*_{it}}, \icolor I^\star_{i,t-\ell}}),  \end{aligned}
+& {\icolor I^\star_{it} }& := &  I ({ t,  {\ycolor Y^\star_{it}}, \icolor I^\star_{i,t-\ell}}),  \end{aligned}
 \end{equation}
 with the same initialization as the factual system up to $t \leq 0$. In stating this counterfactual system of equations, we assume that structural outcome equations (SO) and information equations (I) remain invariant, and so do the stochastic shocks, decomposed
 into observable and unobservable parts. Formally, we record this assumption and above discussion as follows.
 
 \begin{quote}
-\textsc{Counterfactual Structural Equations Model (CF-SEM)}.  Let $i \in \{1,..., N\}$ be the observational init and $t$ be time periods and $\ell$ the time delay, a positive integer. (1) For each $i$ and $t \leq 0$, the confounder, information, behavior, policy, and outcome variables are determined as in SEM: $W^\star_{it}= W_{it}$, $I^\star_{it}= I_{it}$,  $B^\star_{it} = B_{it}$, $P^\star_{it}=P_{it}$, $Y^\star_{it} =Y_{it}$.  (2) For each $i$ and $t \geq 0$, confounders $W^\star_{it} =W_{it}$ are determined, then information variables $I^\star_{it}$ are determined  by (I), and policy variables $P^\star_{it}$ are set,  the behavior variables $B^\star_{it}$ are determined by setting $\iota = I^\star_{it}$ and $p= P^\star_{it}$ in  (SO) and keeping  the same stochastic shock $\varepsilon^b_{it}$ in (SO), the outcome $Y^\star_{i, t + \ell}$ is realized by setting $\iota = I^\star_{it}$, $p= P^\star_{it}$, and $b = B^\star_{it}$ in  (SO) and keeping the same shochastic shock $\varepsilon^y_{it}$  (SO).
+\textsc{Counterfactual Structural Equations Model (CF-SEM)}.  Let $i \in \{1,..., N\}$ be the observational unit, $t$ be time periods, and $\ell$ be the time delay. (1) For each $i$ and $t \leq 0$, the confounder, information, behavior, policy, and outcome variables are determined as in SEM: $W^\star_{it}= W_{it}$, $I^\star_{it}= I_{it}$,  $B^\star_{it} = B_{it}$, $P^\star_{it}=P_{it}$, $Y^\star_{it} =Y_{it}$.  (2) For each $i$ and $t \geq 0$, confounders $W^\star_{it} =W_{it}$ are determined, and information variables $I^\star_{it}$ are determined  by (I);  policy variables $P^\star_{it}$ are set in (\ref{p-cf}); behavior variables $B^\star_{it}$ are determined by setting $\iota = I^\star_{it}$ and $p= P^\star_{it}$ in  (SO) with  the same stochastic shock $\varepsilon^b_{it}$ in (SO); the  counterfactual outcome $Y^\star_{i, t + \ell}$ is realized by setting $\iota = I^\star_{it}$, $p= P^\star_{it}$, and $b = B^\star_{it}$ in  (SO) with the same stochastic shock $\varepsilon^y_{it}$ in  (SO).
 \end{quote}
 
 Figures \ref{Wright2} and \ref{fig:DynS2} present the causal path diagram for CF-SEM as well as the dynamics
@@ -939,21 +935,21 @@ summing terms containing $PEB$ and (b) delayed policy effects via direct impact
 by summing terms containing $PED$.
 
 All counterfactual quantities and contrasts can be computed from the expressions given
-above. For examples, new cases are linked to growth rates via relation:
+above. For examples, given $\Delta C_{i0}>0$, new cases are linked to growth rates via relation:
 $$
-\Delta C^{\star}_{it} = \exp\left (  \sum_{\bar t=1}^t  Y^\star_{i\bar t} \right) \text{ and } \Delta C_{it} = \exp
-\left (  \sum_{\bar t=1}^t Y_{i\bar t}\right).
+\frac{\Delta C^{\star}_{it}}{\Delta C_{i0}} = \exp\left (  \sum_{s=1}^t  Y^\star_{is} \right) \text{ and }\frac{ \Delta C_{it}}{\Delta C_{i0}} = \exp
+\left (  \sum_{s=1}^t Y_{is}\right).
 $$
 The cumulative cases can be constructed by summing over the new cases. Various contrasts are
 then calculated from these quantities. For example, the relative contrast of new counterfactual cases
 to the  factual cases is given by:
 $$
-\Delta C^{\star}_{it}/\Delta C_{it} = \exp\left(  \sum_{\bar t=1}^t ( Y^\star_{i\bar t} -  Y_{i\bar t}) \right).
+\Delta C^{\star}_{it}/\Delta C_{it} = \exp\left(  \sum_{s=1}^t ( Y^\star_{is} -  Y_{is}) \right).
 $$
 We refer to the appendix for further details. Similar calculations apply for fatalities. 
 Note that our analysis is conditional on the factual history and structural stochastic 
-shocks.\footnote{ If we'd want unconditional counterfactual,
-we'd need to make assumptions about the evolution of stochastic shocks appearing in $Y_{it}$. See, e.g, previous
+shocks.\footnote{For unconditional counterfactual,
+we need to make assumptions about the evolution of stochastic shocks appearing in $Y_{it}$. See, e.g, previous
 versions of our paper in ArXiv, where unconditional counterfactuals were calculated by assuming stochastic shocks
 are i.i.d. and resampling them from the empirical distribution. The differences between conditional and unconditional
 contrasts were small in our empirical analysis.}
@@ -963,10 +959,10 @@ construct the confidence intervals for counterfactual quantities and contrasts b
 estimates. We refer to the appendix for further details.
 
 
-\subsection{Outcome and Key Confounders via SIR model}\label{sec:sirmodel} We next provide details
+\subsection{Outcome and Key Confounders via SIRD model}\label{sec:sirmodel} We next provide details
 of our key measurement equations, defining the outcomes and key confounders. We motivate the structural
 outcome equations via the fundamental epidemiological model for the spread of infectious decease called
-the SIRD (susceptible - infectected - recovered-deceased) model with testing.
+the Susceptible-Infected-Recovered-Dead (SIRD) model with testing.
 
 Letting $C_{it}$ denote the cumulative number of  confirmed cases in state $i$ at time $t$, our outcome
 \begin{equation} \label{eq:y}
@@ -997,7 +993,7 @@ on whether we estimate (\ref{eq:R1}) or (\ref{eq:R4}), where the lag of $14$ day
    Here
 $$\Delta   \log(T_{it} ):=  \log(T_{it}) - \log(T_{i,t-7})  $$ %\ \text {and } \ \delta_D \frac{T_{it}\Delta D_{it}}{\Delta C_{it}}$$
 is the key confounding variable,
-derived from considering the SIR model below. We are treating the change in testing
+derived from considering the SIRD model below. We are treating the change in testing
 rate as exogenous.\footnote{To check sensitivity to this assumption
 we performed robustness checks, where we used
 the further lag of $\Delta   \log(T_{it} )$ as a proxy for exogenous change in the testing rate, and we also
@@ -1905,9 +1901,8 @@ In this section, we provide sensitivity analysis by estimating (\ref{eq:R4}) wit
    \item[(5)]   Add  past behavior variables  as information used to set policies. Under this specification, our causal interpretation is valid when policy variables are sufficiently random conditional on past behavior variables.
    \item[(6)]   Include all additional controls in (3)-(5) with the sample that excludes New York as in (2).
    \item[(7)] Add weekly dummies  to the baseline specification.
-   \item[(8)] Baseline specification is estimated by instrumenting $\Delta \log T_{it}$ with one week lagged  logarithm  value of the number of tests per 1000 people.
-   \item[(9)]   Estimated by Double Machine Learning (DML) (e.g,,\cite{chernozhukov18}) with Lasso to reduce dimensionality while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables  as additional controls.   \item[(10)]  Estimated by DML with Random Forest to reduce dimensionality  and capture some nonlinearities while adding private mask wearing rates,  the log of Trump's vote share, and  past behavior variables as additional controls.
- %  \item[(10)]   Add latent state confounders and weekly dummies as components of $W_{it}$, estimated using fixed effects with bias correction.
+   \item[(8)] Baseline specification estimated by instrumenting $\Delta \log T_{it}$ with one week lagged  logarithm  value of the number of tests per 1000 people.
+   \item[(9)]   Estimated by Double Machine Learning (DML) \citep[e.g.,][]{chernozhukov18} with Lasso to reduce dimensionality while including all additional controls in (3)-(5).     \item[(10)]  Estimated by DML with Random Forest to reduce dimensionality  and capture some nonlinearities while including all additional controls in (3)-(5).   %  \item[(10)]   Add latent state confounders and weekly dummies as components of $W_{it}$, estimated using fixed effects with bias correction.
   % \item Alternative Timing assumption ($\ell=10$ for cases and $\ell=23$ for deaths) on all of the above.
   \end{itemize}
 In Figure \ref{fig:whisker}, ``red'', ``green'', ``blue'', and ``purple" indicate the regression models for case growth without national information variables, case growth with national information variables, death growth without national information variables, and death growth with national information variables, respectively. The left panel of ``(i) baseline timing'' assume that the times from exposure to case confirmation and death reporting are 14 and 21 days, respectively,  while they are 7 and 24 days, respectively, in the right panel of ``(ii) alternative timing.''\footnote{This alternative timing assumption is motivated by the lower bound estimate of median times from exposure to case confirmation or death reporting in Table 2 of \url{https://www.cdc.gov/coronavirus/2019-ncov/hcp/planning-scenarios.html}, which are based on data received by CDC through June 29, 2020.  We thank C. Jessica E. Metcalf for recommending us to do a sensitivity analysis on the timing assumption while suggesting this reference to us.}
@@ -2149,8 +2144,7 @@ For illustrative purpose, we begin by focusing on Washington State.
 % observed growth rate is quite good.
 The left column of Figure \ref{fig:WA-mask} shows the change in
 growth rate from mandating masks on March 14th. The shaded region is a
-90\% pointwise confidence interval. As shown, mandating masks on April
-1st lowers the growth of cases or deaths 14 or 21 days later by 0.09 or
+90\% pointwise confidence interval. As shown, mandating masks on March 14th lowers the growth of cases or deaths 14 or 21 days later by 0.07 or
 0.14. This effect then gradually declines due to information
 feedback. Mandatory masks reduce past cases or deaths, which leads to
 less cautious behavior, attenuating the impact of the policy. The
@@ -2210,8 +2204,8 @@ March 14th. The top panel shows the effect on cases and the bottom
 panel shows the effect on deaths. The left column shows the change in
 growth rates. Dots are the average change in growth rate in each state
 (i.e. the dots are identical to the solid line in the left panel of
-Figure \label{fig:WA-mask}, except for each state instead of just
-Washington). The solid blue is the national average change in growth
+Figure \ref{fig:WA-mask}, except for each state instead of just
+Washington). The solid blue line is the national average change in growth
 rate. The shaded region is a 90\% pointwise confidence band for the
 national average change in growth rate.
 
@@ -2230,7 +2224,7 @@ or deaths. The point estimates indicate that mandating masks on March
 14th could have led to 21\% fewer cumulative cases and 34\% fewer
 deaths by the end of May with their 90 percent intervals
 given by $[9,32]$\% and $[19,47]$\%, respectively.
-The result roughly translates into $30$ thousand saved lives.
+The result roughly translates into $19$ to $47$ thousand saved lives.
 
 \subsection{Business Closure Policies}
 
@@ -2243,7 +2237,7 @@ without business closures, cases and deaths would be about 40\% higher
 at the end of May. The confidence intervals are wide. A 90 percent
 confidence interval for the increase in cases at the end of May is
 $[17,78]$\%.
-The confidence interval for deaths is even wider, $[1, 97]$\%
+The confidence interval for deaths is even wider, $[1, 97]$\%.
 
 
 \begin{figure}[ht]
@@ -2336,17 +2330,15 @@ increase included in a 90 percent confidence interval, $[-7,50]$\%.
 
 This paper assesses the effects of policies on the spread of Covid-19 in the US using state-level data on cases, tests, policies, and social distancing behavior measures from Google Mobility Reports. Our findings are summarized as follows.
 
-First, our empirical analysis indicates that mandating face masks has
+First, our empirical analysis robustly indicates that mandating face masks has
 reduced the spread of Covid-19 without affecting people's social
 distancing behavior measured by Google Mobility Reports. Our
-counterfactual experiment based on the estimated model suggests that
-if all states had have adopted mandatory face mask policies on April
-1st of 2020, then the number of deaths per week
-by the end of May would have been smaller by as much as  $18$ to $50$\%, which roughly translates to $6$ thousand saved lives.
+counterfactual experiment suggests that
+if all states had have adopted mandatory face mask policies on March 14th of 2020, then the cumulative number of deaths by the end of May would have been smaller by as much as  $19$ to $47$\%, which roughly translates into $19$ to $47$  thousand saved lives.
+  
+Second, our baseline counterfactual analysis suggests that keeping all businesses open would have led to 17 to 78\% more cases  while not implementing stay-at-home orders would have increased cases by 6 to 63\% by the end of May although we should interpret these numbers with some caution given that the estimated effect of business closures and stay-at-home orders vary across specifications in our sensitivity analysis. 
 
-Second, we find that keeping non-essential businesses open would have led to -20 to 60\% more cases  while not implementing stay-at-home orders would have increased cases by 25 to 170 \% by the start of June. % Except for mask mandates, the effect of all other policies on case and death growth is realized through their impact on social distancing behavior.
-
-Third, we find considerable uncertainty over  the impact of all policies combined on case or death growth because it is difficult to identify the effect of school closures from the US state-level data due to the lack of variation in the timing of school closures across states.
+Third, we find considerable uncertainty over  the impact of school closures on case or death growth because it is difficult to identify the effect of school closures from the US state-level data due to the lack of variation in the timing of school closures across states.
 
 Fourth, our analysis shows that people voluntarily reduce their visits to workplace, retails, grocery stores, and limit their use of public transit when they receive  information on a higher number of new cases and deaths. This suggests that individuals make decisions to voluntarily limit their contact with others in response to greater transmission risks, leading to an important feedback mechanism that affects future cases and deaths. Model simulations that ignore this voluntary behavioral response to information on transmission risks would over-predict the future number of cases and deaths.
 
@@ -2778,17 +2770,17 @@ where $\widehat \beta$ is the standard fixed effects estimator while $\widetilde
 
 \subsection{Details for Computing Counterfactuals \label{app:counterfactuals}}
 
-We compute counterfactuals from the "total effect" version of the
+We compute counterfactuals from the ``total effect" version of the
 model, with behavior concentrated out.
 $$
 Y_{i,t+\ell}
 = \mathsf{a}'
 P_{it} + \mathsf{b}' I_{it} +  {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
 $$
-We consider a counterfactual change of $P_{it}$ to $P_{it}^*$, while
+We consider a counterfactual change of $P_{it}$ to $P_{it}^\star$, while
 $W_{it}$ and $\bar \varepsilon_{it}$ are held constant. In response to
 the policy change, $Y_{i,t+\ell}$ and the part of $I_{it}$ that
-contains $Y_{it}$, change to $Y_{i,t+\ell}^*$ and $I_{it}^*$. To be
+contains $Y_{it}$, change to $Y_{i,t+\ell}^\star$ and $I_{it}^\star$. To be
 specific, let $C_{it}$ denote cumulative cases in state $i$ on day
 $t$. Our outcome is:
 $$
@@ -2812,12 +2804,12 @@ C_{i,t+\ell-7} + (\mathsf{b}_D + \mathsf{b}_L) \log \Delta C_{i,t} -
 \mathsf{b}_D \log \Delta C_{i,t-7} + {\tilde {\delta}}' W_{it}   + {\bar \varepsilon}_{it}
 $$
 This equation is used to iteratively compute
-$\log \Delta C_{i,t+\ell}^*$
+$\log \Delta C_{i,t+\ell}^\star$
 conditional on initial $\{\log \Delta C_{i,s}\}_{s=-\ell-7}^{0}$,
-and the entire sequence of $\{W_{i,t}, P_{i,t}^*, \bar \varepsilon_{it} \}_{t=0}^T$.
+and the entire sequence of $\{W_{i,t}, P_{i,t}^\star, \bar \varepsilon_{it} \}_{t=0}^T$.
 
 Weekly cases instead of log weekly cases are given simply by
-$$ \Delta C_{i,t+\ell}^* = \exp(\log \Delta C_{i,t+\ell}^*)$$
+$$ \Delta C_{i,t+\ell}^\star = \exp(\log \Delta C_{i,t+\ell}^\star)$$
 
 Cumulative cases can be recursively computed as:
 $$
@@ -2825,7 +2817,7 @@ $$
 $$
 given initial $\{C_{i,s}\}_{s=-7}^0$.
 
-Note that $\log \Delta C_{i,t+\ell}^*$ depends linearly on
+Note that $\log \Delta C_{i,t+\ell}^\star$ depends linearly on
 $\bar \varepsilon$, so the residuals (and our decision to condition on
 versus integrate them out) do not matter when considering linear
 constasts of $\log \Delta C_{it}$ or $\Delta \log \Delta C_{it}$, or
@@ -2844,13 +2836,13 @@ that we compute include:
 
 \begin{itemize}
 \item Contrasts of growth rates: $S(\theta, \mathbf{\varepsilon}) =
-  \Delta \log \Delta C_{it}^* - \Delta \log \Delta C_{it}$
+  \Delta \log \Delta C_{it}^\star - \Delta \log \Delta C_{it}$
 
 \item Relative contrasts of weekly cases: $S(\theta, \mathbf{\varepsilon}) =
-  \Delta C_{it}^*/\Delta C_{it}$
+  \Delta C_{it}^\star/\Delta C_{it}$
 
 \item Relative contrasts of cumulative cases: $S(\theta, \mathbf{\varepsilon}) =
-  \frac{C_{it}^* - C_{it}}{C_{it}}$
+  \frac{C_{it}^\star - C_{it}}{C_{it}}$
 \end{itemize}
 
 The first two examples do not actually depend on

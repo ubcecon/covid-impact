@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: covidEffectOfNPI-revision.aux
+The style file: jpe.bst
+Database file #1: covid.bib
+Warning--entry type for "google2020" isn't style-file defined
+--line 857 of file covid.bib
+Warning--entry type for "whitehouse2020" isn't style-file defined
+--line 865 of file covid.bib
+Warning--entry type for "midas2020" isn't style-file defined
+--line 873 of file covid.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--missing institution in bartik2020
+Warning--empty note in chen2020
+Warning--empty pages in lsmith
+You've used 81 entries,
+            3072 wiz_defined-function locations,
+            1037 strings with 24593 characters,
+and the built_in function-call counts, 65924 in all, are:
+= -- 4542
+> -- 5640
+< -- 5
++ -- 1896
+- -- 1783
+* -- 5291
+:= -- 11150
+add.period$ -- 411
+call.type$ -- 81
+change.case$ -- 885
+chr.to.int$ -- 77
+cite$ -- 84
+duplicate$ -- 4311
+empty$ -- 3427
+format.name$ -- 1960
+if$ -- 12556
+int.to.chr$ -- 5
+int.to.str$ -- 1
+missing$ -- 999
+newline$ -- 423
+num.names$ -- 324
+pop$ -- 2185
+preamble$ -- 1
+purify$ -- 867
+quote$ -- 0
+skip$ -- 1203
+stack$ -- 0
+substring$ -- 1490
+swap$ -- 2195
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 711
+warning$ -- 3
+while$ -- 359
+width$ -- 0
+write$ -- 1054
+(There were 6 warnings)
