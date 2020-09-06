@@ -413,7 +413,7 @@ We believe that it is better to use the number of cases and deaths rather than t
 This is an interesting suggestion. We thought about the possibility of providing a version of Figure 8 (now, Figure 10) based on the regression residuals after taking out the effect of confounders etc but, eventually, we decided not to present such results due to the space constraint.  
 
 
-For your reference, we have constructed a version of  figure based on the residuals of regressing the case or death growth rates on state characteristics, month dummies, and their interactions, which illustrates that states with a mask mandate tend to have lower case and death growths even after controlling for confounders.    % and then computing their average value for states with or without a mask mandate for each date. 
+For your reference, we have constructed a version of  figures based on the residuals of regressing the case or death growth rates on state characteristics, month dummies,   their interactions,  the log of lagged cases/deaths, and the growth rate of lagged cases/deaths, which illustrates that states with a mask mandate tend to have lower case and death growths even after controlling for confounders and information variables as below.   % and then computing their average value for states with or without a mask mandate for each date. 
 
 \begin{figure}[ht]
   \caption{Average  residuals of regressing case and death growth on confounders among states with or without  mask mandates \label{fig:masks-res}}\vspace{0.2cm}
@@ -426,7 +426,7 @@ For your reference, we have constructed a version of  figure based on the residu
     \end{tabular}
     \begin{flushleft}
       \scriptsize In these figures, red points are the regression residuals of case or death
-      growth rate on confounders in states without a mask mandate. Blue points are
+      growth rate on confounders and information variables in states without a mask mandate. Blue points are
       states with a mask mandate 14 (21 for deaths) days prior. The
       red line is the average across states without a mask mandate 14
       (21 for deaths) days earlier. The blue line is the average

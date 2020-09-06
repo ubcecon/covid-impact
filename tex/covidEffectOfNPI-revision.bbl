@@ -1,4 +1,4 @@
-\begin{thebibliography}{81}
+\begin{thebibliography}{83}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -137,6 +137,14 @@ Chetty, Raj, John~N Friedman, Nathaniel Hendren, and Michael Stepner. 2020.
 \newblock \enquote{Real-Time Economics: A New Platform to Track the Impacts of
   COVID-19 on People, Businesses, and Communities Using Private Sector Data.}
 \newblock Tech. rep., Mimeo.
+
+\bibitem[{Cho(2020)}]{cho2020}
+Cho, Sang-Wook~(Stanley). 2020.
+\newblock \enquote{{Quantifying the impact of non-pharmaceutical interventions
+  during the COVID-19 outbreak – The case of Sweden}.}
+\newblock \emph{The Econometrics Journal}
+  \urlprefix\url{https://doi.org/10.1093/ectj/utaa025}.
+\newblock Utaa025.
 
 \bibitem[{Chu et~al.(2020)Chu, Akl, Duda, Solo, Yaacoub, Sch{\"u}nemann,
   El-harakeh, Bognanni, Lotfi, Loeb, Hajizadeh, Bak, Izcovich, Cuello-Garcia,
@@ -316,6 +324,13 @@ Hsiang, Solomon, Daniel Allen, Sebastien Annan-Phan, Kendon Bell, Ian Bolliger,
   Coronavirus (COVID-19) Pandemic.}
 \newblock \emph{medRxiv}
   \urlprefix\url{https://www.medrxiv.org/content/early/2020/04/29/2020.03.22.20040642}.
+
+\bibitem[{IHME(2020)}]{IHME2020}
+IHME. 2020.
+\newblock \enquote{New IHME COVID-19 Forecasts See Nearly 300,000 Deaths by
+  December 1.}
+\newblock
+  \urlprefix\url{http://www.healthdata.org/news-release/new-ihme-covid-19-forecasts-see-nearly-300000-deaths-december-1}.
 
 \bibitem[{Imbens and Rubin(2015)}]{imbens_rubin_2015}
 Imbens, Guido~W. and Donald~B. Rubin. 2015.

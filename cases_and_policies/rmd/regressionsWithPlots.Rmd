@@ -1221,24 +1221,32 @@ dev.off()
 fig
 
 # use residuals after controlling for confounders 
-wv <- c(svars,mvars.c,msvars.c,"month3") 
+
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+sdf$one <- 1
+wv <- c(svars,mvars.c,msvars.c,"month3","one")
+wv <- c(svars,mvars.d,msvars.d,"month3","one","dlogdc.L14","logdc.L14")#,"dlogdc.national.L14","logdc.national.L14")
 fmla <- as.formula(paste("dlogdc", "~",  paste(wv, collapse=" + "), sep=" "))
-g1 <- predict(lm(fmla, data=df))
-df$dlogdc.res <- df[,yv] - g1    
-fig <- pfigure(df, "pmaskbus", stlab=-1,outcome="dlogdc.res",L=L.c) + ggtitle(TeX(relabel("dlogdc given pmaskbus"))) + ylab(TeX(relabel("residual of dlogdc"))) + 
-  ylim(c(-1.8,0.5))  
+g1 <- predict(lm(fmla, data=sdf))
+sdf$dlogdc.res <- sdf$dlogdc - g1
+mean(sdf$dlogdc.res)
+fig <- pfigure(sdf, "pmaskbus", stlab=-1,outcome="dlogdc.res",L=L.c) + ggtitle(TeX(relabel("dlogdc given pmaskbus"))) + ylab(TeX(relabel("residual of dlogdc"))) + 
+ #   xlim(c(as.Date("2020-04-01"), max(df$date))) +
+  ylim(c(-0.8,0.3))  
 p <- "pmaskbus"
 figdev(sprintf("%s/tex/tables_and_figures/%s-cases-res-%s.pdf", rootdir, p, L.c), width=4, height=3)
 print(fig)
 dev.off()
 fig
  
-wv <- c(svars,mvars.d,msvars.d,"month3") 
+wv <- c(svars,mvars.d,msvars.d,"month3","one")
+wv <- c(svars,mvars.d,msvars.d,"month3","one","dlogdd.L21","logdd.L21")#,"dlogdd.national.L21","logdd.national.L21")
 fmla <- as.formula(paste("dlogdd", "~",  paste(wv, collapse=" + "), sep=" "))
-g1 <- predict(lm(fmla, data=df))
-df$dlogdd.res <- df[,yv] - g1  
-fig <- pfigure(df, "pmaskbus", stlab=-1,outcome="dlogdd.res",L=L.d) + ggtitle(TeX(relabel("dlogdd given pmaskbus"))) + ylab(TeX(relabel("residual of dlogdd")))+ 
-  ylim(c(-0.9,0.5))  
+g1 <- predict(lm(fmla, data=sdf))
+sdf$dlogdd.res <- sdf$dlogdd - g1  
+fig <- pfigure(sdf, "pmaskbus", stlab=-1,outcome="dlogdd.res",L=L.d) + ggtitle(TeX(relabel("dlogdd given pmaskbus"))) + ylab(TeX(relabel("residual of dlogdd")))+ 
+ #   xlim(c(as.Date("2020-04-01"), max(df$date))) +
+  ylim(c(-0.8,0.3))  
 p <- "pmaskbus"
 figdev(sprintf("%s/tex/tables_and_figures/%s-deaths-res-%s.pdf", rootdir, p, L.d), width=4, height=3)
 print(fig)

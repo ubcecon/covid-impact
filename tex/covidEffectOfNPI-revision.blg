@@ -4,54 +4,54 @@ The top-level auxiliary file: covidEffectOfNPI-revision.aux
 The style file: jpe.bst
 Database file #1: covid.bib
 Warning--entry type for "google2020" isn't style-file defined
---line 857 of file covid.bib
+--line 871 of file covid.bib
 Warning--entry type for "whitehouse2020" isn't style-file defined
---line 865 of file covid.bib
+--line 879 of file covid.bib
 Warning--entry type for "midas2020" isn't style-file defined
---line 873 of file covid.bib
+--line 887 of file covid.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--missing institution in bartik2020
 Warning--empty note in chen2020
 Warning--empty pages in lsmith
-You've used 81 entries,
+You've used 83 entries,
             3072 wiz_defined-function locations,
-            1037 strings with 24593 characters,
-and the built_in function-call counts, 65924 in all, are:
-= -- 4542
-> -- 5640
+            1049 strings with 25014 characters,
+and the built_in function-call counts, 66746 in all, are:
+= -- 4617
+> -- 5666
 < -- 5
-+ -- 1896
-- -- 1783
-* -- 5291
-:= -- 11150
-add.period$ -- 411
-call.type$ -- 81
-change.case$ -- 885
-chr.to.int$ -- 77
-cite$ -- 84
-duplicate$ -- 4311
-empty$ -- 3427
-format.name$ -- 1960
-if$ -- 12556
++ -- 1906
+- -- 1791
+* -- 5334
+:= -- 11309
+add.period$ -- 422
+call.type$ -- 83
+change.case$ -- 896
+chr.to.int$ -- 79
+cite$ -- 86
+duplicate$ -- 4372
+empty$ -- 3488
+format.name$ -- 1968
+if$ -- 12713
 int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 999
-newline$ -- 423
-num.names$ -- 324
-pop$ -- 2185
+missing$ -- 1010
+newline$ -- 434
+num.names$ -- 332
+pop$ -- 2208
 preamble$ -- 1
-purify$ -- 867
+purify$ -- 877
 quote$ -- 0
-skip$ -- 1203
+skip$ -- 1228
 stack$ -- 0
-substring$ -- 1490
-swap$ -- 2195
+substring$ -- 1514
+swap$ -- 2216
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 711
+type$ -- 729
 warning$ -- 3
-while$ -- 359
+while$ -- 367
 width$ -- 0
-write$ -- 1054
+write$ -- 1081
 (There were 6 warnings)
