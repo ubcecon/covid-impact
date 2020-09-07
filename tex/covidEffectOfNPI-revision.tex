@@ -235,15 +235,16 @@ points in late April. As shown in Figure \ref{fig:US-mask-dgrowth},
 this leads to reductions of $21$\% and $34$\% in cumulative reported
 cases and deaths, respectively, by the end of May with 90 percent
 confidence intervals of $[9,32]$\% and $[19,47]$\%, which roughly
-implies that 34 thousand lives could have been saved.\footnote{These estimates
-are slightly lower than those reported in earlier releases of the paper on ArXiv.
-One of the reason is that we chose to focus on a simplified version of the model 
-as our base model, by averaging business closure policies as measure of shutdown. This produced more stable results when
-conducting sensitivity results, in particular using fixed effects estimators.  
-We also present several variants of base model, including
-one with separate shutdown policies, in which the effects are slightly larger, in line
-with the previous findings, but we focus reporting counterfactuals only 
-for the base model. } 
+implies that 34 thousand lives could have been saved.
+%\footnote{These estimates
+%are slightly lower than those reported in earlier releases of the paper on ArXiv.
+%One of the reason is that we chose to focus on a simplified version of the model 
+%as our base model, by averaging business closure policies as measure of shutdown. This produced more stable results when
+%conducting sensitivity results, in particular using fixed effects estimators.  
+%We also present several variants of base model, including
+%one with separate shutdown policies, in which the effects are slightly larger, in line
+%with the previous findings, but we focus reporting counterfactuals only 
+%for the base model. } 
 This finding is
 significant: given this potentially large benefit of reducing the
 spread of Covid-19, mandating masks is an attractive policy instrument
@@ -698,11 +699,11 @@ these estimators concentrate around  their population analogues
  \frac{1}{2}  {\mathsf{a}}'  + \frac{1}{2}  ( {\bcolor \alpha '}  {\pcolor \beta' }+{\pcolor \pi'} ) \text{ and }
  \frac{1}{2} {\mathsf{b}}'  + \frac{1}{2}  ( {\bcolor  \alpha '}  {\icolor \gamma'} + {\icolor \mu'}),
 \]
-with approximate deviations controlled by the normal laws, with standard deviations that can be approximated by the bootsrap
+with approximate deviations controlled by the normal laws, with standard deviations that can be approximated by the bootstrap
 resampling of observational units $i$. Under correct specification the target quantities
-reduce to $$  {\bcolor \alpha '}  {\pcolor  \beta' }+{\pcolor \pi'} \text{ and } {\bcolor  \alpha '}  {\icolor  \gamma'} + {\icolor  \mu'},$$ respectively. This construction is not as efficient as generalized method of moments
+reduce to $$  {\bcolor \alpha '}  {\pcolor  \beta' }+{\pcolor \pi'} \text{ and } {\bcolor  \alpha '}  {\icolor  \gamma'} + {\icolor  \mu'},$$ respectively.\footnote{This construction is not as efficient as generalized method of moments
 but has a nicer interpretation under possible misspecification of the model: we are combining predictions
-from two models, one motivated via the causal path, reflecting contextual knowledge, and another from a ``reduced form" model not exploiting the path. The combined estimator can improve on precision of either estimator.
+from two models, one motivated via the causal path, reflecting contextual knowledge, and another from a ``reduced form" model not exploiting the path. The combined estimator can improve on precision of either estimator.}
 
 
 
