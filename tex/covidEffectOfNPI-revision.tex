@@ -206,8 +206,7 @@ See
 
 This paper  quantitatively assesses the impact of various policies adopted by US states on the spread of Covid-19, such as non-essential business closure and mandatory  face masks, paying particular attention to how people adjust their behavior in response to policies as well as new information on cases and deaths.
 
-We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.\footnote{The causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika, heckman:pinto}) and genetics \citep{wright1923}, with natural unfolding potential/structiral outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. The work on causal graphs has been modernized and put on rigorous footing by  \cite{pearl:biometrika}, \cite{pearl:robins}, \cite{pearl:causality}, \cite{pearl:why}, \cite{white:chalak}, \cite{peters2020book}, and \cite{hernanrobins2020book}, with major applications taking place in computer science, econometrics, and epidemiology. The particular causal diagram has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \citet[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986}, \cite{Hines2020}, \cite{richardson:mediation} for modern treatments. The father and son, P. Wright and S. Wright closely collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables.}
-
+We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information. 
 
 
 Guided by the causal model, our empirical analysis examines how the weekly growth rates of confirmed Covid-19 cases and deaths are determined by (the lags of) policies and behavior using US state-level data. To examine how policies and information affect people's behavior, we also regress social distancing measures  on policy and information variables. Our regression specification for case and death growths is explicitly guided by a SIR model although  our causal approach does not hinge on the validity of a SIR model.
@@ -235,9 +234,8 @@ points in late April. As shown in Figure \ref{fig:US-mask-dgrowth},
 this leads to reductions of $21$\% and $34$\% in cumulative reported
 cases and deaths, respectively, by the end of May with 90 percent
 confidence intervals of $[9,32]$\% and $[19,47]$\%, which roughly
-implies that 34 thousand lives could have been saved.
-%\footnote{These estimates
-%are slightly lower than those reported in earlier releases of the paper on ArXiv.
+implies that 34 thousand lives could have been saved. %\footnote{These estimates
+%are slightly lower than those reported in earlier releases of the paper on ArXiv,
 %One of the reason is that we chose to focus on a simplified version of the model 
 %as our base model, by averaging business closure policies as measure of shutdown. This produced more stable results when
 %conducting sensitivity results, in particular using fixed effects estimators.  
@@ -448,6 +446,7 @@ using German data in \cite{Mitze2020}.\footnote{Our study was first released in 
 Our empirical results contribute to informing the economic-epidemiological models that combine economic models with variants of SIR models to evaluate the efficiency of various economic policies aimed at  the gradual ``reopening" of various sectors of economy.\footnote{\cite{adda2016} analyzes the effect of policies reducing interpersonal contacts such as school closures or the closure of public transportation networks on the spread of  influenza, gastroenteritis, and chickenpox using high frequency data from France.} For example, the estimated effects of masks, stay-home mandates, and various other policies on behavior, and of behavior on infection can serve as useful inputs and validation checks in the calibrated macro, sectoral, and micro models (see, e.g., \cite{alvarez2020simple,baqaee2020reopening,NBERw27128,acemoglu2020multi,lsmith,nashSIR} and references therein). Furthermore, the causal framework developed in this paper could be applicable, with appropriate extensions, to the impact of policies on economic outcomes replacing health outcomes (see, e.g., \cite{chetty2020real,coibion2020labor}).
 
 
+Finally, our causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika}) and genetics \citep{wright1923},\footnote{The father and son, P. Wright (economist) and S. Wright (geneticist) collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables. We view our work as following this classical tradition.} with natural unfolding potential/structural outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. The work on causal graphs has been modernized and put on rigorous footing by  \cite{pearl:biometrika} and others (\cite{pearl:robins}, \cite{pearl:causality}, \cite{pearl:why}, \cite{white:chalak},  \cite{heckman:pinto}, \cite{peters2020book}, and \cite{hernanrobins2020book}), with major applications taking place in computer science, epidemiology, and econometrics. The particular causal diagram we use has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \citet[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986}, \cite{Hines2020}, \cite{richardson:mediation} for modern treatments. 
 
 \section{The Causal Model for the Effect of Policies, Behavior, and Information on Growth of Infection}\label{sec:causal-model}
 
@@ -538,13 +537,14 @@ The exogeneity restrictions on the stochastic shocks are as follows:
 \end{aligned}
 \end{equation}
 where we say that $V \perp U$ if $\Ep VU = 0$.\footnote{ An alternative useful
-starting point is to impose the Rubin-Rosenbaum type unconfoudedness condition:
+starting point is to impose the Rosenbaum-Rubin type unconfoundedness condition:
 $$
 Y_{i,t+\ell} (\cdot,\cdot,\cdot)  \indep (P_{it}, B_{it}, I_{it})  \mid W_{it}, \
 B_{it} (\cdot,\cdot)  \indep (P_{it}, I_{it})  \mid W_{it}, \
  P_{it} (\cdot)  \indep  I_{it}  \mid W_{it},
 $$
-which imply, with treating stochastic errors as independent additive components, the orthogonal conditions stated above.} This is a standard way of representing restrictions on errors in structural equation modeling.\footnote{The structural equations of this form are connected to triangular structural equation models, appearing in microeconometrics and macroeconometrics (SVARs), going back to the work of  \cite{strotz1960recursive}.}
+which imply, with treating stochastic errors as independent additive components, the orthogonal conditions stated above.
+The same unconfoundedness restrictions can be formulated using formal causal DAGs, and also imply orthogonality restrictions stated above, once stochastic errors are modeled as independent additive components.} This is a standard way of representing restrictions on errors in structural equation modeling in econometrics.\footnote{The structural equations of this form are connected to triangular structural equation models, appearing in microeconometrics and macroeconometrics (SVARs), going back to the work of  \cite{strotz1960recursive}.}
 
 
 The observed variables are generated by setting $\iota = I_{it}$ and propagating
@@ -562,7 +562,7 @@ of information variables, which include time, lagged and integrated values of ou
  {\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-1} })' := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=0}^{t/\ell}
 {\ycolor Y_{i,t - \ell m}} \Big )  \end{equation}
  for  each  $t \in \{0,1,...,T\}$, where $g$ is deterministic function of time, e.g., month indicators,
- and $t/\ell$ is defined as $\lfloor {t/\ell} \rfloor$.
+ and $t/\ell$ is defined as $\lceil {t/\ell} \rceil$.
 
 
 In this structure, people respond to both global information, captured by a function of time such as month dummies, and local information sources, captured by the local growth rate and the total number of cases. The local information also captures the persistence of the growth rate process.  We model the reaction of people's behavior via the term ${\icolor \gamma'I_{t}}$ in the behavior equation.  The dynamical system requires initialization, for example we can set  ${\ycolor Y_{it}} = 0$ for $t \leq 0$ in our context, since we are analyzing the pandemic from the very beginning, but other initializations could be appropriate in other contexts. % The  lagged values of behavior variable may be also included in the information set, but we postpone this discussion after the main empirical results are presented.
@@ -605,7 +605,7 @@ Next we combine the above parts together with an appropriate
 initializations to give a formal definition of the model we use.
 
 \begin{quote}
-\textsc{Structural Equations Model (SEM)}.  Let $i \in \{1,..., N\}$ denote the observational unit,  $t$ be the time periods, and $\ell$ be the time delay.  (1) For each $i$ and $t \leq -\ell$, the confounder, information, behavior, and policy variables $W_{it}, I_{it},  B_{it}, P_{it}$ are determined outside of the model, and the outcome variable $Y_{i, t+\ell}$ is determined outside of the model for $t \leq 0$.  (2) For each $i$ and $t \geq -\ell$, confounders $W_{it}$ are  determined, and information variables $I_{it}$ are determined  by (I); policy variables $P_{it}$ are determined by setting $\iota = I_{it}$  in (P) with  a realized stochastic shock $\varepsilon^p_{it}$ that obeys the exogeneity condition (E);  behavior variables $B_{it}$ are determined by setting $\iota = I_{it}$ and $p= P_{it}$ in  (SO) with a shock $\varepsilon^b_{it}$ that obeys (E); finally, the outcome $Y_{i, t + \ell}$ is realized by setting $\iota = I_{it}$, $p= P_{it}$, and $b = B_{it}$ in  (SO) with a shock $\varepsilon^y_{it}$ that obeys (E). \end{quote}
+\textsc{Structural Equations Model (SEM)}.  Let $i \in \{1,..., N\}$ denote the observational unit,  $t$ be the time periods, and $\ell$ be the time delay.  (1) For each $i$ and $t \leq -\ell$, the confounder, information, behavior, and policy variables $W_{it}, I_{it},  B_{it}, P_{it}$ are determined outside of the model, and the outcome variable $Y_{i, t+\ell}$ is determined by factors outside of the model for $t \leq 0$.  (2) For each $i$ and $t \geq -\ell$, confounders $W_{it}$ are  determined by factors outside of the mode, and information variables $I_{it}$ are determined  by (I); policy variables $P_{it}$ are determined by setting $\iota = I_{it}$  in (P) with  a realized stochastic shock $\varepsilon^p_{it}$ that obeys the exogeneity condition (E);  behavior variables $B_{it}$ are determined by setting $\iota = I_{it}$ and $p= P_{it}$ in  (SO) with a shock $\varepsilon^b_{it}$ that obeys (E); finally, the outcome $Y_{i, t + \ell}$ is realized by setting $\iota = I_{it}$, $p= P_{it}$, and $b = B_{it}$ in  (SO) with a shock $\varepsilon^y_{it}$ that obeys (E). \end{quote}
 
 %This formulation uses traditional econometrics language of causal structural equation models.  It appears to fit in well with general formulations of structural causal models developed \cite{pearl:why} and \cite{white:chalak}.
 
@@ -821,7 +821,11 @@ a sequence of counterfactual policies for each state:
 \begin{equation} \label{p-cf}\tag{CF-P}
 \{{\pcolor P^\star_{it}} \}_{t=1}^T, \quad i=1, \ldots N.
 \end{equation}
-We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. } Given the policies, we generate the counterfactual
+We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. } 
+The assumption  of invariance captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study.  The assumption is strong but is necessary to conduct
+counterfactual experiments, e.g. \cite{sims1972money} and \cite{strotz1960recursive}. It captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study. To make the assumption more plausible we limited our study to the early pandemic period.\footnote{Furthermore, we conducted several stability checks, for example, checking if the coefficients on mask policies remain stable (reported in the previous version) and also looking at more recent data during reopening, beyond early pandemic, to examine the stability of the model.} 
+
+Given the policies, we generate the counterfactual
 outcomes, behavior, and information by propagating the dynamic equations:
 \begin{equation} \label{eqn:CF-SEM} \tag{CF-SEM}
   \begin{aligned}
@@ -833,7 +837,7 @@ with the same initialization as the factual system up to $t \leq 0$. In stating 
 into observable and unobservable parts. Formally, we record this assumption and above discussion as follows.
 
 \begin{quote}
-\textsc{Counterfactual Structural Equations Model (CF-SEM)}.  Let $i \in \{1,..., N\}$ be the observational unit, $t$ be time periods, and $\ell$ be the time delay. (1) For each $i$ and $t \leq 0$, the confounder, information, behavior, policy, and outcome variables are determined as in SEM: $W^\star_{it}= W_{it}$, $I^\star_{it}= I_{it}$,  $B^\star_{it} = B_{it}$, $P^\star_{it}=P_{it}$, $Y^\star_{it} =Y_{it}$.  (2) For each $i$ and $t \geq 0$, confounders $W^\star_{it} =W_{it}$ are determined, and information variables $I^\star_{it}$ are determined  by (I);  policy variables $P^\star_{it}$ are set in (\ref{p-cf}); behavior variables $B^\star_{it}$ are determined by setting $\iota = I^\star_{it}$ and $p= P^\star_{it}$ in  (SO) with  the same stochastic shock $\varepsilon^b_{it}$ in (SO); the  counterfactual outcome $Y^\star_{i, t + \ell}$ is realized by setting $\iota = I^\star_{it}$, $p= P^\star_{it}$, and $b = B^\star_{it}$ in  (SO) with the same stochastic shock $\varepsilon^y_{it}$ in  (SO).
+\textsc{Counterfactual Structural Equations Model (CF-SEM)}.  Let $i \in \{1,..., N\}$ be the observational unit, $t$ be time periods, and $\ell$ be the time delay. (1) For each $i$ and $t \leq 0$, the confounder, information, behavior, policy, and outcome variables are determined as previously stated in SEM: $W^\star_{it}= W_{it}$, $I^\star_{it}= I_{it}$,  $B^\star_{it} = B_{it}$, $P^\star_{it}=P_{it}$, $Y^\star_{it} =Y_{it}$.  (2) For each $i$ and $t \geq 0$, confounders $W^\star_{it} =W_{it}$ are determined as in SEM, and information variables $I^\star_{it}$ are determined  by (I);  policy variables $P^\star_{it}$ are set in (\ref{p-cf}); behavior variables $B^\star_{it}$ are determined by setting $\iota = I^\star_{it}$ and $p= P^\star_{it}$ in  (SO) with  the same stochastic shock $\varepsilon^b_{it}$ in (SO); the  counterfactual outcome $Y^\star_{i, t + \ell}$ is realized by setting $\iota = I^\star_{it}$, $p= P^\star_{it}$, and $b = B^\star_{it}$ in  (SO) with the same stochastic shock $\varepsilon^y_{it}$ in  (SO).
 \end{quote}
 
 Figures \ref{Wright2} and \ref{fig:DynS2} present the causal path diagram for CF-SEM as well as the dynamics
@@ -932,20 +936,20 @@ $$
  &&  + \sum_{m=1}^{t/\ell-1} \left( (\gamma \alpha)_3 + \mu_3    \right)^m \left (\mathrm{PEB}^\star_{i,t-(m +1) \ell } +  \mathrm{PED}^\star_{i,t- (m+1)\ell}  \right),
  \end{array}
  $$
- interpreting $t/\ell$ as $\lfloor t/\ell \rfloor$.
- The effects can be decomposed into (a) delayed policy effects via behavior by
+ interpreting $t/\ell$ as $\lceil t/\ell \rceil$, where $\mathrm{PEB}^\star_{i,t } =  \mathrm{PED}^\star_{i,t} = 0$
+ for $t \leq 0$.  The effects can be decomposed into (a) delayed policy effects via behavior by
 summing terms containing $PEB$ and (b) delayed policy effects via direct impact
 by summing terms containing $PED$.
 
 All counterfactual quantities and contrasts can be computed from the expressions given
-above. For examples, given $\Delta C_{i0}>0$, new cases are linked to growth rates via relation:
+above. For examples, given $\Delta C_{i0}>0$, new confirmed cases are linked to growth rates via relation:
 $$
 \frac{\Delta C^{\star}_{it}}{\Delta C_{i0}} = \exp\left (  \sum_{s=1}^t  Y^\star_{is} \right) \text{ and }\frac{ \Delta C_{it}}{\Delta C_{i0}} = \exp
 \left (  \sum_{s=1}^t Y_{is}\right).
 $$
 The cumulative cases can be constructed by summing over the new cases. Various contrasts are
-then calculated from these quantities. For example, the relative contrast of new counterfactual cases
-to the  factual cases is given by:
+then calculated from these quantities. For example, the relative contrast of counterfactual new confirmed cases
+to the  factual confirmed cases is given by:
 $$
 \Delta C^{\star}_{it}/\Delta C_{it} = \exp\left(  \sum_{s=1}^t ( Y^\star_{is} -  Y_{is}) \right).
 $$
