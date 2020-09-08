@@ -9,51 +9,50 @@ Warning--entry type for "whitehouse2020" isn't style-file defined
 --line 892 of file covid.bib
 Warning--entry type for "midas2020" isn't style-file defined
 --line 900 of file covid.bib
-Warning--I didn't find a database entry for "sims1972"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--missing institution in bartik2020
 Warning--empty note in chen2020
 Warning--empty pages in lsmith
-You've used 83 entries,
+You've used 84 entries,
             3072 wiz_defined-function locations,
-            1051 strings with 25035 characters,
-and the built_in function-call counts, 66746 in all, are:
-= -- 4617
-> -- 5666
+            1057 strings with 25124 characters,
+and the built_in function-call counts, 67282 in all, are:
+= -- 4665
+> -- 5679
 < -- 5
-+ -- 1906
-- -- 1791
-* -- 5334
-:= -- 11309
-add.period$ -- 422
-call.type$ -- 83
-change.case$ -- 896
-chr.to.int$ -- 79
-cite$ -- 86
-duplicate$ -- 4372
-empty$ -- 3488
-format.name$ -- 1968
-if$ -- 12713
++ -- 1911
+- -- 1795
+* -- 5367
+:= -- 11400
+add.period$ -- 427
+call.type$ -- 84
+change.case$ -- 901
+chr.to.int$ -- 80
+cite$ -- 87
+duplicate$ -- 4412
+empty$ -- 3535
+format.name$ -- 1972
+if$ -- 12819
 int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 1010
-newline$ -- 434
-num.names$ -- 332
-pop$ -- 2208
+missing$ -- 1018
+newline$ -- 439
+num.names$ -- 336
+pop$ -- 2220
 preamble$ -- 1
-purify$ -- 877
+purify$ -- 882
 quote$ -- 0
-skip$ -- 1228
+skip$ -- 1241
 stack$ -- 0
-substring$ -- 1514
-swap$ -- 2216
+substring$ -- 1550
+swap$ -- 2237
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 729
+type$ -- 738
 warning$ -- 3
-while$ -- 367
+while$ -- 373
 width$ -- 0
-write$ -- 1081
+write$ -- 1094
 is.kanji.str$ -- 0
-(There were 7 warnings)
+(There were 6 warnings)

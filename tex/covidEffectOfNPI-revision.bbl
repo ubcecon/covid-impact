@@ -1,4 +1,4 @@
-\begin{thebibliography}{83}
+\begin{thebibliography}{84}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -536,6 +536,11 @@ Seres, Gyula, Anna~Helen Balleyer, Nicola Cerutti, Jana Friedrichsen, and
   Mandatory Masking: Evidence from Public Waiting Lines.}
 \newblock
   \urlprefix\url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3641367}.
+
+\bibitem[{Sims(1972)}]{sims1972}
+Sims, Christopher~A. 1972.
+\newblock \enquote{Money, income, and causality.}
+\newblock \emph{The American economic review} 62~(4):540--552.
 
 \bibitem[{Siordia(2020)}]{siorda2020}
 Siordia, Juan~A. 2020.

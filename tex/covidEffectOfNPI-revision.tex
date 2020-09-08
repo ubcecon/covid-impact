@@ -572,18 +572,12 @@ the system from the last equation to the first:
 The specification of the model above grasps one-period responses.  The dynamics over multiple periods will be induced by the evolution
 of information variables, which include time, lagged and integrated values of outcome:\footnote{Our empirical analysis also considers a specification in which information variables include lagged national cases/deaths as well as lagged behavior variables.}
 \begin{equation}\label{eq:I}\tag{I}
- {\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-\ell} })' := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=0}^{ \lfloor t/\ell \rfloor}
-{\ycolor Y_{i,t - \ell m}} \Big )  \end{equation}
+ {\icolor I_{it} } := I_t( {\ycolor Y_{it}},  { \icolor  I_{i, t-\ell} }) := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=0}^{ \lfloor t/\ell \rfloor}
+{\ycolor Y_{i,t - \ell m}} \Big )'  \end{equation}
  for  each  $t \in \{0,1,...,T\}$, where $g$ is deterministic function of time, e.g., month indicators,
  assuming that the log of new cases at time $ - t \ \mathrm{mod} \ \ell $ is zero, for notational convenience.
  \footnote{The general formula  for  $I_{i, t-1}$ is $
-S_{i, t, \ell } + \sum_{m=1}^{ \lfloor t/\ell \rfloor} Y_{i,t - \ell m}$, where $ S_{i, t, \ell }$ is the initial condition, the log of new cases at time $- t \ \mathrm{ mod } \ \ell$.}
-
- 
- 
-
-
-In this structure, people respond to both global information, captured by a function of time such as month dummies, and local information sources, captured by the local growth rate and the total number of cases. The local information also captures the persistence of the growth rate process.  We model the reaction of people's behavior via the term ${\icolor \gamma'I_{t}}$ in the behavior equation.  The dynamical system requires initialization, for example we can set  ${\ycolor Y_{it}} = 0$ for $t \leq 0$. The  lagged values of behavior variable may be also included in the information set, but we postpone this discussion after the main empirical results are presented.
+S_{i, t, \ell } + \sum_{m=1}^{ \lfloor t/\ell \rfloor} Y_{i,t - \ell m}$, where $ S_{i, t, \ell }$ is the initial condition, the log of new cases at time $- t \ \mathrm{ mod } \ \ell$.} In this structure, people respond to both global information, captured by a function of time such as month dummies, and local information sources, captured by the local growth rate and the total number of cases. The local information also captures the persistence of the growth rate process.  We model the reaction of people's behavior via the term ${\icolor \gamma'I_{t}}$ in the behavior equation.  The  lagged values of behavior variable may be also included in the information set, but we postpone this discussion after the main empirical results are presented.
 
 With any structure of this form, realized outcomes may become new information for future periods, inducing a dynamical system over multiple periods. We show the resulting dynamical system in a diagram of Figure \ref{fig:DynS}.  Specification
 of this system is useful for studying delayed effects of policies and behaviors and in considering the counterfactual policy analysis.
@@ -623,7 +617,7 @@ Next we combine the above parts together with an appropriate
 initializations to give a formal definition of the model we use.
 
 \begin{quote}
-\textsc{Structural Equations Model (SEM)}.  Let $i \in \{1,..., N\}$ denote the observational unit,  $t$ be the time periods, and $\ell$ be the time delay.  (1) For each $i$ and $t \leq -\ell$, the confounder, information, behavior, and policy variables $W_{it}, I_{it},  B_{it}, P_{it}$ are determined outside of the model, and the outcome variable $Y_{i, t+\ell}$ is determined by factors outside of the model for $t \leq 0$.  (2) For each $i$ and $t \geq -\ell$, confounders $W_{it}$ are  determined by factors outside of the mode, and information variables $I_{it}$ are determined  by (I); policy variables $P_{it}$ are determined by setting $\iota = I_{it}$  in (P) with  a realized stochastic shock $\varepsilon^p_{it}$ that obeys the exogeneity condition (E);  behavior variables $B_{it}$ are determined by setting $\iota = I_{it}$ and $p= P_{it}$ in  (SO) with a shock $\varepsilon^b_{it}$ that obeys (E); finally, the outcome $Y_{i, t + \ell}$ is realized by setting $\iota = I_{it}$, $p= P_{it}$, and $b = B_{it}$ in  (SO) with a shock $\varepsilon^y_{it}$ that obeys (E). \end{quote}
+\textsc{Structural Equations Model (SEM)}.  Let $i \in \{1,..., N\}$ denote the observational unit,  $t$ be the time periods, and $\ell$ be the time delay.  (1) For each $i$ and $t \leq -\ell$, the confounder, information, behavior, and policy variables $W_{it}, I_{it},  B_{it}, P_{it}$ are determined outside of the model, and the outcome variable $Y_{i, t+\ell}$ is determined by factors outside of the model for $t \leq 0$.  (2) For each $i$ and $t \geq -\ell$, confounders $W_{it}$ are  determined by factors outside of the model, and information variables $I_{it}$ are determined  by (I); policy variables $P_{it}$ are determined by setting $\iota = I_{it}$  in (P) with  a realized stochastic shock $\varepsilon^p_{it}$ that obeys the exogeneity condition (E);  behavior variables $B_{it}$ are determined by setting $\iota = I_{it}$ and $p= P_{it}$ in  (SO) with a shock $\varepsilon^b_{it}$ that obeys (E); finally, the outcome $Y_{i, t + \ell}$ is realized by setting $\iota = I_{it}$, $p= P_{it}$, and $b = B_{it}$ in  (SO) with a shock $\varepsilon^y_{it}$ that obeys (E). \end{quote}
 
 %This formulation uses traditional econometrics language of causal structural equation models.  It appears to fit in well with general formulations of structural causal models developed \cite{pearl:why} and \cite{white:chalak}.
 
@@ -850,7 +844,7 @@ outcomes, behavior, and information by propagating the dynamic equations:
   \begin{aligned}
 & {\ycolor Y^\star_{i,t+\ell}}  & := & Y_{i,t+\ell} ( {\bcolor B^\star_{it} } , {\pcolor P^\star_{it}}, {\icolor I^\star_{it}}), \\
 & {\bcolor B^\star_{it} } & := &   B_{it}({\pcolor P^\star_{it} } ,{\icolor I^\star_{it}}), \\
-& {\icolor I^\star_{it} }& := &  I ({ t,  {\ycolor Y^\star_{it}}, \icolor I^\star_{i,t-\ell}}),  \end{aligned}
+& {\icolor I^\star_{it} }& := &  I_t ( {\ycolor Y^\star_{it}}, \icolor I^\star_{i,t-\ell}),  \end{aligned}
 \end{equation}
 with the same initialization as the factual system up to $t \leq 0$. In stating this counterfactual system of equations, we assume that structural outcome equations (SO) and information equations (I) remain invariant and so do the stochastic shocks, decomposed
 into observable and unobservable parts. Formally, we record this assumption and above discussion as follows.
