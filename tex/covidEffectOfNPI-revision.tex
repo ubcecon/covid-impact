@@ -572,7 +572,7 @@ the system from the last equation to the first:
 The specification of the model above grasps one-period responses.  The dynamics over multiple periods will be induced by the evolution
 of information variables, which include time, lagged and integrated values of outcome:\footnote{Our empirical analysis also considers a specification in which information variables include lagged national cases/deaths as well as lagged behavior variables.}
 \begin{equation}\label{eq:I}\tag{I}
- {\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-1} })' := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=1}^{ \lfloor t/\ell \rfloor}
+ {\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-\ell} })' := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=0}^{ \lfloor t/\ell \rfloor}
 {\ycolor Y_{i,t - \ell m}} \Big )  \end{equation}
  for  each  $t \in \{0,1,...,T\}$, where $g$ is deterministic function of time, e.g., month indicators,
  assuming that the log of new cases at time $ - t \ \mathrm{mod} \ \ell $ is zero, for notational convenience.
