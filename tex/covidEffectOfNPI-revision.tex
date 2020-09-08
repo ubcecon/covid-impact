@@ -725,6 +725,7 @@ from two models, one motivated via the causal path, reflecting contextual knowle
 %
 %\subsection{Outcome and Key Confounders via SIR model}\label{sec:sirmodel}
 %Letting $C_{it}$ denotes cumulative number of  confirmed cases in state $i$ at time $t$, our outcome
+%:
 %\begin{equation} \label{eq:y}
 %{\ycolor Y_{it}} :=\Delta \log(\Delta C_{it}):= \log( \Delta C_{it} ) -
 %\log( \Delta C_{i,t-7})
@@ -836,7 +837,7 @@ a sequence of counterfactual policies for each state:
 \end{equation}
 We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. } 
 The assumption  of invariance captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study.  The assumption is strong but is necessary to conduct
-counterfactual experiments, e.g. \cite{sims1972} and \cite{strotz1960recursive}. It captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study. To make the assumption more plausible we limited our study to the early pandemic period.\footnote{Furthermore, we conducted several stability checks, for example, checking if the coefficients on mask policies remain stable (reported in the previous version) and also looking at more recent data during reopening, beyond early pandemic, to examine the stability of the model.} 
+counterfactual experiments, e.g. \cite{sims1972} and \cite{strotz1960recursive}. To make the assumption more plausible we limited our study to the early pandemic period.\footnote{Furthermore, we conducted several stability checks, for example, checking if the coefficients on mask policies remain stable (reported in the previous version) and also looking at more recent data during reopening, beyond early pandemic, to examine the stability of the model.} 
 
 Given the policies, we generate the counterfactual
 outcomes, behavior, and information by propagating the dynamic equations:
