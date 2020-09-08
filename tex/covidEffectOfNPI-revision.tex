@@ -556,16 +556,34 @@ the system from the last equation to the first:
 & {\pcolor P_{it} }& := &  P_{it}({\icolor I_{it}}). \end{aligned}
 \end{equation}
 
+
+
+
+
+%The specification of the model above grasps one-period responses.  The dynamics over multiple periods will be induced by the evolution
+%of information variables, which include time, lagged and integrated values of outcome:\footnote{Our empirical analysis also considers a specification in which information variables include lagged national cases/deaths as well as lagged behavior variables.}
+%\begin{equation}\label{eq:I}\tag{I}
+ %{\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-1} })' := \Big (g(t) , {\ycolor Y_{it}},  S_{i, t, \ell } +  \sum_{m=1}^{ \lfloor t/\ell \rfloor}
+%{\ycolor Y_{i,t - \ell m}} \Big )  \end{equation}
+% for  each  $t \in \{0,1,...,T\}$, where $g$ is deterministic function of time, e.g., month indicators,
+%where $ S_{i, t, \ell }$ is the initial condition, the log of new cases at time $t - \lfloor t/\ell \rfloor$.
+
+
 The specification of the model above grasps one-period responses.  The dynamics over multiple periods will be induced by the evolution
 of information variables, which include time, lagged and integrated values of outcome:\footnote{Our empirical analysis also considers a specification in which information variables include lagged national cases/deaths as well as lagged behavior variables.}
 \begin{equation}\label{eq:I}\tag{I}
- {\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-1} })' := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=0}^{t/\ell}
+ {\icolor I_{it} } := I(t, {\ycolor Y_{it}},  { \icolor  I_{i, t-1} })' := \Big (g(t) , {\ycolor Y_{it}},  \sum_{m=1}^{ \lfloor t/\ell \rfloor}
 {\ycolor Y_{i,t - \ell m}} \Big )  \end{equation}
  for  each  $t \in \{0,1,...,T\}$, where $g$ is deterministic function of time, e.g., month indicators,
- and $t/\ell$ is defined as $\lceil {t/\ell} \rceil$.
+ assuming that the log of new cases at time $ - t \ \mathrm{mod} \ \ell $ is zero, for notational convenience.
+ \footnote{The general formula  for  $I_{i, t-1}$ is $
+S_{i, t, \ell } + \sum_{m=1}^{ \lfloor t/\ell \rfloor} Y_{i,t - \ell m}$, where $ S_{i, t, \ell }$ is the initial condition, the log of new cases at time $- t \ \mathrm{ mod } \ \ell$.}
+
+ 
+ 
 
 
-In this structure, people respond to both global information, captured by a function of time such as month dummies, and local information sources, captured by the local growth rate and the total number of cases. The local information also captures the persistence of the growth rate process.  We model the reaction of people's behavior via the term ${\icolor \gamma'I_{t}}$ in the behavior equation.  The dynamical system requires initialization, for example we can set  ${\ycolor Y_{it}} = 0$ for $t \leq 0$ in our context, since we are analyzing the pandemic from the very beginning, but other initializations could be appropriate in other contexts. % The  lagged values of behavior variable may be also included in the information set, but we postpone this discussion after the main empirical results are presented.
+In this structure, people respond to both global information, captured by a function of time such as month dummies, and local information sources, captured by the local growth rate and the total number of cases. The local information also captures the persistence of the growth rate process.  We model the reaction of people's behavior via the term ${\icolor \gamma'I_{t}}$ in the behavior equation.  The dynamical system requires initialization, for example we can set  ${\ycolor Y_{it}} = 0$ for $t \leq 0$. The  lagged values of behavior variable may be also included in the information set, but we postpone this discussion after the main empirical results are presented.
 
 With any structure of this form, realized outcomes may become new information for future periods, inducing a dynamical system over multiple periods. We show the resulting dynamical system in a diagram of Figure \ref{fig:DynS}.  Specification
 of this system is useful for studying delayed effects of policies and behaviors and in considering the counterfactual policy analysis.
@@ -675,6 +693,7 @@ are parameterized as functions of observable characteristic, ${\wcolor W_{it}}$,
 are modeled as a function of state level characteristics, and the time random effects are modeled
 by including month dummies and their interactions with state level characteristics (in the sensitivity analysis,
 we also add weekly dummies).  The stochastic shocks $\{ \varepsilon_{it}\}_{t=1}^T$ are treated as independent across states $i$ and can be arbitrarily dependent across time $t$ within a state.
+%:
 
 Another modeling approach is the fixed effects panel data model, where ${\wcolor W_{it}}$ includes
 \text{latent} (unobserved) state level confonders ${\wcolor W_i}$ and  and time level effects ${\wcolor W_t}$,
@@ -823,7 +842,7 @@ a sequence of counterfactual policies for each state:
 \end{equation}
 We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. } 
 The assumption  of invariance captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study.  The assumption is strong but is necessary to conduct
-counterfactual experiments, e.g. \cite{sims1972money} and \cite{strotz1960recursive}. It captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study. To make the assumption more plausible we limited our study to the early pandemic period.\footnote{Furthermore, we conducted several stability checks, for example, checking if the coefficients on mask policies remain stable (reported in the previous version) and also looking at more recent data during reopening, beyond early pandemic, to examine the stability of the model.} 
+counterfactual experiments, e.g. \cite{sims1972} and \cite{strotz1960recursive}. It captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study. To make the assumption more plausible we limited our study to the early pandemic period.\footnote{Furthermore, we conducted several stability checks, for example, checking if the coefficients on mask policies remain stable (reported in the previous version) and also looking at more recent data during reopening, beyond early pandemic, to examine the stability of the model.} 
 
 Given the policies, we generate the counterfactual
 outcomes, behavior, and information by propagating the dynamic equations:
@@ -936,22 +955,24 @@ $$
  &&  + \sum_{m=1}^{t/\ell-1} \left( (\gamma \alpha)_3 + \mu_3    \right)^m \left (\mathrm{PEB}^\star_{i,t-(m +1) \ell } +  \mathrm{PED}^\star_{i,t- (m+1)\ell}  \right),
  \end{array}
  $$
- interpreting $t/\ell$ as $\lceil t/\ell \rceil$, where $\mathrm{PEB}^\star_{i,t } =  \mathrm{PED}^\star_{i,t} = 0$
- for $t \leq 0$.  The effects can be decomposed into (a) delayed policy effects via behavior by
+ interpreting $t/\ell$ as $\lfloor t/\ell \rfloor$.  %, where $\mathrm{PEB}^\star_{i,t } =  \mathrm{PED}^\star_{i,t} = 0$
+ %for $t \leq 0$.  
+ The effects can be decomposed into (a) delayed policy effects via behavior by
 summing terms containing $PEB$ and (b) delayed policy effects via direct impact
 by summing terms containing $PED$.
 
 All counterfactual quantities and contrasts can be computed from the expressions given
-above. For examples, given $\Delta C_{i0}>0$, new confirmed cases are linked to growth rates via relation:
+above. For examples, given $\Delta C_{i0}>0$, new confirmed cases are linked to growth rates via relation
+(taking $t$ divisible by $\ell$ for simplicity):
 $$
-\frac{\Delta C^{\star}_{it}}{\Delta C_{i0}} = \exp\left (  \sum_{s=1}^t  Y^\star_{is} \right) \text{ and }\frac{ \Delta C_{it}}{\Delta C_{i0}} = \exp
-\left (  \sum_{s=1}^t Y_{is}\right).
+\frac{\Delta C^{\star}_{it}}{\Delta C_{i0}} = \exp\left (  \sum_{m=1}^{t/\ell}  Y^\star_{i,m\ell} \right) \text{ and }\frac{ \Delta C_{it}}{\Delta C_{i0}} = \exp
+\left (  \sum_{m=1}^{t/\ell}   Y_{i, m \ell }\right).
 $$
 The cumulative cases can be constructed by summing over the new cases. Various contrasts are
 then calculated from these quantities. For example, the relative contrast of counterfactual new confirmed cases
 to the  factual confirmed cases is given by:
 $$
-\Delta C^{\star}_{it}/\Delta C_{it} = \exp\left(  \sum_{s=1}^t ( Y^\star_{is} -  Y_{is}) \right).
+\Delta C^{\star}_{it}/\Delta C_{it} = \exp\left(  \sum_{m=1}^{t/\ell} ( Y^\star_{i,m\ell} -  Y_{i,m \ell}) \right).
 $$
 We refer to the appendix for further details. Similar calculations apply for fatalities. 
 Note that our analysis is conditional on the factual history and structural stochastic 

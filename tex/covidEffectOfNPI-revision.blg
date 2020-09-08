@@ -4,18 +4,19 @@ The top-level auxiliary file: covidEffectOfNPI-revision.aux
 The style file: jpe.bst
 Database file #1: covid.bib
 Warning--entry type for "google2020" isn't style-file defined
---line 871 of file covid.bib
+--line 884 of file covid.bib
 Warning--entry type for "whitehouse2020" isn't style-file defined
---line 879 of file covid.bib
+--line 892 of file covid.bib
 Warning--entry type for "midas2020" isn't style-file defined
---line 887 of file covid.bib
+--line 900 of file covid.bib
+Warning--I didn't find a database entry for "sims1972"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--missing institution in bartik2020
 Warning--empty note in chen2020
 Warning--empty pages in lsmith
 You've used 83 entries,
             3072 wiz_defined-function locations,
-            1050 strings with 25027 characters,
+            1051 strings with 25035 characters,
 and the built_in function-call counts, 66746 in all, are:
 = -- 4617
 > -- 5666
@@ -55,4 +56,4 @@ while$ -- 367
 width$ -- 0
 write$ -- 1081
 is.kanji.str$ -- 0
-(There were 6 warnings)
+(There were 7 warnings)
