@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  8 SEP 2020 17:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  8 SEP 2020 17:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1210,13 +1210,13 @@ name{equation.2.3}) has been already used, duplicate ignored
 l.940   \end{align}
                     [15] [16] [17] [18]
 (./tables_and_figures/policies_inregs.tex) [19]
-<tables_and_figures/transit.pdf, id=713, 505.89pt x 252.945pt>
+<tables_and_figures/transit.pdf, id=721, 505.89pt x 252.945pt>
 File: tables_and_figures/transit.pdf Graphic file (type pdf)
 <use tables_and_figures/transit.pdf>
 Package pdftex.def Info: tables_and_figures/transit.pdf  used on input line 115
 2.
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/workplaces.pdf, id=714, 505.89pt x 252.945pt>
+<tables_and_figures/workplaces.pdf, id=722, 505.89pt x 252.945pt>
 File: tables_and_figures/workplaces.pdf Graphic file (type pdf)
 <use tables_and_figures/workplaces.pdf>
 Package pdftex.def Info: tables_and_figures/workplaces.pdf  used on input line 
@@ -1228,37 +1228,37 @@ Overfull \hbox (13.64998pt too wide) in paragraph at lines 1151--1155
  []
 
 (./tables_and_figures/corr.tex)
-<tables_and_figures/pmaskbus_p.pdf, id=718, 289.08pt x 144.54pt>
+<tables_and_figures/pmaskbus_p.pdf, id=726, 289.08pt x 144.54pt>
 File: tables_and_figures/pmaskbus_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus_p.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus_p.pdf  used on input line 
 1211.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pk12_p.pdf, id=719, 289.08pt x 144.54pt>
+<tables_and_figures/pk12_p.pdf, id=727, 289.08pt x 144.54pt>
 File: tables_and_figures/pk12_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12_p.pdf>
 Package pdftex.def Info: tables_and_figures/pk12_p.pdf  used on input line 1213
 .
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pshelter_p.pdf, id=720, 289.08pt x 144.54pt>
+<tables_and_figures/pshelter_p.pdf, id=728, 289.08pt x 144.54pt>
 File: tables_and_figures/pshelter_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter_p.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter_p.pdf  used on input line 
 1215.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pmovie_p.pdf, id=721, 289.08pt x 144.54pt>
+<tables_and_figures/pmovie_p.pdf, id=729, 289.08pt x 144.54pt>
 File: tables_and_figures/pmovie_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie_p.pdf>
 Package pdftex.def Info: tables_and_figures/pmovie_p.pdf  used on input line 12
 17.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/prestaurant_p.pdf, id=722, 289.08pt x 144.54pt>
+<tables_and_figures/prestaurant_p.pdf, id=730, 289.08pt x 144.54pt>
 File: tables_and_figures/prestaurant_p.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant_p.pdf>
 Package pdftex.def Info: tables_and_figures/prestaurant_p.pdf  used on input li
 ne 1219.
 (pdftex.def)             Requested size: 134.42114pt x 67.21039pt.
-<tables_and_figures/pnonessential_p.pdf, id=723, 289.08pt x 144.54pt>
+<tables_and_figures/pnonessential_p.pdf, id=731, 289.08pt x 144.54pt>
 File: tables_and_figures/pnonessential_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential_p.pdf>
 Package pdftex.def Info: tables_and_figures/pnonessential_p.pdf  used on input 
@@ -1271,13 +1271,13 @@ Underfull \vbox (badness 2150) has occurred while \output is active []
 [21 <./tables_and_figures/pmaskbus_p.pdf> <./tables_and_figures/pk12_p.pdf> <./
 tables_and_figures/pshelter_p.pdf> <./tables_and_figures/pmovie_p.pdf> <./table
 s_and_figures/prestaurant_p.pdf> <./tables_and_figures/pnonessential_p.pdf>]
-<tables_and_figures/pmaskbus-cases-14.pdf, id=798, 289.08pt x 216.81pt>
+<tables_and_figures/pmaskbus-cases-14.pdf, id=805, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-cases-14.pdf  used on inpu
 t line 1353.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pmaskbus-deaths-21.pdf, id=799, 289.08pt x 216.81pt>
+<tables_and_figures/pmaskbus-deaths-21.pdf, id=806, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-deaths-21.pdf  used on inp
@@ -1355,13 +1355,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ]
 [36]
-<tables_and_figures/pmaskbus-whisker-14.pdf, id=1046, 289.08pt x 216.81pt>
+<tables_and_figures/pmaskbus-whisker-14.pdf, id=1053, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-whisker-14.pdf  used on in
 put line 1972.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pmaskbus-whisker-7.pdf, id=1047, 289.08pt x 216.81pt>
+<tables_and_figures/pmaskbus-whisker-7.pdf, id=1054, 289.08pt x 216.81pt>
 File: tables_and_figures/pmaskbus-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-whisker-7.pdf>
 Package pdftex.def Info: tables_and_figures/pmaskbus-whisker-7.pdf  used on inp
@@ -1372,13 +1372,13 @@ Overfull \hbox (19.99998pt too wide) in paragraph at lines 1970--1976
  [][] 
  []
 
-<tables_and_figures/pk12-whisker-14.pdf, id=1048, 289.08pt x 216.81pt>
+<tables_and_figures/pk12-whisker-14.pdf, id=1055, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-whisker-14.pdf  used on input 
 line 1983.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pk12-whisker-7.pdf, id=1049, 289.08pt x 216.81pt>
+<tables_and_figures/pk12-whisker-7.pdf, id=1056, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-whisker-7.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-whisker-7.pdf  used on input l
@@ -1389,13 +1389,13 @@ Overfull \hbox (19.99998pt too wide) in paragraph at lines 1981--1987
  [][] 
  []
 
-<tables_and_figures/pshelter-whisker-14.pdf, id=1050, 289.08pt x 216.81pt>
+<tables_and_figures/pshelter-whisker-14.pdf, id=1057, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter-whisker-14.pdf  used on in
 put line 2003.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pshelter-whisker-7.pdf, id=1051, 289.08pt x 216.81pt>
+<tables_and_figures/pshelter-whisker-7.pdf, id=1058, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-whisker-7.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter-whisker-7.pdf  used on inp
@@ -1406,13 +1406,13 @@ Overfull \hbox (19.99998pt too wide) in paragraph at lines 2001--2007
  [][] 
  []
 
-<tables_and_figures/pindex-whisker-14.pdf, id=1052, 289.08pt x 216.81pt>
+<tables_and_figures/pindex-whisker-14.pdf, id=1059, 289.08pt x 216.81pt>
 File: tables_and_figures/pindex-whisker-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pindex-whisker-14.pdf>
 Package pdftex.def Info: tables_and_figures/pindex-whisker-14.pdf  used on inpu
 t line 2014.
 (pdftex.def)             Requested size: 216.81pt x 162.60709pt.
-<tables_and_figures/pindex-whisker-7.pdf, id=1053, 289.08pt x 216.81pt>
+<tables_and_figures/pindex-whisker-7.pdf, id=1060, 289.08pt x 216.81pt>
 File: tables_and_figures/pindex-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pindex-whisker-7.pdf>
 Package pdftex.def Info: tables_and_figures/pindex-whisker-7.pdf  used on input
@@ -1423,13 +1423,13 @@ Overfull \hbox (19.99998pt too wide) in paragraph at lines 2012--2018
  [][] 
  []
 
-<tables_and_figures/pk12-cases-14.pdf, id=1054, 289.08pt x 216.81pt>
+<tables_and_figures/pk12-cases-14.pdf, id=1061, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-cases-14.pdf  used on input li
 ne 2031.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pk12-deaths-21.pdf, id=1055, 289.08pt x 216.81pt>
+<tables_and_figures/pk12-deaths-21.pdf, id=1062, 289.08pt x 216.81pt>
 File: tables_and_figures/pk12-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pk12-deaths-21.pdf  used on input l
@@ -1491,7 +1491,7 @@ Overfull \hbox (2.06752pt too wide) in paragraph at lines 1--2089
 [41
 
 ]
-<tables_and_figures/Washington-mask-dgrowth_idx.pdf, id=1179, 361.35pt x 271.01
+<tables_and_figures/Washington-mask-dgrowth_idx.pdf, id=1186, 361.35pt x 271.01
 25pt>
 File: tables_and_figures/Washington-mask-dgrowth_idx.pdf Graphic file (type pdf
 )
@@ -1499,7 +1499,7 @@ File: tables_and_figures/Washington-mask-dgrowth_idx.pdf Graphic file (type pdf
 Package pdftex.def Info: tables_and_figures/Washington-mask-dgrowth_idx.pdf  us
 ed on input line 2125.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-dcases_idx.pdf, id=1180, 361.35pt x 271.012
+<tables_and_figures/Washington-mask-dcases_idx.pdf, id=1187, 361.35pt x 271.012
 5pt>
 File: tables_and_figures/Washington-mask-dcases_idx.pdf Graphic file (type pdf)
 
@@ -1507,14 +1507,14 @@ File: tables_and_figures/Washington-mask-dcases_idx.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/Washington-mask-dcases_idx.pdf  use
 d on input line 2127.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-rcumu_idx.pdf, id=1181, 361.35pt x 271.0125
+<tables_and_figures/Washington-mask-rcumu_idx.pdf, id=1188, 361.35pt x 271.0125
 pt>
 File: tables_and_figures/Washington-mask-rcumu_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/Washington-mask-rcumu_idx.pdf>
 Package pdftex.def Info: tables_and_figures/Washington-mask-rcumu_idx.pdf  used
  on input line 2129.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-dgrowth_deaths_idx.pdf, id=1182, 361.35pt x
+<tables_and_figures/Washington-mask-dgrowth_deaths_idx.pdf, id=1189, 361.35pt x
  271.0125pt>
 File: tables_and_figures/Washington-mask-dgrowth_deaths_idx.pdf Graphic file (t
 ype pdf)
@@ -1522,7 +1522,7 @@ ype pdf)
 Package pdftex.def Info: tables_and_figures/Washington-mask-dgrowth_deaths_idx.
 pdf  used on input line 2134.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-dcases_deaths_idx.pdf, id=1183, 361.35pt x 
+<tables_and_figures/Washington-mask-dcases_deaths_idx.pdf, id=1190, 361.35pt x 
 271.0125pt>
 File: tables_and_figures/Washington-mask-dcases_deaths_idx.pdf Graphic file (ty
 pe pdf)
@@ -1530,7 +1530,7 @@ pe pdf)
 Package pdftex.def Info: tables_and_figures/Washington-mask-dcases_deaths_idx.p
 df  used on input line 2136.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/Washington-mask-rcumu_deaths_idx.pdf, id=1184, 361.35pt x 2
+<tables_and_figures/Washington-mask-rcumu_deaths_idx.pdf, id=1191, 361.35pt x 2
 71.0125pt>
 File: tables_and_figures/Washington-mask-rcumu_deaths_idx.pdf Graphic file (typ
 e pdf)
@@ -1567,13 +1567,13 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./tables_and_figures/Washing
 ton-mask-rcumu_deaths_idx.pdf): PDF inclusion: multiple pdfs with page group in
 cluded in a single page
 >]
-<tables_and_figures/us-mask-dgrowth_idx.pdf, id=1268, 361.35pt x 271.0125pt>
+<tables_and_figures/us-mask-dgrowth_idx.pdf, id=1275, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-mask-dgrowth_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-dgrowth_idx.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_idx.pdf  used on in
 put line 2211.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-mask-dcases_idx.pdf, id=1269, 361.35pt x 271.0125pt>
+<tables_and_figures/us-mask-dcases_idx.pdf, id=1276, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-mask-dcases_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-dcases_idx.pdf>
 Package pdftex.def Info: tables_and_figures/us-mask-dcases_idx.pdf  used on inp
@@ -1584,7 +1584,7 @@ File: tables_and_figures/us-mask-rcumu_idx.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/us-mask-rcumu_idx.pdf  used on inpu
 t line 2215.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-mask-dgrowth_deaths_idx.pdf, id=1270, 361.35pt x 271.012
+<tables_and_figures/us-mask-dgrowth_deaths_idx.pdf, id=1277, 361.35pt x 271.012
 5pt>
 File: tables_and_figures/us-mask-dgrowth_deaths_idx.pdf Graphic file (type pdf)
 
@@ -1592,7 +1592,7 @@ File: tables_and_figures/us-mask-dgrowth_deaths_idx.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/us-mask-dgrowth_deaths_idx.pdf  use
 d on input line 2219.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-mask-dcases_deaths_idx.pdf, id=1271, 361.35pt x 271.0125
+<tables_and_figures/us-mask-dcases_deaths_idx.pdf, id=1278, 361.35pt x 271.0125
 pt>
 File: tables_and_figures/us-mask-dcases_deaths_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-dcases_deaths_idx.pdf>
@@ -1608,13 +1608,13 @@ on input line 2223.
 Underfull \vbox (badness 3312) has occurred while \output is active []
 
  [43]
-<tables_and_figures/us-index-dgrowth_idx.pdf, id=1283, 361.35pt x 271.0125pt>
+<tables_and_figures/us-index-dgrowth_idx.pdf, id=1290, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-index-dgrowth_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-index-dgrowth_idx.pdf>
 Package pdftex.def Info: tables_and_figures/us-index-dgrowth_idx.pdf  used on i
 nput line 2288.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-index-dcases_idx.pdf, id=1284, 361.35pt x 271.0125pt>
+<tables_and_figures/us-index-dcases_idx.pdf, id=1291, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-index-dcases_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-index-dcases_idx.pdf>
 Package pdftex.def Info: tables_and_figures/us-index-dcases_idx.pdf  used on in
@@ -1625,7 +1625,7 @@ File: tables_and_figures/us-index-rcumu_idx.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/us-index-rcumu_idx.pdf  used on inp
 ut line 2292.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-index-dgrowth_deaths_idx.pdf, id=1285, 361.35pt x 271.01
+<tables_and_figures/us-index-dgrowth_deaths_idx.pdf, id=1292, 361.35pt x 271.01
 25pt>
 File: tables_and_figures/us-index-dgrowth_deaths_idx.pdf Graphic file (type pdf
 )
@@ -1633,7 +1633,7 @@ File: tables_and_figures/us-index-dgrowth_deaths_idx.pdf Graphic file (type pdf
 Package pdftex.def Info: tables_and_figures/us-index-dgrowth_deaths_idx.pdf  us
 ed on input line 2296.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-index-dcases_deaths_idx.pdf, id=1286, 361.35pt x 271.012
+<tables_and_figures/us-index-dcases_deaths_idx.pdf, id=1293, 361.35pt x 271.012
 5pt>
 File: tables_and_figures/us-index-dcases_deaths_idx.pdf Graphic file (type pdf)
 
@@ -1646,14 +1646,14 @@ File: tables_and_figures/us-index-rcumu_deaths_idx.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/us-index-rcumu_deaths_idx.pdf  used
  on input line 2300.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-shelter-dgrowth_idx.pdf, id=1288, 361.35pt x 271.0125pt>
+<tables_and_figures/us-shelter-dgrowth_idx.pdf, id=1295, 361.35pt x 271.0125pt>
 
 File: tables_and_figures/us-shelter-dgrowth_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-dgrowth_idx.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-dgrowth_idx.pdf  used on
  input line 2333.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-shelter-dcases_idx.pdf, id=1289, 361.35pt x 271.0125pt>
+<tables_and_figures/us-shelter-dcases_idx.pdf, id=1296, 361.35pt x 271.0125pt>
 File: tables_and_figures/us-shelter-dcases_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-shelter-dcases_idx.pdf>
 Package pdftex.def Info: tables_and_figures/us-shelter-dcases_idx.pdf  used on 
@@ -1664,7 +1664,7 @@ File: tables_and_figures/us-shelter-rcumu_idx.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/us-shelter-rcumu_idx.pdf  used on i
 nput line 2338.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf, id=1290, 361.35pt x 271.
+<tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf, id=1297, 361.35pt x 271.
 0125pt>
 File: tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf Graphic file (type p
 df)
@@ -1672,7 +1672,7 @@ df)
 Package pdftex.def Info: tables_and_figures/us-shelter-dgrowth_deaths_idx.pdf  
 used on input line 2342.
 (pdftex.def)             Requested size: 134.42114pt x 100.81477pt.
-<tables_and_figures/us-shelter-dcases_deaths_idx.pdf, id=1291, 361.35pt x 271.0
+<tables_and_figures/us-shelter-dcases_deaths_idx.pdf, id=1298, 361.35pt x 271.0
 125pt>
 File: tables_and_figures/us-shelter-dcases_deaths_idx.pdf Graphic file (type pd
 f)
@@ -1747,13 +1747,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [49]
-Underfull \hbox (badness 10000) in paragraph at lines 329--334
+Underfull \hbox (badness 10000) in paragraph at lines 342--347
 []\OT1/cmr/m/n/9 IHME. 2020.  ``New IHME COVID-19 Fore-casts See Nearly 300,000
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--334
+Underfull \hbox (badness 10000) in paragraph at lines 342--347
 \OT1/cmr/m/n/9 Deaths by De-cem-ber 1.''  URL []$\OT1/cmtt/m/n/9 http : / / www
  . healthdata . org / news-[]release /
  []
@@ -1811,7 +1811,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 2410.
 
 (./tables_and_figures/casecor.tex) (./tables_and_figures/casediff.tex)
-<tables_and_figures/casesdeaths_q.pdf, id=1618, 505.89pt x 505.89pt>
+<tables_and_figures/casesdeaths_q.pdf, id=1625, 505.89pt x 505.89pt>
 File: tables_and_figures/casesdeaths_q.pdf Graphic file (type pdf)
 <use tables_and_figures/casesdeaths_q.pdf>
 Package pdftex.def Info: tables_and_figures/casesdeaths_q.pdf  used on input li
@@ -1820,13 +1820,13 @@ ne 2443.
 
 (./tables_and_figures/newcasecor.tex) (./tables_and_figures/weekcasecor.tex
 [53]) (./tables_and_figures/weekdeathcor.tex)
-<tables_and_figures/casequantiles.pdf, id=1634, 505.89pt x 252.945pt>
+<tables_and_figures/casequantiles.pdf, id=1641, 505.89pt x 252.945pt>
 File: tables_and_figures/casequantiles.pdf Graphic file (type pdf)
 <use tables_and_figures/casequantiles.pdf>
 Package pdftex.def Info: tables_and_figures/casequantiles.pdf  used on input li
 ne 2514.
 (pdftex.def)             Requested size: 325.215pt x 162.60985pt.
-<tables_and_figures/deathquantiles.pdf, id=1635, 505.89pt x 252.945pt>
+<tables_and_figures/deathquantiles.pdf, id=1642, 505.89pt x 252.945pt>
 File: tables_and_figures/deathquantiles.pdf Graphic file (type pdf)
 <use tables_and_figures/deathquantiles.pdf>
 Package pdftex.def Info: tables_and_figures/deathquantiles.pdf  used on input l
@@ -1839,13 +1839,13 @@ File: tables_and_figures/workplaces.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/workplaces.pdf  used on input line 
 2566.
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/retail.pdf, id=1677, 505.89pt x 252.945pt>
+<tables_and_figures/retail.pdf, id=1684, 505.89pt x 252.945pt>
 File: tables_and_figures/retail.pdf Graphic file (type pdf)
 <use tables_and_figures/retail.pdf>
 Package pdftex.def Info: tables_and_figures/retail.pdf  used on input line 2568
 .
 (pdftex.def)             Requested size: 216.81pt x 108.40527pt.
-<tables_and_figures/grocery.pdf, id=1678, 505.89pt x 252.945pt>
+<tables_and_figures/grocery.pdf, id=1685, 505.89pt x 252.945pt>
 File: tables_and_figures/grocery.pdf Graphic file (type pdf)
 <use tables_and_figures/grocery.pdf>
 Package pdftex.def Info: tables_and_figures/grocery.pdf  used on input line 257
@@ -1881,13 +1881,13 @@ File: tables_and_figures/pk12-deaths-21.pdf Graphic file (type pdf)
 Package pdftex.def Info: tables_and_figures/pk12-deaths-21.pdf  used on input l
 ine 2625.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pshelter-cases-14.pdf, id=1689, 289.08pt x 216.81pt>
+<tables_and_figures/pshelter-cases-14.pdf, id=1696, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter-cases-14.pdf  used on inpu
 t line 2627.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pshelter-deaths-21.pdf, id=1690, 289.08pt x 216.81pt>
+<tables_and_figures/pshelter-deaths-21.pdf, id=1697, 289.08pt x 216.81pt>
 File: tables_and_figures/pshelter-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pshelter-deaths-21.pdf  used on inp
@@ -1898,37 +1898,37 @@ Overfull \hbox (5.25838pt too wide) in paragraph at lines 2618--2638
  [][] 
  []
 
-<tables_and_figures/pmovie-cases-14.pdf, id=1691, 289.08pt x 216.81pt>
+<tables_and_figures/pmovie-cases-14.pdf, id=1698, 289.08pt x 216.81pt>
 File: tables_and_figures/pmovie-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pmovie-cases-14.pdf  used on input 
 line 2652.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pmovie-deaths-21.pdf, id=1692, 289.08pt x 216.81pt>
+<tables_and_figures/pmovie-deaths-21.pdf, id=1699, 289.08pt x 216.81pt>
 File: tables_and_figures/pmovie-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmovie-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pmovie-deaths-21.pdf  used on input
  line 2654.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/prestaurant-cases-14.pdf, id=1693, 289.08pt x 216.81pt>
+<tables_and_figures/prestaurant-cases-14.pdf, id=1700, 289.08pt x 216.81pt>
 File: tables_and_figures/prestaurant-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/prestaurant-cases-14.pdf  used on i
 nput line 2656.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/prestaurant-deaths-21.pdf, id=1694, 289.08pt x 216.81pt>
+<tables_and_figures/prestaurant-deaths-21.pdf, id=1701, 289.08pt x 216.81pt>
 File: tables_and_figures/prestaurant-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/prestaurant-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/prestaurant-deaths-21.pdf  used on 
 input line 2658.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pnonessential-cases-14.pdf, id=1695, 289.08pt x 216.81pt>
+<tables_and_figures/pnonessential-cases-14.pdf, id=1702, 289.08pt x 216.81pt>
 File: tables_and_figures/pnonessential-cases-14.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential-cases-14.pdf>
 Package pdftex.def Info: tables_and_figures/pnonessential-cases-14.pdf  used on
  input line 2660.
 (pdftex.def)             Requested size: 209.4392pt x 157.07901pt.
-<tables_and_figures/pnonessential-deaths-21.pdf, id=1696, 289.08pt x 216.81pt>
+<tables_and_figures/pnonessential-deaths-21.pdf, id=1703, 289.08pt x 216.81pt>
 File: tables_and_figures/pnonessential-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential-deaths-21.pdf>
 Package pdftex.def Info: tables_and_figures/pnonessential-deaths-21.pdf  used o
@@ -1999,10 +1999,10 @@ ed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2898.
  ) 
 Here is how much of TeX's memory you used:
- 24080 strings out of 492649
- 458448 string characters out of 6129622
- 604685 words of memory out of 5000000
- 26944 multiletter control sequences out of 15000+600000
+ 24088 strings out of 492649
+ 458590 string characters out of 6129622
+ 604807 words of memory out of 5000000
+ 26950 multiletter control sequences out of 15000+600000
  20678 words of font info for 76 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  55i,21n,77p,2223b,961s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2039,10 +2039,10 @@ ts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-dist/font
 s/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2018/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2018/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmtt9.pfb>
-Output written on covidEffectOfNPI-revision.pdf (62 pages, 3672794 bytes).
+Output written on covidEffectOfNPI-revision.pdf (62 pages, 3674079 bytes).
 PDF statistics:
- 2063 PDF objects out of 2073 (max. 8388607)
- 1705 compressed objects within 18 object streams
- 285 named destinations out of 1000 (max. 500000)
+ 2070 PDF objects out of 2073 (max. 8388607)
+ 1712 compressed objects within 18 object streams
+ 287 named destinations out of 1000 (max. 500000)
  582 words of extra memory for PDF output out of 10000 (max. 10000000)
 

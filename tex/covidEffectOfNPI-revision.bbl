@@ -1,4 +1,4 @@
-\begin{thebibliography}{84}
+\begin{thebibliography}{86}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -78,6 +78,14 @@ Avery, Christopher, William Bossert, Adam Clark, Glenn Ellison, and Sara~Fisher
 Baqaee, David, Emmanuel Farhi, Michael~J Mina, and James~H Stock. 2020.
 \newblock \enquote{Reopening Scenarios.}
 \newblock Tech. rep., National Bureau of Economic Research.
+
+\bibitem[{Bareinboim et~al.(2020)Bareinboim, Correa, Ibeling, and
+  Icard}]{bareinboim:H}
+Bareinboim, E, JD~Correa, D~Ibeling, and T~Icard. 2020.
+\newblock \enquote{On Pearl’s hierarchy and the foundations of causal
+  inference.}
+\newblock \emph{ACM Special Volume in Honor of Judea Pearl (provisional title)}
+  .
 
 \bibitem[{Baron and Kenny(1986)}]{baron1986}
 Baron, Reuben~M. and David~A. Kenny. 1986.
@@ -324,6 +332,11 @@ Hsiang, Solomon, Daniel Allen, Sebastien Annan-Phan, Kendon Bell, Ian Bolliger,
   Coronavirus (COVID-19) Pandemic.}
 \newblock \emph{medRxiv}
   \urlprefix\url{https://www.medrxiv.org/content/early/2020/04/29/2020.03.22.20040642}.
+
+\bibitem[{H{\"u}nermund and Bareinboim(2019)}]{hunermund}
+H{\"u}nermund, Paul and Elias Bareinboim. 2019.
+\newblock \enquote{Causal inference and data-fusion in econometrics.}
+\newblock \emph{arXiv preprint arXiv:1912.09104} .
 
 \bibitem[{IHME(2020)}]{IHME2020}
 IHME. 2020.
