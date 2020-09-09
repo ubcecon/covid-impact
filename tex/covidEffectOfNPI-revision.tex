@@ -939,23 +939,21 @@ We can write  the counterfactual contrast into the sum of three components:
  & =:   \mathrm{PEB}^\star_{it} + \mathrm{PED}^\star_{it} + \mathrm{DynE}^\star_{it}, \label{eqn:DC2}
   \end{align}
  which describe the immediate indirect effect of the policy via behavior, the direct effect of the policy, and the dynamic effect
- of the policy.
+ of the policy.  By recursive substitutions the dynamic effect  can be further decomposed into a weighted sum of delayed policy effects via behavior and a weighted sum of delayed policy effects via direct impact.
 
-The dynamic effects take the form:
-$$
-\begin{array}{lll}
-  & \mathrm{DynE}^\star_{it} &=
-  \sum_{m=1}^{t/\ell} \left( (\gamma \alpha)_2 + \mu_2+  (\gamma \alpha)_3+ \mu_3    \right)^m \left(\mathrm{PEB}^\star_{i,t-m \ell } +  \mathrm{PED}^\star_{i,t- m\ell} \right)
-  \\
- &&  + \sum_{m=1}^{t/\ell-1} \left( (\gamma \alpha)_3 + \mu_3    \right)^m \left (\mathrm{PEB}^\star_{i,t-(m +1) \ell } +  \mathrm{PED}^\star_{i,t- (m+1)\ell}  \right),
- \end{array}
- $$
- interpreting $t/\ell$ as $\lfloor t/\ell \rfloor$.  %, where $\mathrm{PEB}^\star_{i,t } =  \mathrm{PED}^\star_{i,t} = 0$
+
+%The dynamic effects take the form:
+%$$
+%\begin{array}{lll}
+ % & \mathrm{DynE}^\star_{it} &=
+ % \sum_{m=1}^{t/\ell} \left( (\gamma \alpha)_2 + \mu_2+  (\gamma \alpha)_3+ \mu_3    \right)^m \left(\mathrm{PEB}^\star_{i,t-m \ell } +  \mathrm{PED}^\star_{i,t- m\ell} \right)
+ % \\
+ %&&  + \sum_{m=1}^{t/\ell-1} \left( (\gamma \alpha)_3 + \mu_3    \right)^m \left (\mathrm{PEB}^\star_{i,t-(m +1) \ell } +  %\mathrm{PED}^\star_{i,t- (m+1)\ell}  \right),
+% \end{array}
+ %$$
+ %interpreting $t/\ell$ as $\lfloor t/\ell \rfloor$.  %, where $\mathrm{PEB}^\star_{i,t } =  \mathrm{PED}^\star_{i,t} = 0$
  %for $t \leq 0$.  
- The effects can be decomposed into (a) delayed policy effects via behavior by
-summing terms containing $PEB$ and (b) delayed policy effects via direct impact
-by summing terms containing $PED$.
-
+ 
 All counterfactual quantities and contrasts can be computed from the expressions given
 above. For examples, given $\Delta C_{i0}>0$, new confirmed cases are linked to growth rates via relation
 (taking $t$ divisible by $\ell$ for simplicity):
