@@ -1,3 +1,5 @@
+library(ggplot2)
+library(ggthemes)
 #' Create lags for panel data.
 #'
 #' This function creates lags (or leads) of panel data variables.
@@ -70,7 +72,8 @@ panelma <- function(x, id, t, len=1) {
 }
 
 
-smoothedpolicy <- function(df, pdatevar, enddatevar=NA, type="pnorm", bw=7, lag=0) {
+smoothedpolicy <- function(df, pdatevar, enddatevar=NA, type="pnorm",
+  bw=7, lag=0, id="state") {
   if (type=="pnorm") {
     p <- as.numeric(pnorm(df$date, df[,pdatevar], bw))
     p[is.na(p)] <- 0.0
@@ -83,9 +86,9 @@ smoothedpolicy <- function(df, pdatevar, enddatevar=NA, type="pnorm", bw=7, lag=
       over[is.na(over)] <- FALSE
       d[over] <- FALSE
     }
-    p <- panelma(d, df$state, df$date, len=bw)
+    p <- panelma(d, df[,id], df$date, len=bw)
   }
-  if (lag != 0) p  <- panellag(p, df$state, df$date, lag=lag)
+  if (lag != 0) p  <- panellag(p, df[,id], df$date, lag=lag)
   return(p)
 }
 
