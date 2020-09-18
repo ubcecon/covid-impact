@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Arch Linux) (preloaded format=xelatex 2020.9.2)  18 SEP 2020 12:25
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Arch Linux) (preloaded format=xelatex 2020.9.2)  18 SEP 2020 13:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1081,11 +1081,11 @@ File: tables_and_figures/transit.pdf Graphic file (type pdf)
 File: tables_and_figures/workplaces.pdf Graphic file (type pdf)
 <use tables_and_figures/workplaces.pdf>
 
-Overfull \hbox (15.33002pt too wide) in paragraph at lines 1160--1164
+Overfull \hbox (15.33002pt too wide) in paragraph at lines 1161--1165
 [][] 
  []
 
-(./tables_and_figures/corr.tex) [15]
+[15] (./tables_and_figures/corr.tex)
 File: tables_and_figures/pmaskbus_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus_p.pdf>
 File: tables_and_figures/pk12_p.pdf Graphic file (type pdf)
@@ -1099,7 +1099,7 @@ File: tables_and_figures/prestaurant_p.pdf Graphic file (type pdf)
 File: tables_and_figures/pnonessential_p.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential_p.pdf>
 
-Overfull \hbox (3.23662pt too wide) in paragraph at lines 1219--1232
+Overfull \hbox (3.23662pt too wide) in paragraph at lines 1220--1233
 [][] 
  []
 
@@ -1116,7 +1116,7 @@ File: tables_and_figures/pmaskbus-cases-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pmaskbus-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-deaths-21.pdf>
 
-Overfull \hbox (24.00003pt too wide) in paragraph at lines 1362--1367
+Overfull \hbox (24.00003pt too wide) in paragraph at lines 1363--1368
  [][] 
  []
 
@@ -1156,7 +1156,7 @@ File: tables_and_figures/pmaskbus-whisker-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pmaskbus-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pmaskbus-whisker-7.pdf>
 
-Overfull \hbox (24.00003pt too wide) in paragraph at lines 1980--1986
+Overfull \hbox (24.00003pt too wide) in paragraph at lines 1981--1987
  [][] 
  []
 
@@ -1165,7 +1165,7 @@ File: tables_and_figures/pk12-whisker-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pk12-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-whisker-7.pdf>
 
-Overfull \hbox (24.00003pt too wide) in paragraph at lines 1991--1997
+Overfull \hbox (24.00003pt too wide) in paragraph at lines 1992--1998
  [][] 
  []
 
@@ -1174,7 +1174,7 @@ File: tables_and_figures/pshelter-whisker-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pshelter-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-whisker-7.pdf>
 
-Overfull \hbox (24.00003pt too wide) in paragraph at lines 2011--2017
+Overfull \hbox (24.00003pt too wide) in paragraph at lines 2012--2018
  [][] 
  []
 
@@ -1183,7 +1183,7 @@ File: tables_and_figures/pindex-whisker-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pindex-whisker-7.pdf Graphic file (type pdf)
 <use tables_and_figures/pindex-whisker-7.pdf>
 
-Overfull \hbox (24.00003pt too wide) in paragraph at lines 2022--2028
+Overfull \hbox (24.00003pt too wide) in paragraph at lines 2023--2029
  [][] 
  []
 
@@ -1192,7 +1192,7 @@ File: tables_and_figures/pk12-cases-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pk12-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pk12-deaths-21.pdf>
 
-Overfull \hbox (8.08963pt too wide) in paragraph at lines 2040--2051
+Overfull \hbox (8.08963pt too wide) in paragraph at lines 2041--2052
  [][] 
  []
 
@@ -1218,7 +1218,7 @@ File: tables_and_figures/Washington-mask-rcumu_deaths_idx.pdf Graphic file (typ
 e pdf)
 <use tables_and_figures/Washington-mask-rcumu_deaths_idx.pdf>
 
-Overfull \hbox (3.23662pt too wide) in paragraph at lines 2133--2149
+Overfull \hbox (3.23662pt too wide) in paragraph at lines 2134--2150
  [][] 
  []
 
@@ -1239,7 +1239,7 @@ File: tables_and_figures/us-mask-dcases_deaths_idx.pdf Graphic file (type pdf)
 File: tables_and_figures/us-mask-rcumu_deaths_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-mask-rcumu_deaths_idx.pdf>
 
-Overfull \hbox (3.23662pt too wide) in paragraph at lines 2219--2235
+Overfull \hbox (3.23662pt too wide) in paragraph at lines 2220--2236
  [][] 
  []
 
@@ -1259,7 +1259,7 @@ File: tables_and_figures/us-index-dcases_deaths_idx.pdf Graphic file (type pdf)
 File: tables_and_figures/us-index-rcumu_deaths_idx.pdf Graphic file (type pdf)
 <use tables_and_figures/us-index-rcumu_deaths_idx.pdf>
 
-Overfull \hbox (3.23662pt too wide) in paragraph at lines 2296--2312
+Overfull \hbox (3.23662pt too wide) in paragraph at lines 2297--2313
  [][] 
  []
 
@@ -1279,7 +1279,7 @@ File: tables_and_figures/us-shelter-rcumu_deaths_idx.pdf Graphic file (type pdf
 )
 <use tables_and_figures/us-shelter-rcumu_deaths_idx.pdf>
 
-Overfull \hbox (3.23662pt too wide) in paragraph at lines 2341--2358
+Overfull \hbox (3.23662pt too wide) in paragraph at lines 2342--2359
  [][] 
  []
 
@@ -1294,47 +1294,47 @@ in.”  URL []$[][][][][] [] [] [] [][][] [] [][][][][][][][][][] [] [][][] []
 [43]) [44]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2430.
+(hyperref)                removing `math shift' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Delta' on input line 2430.
+(hyperref)                removing `\Delta' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2430.
+(hyperref)                removing `math shift' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2430.
+(hyperref)                removing `math shift' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Delta' on input line 2430.
+(hyperref)                removing `\Delta' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathop' on input line 2430.
+(hyperref)                removing `\mathop' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathgroup' on input line 2430.
+(hyperref)                removing `\mathgroup' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\symoperators' on input line 2430.
+(hyperref)                removing `\symoperators' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 2430.
+(hyperref)                removing `\@ifnextchar' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Delta' on input line 2430.
+(hyperref)                removing `\Delta' on input line 2431.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2430.
+(hyperref)                removing `math shift' on input line 2431.
 
 (./tables_and_figures/casecor.tex) (./tables_and_figures/casediff.tex)
 File: tables_and_figures/casesdeaths_q.pdf Graphic file (type pdf)
@@ -1360,7 +1360,7 @@ File: tables_and_figures/grocery.pdf Graphic file (type pdf)
 File: tables_and_figures/transit.pdf Graphic file (type pdf)
 <use tables_and_figures/transit.pdf>
 
-Overfull \hbox (24.00003pt too wide) in paragraph at lines 2587--2600
+Overfull \hbox (24.00003pt too wide) in paragraph at lines 2588--2601
 [][] 
  []
 
@@ -1377,7 +1377,7 @@ File: tables_and_figures/pshelter-cases-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pshelter-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pshelter-deaths-21.pdf>
 
-Overfull \hbox (8.08963pt too wide) in paragraph at lines 2640--2660
+Overfull \hbox (8.08963pt too wide) in paragraph at lines 2641--2661
  [][] 
  []
 
@@ -1394,7 +1394,7 @@ File: tables_and_figures/pnonessential-cases-14.pdf Graphic file (type pdf)
 File: tables_and_figures/pnonessential-deaths-21.pdf Graphic file (type pdf)
 <use tables_and_figures/pnonessential-deaths-21.pdf>
 
-Overfull \hbox (8.08963pt too wide) in paragraph at lines 2673--2692
+Overfull \hbox (8.08963pt too wide) in paragraph at lines 2674--2693
  [][] 
  []
 
@@ -1405,17 +1405,17 @@ Overfull \hbox (8.08963pt too wide) in paragraph at lines 2673--2692
 
 
 ] [53]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2922.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2922.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2923.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2923.
 
 (./covidEffectOfNPI-revision.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2922.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2922.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2923.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2923.
 
 Package rerunfilecheck Info: File `covidEffectOfNPI-revision.out' has not chang
 ed.
 (rerunfilecheck)             Checksum: AA4AA5E4319349E977E46C738739A869;2736.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2922.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2923.
  ) 
 Here is how much of TeX's memory you used:
  27936 strings out of 479284
