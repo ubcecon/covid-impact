@@ -1,31 +1,31 @@
-\BOOKMARK [1][-]{section.1}{1. Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{2. The Causal Model for the Effect of Policies, Behavior, and Information on Growth of Infection}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{2.1. The Causal Model and Its Structural Equation Form}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{2.2. Main Testable Implication, Identification, Parameter Estimation}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{2.3. Counterfactual Policy Analysis}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{2.4. Outcome and Key Confounders via SIRD model}{section.2}% 6
-\BOOKMARK [1][-]{section.3}{3. Empirical Analysis}{}% 7
-\BOOKMARK [2][-]{subsection.3.1}{3.1. Data}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.2}{3.2. The Effect of Policies and Information on Behavior}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.3}{3.3. The Direct Effect of Policies and Behavior on Case and Death Growth}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.4}{3.4. The Total Effect of Policies on Case Growth}{section.3}% 11
-\BOOKMARK [1][-]{section.4}{4. Sensitivity Analysis}{}% 12
-\BOOKMARK [2][-]{subsection.4.1}{4.1. Specifications, Timings, and Flexible Controls via Machine Learning}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.2}{4.2. Fixed Effects Specification}{section.4}% 14
-\BOOKMARK [1][-]{section.5}{5. Empirical Evaluation of Counterfactual Policies}{}% 15
-\BOOKMARK [2][-]{figure.caption.46}{5.1. Business Mask Mandate}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.2}{5.2. Business Closure Policies}{section.5}% 17
-\BOOKMARK [2][-]{subsection.5.3}{5.3. Stay-at-home orders}{section.5}% 18
-\BOOKMARK [1][-]{section.6}{6. Conclusion}{}% 19
-\BOOKMARK [1][-]{section*.50}{References}{}% 20
-\BOOKMARK [1][-]{appendix.A}{Appendix A. Data Construction}{}% 21
-\BOOKMARK [2][-]{subsection.A.1}{A.1. Measuring C and logC}{appendix.A}% 22
-\BOOKMARK [2][-]{subsection.A.2}{A.2. Deaths}{appendix.A}% 23
-\BOOKMARK [2][-]{subsection.A.3}{A.3. Tests}{appendix.A}% 24
-\BOOKMARK [2][-]{subsection.A.4}{A.4. Social Distancing Measures}{appendix.A}% 25
-\BOOKMARK [2][-]{subsection.A.5}{A.5. Policy Variables}{appendix.A}% 26
-\BOOKMARK [2][-]{subsection.A.6}{A.6. Timing}{appendix.A}% 27
-\BOOKMARK [2][-]{subsection.A.7}{A.7. Direct and Indirect Policy Effects with national case/death variables}{appendix.A}% 28
-\BOOKMARK [2][-]{subsection.A.8}{A.8. Double Machine Learning}{appendix.A}% 29
-\BOOKMARK [2][-]{subsection.A.9}{A.9. Debiased Fixed Effects Estimator}{appendix.A}% 30
-\BOOKMARK [2][-]{subsection.A.10}{A.10. Details for Computing Counterfactuals }{appendix.A}% 31
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{The\040Causal\040Model\040for\040the\040Effect\040of\040Policies,\040Behavior,\040and\040Information\040on\040Growth\040of\040Infection}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{The\040Causal\040Model\040and\040Its\040Structural\040Equation\040Form}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Main\040Testable\040Implication,\040Identification,\040Parameter\040Estimation}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Counterfactual\040Policy\040Analysis}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Outcome\040and\040Key\040Confounders\040via\040SIRD\040model}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Empirical\040Analysis}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Data}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{The\040Effect\040of\040Policies\040and\040Information\040on\040Behavior}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{The\040Direct\040Effect\040of\040Policies\040and\040Behavior\040on\040Case\040and\040Death\040Growth}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{The\040Total\040Effect\040of\040Policies\040on\040Case\040Growth}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{Sensitivity\040Analysis}{}% 12
+\BOOKMARK [2][-]{subsection.4.1}{Specifications,\040Timings,\040and\040Flexible\040Controls\040via\040Machine\040Learning}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.2}{Fixed\040Effects\040Specification}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Empirical\040Evaluation\040of\040Counterfactual\040Policies}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Business\040Mask\040Mandate}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Business\040Closure\040Policies}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.3}{Stay-at-home\040orders}{section.5}% 18
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 19
+\BOOKMARK [1][-]{appendix.A}{Data\040Construction}{}% 20
+\BOOKMARK [2][-]{subsection.A.1}{Measuring\040C\040and\040logC}{appendix.A}% 21
+\BOOKMARK [2][-]{subsection.A.2}{Deaths}{appendix.A}% 22
+\BOOKMARK [2][-]{subsection.A.3}{Tests}{appendix.A}% 23
+\BOOKMARK [2][-]{subsection.A.4}{Social\040Distancing\040Measures}{appendix.A}% 24
+\BOOKMARK [2][-]{subsection.A.5}{Policy\040Variables}{appendix.A}% 25
+\BOOKMARK [2][-]{subsection.A.6}{Timing}{appendix.A}% 26
+\BOOKMARK [1][-]{appendix.B}{Additional\040Results}{}% 27
+\BOOKMARK [2][-]{subsection.B.1}{Direct\040and\040Indirect\040Policy\040Effects\040with\040national\040case/death\040variables}{appendix.B}% 28
+\BOOKMARK [2][-]{subsection.B.2}{Double\040Machine\040Learning}{appendix.B}% 29
+\BOOKMARK [2][-]{subsection.B.3}{Debiased\040Fixed\040Effects\040Estimator}{appendix.B}% 30
+\BOOKMARK [2][-]{subsection.B.4}{Details\040for\040Computing\040Counterfactuals\040}{appendix.B}% 31

@@ -1,4 +1,4 @@
-\documentclass[11pt,reqno,letter]{amsart}
+\documentclass[3p, longtitle]{elsarticle}
 %\pdfoutput=1
 \usepackage{amsmath}
 
@@ -10,7 +10,7 @@
 
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[left=1.25in,right=1.25in,top=1.5in,bottom=1.25in]{geometry}
+%\usepackage[left=1.25in,right=1.25in,top=1.5in,bottom=1.25in]{geometry}
 \usepackage{multirow}
 \usepackage{verbatim}
 \usepackage{float}
@@ -54,17 +54,17 @@
 \usepackage[section]{placeins}
 
 \usetikzlibrary{positioning}
-\geometry{letterpaper}
+%\geometry{letterpaper}
 %\usepackag\Ep[parfill]{parskip}    % Activate to begin paragraphs
 %with an empty line rather than an indent
 
-\setlength{\parskip}{.4cm}
-\geometry{centering}
+%\setlength{\parskip}{.4cm}
+%\geometry{centering}
 \usepackage{mathtools}
 
 \usepackage{bm}
 
-\usepackage[authoryear]{natbib}
+%\usepackage[authoryear]{natbib}
 \usepackage{pdflscape}
 \usepackage{afterpage}
 \usepackage{capt-of}
@@ -153,25 +153,32 @@
 
 \begin{document}
 
-\title[Causal Impact of Masks, Policies, Behavior]
-{Causal Impact of Masks, Policies, Behavior on Early Covid-19 Pandemic in the U.S.}\thanks{We are grateful to Daron Acemoglu, V.V. Chari, Raj Chetty,  Christian Hansen, Glenn Ellison, Ivan Fernandez-Val, David Green,  Ido Rosen, Konstantin Sonin, James Stock, Elie Tamer, and Ivan Werning for helpful comments. We also thank Chiyoung Ahn,
-Joshua Catalano,  Jason Chau, Samuel Gyetvay, Sev Chenyu Hou,
-Jordan Hutchings, and Dongxiao Zhang  for excellent research assistance.  We are especially grateful
-to   C. Jessica E. Metcalf and an anonymous referee for detailed and insightful comments,
-which considerable improved the paper. All mistakes are our own. }
+%\title[Causal Impact of Masks, Policies, Behavior]{Causal Impact of Masks, Policies, Behavior on Early Covid-19 Pandemic in the U.S.}
+\title{Causal Impact of Masks, Policies, Behavior on Early Covid-19
+  Pandemic in the U.S.}
+
+%% Formatting instructions move this to the end
+% \thanks{We are grateful to Daron Acemoglu, V.V. Chari, Raj Chetty,  Christian Hansen, Glenn Ellison, Ivan Fernandez-Val, David Green,  Ido Rosen, Konstantin Sonin, James Stock, Elie Tamer, and Ivan Werning for helpful comments. We also thank Chiyoung Ahn,
+% Joshua Catalano,  Jason Chau, Samuel Gyetvay, Sev Chenyu Hou,
+% Jordan Hutchings, and Dongxiao Zhang  for excellent research assistance.  We are especially grateful
+% to   C. Jessica E. Metcalf and an anonymous referee for detailed and insightful comments,
+% which considerable improved the paper. All mistakes are our own. }
 
 
 \author{Victor Chernozhukov}
-\address{Department of Economics and Center for Statistics and Data Science, MIT,  MA 02139}
-\email{vchern@mit.edu}
-%\urladdr{www.mit.edu/$\sim$vcherm} % Delete if not wanted.
-\author{Hiroyuki Kasahara}
-\address{ Vancouver School of Economics, UBC, 6000 Iona Drive, Vancouver, BC.}
-\email{hkasahar@mail.ubc.ca}
+\ead{vchern@mit.edu}
+%\urladdr{www.mit.edu/$\sim$vchern} % Delete if not wanted.
+\address{Department of Economics and Center for Statistics and Data
+  Science, MIT,  MA 02139}
 
+\author{Hiroyuki Kasahara \corref{cor1}}
+\ead{hkasahar@mail.ubc.ca}
+\address{Vancouver School of Economics, UBC, 6000 Iona Drive, Vancouver, BC.}
 \author{Paul Schrimpf}
-\address{ Vancouver School of Economics, UBC, 6000 Iona Drive, Vancouver, BC.}
-\email{schrimpf@mail.ubc.ca}
+\ead{schrimpf@mail.ubc.ca}
+\address{Vancouver School of Economics, UBC, 6000 Iona Drive, Vancouver, BC.}
+
+\cortext[cor1]{Corresponding author}
 
 
 \date{\today; \textit{First public} version posted to ArXiv:  May 28, 2020}
@@ -184,7 +191,9 @@ our findings uncover predictive effects (association) of observed policies and b
 %  (the potential range of effects could be even larger the effect of school closures on behavior is hard to identify separately from aggregate time effects).
 \end{abstract}
 
-\keywords{Covid-19, causal impact, masks, non-essential business, policies, behavior}
+\begin{keyword}
+  Covid-19, causal impact, masks, policies, behavior
+\end{keyword}
 
 % JEL: C33, H75, I10, I18
 
@@ -206,7 +215,7 @@ See
 
 This paper  quantitatively assesses the impact of various policies adopted by US states on the spread of Covid-19, such as non-essential business closure and mandatory  face masks, paying particular attention to how people adjust their behavior in response to policies as well as new information on cases and deaths.
 
-We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information. 
+We present a conceptual framework that spells out the causal structure on how the Covid-19 spread is dynamically determined by policies and human behavior. Our approach explicitly recognizes that policies not only directly affect the spread of Covid-19 (e.g., mask requirement) but also indirectly affect its spread by changing people's behavior (e.g., stay-at-home order). It also recognizes that people react to new information on Covid-19 cases and deaths and voluntarily adjust their behavior (e.g., voluntary social distancing and hand washing) even without any policy in place. Our casual model provides a framework to quantitatively decompose the growth of Covid-19 cases and deaths into three components: (1) direct policy effect, (2) policy effect through behavior, and (3) direct behavior effect in response to new information.
 
 
 Guided by the causal model, our empirical analysis examines how the weekly growth rates of confirmed Covid-19 cases and deaths are determined by (the lags of) policies and behavior using US state-level data. To examine how policies and information affect people's behavior, we also regress social distancing measures  on policy and information variables. Our regression specification for case and death growths is explicitly guided by a SIR model although  our causal approach does not hinge on the validity of a SIR model.
@@ -223,7 +232,7 @@ negative external effects for individual decisions over policy compliance as wel
 
 
 Using the estimated model, we evaluate the dynamic impact of the following three counterfactual policies on Covid-19 cases and deaths: (1) mandating face masks, (2)  allowing all businesses to open, and (3) not implementing a stay-at-home order.  The counterfactual experiments show a large impact of  those policies on  the number of cases and deaths.  They also highlight the importance of voluntary behavioral response to infection risks when evaluating the dynamic policy effects.
- 
+
 
 
 
@@ -236,13 +245,13 @@ cases and deaths, respectively, by the end of May with 90 percent
 confidence intervals of $[9,32]$\% and $[19,47]$\%, which roughly
 implies that 34 thousand lives could have been saved. %\footnote{These estimates
 %are slightly lower than those reported in earlier releases of the paper on ArXiv,
-%One of the reason is that we chose to focus on a simplified version of the model 
+%One of the reason is that we chose to focus on a simplified version of the model
 %as our base model, by averaging business closure policies as measure of shutdown. This produced more stable results when
-%conducting sensitivity results, in particular using fixed effects estimators.  
+%conducting sensitivity results, in particular using fixed effects estimators.
 %We also present several variants of base model, including
 %one with separate shutdown policies, in which the effects are slightly larger, in line
-%with the previous findings, but we focus reporting counterfactuals only 
-%for the base model. } 
+%with the previous findings, but we focus reporting counterfactuals only
+%for the base model. }
 This finding is
 significant: given this potentially large benefit of reducing the
 spread of Covid-19, mandating masks is an attractive policy instrument
@@ -255,7 +264,7 @@ designing approaches to minimize risks from reopening
 Figure \ref{fig:US-nb-dgrowth} illustrates how never closing any
 businesses (no movie theater closure, no non-essential business
 closure, and no closure of restaurants except take-out) could have
-affected cases and deaths.  We estimate that business shutdowns have 
+affected cases and deaths.  We estimate that business shutdowns have
 roughly the same impact on growth rates as mask mandates, albeit with
 more uncertainty. The point estimates indicate that keeping all
 businesses open could have increased cumulative cases and deaths by
@@ -267,17 +276,17 @@ effects of similar magnitude as business closures.  No stay-at-home
 orders could have led to $37$\% more cases by the start of June with a
 90 percent confidence interval given by $6$\% to $63$\%. The estimated
 effect of no stay-at-home orders on deaths is a slightly smaller with
-a 90 percent confidence interval of $-7$\% to $50$\%.  
+a 90 percent confidence interval of $-7$\% to $50$\%.
 
 We also conducted sensitivity analysis with respect to changes to our regression specification, sample selection, methodology, and assumptions about delays between policy changes and changes in recorded cases. In particular, we examined whether certain effect
 sizes can be ruled out by various more flexible models or by using alternative timing assumptions
 that define forward growth rates. The impact of mask mandates is more robustly and more precisely estimated than that of business closure policies or stay-at-home orders, and an undesirable effect of increasing the weekly death growth by 5 percentage points is ruled out by all of the  models we consider.\footnote{This null
 hypothesis can be generated by looking at the meta-evidence from RCTs on the efficacy of masks in preventing other respiratory
-cold-like deceases. Falsely rejecting this null is   costly in terms of potential loss of life, and so it is a reasonable null choice 
+cold-like deceases. Falsely rejecting this null is   costly in terms of potential loss of life, and so it is a reasonable null choice
 for the mask policy from decision-theoretic point of view.} This is largely due to the greater variation in the timing of mask mandates across states. The findings of shelter-in-place and business closures policies are considerably less robust. For example, for stay-at-home mandates, models with alternative timing and richer specification for information set suggested smaller effects. Albeit
 after application of machine learning tools to reduce dimensionality, the range of effects $[0,0.15]$ could not be ruled out.  A similar
 wide range of effects could  not be ruled out for business closures.
-  
+
 We also examine the impact of school closures. Unfortunately, there is
 very little variation across states in the timing of
 school closures.  Across robustness specifications, we obtain point
@@ -306,7 +315,7 @@ information. %Evaluation of re-opening policies needs to be aware of this uncert
 
 
 \begin{figure}[ht]
-  \caption{Relative cumulative effect  on confirmed cases and fatalities 
+  \caption{Relative cumulative effect  on confirmed cases and fatalities
   of nationally mandating masks for employees on March
     14th in the US \label{fig:US-mask-dgrowth}}
   \begin{minipage}{\linewidth}
@@ -446,7 +455,7 @@ using German data in \cite{Mitze2020}.\footnote{Our study was first released in 
 Our empirical results contribute to informing the economic-epidemiological models that combine economic models with variants of SIR models to evaluate the efficiency of various economic policies aimed at  the gradual ``reopening" of various sectors of economy.\footnote{\cite{adda2016} analyzes the effect of policies reducing interpersonal contacts such as school closures or the closure of public transportation networks on the spread of  influenza, gastroenteritis, and chickenpox using high frequency data from France.} For example, the estimated effects of masks, stay-home mandates, and various other policies on behavior, and of behavior on infection can serve as useful inputs and validation checks in the calibrated macro, sectoral, and micro models (see, e.g., \cite{alvarez2020simple,baqaee2020reopening,NBERw27128,acemoglu2020multi,lsmith,nashSIR} and references therein). Furthermore, the causal framework developed in this paper could be applicable, with appropriate extensions, to the impact of policies on economic outcomes replacing health outcomes (see, e.g., \cite{chetty2020real,coibion2020labor}).
 
 
-Finally, our causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika}) and genetics \citep{wright1923},\footnote{The father and son, P. Wright (economist) and S. Wright (geneticist) collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables. We view our work as following this classical tradition.} with natural unfolding potential/structural outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. The work on causal graphs has been modernized and developed by \cite{pearl:biometrika,pearl:robins,pearl:causality,pearl:why} and many others (e.g., \cite{pearl:why,white:chalak,richardson:mediation,peters2020book,bareinboim:H,hernanrobins2020book}), with applications in computer science, genetics, epidemiology, and econometrics (see, e.g., \cite{heckman:pinto,hunermund,white:chalak} for applications in econometrics). The particular causal diagram we use has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \citet[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986}, \cite{Hines2020}, \cite{richardson:mediation} for modern treatments. 
+Finally, our causal model is framed using the language of structural equations models and causal diagrams of econometrics (\cite{pwright, haavelmo:1944, tinbergen:1940, wold:1954, pearl:biometrika}) and genetics \citep{wright1923},\footnote{The father and son, P. Wright (economist) and S. Wright (geneticist) collaborated to develop structural equation models and causal path diagrams; P. Wright's key work represented supply-demand system as a directed acyclical graph and established its identification using exclusion restrictions on instrumental variables. We view our work as following this classical tradition.} with natural unfolding potential/structural outcomes representation \citep{rubin1974,tinbergen1930,neyman:PO,imbens_rubin_2015}. The work on causal graphs has been modernized and developed by \cite{pearl:biometrika,pearl:robins,pearl:causality,pearl:why} and many others (e.g., \cite{pearl:why,white:chalak,richardson:mediation,peters2020book,bareinboim:H,hernanrobins2020book}), with applications in computer science, genetics, epidemiology, and econometrics (see, e.g., \cite{heckman:pinto,hunermund,white:chalak} for applications in econometrics). The particular causal diagram we use has several ``mediation" components, where variables affect outcomes directly and indirectly through other variables called mediators; these structures go back at least to \citet[][see Figure 6]{wright1923}; see, e.g., \cite{baron1986}, \cite{Hines2020}, \cite{richardson:mediation} for modern treatments.
 
 \section{The Causal Model for the Effect of Policies, Behavior, and Information on Growth of Infection}\label{sec:causal-model}
 
@@ -662,7 +671,7 @@ utilize the contextual knowledge that mask mandates  only affect the outcome dir
 
 Validation of the model by (TR) allows us to check exclusion restrictions brought by contextual knowledge
 and check stability of the model by using different data subsets.  However, passing the (TR) does
-not guarantee that the model is necessarily valid for recovering causal effects. The only fundamental way to truly validate a causal model for observational data is through a controlled experiment, which is impossible to carry out in our setting. 
+not guarantee that the model is necessarily valid for recovering causal effects. The only fundamental way to truly validate a causal model for observational data is through a controlled experiment, which is impossible to carry out in our setting.
 %We shall, however, cross-check our results  against other scientific evidence, such as results from an RCT on the effectiveness of masks on respiratory deaths.
 
 The parameters of the SEM are identified by the projection equation set above, provided the latter are identified by sufficient joint variation of these variables across states and time. We can develop this point formally as follows. Consider the previous system of equations, after partialling out the confounders:
@@ -696,7 +705,7 @@ on debiased fixed effect estimation with weekly dummies as parts of our sensitiv
 %Other approaches we have explored
 %is to consider more flexible nonlinear model $f(W_{it}, \delta)$ for the way observed confounders enter the model,
 %for example partialling out these effects using Random Forest, using the debiased machine learning approach.
-%All of these results are reported as parts of the robustness checks. 
+%All of these results are reported as parts of the robustness checks.
 
 
 With exclusion restrictions there are multiple approaches to estimation, for example,
@@ -835,9 +844,9 @@ a sequence of counterfactual policies for each state:
 \begin{equation} \label{p-cf}\tag{CF-P}
 \{{\pcolor P^\star_{it}} \}_{t=1}^T, \quad i=1, \ldots N.
 \end{equation}
-We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. } 
+We assume that the SEM remains invariant, except for the policy equation.\footnote{It is possible to consider counterfactual exercises in which policy  responds to information through the policy equation if we are interested in endogenous policy responses to information. Counterfactual experiments with endogenous government policy would be important, for example, to understand the issues related to the lagged response of government policies to higher infection rates due to incomplete information. }
 The assumption  of invariance captures the idea that counterfactual policy interventions would not change the structural functions within the period of the study.  The assumption is strong but is necessary to conduct
-counterfactual experiments, e.g. \cite{sims1972} and \cite{strotz1960recursive}. To make the assumption more plausible we limited our study to the early pandemic period.\footnote{Furthermore, we conducted several stability checks, for example, checking if the coefficients on mask policies remain stable (reported in the previous version) and also looking at more recent data during reopening, beyond early pandemic, to examine the stability of the model.} 
+counterfactual experiments, e.g. \cite{sims1972} and \cite{strotz1960recursive}. To make the assumption more plausible we limited our study to the early pandemic period.\footnote{Furthermore, we conducted several stability checks, for example, checking if the coefficients on mask policies remain stable (reported in the previous version) and also looking at more recent data during reopening, beyond early pandemic, to examine the stability of the model.}
 
 Given the policies, we generate the counterfactual
 outcomes, behavior, and information by propagating the dynamic equations:
@@ -952,8 +961,8 @@ We can write  the counterfactual contrast into the sum of three components:
 % \end{array}
  %$$
  %interpreting $t/\ell$ as $\lfloor t/\ell \rfloor$.  %, where $\mathrm{PEB}^\star_{i,t } =  \mathrm{PED}^\star_{i,t} = 0$
- %for $t \leq 0$.  
- 
+ %for $t \leq 0$.
+
 All counterfactual quantities and contrasts can be computed from the expressions given
 above. For examples, given $\Delta C_{i0}>0$, new confirmed cases are linked to growth rates via relation
 (taking $t$ divisible by $\ell$ for simplicity):
@@ -967,8 +976,8 @@ to the  factual confirmed cases is given by:
 $$
 \Delta C^{\star}_{it}/\Delta C_{it} = \exp\left(  \sum_{m=1}^{t/\ell} ( Y^\star_{i,m\ell} -  Y_{i,m \ell}) \right).
 $$
-We refer to the appendix for further details. Similar calculations apply for fatalities. 
-Note that our analysis is conditional on the factual history and structural stochastic 
+We refer to the appendix for further details. Similar calculations apply for fatalities.
+Note that our analysis is conditional on the factual history and structural stochastic
 shocks.\footnote{For unconditional counterfactual,
 we need to make assumptions about the evolution of stochastic shocks appearing in $Y_{it}$. See, e.g, previous
 versions of our paper in ArXiv, where unconditional counterfactuals were calculated by assuming stochastic shocks
@@ -1344,7 +1353,8 @@ variables have large, negative coefficients. This suggests that behavior respond
 
 
 %In columns (5)-(8), the effects of masks for employees are allowed to be different before and after May 1st. The negative effect of mask mandates on mobility measures appears to be slightly larger in May than in April but the difference is not statistically significant.
-  
+
+\clearpage
 \begin{figure}[ht]
   \caption{Case and death growth conditional on mask mandates \label{fig:masks}}\vspace{0.2cm}
  \begin{minipage}{\linewidth}
@@ -1379,7 +1389,7 @@ variables have large, negative coefficients. This suggests that behavior respond
 %      across states with a mask mandate 14 (21 for deaths) earlier.
 %    \end{flushleft}
 %  \end{minipage}
-\end{figure}  
+\end{figure}
 
 
 
@@ -1392,9 +1402,9 @@ effect of policies on case and death growth. Figure \ref{fig:masks}
 shows average case and death growth conditional on date and whether
 masks are mandatory for employees.\footnote{We take 14 and 21 day lags of mask policies for case and death growths, respectively, to  identify the states with a mask mandate because policies affect cases and deaths with time lags. See our discussion in the Appendix \ref{sec:timing}.} The   left panel of the figure shows that states with a mask mandate consistently have 0-0.2 lower case
 growth than states without. The  right panel also illustrates that
-states with a mask mandate tend to have lower average death growth than states without a mask mandate. 
+states with a mask mandate tend to have lower average death growth than states without a mask mandate.
 
-%The lower two panels of figure \ref{fig:masks} are similar to the upper two panels except that we use the residuals of  regressing case or death growth on state-level characteristics, month dummies, and their interactions in place of  case or death growth, indicating that states with a mask mandate tend to have lower case and death growths even after controlling for confounders. 
+%The lower two panels of figure \ref{fig:masks} are similar to the upper two panels except that we use the residuals of  regressing case or death growth on state-level characteristics, month dummies, and their interactions in place of  case or death growth, indicating that states with a mask mandate tend to have lower case and death growths even after controlling for confounders.
 
 Similar plots are shown for other policies in Figures
 \ref{fig:growthpolicies1} and \ref{fig:growthpolicies2} in the
@@ -2374,8 +2384,8 @@ reduced the spread of Covid-19 without affecting people's social
 distancing behavior measured by Google Mobility Reports. Our
 counterfactual experiment suggests that
 if all states had  adopted mandatory face mask policies on March 14th of 2020, then the cumulative number of deaths by the end of May would have been smaller by as much as  $19$ to $47$\%, which roughly translates into $19$ to $47$  thousand saved lives.
-  
-Second, our baseline counterfactual analysis suggests that keeping all businesses open would have led to 17 to 78\% more cases  while not implementing stay-at-home orders would have increased cases by 6 to 63\% by the end of May although we should interpret these numbers with some caution given that the estimated effect of business closures and stay-at-home orders vary across specifications in our sensitivity analysis. 
+
+Second, our baseline counterfactual analysis suggests that keeping all businesses open would have led to 17 to 78\% more cases  while not implementing stay-at-home orders would have increased cases by 6 to 63\% by the end of May although we should interpret these numbers with some caution given that the estimated effect of business closures and stay-at-home orders vary across specifications in our sensitivity analysis.
 
 Third, we find considerable uncertainty over  the impact of school closures on case or death growth because it is difficult to identify the effect of school closures from the US state-level data due to the lack of variation in the timing of school closures across states.
 
@@ -2389,6 +2399,18 @@ Beyond these findings, our paper presents a useful conceptual framework to inves
 
 
 \FloatBarrier
+
+\section*{Acknowledgements}
+
+We are grateful to Daron Acemoglu, V.V. Chari, Raj Chetty, Christian
+Hansen, Glenn Ellison, Ivan Fernandez-Val, David Green, Ido Rosen,
+Konstantin Sonin, James Stock, Elie Tamer, and Ivan Werning for
+helpful comments. We also thank Chiyoung Ahn, Joshua Catalano, Jason
+Chau, Samuel Gyetvay, Sev Chenyu Hou, Jordan Hutchings, and Dongxiao
+Zhang for excellent research assistance.  We are especially grateful
+to C. Jessica E. Metcalf and an anonymous referee for detailed and
+insightful comments, which considerable improved the paper. All
+mistakes are our own.
 
 \begin{footnotesize}
 
@@ -2736,6 +2758,8 @@ cases while a corresponding delay of roughly three weeks for deaths.
 % }
 
 \FloatBarrier
+
+\section{Additional Results}
 
 \subsection{Direct and Indirect Policy Effects with national case/death variables}
 Tables \ref{tab:dieff} and \ref{tab:dieff-con}  present  the estimates of direct and indirect effects of policies for the specification with past national case/death variables. The effects of school closures and  the sum of policies are estimated substantially smaller in Table \ref{tab:dieff} when national case/death variables are included than in Table \ref{tab:dieff-si}. This sensitivity reflects the difficulty in identifying the aggregate time effect---which is largely captured by national cases/deaths---given little cross-sectional variation in the timing of school closures across states. On the other hand, the estimated effects of policies other than school closures are similar between Table \ref{tab:dieff-si} and Table \ref{tab:dieff}; the effect of other policies are well-identified from cross-sectional variations.
