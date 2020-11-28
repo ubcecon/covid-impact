@@ -78,8 +78,8 @@ policyreg <- function(df, # data
   w <- rep(1, length(p))
   peff <- c(sum(coef(m)[p]*w), sqrt(t(w) %*% (vcov(m)[p,p]) %*% w ))
   if (!is.null(bvars)) {
-    w <- colMeans(subset(df, df$date>=as.Date("2020-04-01") &
-                             df$date<=as.Date("2020-04-10"))[,bvars])
+    w <- colMeans(subset(df, as.vector(df$date)>=as.Date("2020-04-01") &
+                             as.vector(df$date)<=as.Date("2020-04-10"))[,bvars])
     beff <- c(sum(coef(m)[b]*w), sqrt(t(w) %*% (vcov(m)[b,b]) %*% w ))
   } else {
     beff <- NULL

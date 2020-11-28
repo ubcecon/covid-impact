@@ -4,7 +4,7 @@ rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
 datafile <- paste(rootdir,"cases_and_policies/data/covidstates.Rda", sep="/")
 cat("Loading data last updated on ", as.character(file.mtime(datafile)), "\n")
 cat("Run ", paste(rootdir,"cases_and_policies/R/cases_and_policies.R", sep="/"), " to update data.\n")
-load(paste(rootdir,"cases_and_policies/data/covidstates.Rda", sep="/"))
+base::load(paste(rootdir,"cases_and_policies/data/covidstates.Rda", sep="/"))
 source(paste(rootdir,"cases_and_policies/R/utils.R",sep="/"))
 
 cs <- covidstates

@@ -58,6 +58,7 @@ figdatelims <- c(as.Date("2020-03-07"), max(df$date))
 createforwardsim <- function(m, df, id="state",
                        dvar="dlogdc", var="logdc",
                        difflag=7, lhsdiff=TRUE) {
+  df <- df[order(df[,id], df$t),]
   stopifnot(m$keepX)
   m$coef[is.nan(m$coef)] <- 0
 
@@ -127,7 +128,7 @@ createforwardsim <- function(m, df, id="state",
 
     date <- df$date[idx[df[idx,id]==idvar]]
     names(date) <- NULL
-    it0 <- which(df$date==date[1] & df[,id]==idvar)
+    it0 <- which(as.vector(df$date)==date[1] & as.vector(df[,id])==idvar)
     #t0 <- which(df$date==min(df$date))
     Y0 <- as.vector(sapply(1:(maxlags), function(k) lag(df[,var], k)[it0]))
     dY0 <- as.vector(sapply(1:(maxlags), function(k) lag(df[,dvar], k)[it0]))

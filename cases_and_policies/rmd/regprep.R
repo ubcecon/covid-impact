@@ -1,10 +1,9 @@
 cs$t <- as.numeric(cs$date)
 
 warning("Using data only up to 2020-06-03. Modify lines 4-5 of regprep.R to change")
-df <- pdata.frame(subset(cs, cs$date>=as.Date("2020-01-01") &
-                                   cs$date<=as.Date("2020-06-03")),
-                  # cs$date<=as.Date("2020-06-30")),
-                  index=c("state","t"), stringsAsFactors=FALSE)
+df <- subset(cs, cs$date>=as.Date("2020-01-01") &
+                                   cs$date<=as.Date("2020-06-03"))
+df <- df[order(df$state, df$date),]
 
 #df$tests[df$testmissing] <- 0
 df$testrate  <- df$tests/df$Population.2018*1000
@@ -113,7 +112,7 @@ nc$dlogdd.national <- dlogd(nc$deaths.national, nc$state, nc$date, lag=L,
 nc$state <- NULL
 
 ndf <- merge(ndf, nc, by="date", all=TRUE)
-ndf <- pdata.frame(ndf, index=c("state","t"))
+#ndf <- pdata.frame(ndf, index=c("state","t"))
 df <- ndf[order(ndf$state, ndf$date),]
 
 df$z.mask <- df$z.mask/100
@@ -196,3 +195,4 @@ xvars.national.d <- c(bvars.d,"dlogdd.L21","logdd.L21","dlogdd.national.L21","lo
 pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pindex.L14")
 pols.L21 <- c("pmaskbus.L21","pk12.L21","pshelter.L21","pindex.L21")
  
+df <- pdata.frame(df, index=c("state","t"), stringsAsFactors=FALSE)

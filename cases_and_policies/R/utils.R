@@ -10,6 +10,9 @@
 #' values are desired.
 #' @return Lagged copy of x.
 panellag <- function(x, i, t, lag=1) {
+  x <- as.vector(x)
+  i <- as.vector(i)
+  t <- as.vector(t)
   if (!identical(order(i,t),1:length(i))) {
     stop("inputs not sorted.")
   }
@@ -22,7 +25,7 @@ panellag <- function(x, i, t, lag=1) {
   if (lag>0) {
     x.lag <- x[1:(length(x)-lag)]
     x.lag[i[1:(length(i)-lag)]!=i[(1+lag):length(i)] ] <- NA
-    x.lag[t[1:(length(i)-lag)]+lag!=t[(1+lag):length(i)] ] <- NA
+    x.lag[(t[1:(length(i)-lag)]+lag)!=t[(1+lag):length(i)] ] <- NA
     val <- (c(rep(NA,lag),x.lag))
   } else if (lag<0) {
     lag <- abs(lag)

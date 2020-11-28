@@ -89,6 +89,7 @@ if (timing==0){
 } 
 
 source(paste(rootdir,"cases_and_policies/R/exploratory.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/R/utils.R",sep="/"))
 source(paste(rootdir,"cases_and_policies/R/dataprep.R",sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
 source(paste(rootdir,"cases_and_policies/rmd/regprep.R", sep="/"))
@@ -127,7 +128,7 @@ We rearrange and linearly interpolate constant test counts, but do not
 apply any additional smoothing.
 
 ```{r testsmooth, cache=FALSE}
-source("smoothtests.R")
+source(paste(rootdir,"cases_and_policies/rmd/smoothtests.R", sep="/"))
 ```
 
 ## Cases
@@ -144,7 +145,7 @@ pols = c("pmaskbus","pk12","pshelter","pindex")
 
 
 L <- L.c
-sdf <- subset(df, df$date>=as.Date("2020-03-07"))
+sdf <- subset(df, as.vector(df$date)>=as.Date("2020-03-07"))
 regs <- mainregressions(sdf,
                         "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
 summary(regs$piy[[1]]$reg)
