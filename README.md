@@ -8,7 +8,6 @@ We use many R packages. An easy way to install all the dependencies is with
 
 First install `renv`.
 ```r
-https://rstudio.github.io/renv/
 if (!requireNamespace("remotes"))
   install.packages("remotes")
 
