@@ -42,10 +42,8 @@ figdatelims <- c(as.Date("2020-03-07"), max(df$date))
 #' @param lhsdiff if true the outcome is also dvar with the same
 #' difflag, if not the outcome is var
 #'
-#' @return A function with arguments idvar==value of identifier for
-#'   which to simulate and shockgen=function(n) that generates values
-#'   for residuals. The default value of shockgen is to resample model
-#'   residuals with replacement. The function returns a simulated path
+#' @return A function with argument idvar==value of identifier for
+#'   which to simulate. The function returns a simulated path
 #'   var beginning from the initial values for id==idvar and using the
 #'   exogenous covariates of id==idvar.
 #'
