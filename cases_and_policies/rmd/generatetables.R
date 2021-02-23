@@ -132,7 +132,7 @@ mainregressions <- function(df, # data
   })
 
   sdf <- df
-  sdf$month <- panellag(sdf$month,sdf$state,sdf$date,-L)
+  sdf$month <- as.factor(panellag(sdf$month,sdf$state,sdf$date,-L))
   ijs <- expand.grid(1:length(bvars), 1:length(plist))
   pib <- list()
   for (k in 1:length(xlist)) {
@@ -340,7 +340,7 @@ mainregressions2 <- function(df, # data
 
   sdf <- df
   sdf$pmaskbus <- 0*sdf$pmaskbus
-  sdf$month <- panellag(sdf$month,sdf$state,sdf$date,-L)
+  sdf$month <- as.factor(panellag(sdf$month,sdf$state,sdf$date,-L))
   ijs <- expand.grid(1:length(bvars), 1:length(plist))
   pib <- list()
   for (k in 1:length(xlist)) {

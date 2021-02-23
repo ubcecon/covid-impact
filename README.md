@@ -39,4 +39,16 @@ rmarkdown::render(paste(rootdir,"cases_and_policies/rmd/counterfactuals.Rmd", se
 
 ### Caveats
 
-The usage of `renv` was added after the paper was published, so versions of packages in the `renv` environment may not match those used in the publication. In particular, it appears that `plm` has had some changes in behavior (or another package has changes and interferes with `plm`). I think I have updated the code to work, but there might still be problems.
+The usage of `renv` was added after the paper was published, so
+versions of packages in the `renv` environment may not match those
+used in the publication. In particular, it appears that `plm` has had
+some changes in behavior (or another package has changes and
+interferes with `plm`). I think I have updated the code to work, but
+there might still be problems.
+
+While updating the code to work with updated dependencies, a bug in
+the code for the PI->B table was unknowingly corrected. The version of
+the table in the published paper incorrectly has month included as an
+integer. The corrected code includes month dummies. Other regressions
+include month dummies in both the published version and the updated
+code. Thanks to Philippe Lemoine for pointing out this discrepency. 
