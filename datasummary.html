@@ -12,9 +12,9 @@
 <meta name="author" content="Paul Schrimpf, Hiro Kasahara, Victor Chernozhukov" />
 
 
-<title>datasummary.utf8</title>
+<title>Data</title>
 
-<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -28,6 +28,17 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -362,15 +373,8 @@ div.tocify {
 <li>
   <a href="regressionsWithPlots.html">Regresssions</a>
 </li>
-<li class="dropdown-header">Counterfactuals</li>
 <li>
-  <a href="counterfactuals.html">(without national information)</a>
-</li>
-<li>
-  <a href="cf-pindex.html">(averaged policies, without national information)</a>
-</li>
-<li>
-  <a href="counterfactuals_national.html">(with national information)</a>
+  <a href="cf-pindex.html">Counterfactuals</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -392,6 +396,10 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Data</h1>
+<h3 class="subtitle">Data description and summary statistics</h3>
+<h4 class="author">Paul Schrimpf, Hiro Kasahara, Victor Chernozhukov</h4>
+<h4 class="date">22 February, 2021</h4>
 
 </div>
 
@@ -408,9 +416,9 @@ library(lubridate)
 rootdir &lt;- system(&quot;git rev-parse --show-toplevel&quot;, intern=TRUE)[1]
 datafile &lt;- paste(rootdir,&quot;cases_and_policies/data/covidstates.Rda&quot;, sep=&quot;/&quot;)
 cat(&quot;Loading data last updated on &quot;, as.character(file.mtime(datafile)), &quot;\n&quot;)</code></pre>
-<pre><code>## Loading data last updated on  2020-07-31 15:44:29</code></pre>
+<pre><code>## Loading data last updated on  2020-09-11 09:51:34</code></pre>
 <pre class="r"><code>cat(&quot;Run &quot;, paste(rootdir,&quot;cases_and_policies/R/cases_and_policies.R&quot;, sep=&quot;/&quot;), &quot; to update data.\n&quot;)</code></pre>
-<pre><code>## Run  /home/paul/covid/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
+<pre><code>## Run  /home/paul/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
 <pre class="r"><code>load(datafile)
 source(paste(rootdir,&quot;cases_and_policies/R/utils.R&quot;,sep=&quot;/&quot;))
 source(paste(rootdir,&quot;cases_and_policies/rmd/varlabels.R&quot;, sep=&quot;/&quot;))
@@ -431,9 +439,8 @@ cs &lt;- cs[order(cs$state, cs$date),]</code></pre>
 tbl &lt;- cor(cs[,vars],use=&quot;complete&quot;)
 rownames(tbl) &lt;- colnames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;)
 kable(tbl, digits=5, caption=&quot;Correlation of cumulative cases \\label{tab:casecor}&quot;)</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Correlation of cumulative cases </caption>
 <thead>
@@ -448,19 +455,19 @@ kable(tbl, digits=5, caption=&quot;Correlation of cumulative cases \\label{tab:c
 <tr class="odd">
 <td>NYT</td>
 <td align="right">1.00000</td>
-<td align="right">0.99992</td>
-<td align="right">0.99974</td>
+<td align="right">0.99985</td>
+<td align="right">0.99970</td>
 </tr>
 <tr class="even">
 <td>JHU</td>
-<td align="right">0.99992</td>
+<td align="right">0.99985</td>
 <td align="right">1.00000</td>
-<td align="right">0.99974</td>
+<td align="right">0.99985</td>
 </tr>
 <tr class="odd">
 <td>CTP</td>
-<td align="right">0.99974</td>
-<td align="right">0.99974</td>
+<td align="right">0.99970</td>
+<td align="right">0.99985</td>
 <td align="right">1.00000</td>
 </tr>
 </tbody>
@@ -475,9 +482,8 @@ rownames(tbl2) &lt;- rownames(tbl)
 colnames(tbl2) &lt;- colnames(tbl)
 kable(tbl2, digits=5,
       caption=&quot;Portion of days that cumulative cases are equal between data sets \\label{tab:eqcases}&quot;)</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Portion of days that cumulative cases are equal between data sets </caption>
 <thead>
@@ -492,19 +498,19 @@ kable(tbl2, digits=5,
 <tr class="odd">
 <td>NYT</td>
 <td align="right">1.00000</td>
-<td align="right">0.25101</td>
-<td align="right">0.32687</td>
+<td align="right">0.38245</td>
+<td align="right">0.31630</td>
 </tr>
 <tr class="even">
 <td>JHU</td>
-<td align="right">0.25101</td>
+<td align="right">0.38245</td>
 <td align="right">1.00000</td>
-<td align="right">0.30563</td>
+<td align="right">0.51413</td>
 </tr>
 <tr class="odd">
 <td>CTP</td>
-<td align="right">0.32687</td>
-<td align="right">0.30563</td>
+<td align="right">0.31630</td>
+<td align="right">0.51413</td>
 <td align="right">1.00000</td>
 </tr>
 </tbody>
@@ -530,6 +536,15 @@ fjhu &lt;- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alp
   theme(legend.position = &quot;none&quot;)
 
 grid.arrange(fnyt,fjhu,fctp)</code></pre>
+<pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 2230 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 1276 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 2252 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="datasummary_files/figure-html/newcases-1.png" width="768" /></p>
 <pre class="r"><code>X  &lt;- cs[,c(&quot;newcases.nyt&quot;,&quot;newcases.jhu&quot;,&quot;newcases.ctp&quot;)]
 X[X&lt;0] &lt;- NA
@@ -541,6 +556,8 @@ colnames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;)
 rownames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;,&quot;Variance&quot;)
 
 kable(tbl, digits=4, caption=&quot;Correlation and variance of log daily new cases\\label{tab:newcasecor}&quot;)</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Correlation and variance of log daily new cases</caption>
 <thead>
@@ -555,26 +572,26 @@ kable(tbl, digits=4, caption=&quot;Correlation and variance of log daily new cas
 <tr class="odd">
 <td>NYT</td>
 <td align="right">1.0000</td>
-<td align="right">0.8874</td>
-<td align="right">0.8532</td>
+<td align="right">0.9299</td>
+<td align="right">0.8550</td>
 </tr>
 <tr class="even">
 <td>JHU</td>
-<td align="right">0.8874</td>
+<td align="right">0.9299</td>
 <td align="right">1.0000</td>
-<td align="right">0.7873</td>
+<td align="right">0.8237</td>
 </tr>
 <tr class="odd">
 <td>CTP</td>
-<td align="right">0.8532</td>
-<td align="right">0.7873</td>
+<td align="right">0.8550</td>
+<td align="right">0.8237</td>
 <td align="right">1.0000</td>
 </tr>
 <tr class="even">
 <td>Variance</td>
-<td align="right">5.2279</td>
-<td align="right">6.5713</td>
-<td align="right">6.2818</td>
+<td align="right">5.0527</td>
+<td align="right">5.8091</td>
+<td align="right">6.1117</td>
 </tr>
 </tbody>
 </table>
@@ -593,6 +610,8 @@ tbl &lt;- rbind(tbl, diag(cov(log(X), use=&quot;complete&quot;)))
 colnames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;)
 rownames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;,&quot;Variance&quot;)
 kable(tbl, digits=4, caption=&quot;Correlation and variance of log weekly new cases\\label{tab:weekcasecor}&quot;)</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Correlation and variance of log weekly new cases</caption>
 <thead>
@@ -607,26 +626,26 @@ kable(tbl, digits=4, caption=&quot;Correlation and variance of log weekly new ca
 <tr class="odd">
 <td>NYT</td>
 <td align="right">1.0000</td>
-<td align="right">0.9848</td>
-<td align="right">0.9810</td>
+<td align="right">0.9965</td>
+<td align="right">0.9831</td>
 </tr>
 <tr class="even">
 <td>JHU</td>
-<td align="right">0.9848</td>
+<td align="right">0.9965</td>
 <td align="right">1.0000</td>
-<td align="right">0.9664</td>
+<td align="right">0.9794</td>
 </tr>
 <tr class="odd">
 <td>CTP</td>
-<td align="right">0.9810</td>
-<td align="right">0.9664</td>
+<td align="right">0.9831</td>
+<td align="right">0.9794</td>
 <td align="right">1.0000</td>
 </tr>
 <tr class="even">
 <td>Variance</td>
-<td align="right">3.7941</td>
-<td align="right">3.9929</td>
-<td align="right">3.5532</td>
+<td align="right">3.6815</td>
+<td align="right">3.7630</td>
+<td align="right">3.4723</td>
 </tr>
 </tbody>
 </table>
@@ -644,6 +663,12 @@ fjhu &lt;- ggplot(cs, aes(x=date, y=newcases.jhu, colour=state)) + geom_line(alp
   theme(legend.position = &quot;none&quot;)
 
 grid.arrange(fnyt,fjhu,fctp)</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 2498 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 1276 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 2552 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="datasummary_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
 </div>
 <div id="deaths" class="section level2" number="1.3">
@@ -658,9 +683,8 @@ tbl &lt;- rbind(tbl, diag(cov(X, use=&quot;complete&quot;)))
 colnames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;)
 rownames(tbl) &lt;- c(&quot;NYT&quot;,&quot;JHU&quot;,&quot;CTP&quot;,&quot;Variance&quot;)
 kable(tbl, digits=4, caption=&quot;Correlation and variance of weekly deaths\\label{tab:weekdeathcor}&quot;)</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Correlation and variance of weekly deaths</caption>
 <thead>
@@ -675,26 +699,26 @@ kable(tbl, digits=4, caption=&quot;Correlation and variance of weekly deaths\\la
 <tr class="odd">
 <td>NYT</td>
 <td align="right">1.0000</td>
-<td align="right">0.9934</td>
-<td align="right">0.9869</td>
+<td align="right">0.9797</td>
+<td align="right">0.9732</td>
 </tr>
 <tr class="even">
 <td>JHU</td>
-<td align="right">0.9934</td>
+<td align="right">0.9797</td>
 <td align="right">1.0000</td>
-<td align="right">0.9814</td>
+<td align="right">0.9819</td>
 </tr>
 <tr class="odd">
 <td>CTP</td>
-<td align="right">0.9869</td>
-<td align="right">0.9814</td>
+<td align="right">0.9732</td>
+<td align="right">0.9819</td>
 <td align="right">1.0000</td>
 </tr>
 <tr class="even">
 <td>Variance</td>
-<td align="right">196725.3155</td>
-<td align="right">202432.3054</td>
-<td align="right">140264.7657</td>
+<td align="right">172292.1476</td>
+<td align="right">174310.0720</td>
+<td align="right">126952.9432</td>
 </tr>
 </tbody>
 </table>
@@ -712,11 +736,12 @@ fjhu &lt;- ggplot(cs, aes(x=date, y=newdeaths.jhu, colour=state)) + geom_line(al
   theme(legend.position = &quot;none&quot;)
 
 grid.arrange(fnyt,fjhu,fctp)</code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2447 row(s) containing missing values (geom_path).</code></pre>
 <pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 1232 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2498 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 1276 row(s) containing missing values (geom_path).</code></pre>
 <pre><code>## Warning in self$trans$transform(x): NaNs produced</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
 <pre><code>## Warning: Removed 3177 row(s) containing missing values (geom_path).</code></pre>
@@ -727,9 +752,8 @@ grid.arrange(fnyt,fjhu,fctp)</code></pre>
 <h1 number="2"><span class="header-section-number">2</span> Testing data</h1>
 <p>Our data on tests is from the <a href="https://covidtracking.com/">Covid Tracking Project</a>. This dataset contains the following variables.</p>
 <pre class="r"><code>kable(dataguide[dataguide$source==&quot;Covid-Tracking Project&quot;,c(&quot;name&quot;,&quot;source&quot;)])</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -740,197 +764,257 @@ grid.arrange(fnyt,fjhu,fctp)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>18</td>
+<td>19</td>
 <td align="left">positive</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>19</td>
+<td>20</td>
 <td align="left">negative</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>20</td>
+<td>21</td>
 <td align="left">pending</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>21</td>
+<td>22</td>
 <td align="left">hospitalizedCurrently</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>22</td>
+<td>23</td>
 <td align="left">hospitalizedCumulative</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>23</td>
+<td>24</td>
 <td align="left">inIcuCurrently</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>24</td>
+<td>25</td>
 <td align="left">inIcuCumulative</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>25</td>
+<td>26</td>
 <td align="left">onVentilatorCurrently</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>26</td>
+<td>27</td>
 <td align="left">onVentilatorCumulative</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>27</td>
+<td>28</td>
 <td align="left">recovered.ctp</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>28</td>
+<td>29</td>
 <td align="left">dataQualityGrade</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>29</td>
+<td>30</td>
 <td align="left">lastUpdateEt</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>30</td>
+<td>31</td>
 <td align="left">dateModified</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>31</td>
+<td>32</td>
 <td align="left">checkTimeEt</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>32</td>
+<td>33</td>
 <td align="left">deaths.ctp</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>33</td>
+<td>34</td>
 <td align="left">hospitalized</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>34</td>
+<td>35</td>
 <td align="left">dateChecked</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>35</td>
+<td>36</td>
 <td align="left">totalTestsViral</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>36</td>
+<td>37</td>
 <td align="left">positiveTestsViral</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>37</td>
+<td>38</td>
 <td align="left">negativeTestsViral</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>38</td>
+<td>39</td>
 <td align="left">positiveCasesViral</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>39</td>
+<td>40</td>
 <td align="left">deathConfirmed</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>40</td>
+<td>41</td>
 <td align="left">deathProbable</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>41</td>
+<td>42</td>
+<td align="left">totalTestEncountersViral</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="odd">
+<td>43</td>
+<td align="left">totalTestsPeopleViral</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="even">
+<td>44</td>
+<td align="left">totalTestsAntibody</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="odd">
+<td>45</td>
+<td align="left">positiveTestsAntibody</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="even">
+<td>46</td>
+<td align="left">negativeTestsAntibody</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="odd">
+<td>47</td>
+<td align="left">totalTestsPeopleAntibody</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td align="left">positiveTestsPeopleAntibody</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="odd">
+<td>49</td>
+<td align="left">negativeTestsPeopleAntibody</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td align="left">totalTestsPeopleAntigen</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="odd">
+<td>51</td>
+<td align="left">positiveTestsPeopleAntigen</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td align="left">totalTestsAntigen</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="odd">
+<td>53</td>
+<td align="left">positiveTestsAntigen</td>
+<td align="left">Covid-Tracking Project</td>
+</tr>
+<tr class="even">
+<td>54</td>
 <td align="left">positiveIncrease</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>42</td>
+<td>55</td>
 <td align="left">negativeIncrease</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>43</td>
+<td>56</td>
 <td align="left">total</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>44</td>
+<td>57</td>
 <td align="left">totalTestResults</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>45</td>
+<td>58</td>
 <td align="left">totalTestResultsIncrease</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>46</td>
+<td>59</td>
 <td align="left">posNeg</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>47</td>
+<td>60</td>
 <td align="left">deathIncrease</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>48</td>
+<td>61</td>
 <td align="left">hospitalizedIncrease</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>49</td>
+<td>62</td>
 <td align="left">hash</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>50</td>
+<td>63</td>
 <td align="left">commercialScore</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>51</td>
+<td>64</td>
 <td align="left">negativeRegularScore</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>52</td>
+<td>65</td>
 <td align="left">negativeScore</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>53</td>
+<td>66</td>
 <td align="left">positiveScore</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>54</td>
+<td>67</td>
 <td align="left">score</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="even">
-<td>55</td>
+<td>68</td>
 <td align="left">grade</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
 <tr class="odd">
-<td>56</td>
+<td>69</td>
 <td align="left">ST</td>
 <td align="left">Covid-Tracking Project</td>
 </tr>
@@ -980,7 +1064,7 @@ grid.arrange(fign, figm, layout_matrix=matrix(1:2, nrow=2), heights=c(0.5,1))</c
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis
 
 ## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<pre><code>## Warning: Removed 2178 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2185 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="datasummary_files/figure-html/testplots-1.png" width="768" /></p>
 <p>The top panel shows that states began reporting test numbers in early March at earliest, and test numbers are included for all states by mid March. A few states began reporting cases earlier than March, but mostly case reporting and test reporting coincide.</p>
 <p>In the bottom panel, the thick colored lines are quantiles of total cumulative tests, and the gray lines are tests in each state.</p>
@@ -1000,9 +1084,8 @@ tbl[,2:4] &lt;- as.character(as.Date(as.numeric(tbl[,2:4]), origin=as.Date(&quot
 rownames(tbl) &lt;- gsub(&quot;\\.&quot;,&quot; &quot;,pvars)
 colnames(tbl) &lt;- c(&quot;N&quot;,&quot;Min&quot;,&quot;Median&quot;,&quot;Max&quot;)
 kable(tbl, digits=0, caption=&quot;State Policies \\label{tab:policies}&quot;, )</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>State Policies </caption>
 <thead>
@@ -1059,7 +1142,7 @@ kable(tbl, digits=0, caption=&quot;State Policies \\label{tab:policies}&quot;, )
 </tr>
 <tr class="odd">
 <td>Closed gyms</td>
-<td align="left">46</td>
+<td align="left">49</td>
 <td align="left">2020-03-16</td>
 <td align="left">2020-03-20</td>
 <td align="left">2020-04-03</td>
@@ -1080,9 +1163,9 @@ kable(tbl, digits=0, caption=&quot;State Policies \\label{tab:policies}&quot;, )
 </tr>
 <tr class="even">
 <td>End relax stay at home shelter in place</td>
-<td align="left">38</td>
+<td align="left">39</td>
 <td align="left">2020-04-24</td>
-<td align="left">2020-05-17</td>
+<td align="left">2020-05-18</td>
 <td align="left">2020-06-19</td>
 </tr>
 <tr class="odd">
@@ -1122,17 +1205,17 @@ kable(tbl, digits=0, caption=&quot;State Policies \\label{tab:policies}&quot;, )
 </tr>
 <tr class="even">
 <td>Mandate face mask use by all individuals in public spaces</td>
-<td align="left">27</td>
+<td align="left">35</td>
 <td align="left">2020-04-08</td>
-<td align="left">2020-05-11</td>
-<td align="left">2020-07-16</td>
+<td align="left">2020-06-26</td>
+<td align="left">2020-08-05</td>
 </tr>
 <tr class="odd">
 <td>Mandate face mask use by employees in public facing businesses</td>
-<td align="left">42</td>
+<td align="left">44</td>
 <td align="left">2020-04-03</td>
 <td align="left">2020-05-01</td>
-<td align="left">2020-07-03</td>
+<td align="left">2020-08-03</td>
 </tr>
 <tr class="even">
 <td>Stop Initiation of Evictions overall or due to COVID related issues</td>
@@ -1317,7 +1400,8 @@ quantileplot &lt;- function(v, p=c(0.05, 0.25, 0.5, 0.75, 0.95), data=cs) {
     geom_line(data=data, aes(x=date, y=y, group=state), alpha=0.2) +
     theme(legend.position=&quot;none&quot;) +
     #labs(color=&#39;Quantile&#39;)  +
-    xlim(startday, max(data$date))
+   # xlim(startday, max(data$date))
+  xlim(startday,as.Date(&quot;2020-06-03&quot;))
 }
 
 figm &lt;- lapply(gv, quantileplot)
@@ -1339,9 +1423,8 @@ for (i in seq(1,length(figm),by=2)) {
     &quot;workplaces_percent_change_from_baseline&quot;,
     &quot;grocery_and_pharmacy_percent_change_from_baseline&quot;)
 kable(t(varlabels[sapply(sdused, function(x) which(x==varlabels$Variable)),&quot;Label&quot;]))</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <tbody>
 <tr class="odd">
@@ -1401,9 +1484,8 @@ out &lt;- residanalysis(gv, sdused)
 
 kable(out[[2]],
       caption=&quot;Variance explained by Google Mobility measures used in regressions&quot;)</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <caption>Variance explained by Google Mobility measures used in regressions</caption>
 <thead>
@@ -1422,24 +1504,24 @@ kable(out[[2]],
 <td>No smoothing</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">0.3431174</td>
+<td align="right">0.3825406</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">0.9010073</td>
+<td align="right">0.8929607</td>
 </tr>
 <tr class="even">
 <td>7 day moving average</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">0.5589986</td>
+<td align="right">0.5980571</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">0.9345280</td>
+<td align="right">0.9293918</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>out[[1]]</code></pre>
-<pre><code>## Warning: Removed 12285 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 12312 rows containing missing values (geom_point).</code></pre>
 <p><img src="datasummary_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
 </div>
 <div id="homebase" class="section level2" number="4.2">
@@ -1544,9 +1626,8 @@ kable(out[[2]],
 <h1 number="5"><span class="header-section-number">5</span> Variables</h1>
 <pre class="r"><code>source(paste(rootdir,&quot;cases_and_policies/rmd/varlabels.R&quot;, sep=&quot;/&quot;))
 kable(varlabels)</code></pre>
-<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please
-## specify format in kable. kableExtra can customize either HTML or LaTeX outputs. See https://
-## haozhu233.github.io/kableExtra/ for details.</code></pre>
+<pre><code>## Warning in kable_styling(knitr::kable(tbl, ...), bootstrap_options = c(&quot;striped&quot;, : Please specify format in kable. kableExtra can
+## customize either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1679,7 +1760,7 @@ kable(varlabels)</code></pre>
 </tr>
 <tr class="even">
 <td align="left">pnonessential</td>
-<td align="left">closed businesses</td>
+<td align="left">closed non-essent bus</td>
 <td align="left">closed non-essential businesses</td>
 <td align="left">Raifman et al</td>
 <td align="left">TRUE</td>
@@ -1692,216 +1773,265 @@ kable(varlabels)</code></pre>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
+<td align="left">pindex</td>
+<td align="left">business closure policies</td>
+<td align="left">the average of closures of movie theaters,</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">reataurants, and non-essential businesses Raifman</td>
+<td align="left">et al TRUE</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">party</td>
+<td align="left">Governor’s party</td>
+<td align="left">Governor’s party</td>
+<td align="left">OPENICPSR</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">vote</td>
+<td align="left">Trump voting shares</td>
+<td align="left">Trump voting shares</td>
+<td align="left">MIT Election Lab</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">logvote</td>
+<td align="left">log(Trump voting shares)</td>
+<td align="left">log(Trump voting shares)</td>
+<td align="left">MIT Election Lab</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">z.mask</td>
+<td align="left">mask wearing rates</td>
+<td align="left">z-score for mask wearing rates</td>
+<td align="left">YouGov</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">mask_percent</td>
+<td align="left">mask wearing rates</td>
+<td align="left">mask wearing rates</td>
+<td align="left">YouGov</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
 <td align="left">pmaskbus</td>
 <td align="left">masks for employees</td>
 <td align="left">mandate face mask use by employees in public facing businesses</td>
 <td align="left">Raifman et al</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">pmask.april</td>
 <td align="left">masks*April</td>
 <td align="left"></td>
 <td align="left">Raifman et al</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pmask.may</td>
 <td align="left">masks*May</td>
 <td align="left"></td>
 <td align="left">Raifman et al</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">pmaskall</td>
 <td align="left">masks in public spaces</td>
 <td align="left">mandate face mask use by all individuals in public spaces</td>
 <td align="left">Raifman et al</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">workplaces</td>
 <td align="left">workplaces</td>
 <td align="left">workplaces percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">residential</td>
 <td align="left">residential</td>
 <td align="left">residential percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">retail</td>
 <td align="left">retail</td>
 <td align="left">retail and recreation percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">grocery</td>
 <td align="left">grocery</td>
 <td align="left">grocery and pharmacy percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">transit</td>
 <td align="left">transit</td>
 <td align="left">transit percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">workplaces_percent_change_from_baseline</td>
 <td align="left">workplaces intensity</td>
 <td align="left">workplaces percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">residential_percent_change_from_baseline</td>
 <td align="left">residential intensity</td>
 <td align="left">residential percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">retail_and_recreation_percent_change_from_baseline</td>
 <td align="left">retail intensity</td>
 <td align="left">retail and recreation percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">grocery_and_pharmacy_percent_change_from_baseline</td>
 <td align="left">grocery intensity</td>
 <td align="left">grocery and pharmacy percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">transit_stations_percent_change_from_baseline</td>
 <td align="left">transit intensity</td>
 <td align="left">transit percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">parks_percent_change_from_baseline</td>
 <td align="left">parks intensity</td>
 <td align="left">parks percent change from baseline</td>
 <td align="left">Google</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">percentchangehours</td>
 <td align="left">% change hours</td>
 <td align="left"></td>
 <td align="left">Homebase</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">percentchangebusinesses</td>
 <td align="left">% change businesses</td>
 <td align="left"></td>
 <td align="left">Homebase</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">distance_traveled_from_home</td>
 <td align="left">distance traveled</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">completely_home_device_count</td>
 <td align="left">Completely home count</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">median_home_dwell_time</td>
 <td align="left">Median home dwell time</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">part_time_work_behavior_devices</td>
 <td align="left">Part-time count</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">full_time_work_behavior_devices</td>
 <td align="left">Full-time count</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">portion_completely_home</td>
 <td align="left">Completely home portion</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">portion_full_time_work</td>
 <td align="left">Full-time portion</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">portion_part_time_work</td>
 <td align="left">Part-time portion</td>
 <td align="left"></td>
 <td align="left">Safegraph</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">daily_distance_diff</td>
 <td align="left">Distance change</td>
 <td align="left"></td>
 <td align="left">Unacast</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">daily_visitation_diff</td>
 <td align="left">Visits change</td>
 <td align="left"></td>
 <td align="left">Unacast</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">encounters_rate</td>
 <td align="left">Encounters rate</td>
 <td align="left"></td>
 <td align="left">Unacast</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">log_encounters_rate</td>
 <td align="left">log(1+encounters rate)</td>
 <td align="left"></td>
 <td align="left">Unacast</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">zero</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">(0.000)</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1914,24 +2044,59 @@ kable(varlabels)</code></pre>
 <div id="case-and-death-growth" class="section level1" number="6">
 <h1 number="6"><span class="header-section-number">6</span> Case and death growth</h1>
 <pre class="r"><code>source(paste(rootdir,&quot;cases_and_policies/R/dataprep.R&quot;,sep=&quot;/&quot;))</code></pre>
-<pre><code>## Loading data last updated on  2020-07-31 15:44:29 
-## Run  /home/paul/covid/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
+<pre><code>## Loading data last updated on  2020-09-11 09:51:34 
+## Run  /home/paul/covid-impact/cases_and_policies/R/cases_and_policies.R  to update data.</code></pre>
 <pre class="r"><code>source(paste(rootdir,&quot;cases_and_policies/rmd/varlabels.R&quot;, sep=&quot;/&quot;))
-source(paste(rootdir,&quot;cases_and_policies/rmd/regprep.R&quot;, sep=&quot;/&quot;))
-fig &lt;- quantileplot(&quot;dlogdc&quot;, data=df) + ylab(&quot;&quot;) + xlim(c(as.Date(&quot;2020-03-01&quot;),max(df$date+3)))</code></pre>
-<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will replace the
-## existing scale.</code></pre>
+source(paste(rootdir,&quot;cases_and_policies/rmd/regprep.R&quot;, sep=&quot;/&quot;))</code></pre>
+<pre><code>## Warning in eval(ei, envir): Using data only up to 2020-06-03. Modify lines 4-5 of regprep.R to change</code></pre>
+<pre class="r"><code>fig &lt;- quantileplot(&quot;dlogdc&quot;, data=df) + ylab(&quot;&quot;) + xlim(c(as.Date(&quot;2020-03-01&quot;),max(df$date+3)))</code></pre>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will replace the existing scale.</code></pre>
 <pre class="r"><code>pdf(sprintf(&quot;%s/tex/tables_and_figures/casequantiles.pdf&quot;,rootdir), width=7, height=3.5)
-print(fig)
-dev.off()</code></pre>
+print(fig)</code></pre>
+<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
+<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.
+
+## Warning: Use of `adf$y` is discouraged. Use `y` instead.
+
+## Warning: Use of `adf$y` is discouraged. Use `y` instead.
+
+## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
+<pre><code>## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1990 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
 <pre class="r"><code>fig &lt;- quantileplot(&quot;dlogdd&quot;, data=df) + ylab(&quot;&quot;) + xlim(c(as.Date(&quot;2020-03-01&quot;),max(df$date+3)))</code></pre>
-<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will replace the
-## existing scale.</code></pre>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will replace the existing scale.</code></pre>
 <pre class="r"><code>pdf(sprintf(&quot;%s/tex/tables_and_figures/deathquantiles.pdf&quot;,rootdir), width=7, height=3.5)
-print(fig)
-dev.off()</code></pre>
+print(fig)</code></pre>
+<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
+<pre><code>## Warning: Use of `adf$y` is discouraged. Use `y` instead.
+
+## Warning: Use of `adf$y` is discouraged. Use `y` instead.
+
+## Warning: Use of `adf$y` is discouraged. Use `y` instead.
+
+## Warning: Use of `adf$y` is discouraged. Use `y` instead.</code></pre>
+<pre><code>## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).
+
+## Warning: Removed 26 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1990 row(s) containing missing values (geom_path).</code></pre>
+<pre class="r"><code>dev.off()</code></pre>
 <pre><code>## png 
 ##   2</code></pre>
 </div>
@@ -1947,7 +2112,7 @@ dev.off()</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1991,7 +2156,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
