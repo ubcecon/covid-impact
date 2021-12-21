@@ -232,7 +232,7 @@ cfplots <- function(st, cfdata=NULL, simobs=NULL, simcf=NULL,
   labels <- c()
   for (p in 1:length(pds)) {
     lbl <- shortlbls[p]
-    d <- unique(data[data$state==st,pds[p]])
+    d <- as.Date(unclass(unique(data[data$state==st,pds[p]])))
     i <- which(dt==d)
     if (length(i)==0) {
       if (length(dt)==0)
@@ -350,31 +350,31 @@ getmeans <- function(sl, difflag=7) {
                                   method="recursive", init=rep(0, difflag))
 
   y0 <- trans(exp(sl$y))
-  long <- melt(y0)
+  long <- reshape2::melt(y0)
   names(long)[names(long)=="value"] <- "meany0"
 
   log0 <- trans(sl$y)
-  long1 <- melt(log0)
+  long1 <- reshape2::melt(log0)
   names(long1)[names(long1)=="value"] <- "meanlog0"
   long <- merge(long, long1, by=c("Var1","Var2"))
 
   y1 <- trans(exp(sl$cf))
-  long1 <- melt(y1)
+  long1 <- reshape2::melt(y1)
   names(long1)[names(long1)=="value"] <- "meany1"
   long <- merge(long,long1, by=c("Var1","Var2"))
 
   log1 <- trans(sl$cf)
-  long1 <- melt(log1)
+  long1 <- reshape2::melt(log1)
   names(long1)[names(long1)=="value"] <- "meanlog1"
   long <- merge(long, long1, by=c("Var1","Var2"))
 
   cum0 <- trans(apply(exp(sl$y), 2, cumcases))
-  long1 <- melt(cum0)
+  long1 <- reshape2::melt(cum0)
   names(long1)[names(long1)=="value"] <- "cum0"
   long <- merge(long, long1, by=c("Var1","Var2"))
 
   cum1 <- trans(apply(exp(sl$cf), 2, cumcases))
-  long1 <- melt(cum1)
+  long1 <- reshape2::melt(cum1)
   names(long1)[names(long1)=="value"] <- "cum1"
   long <- merge(long, long1, by=c("Var1","Var2"))
 

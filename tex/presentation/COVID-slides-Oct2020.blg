@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: COVID-slides-Oct2020.aux
+The style file: asa.bst
+Database file #1: ../covid.bib
+You've used 18 entries,
+            2777 wiz_defined-function locations,
+            710 strings with 10203 characters,
+and the built_in function-call counts, 13554 in all, are:
+= -- 961
+> -- 1508
+< -- 9
++ -- 564
+- -- 540
+* -- 1528
+:= -- 2645
+add.period$ -- 36
+call.type$ -- 18
+change.case$ -- 254
+chr.to.int$ -- 18
+cite$ -- 18
+duplicate$ -- 344
+empty$ -- 466
+format.name$ -- 598
+if$ -- 2361
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 11
+newline$ -- 59
+num.names$ -- 72
+pop$ -- 267
+preamble$ -- 1
+purify$ -- 252
+quote$ -- 0
+skip$ -- 224
+stack$ -- 0
+substring$ -- 300
+swap$ -- 86
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 162
+warning$ -- 0
+while$ -- 55
+width$ -- 0
+write$ -- 192

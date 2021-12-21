@@ -1,0 +1,835 @@
+---
+title       : "Causal impact of masks, policies, behavior on early COVID-19 pandemic in the U.S."
+subtitle    : "Response to Lemoine"
+author      :  Victor Chernozhukov, Paul Schrimpf, Hiro Kasahara
+date        : "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: "covid.bib"
+link-citations: true
+always_allow_html: true
+output      :
+    html_document :
+        toc : true
+        toc_depth : 3
+        toc_float : true
+        number_sections : true
+        #theme : journal
+        #css : 628notes.css
+        code_folding: hide
+        #lib_dir : deps
+        self_contained: yes
+        mode: selfcontained
+        fig_width: 8
+        fig_height: 6
+---
+
+ <!-- To create html files from this, in R enter  -->
+ <!-- library(rmarkdown) -->
+ <!-- rmarkdown::render("regressionsWithPlots.Rmd") -->
+ <!-- To create tex files from this, in R enter ` -->
+ <!-- library(rmarkdown) -->
+ <!-- rmarkdown::render("regressionsWithPlots.Rmd", output_format=latex_fragment()) -->
+
+
+ <!-- to create the gh-pages hosted website in R enter -->
+ <!-- rmarkdown::render_site() -->
+
+ <!-- Then in a shell  -->
+ <!-- $ ghp-import -p -n -m "$(date)" _site -->
+
+
+```{r, include=FALSE}
+options(knitr.table.format = function() {
+  if (knitr::is_latex_output()) 'latex' else 'pandoc'
+})
+if (knitr::is_latex_output()) {
+  knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo=FALSE)
+}
+```
+ 
+Recently, Phillippe Lemoine posted a critique of our
+paper  \citep{chernozhukov2021}   at his post titled \href{https://cspicenter.org/blog/waronscience/lockdowns-econometrics-and-the-art-of-putting-lipstick-on-a-pig/}{``Lockdowns, econometrics and the art of putting lipstick on a pig''}.
+Although Lemoine's critique appears ideologically driven and overly emotional, some of his points are worth addressing. In particular,  the sensitivity of our estimation results for (i)  including ``masks in public spaces”  and (ii) updating the data seems important critiques.
+
+# Mask Mandates for employees versus for all
+
+In our paper we analyze the effect of mask mandates for employees in
+public facing businesses. Our dataset also contains information on
+mask mandates for all people in public spaces. Our decision to focus
+on the former and not the later is largely a historical
+coindcidence. We used the excellent [“COVID-19 US state policy
+database.” from  Raifman J, Nocka K, Jones D, Bor J, Lipson S, Jay J,
+and Chan P. (2020).](www.tinyurl.com/statepolicies). This database has
+been updated throughout the pandemic. When we began our paper it
+didn't even include information on mask mandates. When information on
+mask mandates were added and we began analyzing them, mask mandates
+for all people were quite rare, so we chose to focus on the more
+common policy of mask mandates for businesses. However, by the time we
+were finalizing the published version of our paper, public mask
+mandates were common enough that we could have analyzed them
+separately. Let's do that now. 
+
+When analyzing the impact of state-level policies it is very important
+to be aware of the range of policy variation observed in the data. For
+example, all states closed schools at nearly the same time, so it is
+impossible to reliably estimate the effect of school closures from
+variation across states. In the case of public versus business mask
+mandates, it is essential to realize that (except in Delaware for 3
+days), states with a public mask mandate always also had a business
+mask mandate. The set of observed mask policies across states are (i)
+no mask mandate (ii) mask mandate only for businesses, and (iii) both
+business and public mask mandate. 
+
+You can estimate a regression with separate indicators for business
+and public mask mandates, but the interpretation of the coefficients
+will not be straightforward. The coefficient on public mask mandate is
+not the effect of a public mask mandate by itself. Estimating such an
+effect is impossible because we never observe only a public mask
+mandate. Instead, the coefficient on public mask mandate is the added
+effect of a public mask mandate on top of a business mask mandate. If
+you want to compare states with public mask mandates (which always
+also have a business mask mandate) to states with no mask mandates,
+then you should look at the sum of the coefficients on business mask
+mandates and public mask mandates. Alternatively, you can estimate the
+model with the mask policies encoded to represent the the mask mandate
+combinations that we observe. This is what is shown below. 
+
+
+```{r setup, cache=FALSE, warning=FALSE, include=FALSE}
+library(conflicted)
+unloadNamespace("dotwhisker")
+unloadNamespace("dplyr") 
+library(lfe)
+library(stargazer)
+library(knitr)
+library(plm)
+library(latex2exp)
+library(ggplot2)
+library(ggthemes)
+library(estimatr)
+library(gridExtra)
+library(grid)
+library(mvtnorm)
+library(kableExtra)
+library(data.table)
+library(reshape2)
+library(AER)
+library(hdm)
+library(randomForest)
+library(glmnet)
+
+
+sgtype <- opts_knit$get("rmarkdown.pandoc.to")
+sgstyle <- 'default'
+colors <-  scale_color_solarized
+colors_fill <- scale_fill_solarized
+rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
+ 
+# Set time lag:
+timing <- 0 # 0 or 1
+if (timing==0){
+  L.c <- 14
+  L.d <- 21
+} else if (timing==1) {
+  L.c <- 7
+  L.d <- 24
+} 
+
+source(paste(rootdir,"cases_and_policies/R/exploratory.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/R/utils.R",sep="/"))
+source(paste(rootdir,"cases_and_policies/R/dataprep.R",sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/varlabels.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/regprep.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/generatetables.R", sep="/"))
+source(paste(rootdir,"cases_and_policies/rmd/bootstrap_felm.R", sep="/"))
+```
+
+```{r caseregs, cache=TRUE, warning=FALSE, results='hide'}
+
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+tvars <- "dlogtests" 
+pols  <-  c("pmaskbusonly","pmaskall","pk12","pshelter","pindex") 
+L <- L.c
+sdf <- subset(df, as.vector(df$date)>=as.Date("2020-03-07"))
+regs <- mainregressions(sdf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+summary(regs$piy[[3]]$reg) 
+ 
+```
+
+```{r casetables, cache=FALSE, warning=FALSE, results='asis'}
+showhtmltables(NULL, NULL, regs$piy)
+```
+
+```{r deathregs, cache=TRUE, warning=FALSE, results='hide'}
+df$zero <- 0
+infovarsd <- list(c("dlogdd", "logdd"),
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
+iv <- list("0","0")
+L <- L.d
+sdf <- subset(df, df$date>=as.Date("2020-03-07")) #+L)
+dregs <- mainregressions(sdf,
+                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L)
+```
+
+```{r deathtables, cache=FALSE, warning=FALSE, results='asis'}
+showhtmltables(NULL, NULL, dregs$piy)
+```
+
+
+
+# Revised Data
+
+```{r dataupdate, cache=FALSE, warning=FALSE, results='hide'}
+rootdir <- system("git rev-parse --show-toplevel", intern=TRUE)[1]
+datafile <- paste(rootdir,"cases_and_policies/data/covidstates-updated.Rda", sep="/")
+cat("Loading data last updated on ", as.character(file.mtime(datafile)), "\n")
+cat("Run ", paste(rootdir,"cases_and_policies/R/cases_and_policies_updated.R", sep="/"), " to update data.\n")
+base::load(datafile)
+
+source(paste(rootdir,"cases_and_policies/rmd/regprep-updated.R",sep="/"))
+csu <- regprep(covidstates)
+
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=max(sdf$date)) )
+```
+
+Another important criticism of Lemoine is that our results change
+substantially when using revised data. Here, we compare the original
+with updated data. The changes in cases and deaths are relatively
+small. However, the change in test counts are substantial. There is
+also some change in policies.
+
+```{r datarevision, cache=TRUE}
+mdf <- merge(udf, sdf, by=c("state","fips","date"))
+
+fig <- ggplot(mdf, aes(x=date, y=cases.x - cases.y, colour=state, label=state)) +
+  geom_text(show.legend=FALSE) +
+  ylab("Change in cumulative cases") + ggtitle("Change in cumulative cases") + figtheme
+fig
+
+fig <- ggplot(mdf, aes(x=date, y=dcases.x - dcases.y, colour=state, label=state)) +
+  geom_text(show.legend=FALSE) +
+  ylab("Change in weekly cases") + ggtitle("Change in weekly cases") + figtheme
+fig
+
+fig <- ggplot(mdf, aes(x=date, y=dlogdc.x-dlogdc.y, colour=state, , label=state)) +
+  geom_text(show.legend=FALSE) +
+  ylab("Change in ΔlogΔc") + ggtitle("Change in case growth") +
+  figtheme
+fig
+
+fig <- ggplot(mdf, aes(x=date, y=dlogdd.x-dlogdd.y, colour=state, , label=state)) +
+  geom_text(show.legend=FALSE) +
+  ylab("Change in ΔlogΔc") + ggtitle("Change in death growth")
+  figtheme
+fig
+
+fig <- ggplot(mdf, aes(x=date, y=dlogtests.x-dlogtests.y, colour=state, label=state)) +
+  geom_text(show.legend=FALSE) +
+  ylab("Change in dlogtests") + ggtitle("Change in dlogtests") + figtheme
+fig
+
+fig <- ggplot(mdf, aes(x=date, y=pmaskbusonly.x-pmaskbusonly.y, colour=state, label=state)) +
+  geom_text(show.legend=FALSE) +
+  ylab("Change in pmaskbusonly") + ggtitle("Change in pmaskbusonly") + figtheme
+fig
+
+fig <- ggplot(mdf, aes(x=date, y=pmaskall.x-pmaskall.y, colour=state, label=state)) +
+  geom_text(show.legend=FALSE) +
+  ylab("Change in pmaskall") + ggtitle("Change in pmaskall") + figtheme
+fig
+```
+
+If we use the updated data with the same time span and regression
+specification as the original data, some results do change. The
+coefficients on masks are often smaller. 
+
+```{r caseregsu,cache=FALSE, warning=FALSE, results='hide'}
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+udf$testmiss <- is.na(udf$dlogtests)
+udf$dlogtests_nomiss <- udf$dlogtests
+udf$dlogtests_nomiss[is.na(udf$dlogtests_nomiss)] <- 0
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall","pk12","pshelter","pindex")
+
+L <- L.c
+regs <- mainregressions(udf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+summary(regs$piy[[3]]$reg)
+```
+
+```{r casetablesu, cache=FALSE, warning=FALSE, results='asis'}
+showhtmltables(NULL, NULL, regs$piy)
+```
+
+```{r deathregsu, cache=FALSE, warning=FALSE, results='hide'}
+udf$zero <- 0
+infovarsd <- list(c("dlogdd", "logdd"),
+                  c("dlogdd", "logdd","dlogdd.national", "logdd.national"))
+iv <- list("0","0")
+L <- L.d
+dregs <- mainregressions(udf,
+                        "dlogdd", pols, bvars, infovarsd, "zero", xlist, ilist, iv, L=L)
+```
+
+```{r deathtablesu, cache=FALSE, warning=FALSE, results='asis'}
+showhtmltables(NULL, NULL, dregs$piy)
+```
+
+## Influence 
+
+What caused the results to change? One diagnostic is to look at the
+influence of each observation on the coefficients on the mask
+policies. Here we plot $$ \frac{-1}{1 - x_{it}' ({X}'{X})^{-1} x_{it}}
+({X}'{X})^{-1} {pmask}_{it} \hat{\epsilon}_{it} $$ which is how much
+the coefficient would change if that observation were deleted. A state
+with positive influence values means that state contributes to the
+estimate being negative, and vice versa.  
+
+```{r influence, warning=FALSE, cache=TRUE}
+calculateinfluence  <- function(mod, data) {
+  r <- felm(mod$formula, data=data, keepX=TRUE)
+
+  cols <- !is.nan(r$coefficients)
+  X  <- r$X[,cols]
+  Q <- solve(t(X) %*% X)
+ 
+  influ <- 0*r$X
+  for (i in 1:nrow(r$X)) {
+    influ[i,cols]  <- -1/(1- t(X[i,]) %*% Q %*% X[i,])[1] * Q %*% X[i,] * r$residuals[i]
+  }
+
+  data$idx <- as.numeric(1:nrow(data))
+  ifmla <- as.character(mod$formula)
+  ifmla[2] <- "idx"
+  ifmla <- formula(paste(ifmla[2], ifmla[1], ifmla[3], collapse=" "))
+  inc <- felm(ifmla, data=data)$response
+  
+  rownames(influ) <- inc
+  return(influ)
+}
+
+plotinfluence  <- function(mod, data, variables) {
+  influ <- calculateinfluence(mod, data)
+  tmp <- sdf
+  tmp$infl <- NA
+  tmp[as.integer(rownames(influ)),'infl'] <- influ[,3]
+  return(lapply(variables, function(v) {
+    tmp[as.integer(rownames(influ)),'infl'] <- influ[,v]
+    fig <- ggplot(data=tmp, aes(x=date, y=infl, colour=state,
+                                label=state)) +
+      geom_text(show.legend=FALSE) + ylab(v)  + figtheme 
+    return(fig)
+  }))
+} 
+
+figs <- plotinfluence(regs$piy[[1]]$reg, sdf,
+                      c("lag(pmaskbusonly, 14)","lag(pmaskall, 14)"))
+newfigs <- plotinfluence(regs$piy[[1]]$reg, udf,
+                         c("lag(pmaskbusonly, 14)","lag(pmaskall, 14)"))
+i  <- 1
+yl <- c(-0.005, 0.005)
+grid.arrange(figs[[i]] + ggtitle("Original Data") + ylim(yl),
+            newfigs[[i]]+ ggtitle("Updated Data") + ylim(yl), ncol=1)
+
+yl <- c(-0.005, 0.015)
+i  <- 2
+grid.arrange(figs[[i]] +  ggtitle("Original Data") + ylim(yl),
+             newfigs[[i]]+ ggtitle("Updated Data") + ylim(yl), ncol=1)
+
+for (i in 1:2) {
+  pdf(sprintf("%s/tex/tables_and_figures/influence_original_%s.pdf",rootdir, i), width=4, height=3.5)
+  print(figs[[i]] + ggtitle("Original Data") + ylim(yl))
+  dev.off()
+  pdf(sprintf("%s/tex/tables_and_figures/influence_new_%s.pdf",rootdir, i), width=4, height=3.5) 
+  print(newfigs[[i]]+ ggtitle("Updated Data") + ylim(yl))
+  dev.off()
+}
+
+```
+
+Hawaii is a notable high influence state. Comparing the old and new
+data, case counts are identical in Hawaii. Test numbers change, and
+most importantly, mask mandate dates change. The old data has Hawaii
+beginning both business and public mask mandates on April
+16, 2020. The new data lists business mask mandates beginning on June
+11, 2020 and public mandates on November 16, 2020. In reality, the
+Hawaii [governor proclamation on April 16,
+2020](https://governor.hawaii.gov/wp-content/uploads/2020/04/2004088-ATG_Fifth-Supplementary-Proclamation-for-COVID-19-distribution-signed.pdf)
+*recommended* face masks in public and mandated face masks for
+employess and customers in essential businesses. The same requirements
+are repeated in [a proclamation on June 10,
+2020.](https://governor.hawaii.gov/wp-content/uploads/2020/06/2006097A-ATG_Ninth-Supplementary-Proclamation-COVID-19-distribution-signed.pdf). A
+[proclamation on November 16](https://governor.hawaii.gov/wp-content/uploads/2020/11/2011051-ATG_Fifteenth-Proclamation-Related-to-the-COVID-19-Emergency-distribution-signed.pdf) extends the mask mandate to all persons in public. Thus, it appears neither the old or new data is entirely correct. The original coding of the data is understandable --- the order on April 16, 2020 is stronger than requiring masks for employees in businesses, since it includes customers too. The updated data appears to just be
+a mistake. 
+
+We also check mask policies for the following states that have high influence on mask coefficients: Vermont, Connecticut, Montana, North Dakota, and West Virginia. Then, we find that  business mask mandates for North Dakota were announced on April 29 and then became effective on May 1 while the revised data has business mask mandate in North Dakota beginning on April 28 (https://www.governor.nd.gov/executive-orders)(https://www.governor.nd.gov/sites/www/files/documents/executive-orders/Executive%20Order%202020-06.4.pdf).   In the revised data,  West Virginia starts its universal public mask mandates on July 7 of 2021 but this public mask mandates only covers when social distancing is not possible. We keep West Virginia's starting date for public mask mandates as it is.
+
+For Vermont, Connecticut, and Montana,   we don't find any descrepancy between the starting dates for business or public mask mandates in the revised data and those we find in state government's website.
+
+Let's correct the updated data to have Hawaii with a
+business mask mandate beginning on April 16, 2020 and to have that of North Dakota beginning on May 1. Since Hawaii's
+mandates includes customers, one could argue that it should be
+considered to be pmaskall as in the old data, but we will not make
+this change.
+
+```{r correcthawaii, warning=FALSE, results='asis'}
+covidstates[covidstates$state=="Hawaii","Business.face.mask.mandate.start"] <-
+  as.Date("2020-04-16")
+covidstates[covidstates$state=="North Dakota","Business.face.mask.mandate.start"] <-
+  as.Date("2020-05-01")
+csu <- regprep(covidstates)
+
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=max(sdf$date)) )
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+udf$testmiss <- is.na(udf$dlogtests)
+udf$dlogtests_nomiss <- udf$dlogtests
+udf$dlogtests_nomiss[is.na(udf$dlogtests_nomiss)] <- 0
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall",
+            "pk12","pshelter","pindex") 
+L <- L.c
+regs <- mainregressions(udf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+```
+
+Once again, the effect of mask mandates are substantial and
+statistically significant. Unlike with the original data, a public
+mask mandate does not have a larger point estimate than a business mask
+mandate. However, in either case, the confidence intervals overlap
+substantially. 
+
+
+## Dropping Hawaii
+
+Given the concerns about the large influence of Hawaii, one could
+consider dropping it from the sample. Choosing to drop observations
+based on their influence in a regression is a suspect procedure. One
+could argue that Hawaii is unusual due to being an island state far
+from all others, so there is some reason to treat it
+differently. 
+
+### Original Data
+```{r noHIold, warning=FALSE, results='asis'}
+regs <- mainregressions(subset(sdf,state!="Hawaii"),
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+```
+
+### New Data
+```{r noHInew, warning=FALSE, results='asis'}
+regs <- mainregressions(subset(udf,state!="Hawaii"),
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+```
+
+
+## Dropping Vermont, Connecticut, Montana, North Dakota, and West Virginia, one by one
+
+We may also check how dropping other influential states (Vermont, Connecticut, Montana, North Dakota, and West Virginia) one by one changes the result using the updated data.
+ 
+### No VT
+```{r noVT, warning=FALSE, results='asis'}
+regs <- mainregressions(subset(udf,state!="Vermont"),
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-revised-noVT")
+```
+
+### No CT
+```{r noCT, warning=FALSE, results='asis'}
+regs <- mainregressions(subset(udf,state!="Connecticut"),
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-revised-noCT")
+```
+
+### No MT
+```{r noMT, warning=FALSE, results='asis'}
+regs <- mainregressions(subset(udf,state!="Montana"),
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-revised-noMT")
+```
+
+### No ND
+```{r noND, warning=FALSE, results='asis'}
+regs <- mainregressions(subset(udf,state!="North Dakota"),
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-revised-noND")
+```
+
+### No WV
+```{r noWV, warning=FALSE, results='asis'}
+
+regs <- mainregressions(subset(udf,state!="West Virginia"),
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-revised-noWV")
+```
+
+Overall, the results do not drastically change as we drop these influential states one by one.
+ 
+# Expand Sample Period
+
+We fix the sampel period of the data set to the beginning of June, 2020, when we work on the revision of our paper for publication because constantly updating the data makes the revision process very difficult. Now we have access to a longer sample period and we can examine how changing the sample periods results in different estimates. Extending sample periods has an advantage of identifying the coefficient of universal mask mandates variable because many states implemented universal mask mandates after June.
+
+Here, we consider four different end dates for the sample: July 1, August 1, September 1, and October 1 of 2020. Note that the data set does not contain the data on school re-opening dates probably because the school opening dates vary across school districts within states and their modes of school openings (e.g., in-person vs. online) differ. Also, there is almost no change in recorded policies after September 1.
+For this reason, we believe that the data set up to August 1 before none of school districts has opened their schools may be a good data set to look at. 
+
+## Sample Period up to July 1, 2020
+```{r longsample_July, warning=FALSE, results='asis'}
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=as.Date("2020-07-01")
+                          ))
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall","pk12","pshelter","pindex")
+
+L <- L.c
+regs <- mainregressions(udf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy) 
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-long-july")
+ 
+```
+ 
+
+
+## Sample Period up to August 1, 2020
+```{r longsample_Aug, warning=FALSE, results='asis'}
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=as.Date("2020-08-01")
+                          ))
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0") 
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall","pk12","pshelter","pindex")
+
+L <- L.c
+regs <- mainregressions(udf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-long-aug")
+ 
+```
+
+
+## Sample Period up to Sept 1, 2020
+```{r longsample_Sept, warning=FALSE, results='asis'}
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=as.Date("2020-09-01")
+                          ))
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall","pk12","pshelter","pindex")
+
+L <- L.c
+regs <- mainregressions(udf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-long-sept")
+  
+```
+
+## Sample Period up to October 1, 2020
+
+```{r longsample_Oct, warning=FALSE, results='asis'}
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=as.Date("2020-10-01")
+                          ))
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall","pk12","pshelter","pindex")
+
+L <- L.c
+regs <- mainregressions(udf,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+showhtmltables(NULL, NULL, regs$piy)
+#savetextables(NULL, NULL,  regs$piy, prefix="cases-maskall-long-oct")
+ 
+```
+ 
+Across different sample periods, the estimates consistently indicate the strong association of both business and universal mask mandates with the subsequent case growth.
+ 
+# Updated Plots
+
+```{r npolicies, warning=FALSE, cache=TRUE}
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=as.Date("2020-12-11")
+                          ))
+udf <- udf[order(udf$state,udf$date),]
+# pdates <- c("Date.closed.K.12.schools",
+#             "Stay.at.home..shelter.in.place",
+#             "Closed.movie.theaters",
+#             "Closed.restaurants.except.take.out",
+#             "Closed.non.essential.businesses",
+#             "Mandate.face.mask.use.by.all.individuals.in.public.spaces",
+#             "Mandate.face.mask.use.by.employees.in.public.facing.businesses",
+#             "State.of.emergency")
+# enddates <- c(NA,
+#               "End.relax.stay.at.home.shelter.in.place",
+#               "Reopened.movie.theaters",
+#               "Reopen.restaurants",
+#               "Began.to.reopen.businesses.statewide",
+#               NA,
+#               NA,
+#               NA)
+pdates <- c("Closed.K.12.public.schools",
+            "Stay.at.home.shelter.in.place",
+            "Closed.movie.theaters",
+            "Closed.restaurants",
+            "Closed.other.non.essential.businesses",
+            "Public.face.mask.mandate.start",
+            "Business.face.mask.mandate.start",
+                "State.of.emergency.issued")
+enddates <- c(NA,
+              "End.stay.at.home.shelter.in.place",
+              "Reopened.movie.theaters",
+                  "Reopened.restaurants", 
+              "Began.to.reopen.businesses.statewide",
+              "Face.mask.mandate.end",
+              "Face.mask.mandate.end",
+              "State.of.emergency.lifted")
+ 
+pvars <- c("pk12", "pshelter", "pmovie", "prestaurant", "pnonessential",
+           "pmaskall","pmaskbus", "psoe")
+
+
+for(i in 1:length(pdates)) udf[,pvars[i]] <-
+                             smoothedpolicy(udf,pdates[i],enddatevar=enddates[i],type="ma",bw=0)
+
+pols <- c("pmaskbus","pmaskall","pshelter", "pmovie",
+          "prestaurant", "pnonessential","pk12", "psoe")
+
+startday <- as.Date("2020-03-01")
+endday <- as.Date("2020-10-01")
+ 
+ppplot <- function(pol, udf) {
+  udf$y <- udf[,pol]
+  adf <- aggregate(y ~ date, data=udf, function(x) mean(x, na.rm=TRUE))
+  fig <- ggplot(adf, aes(x=date, y=y)) + geom_line(size=1.2) +
+    plottheme + ylab("Portion of States") +
+    colors() + ggtitle(varlabels[varlabels$Variable==pol,"Label"]) +
+    theme(legend.position="none") + 
+    xlim(startday, endday) + ylim(0,1)
+  return(fig)
+}
+figs <- lapply(pols,function(p) ppplot(p, udf))
+
+for (i in 1:length(pols)) {
+  pdf(sprintf("%s/tex/tables_and_figures/%s_p_update.pdf",rootdir, pols[i]), width=4, height=2)
+  print(figs[[i]])
+  dev.off()
+}
+grid.arrange(grobs=figs[1:7], nrow=4, ncol=2)
+```
+
+ 
+# Permutation Test
+
+We also implemente our own placebo test to examine if we can find spurious effects. Specifically, we generated 500 samples, where each sample is identical to the original sample except that state-level mask variables (i.e., ``masks in public spaces'' and ``masks for employees only") are replaced with those of other states that are randoly selected through permutation. Because each state's mask variables are replaced with randomly selected other state's mask variables, we expect that the estimated coefficients of mask variables would be centered around zero if there is no spurious effects arising from, for example, aggregate time effect.
+
+
+## Using the sample from March 7 to June 3, 2020
+
+```{r correcthawaii-test, warning=FALSE, results='asis'}
+covidstates[covidstates$state=="Hawaii","Business.face.mask.mandate.start"] <-
+  as.Date("2020-04-16")
+covidstates[covidstates$state=="North Dakota","Business.face.mask.mandate.start"] <-
+  as.Date("2020-05-01")
+csu <- regprep(covidstates)
+
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=max(sdf$date)) )
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+udf$testmiss <- is.na(udf$dlogtests)
+udf$dlogtests_nomiss <- udf$dlogtests
+udf$dlogtests_nomiss[is.na(udf$dlogtests_nomiss)] <- 0
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall",
+            "pk12","pshelter","pindex")
+
+iter = 500
+maskall_vals <- vector(mode = "list", length = iter)
+busonly_vals <- vector(mode = "list", length = iter)
+pols  <-  c("pmaskbusonly","pmaskall",
+            "pk12","pshelter","pindex")
+L <- L.c
+
+system.time(
+for(i in 1:iter){
+  # permutation of states and policy dates
+  fipz <- unique(udf$fips)
+  vperm <- sample(fipz)
+  sudf <- udf
+  sudf$fips_perm <- vperm[match(sudf$fips, fipz)]
+  temp = subset(sudf, select = c('fips_perm','pmaskbusonly','pmaskall','date'))
+  colnames(temp) <- c('fips', 'pmaskbusonly_perm', 'pmaskall_perm', 'date')
+  sudf <- merge(sudf,temp,by = c('fips','date'), all = TRUE, sort = FALSE)
+  udf_b <- udf
+  udf_b$pmaskbusonly <- sudf$pmaskbusonly_perm
+  udf_b$pmaskall <- sudf$pmaskall_perm
+  regs_perm <- mainregressions(udf_b,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+  busonly_vals[i] <- summary(regs_perm$piy[[3]]$reg)$coefficients[2]
+  maskall_vals[i] <- summary(regs_perm$piy[[3]]$reg)$coefficients[3]
+})
+
+meltedbus = reshape2::melt(busonly_vals)
+meltedall = reshape2::melt(maskall_vals)
+meltedbus$Coefficients <- "pmaskbusonly"
+meltedall$Coefficients <- "pmaskall"
+sim_coef<-rbind(meltedbus[,c(1,3)],meltedall[,c(1,3)])
+sim_coef <- data.frame(sim_coef)
+
+fig <- ggplot(sim_coef,aes(x=Coefficients, y=value)) +
+  geom_boxplot() + scale_y_continuous(breaks=seq(-0.16,0.16,0.04))
+fig
+
+pdf(sprintf("%s/tex/tables_and_figures/boxplot_sim.pdf",rootdir, i), width=4, height=3)
+print(fig)
+dev.off()
+
+
+```
+
+## Using the extended sample from March 7 to August 1, 2020
+
+```{r correcthawaii-test2, warning=FALSE, results='asis'}
+covidstates[covidstates$state=="Hawaii","Business.face.mask.mandate.start"] <-
+  as.Date("2020-04-16")
+covidstates[covidstates$state=="North Dakota","Business.face.mask.mandate.start"] <-
+  as.Date("2020-05-01")
+csu <- regprep(covidstates)
+udf <- subset(csu, as.vector(as.vector(csu$date)>=min(sdf$date))
+              & as.vector(as.vector(csu$date) <=as.Date("2020-08-01")
+                          ))
+udf$pmovie <- udf$pmovie.theaters
+udf$prestaurant <- udf$prestaurants
+
+infovars <- list(c("dlogdc", "logdc"),
+                 c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
+xlist <- list("","")
+interactions <- list("month", statevars)
+ilist <- list(interactions, interactions)
+iv <- list("0","0")
+udf$testmiss <- is.na(udf$dlogtests)
+udf$dlogtests_nomiss <- udf$dlogtests
+udf$dlogtests_nomiss[is.na(udf$dlogtests_nomiss)] <- 0
+tvars <- "dlogtests"
+
+pols  <-  c("pmaskbusonly","pmaskall",
+            "pk12","pshelter","pindex")
+
+iter = 500
+maskall_vals <- vector(mode = "list", length = iter)
+busonly_vals <- vector(mode = "list", length = iter)
+pols  <-  c("pmaskbusonly","pmaskall",
+            "pk12","pshelter","pindex")
+L <- L.c
+
+system.time(
+for(i in 1:iter){
+  # permutation of states and policy dates
+  fipz <- unique(udf$fips)
+  vperm <- sample(fipz)
+  sudf <- udf
+  sudf$fips_perm <- vperm[match(sudf$fips, fipz)]
+  temp = subset(sudf, select = c('fips_perm','pmaskbusonly','pmaskall','date'))
+  colnames(temp) <- c('fips', 'pmaskbusonly_perm', 'pmaskall_perm', 'date')
+  sudf <- merge(sudf,temp,by = c('fips','date'), all = TRUE, sort = FALSE)
+  udf_b <- udf
+  udf_b$pmaskbusonly <- sudf$pmaskbusonly_perm
+  udf_b$pmaskall <- sudf$pmaskall_perm
+  regs_perm <- mainregressions(udf_b,
+                        "dlogdc", pols, bvars, infovars, tvars, xlist, ilist, iv, L=L)
+  busonly_vals[i] <- summary(regs_perm$piy[[3]]$reg)$coefficients[2]
+  maskall_vals[i] <- summary(regs_perm$piy[[3]]$reg)$coefficients[3]
+})
+
+meltedbus = reshape2::melt(busonly_vals)
+meltedall = reshape2::melt(maskall_vals)
+meltedbus$Coefficients <- "pmaskbusonly"
+meltedall$Coefficients <- "pmaskall"
+sim_coef<-rbind(meltedbus[,c(1,3)],meltedall[,c(1,3)])
+sim_coef <- data.frame(sim_coef)
+
+fig <- ggplot(sim_coef,aes(x=Coefficients, y=value)) +
+  geom_boxplot() + scale_y_continuous(breaks=seq(-0.18,0.18,0.04))
+fig
+
+pdf(sprintf("%s/tex/tables_and_figures/boxplot_sim2.pdf",rootdir, i), width=4, height=3)
+print(fig)
+dev.off()
+
+
+```
+
+When we use the sample from March 7 to June 3, 2020, the estimates are roughly centered around -0.02 for both mask variables while the inter-quartile ranges for  ``masks in public spaces'' and ``masks for employees only" are around $[-0.05,0.02]$. When we use the extended sample from March 7 to August 1, 2020, the estimates are  centered around $-0.01$ while the inter-quartile ranges are narrower with  $[-0.03,0.02]$. Overall, the result of our placebo test indicates that there won't be any systematic spurious effects we may find from our regression analysis, especially if we use the data set with the extended sample period to August 1, 2020. 

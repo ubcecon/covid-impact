@@ -1,6 +1,6 @@
 name: "COVIDregressions"
 output_dir: "_site"
-exclude: ["*.Rda","*.R, *.gz, *.csv", "counterfactuals.Rmd"]
+exclude: ["*.Rda","*.R, *.gz, *.csv", "counterfactuals.Rmd", "*~"]
 navbar:
   title: "COVID policies, behavior, and infection growth"
   left:
@@ -11,9 +11,6 @@ navbar:
     - text: "Regresssions"
       href: regressionsWithPlots.html
     - text: "Counterfactuals"
-    - text: "(without national information)"
-      href: counterfactuals.html
-    - text: "(averaged policies, without national information)"
       href: cf-pindex.html
 output:
   html_document:

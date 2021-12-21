@@ -274,7 +274,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 maskmodel <- createforwardsim(m, cf)
 
 if (!file.exists("cfmask_idx.Rda") || rerunsim) {
-  cfmasklist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf))
+  cfmasklist <- lapply(unique(as.character(df$state)), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf))
   maskall <- rbindlist(lapply(cfmasklist, getmeans))
   save(cfmasklist, maskall, file="cfmask_idx.Rda")
 }
@@ -340,7 +340,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noshelter <- createforwardsim(m, cf)
 
 if (!file.exists("cfshelter_idx.Rda") || rerunsim) {
-  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
+  cfshelterlist <- lapply(unique(as.character(df$state)), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
   save(cfshelterlist, shelterall, file="cfshelter_idx.Rda")
 }
@@ -407,7 +407,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noindex <- createforwardsim(m, cf)
 
 if (!file.exists("cfindex_idx.Rda") || rerunsim) {
-  cfindexlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf))
+  cfindexlist <- lapply(unique(as.character(df$state)), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf))
   indexall <- rbindlist(lapply(cfindexlist, getmeans))
   save(cfindexlist, indexall, file="cfindex_idx.Rda")
 }
@@ -535,7 +535,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 maskmodel <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
 if (!file.exists("cfmask_deaths_idx.Rda") || rerunsim) {
-  cfmasklist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf, var="logdd", dvar="dlogdd"))
+  cfmasklist <- lapply(unique(as.character(df$state)), function(s) nopstatesim(s,simobs=simmodel,simcf=maskmodel, data=sdf, var="logdd", dvar="dlogdd"))
   maskall <- rbindlist(lapply(cfmasklist, getmeans))
   save(cfmasklist, maskall, file="cfmask_deaths_idx.Rda")
 }
@@ -601,7 +601,7 @@ noshelter <-  createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
 
 if (!file.exists("cfshelter_deaths_idx.Rda") || rerunsim) {
-  cfshelterlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
+  cfshelterlist <- lapply(unique(as.character(df$state)), function(s) nopstatesim(s,simobs=simmodel,simcf=noshelter, data=sdf))
   shelterall <- rbindlist(lapply(cfshelterlist, getmeans))
   save(cfshelterlist, shelterall, file="cfshelter_deaths_idx.Rda")
 }
@@ -665,7 +665,7 @@ cf <- subset(cf, cf$date>=datelims[1]) #+L)
 noindex <- createforwardsim(m, cf, dvar="dlogdd", var="logdd")
 
 if (!file.exists("cfindex_deaths_idx.Rda") || rerunsim) {
-  cfindexlist <- lapply(unique(df$state), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf))
+  cfindexlist <- lapply(unique(as.character(df$state)), function(s) nopstatesim(s,simobs=simmodel,simcf=noindex, data=sdf))
   indexall <- rbindlist(lapply(cfindexlist, getmeans))
   save(cfindexlist, indexall, file="cfindex_deaths_idx.Rda")
 }

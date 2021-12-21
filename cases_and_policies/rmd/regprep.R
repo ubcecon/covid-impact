@@ -90,7 +90,7 @@ bvars <- c("workplaces","retail","grocery","transit")
 
 for(i in 1:length(bvars)) df[,bvars[i]] <- df[,bvars[i]]/100
 
- 
+
 
 nc <- aggregate(cases ~ date, function(x) sum(x, na.rm=TRUE), data=df)
 names(nc) <- c("date","cases.national")
@@ -118,12 +118,12 @@ df <- ndf[order(ndf$state, ndf$date),]
 df$z.mask <- df$z.mask/100
 df$mask_percent <- df$mask_percent/100
 
-df$party <- as.factor(df$party) 
+df$party <- as.factor(df$party)
 df$pindex <- (df$pmovie+df$prestaurant+df$pnonessential)/3
- 
+
 tilt = ifelse(df$date> as.Date("2020-05-01"),1,0 )
-month <- month(df$date)
-week <- week(df$date)
+month <- data.table::month(df$date)
+week <- data.table::week(df$date)
 #month[month==6] <- 5
 #month[month<3] <- 3
 df$month = as.factor(month)
@@ -143,7 +143,7 @@ df$month3 <- ifelse(df$month==3,0,1)
 df$month4 <- ifelse(df$month==4,0,1)
 df$month5 <- ifelse(df$month==5,0,1)
 df$month6 <- ifelse(df$month==6,0,1)
-L <- L.c 
+L <- L.c
 pols <- c("pmaskbus","pk12","pshelter","pmovie","prestaurant","pnonessential")
 infovars <- list(c("dlogdc", "logdc"),
                  c("dlogdc", "logdc","dlogdc.national", "logdc.national"))
@@ -158,7 +158,7 @@ for(i in 1:length(vars)) {
   L<-L.d
   v <- sprintf("%s.L21",vars[i])
   df[,v] <- panellag(df[,vars[i]],df$state,df$date, lag=L)
-} 
+}
 for(i in 1:length(bvars)) {
   L<-L.c
   v <- sprintf("%s.L14",bvars[i])
@@ -166,7 +166,7 @@ for(i in 1:length(bvars)) {
   L<-L.d
   v <- sprintf("%s.L21",bvars[i])
   df[,v] <- panellag(df[,bvars[i]],df$state,df$date, lag=L+14)
-} 
+}
 svars <- c("logpop","logsq","Percent.Unemployed..2018.",
            "Percent.living.under.the.federal.poverty.line..2018.",
            "Percent.at.risk.for.serious.illness.due.to.COVID","party_dum")
@@ -183,16 +183,16 @@ for (ij in (1:lengths(ijs)[[1]])){
   v <-  sprintf("%s.%s",svars[ijs[[1]][ij]],mvars.d[ijs[[2]][ij]])
   msvars.d[ij] <- v
   df[,v] <- df[,svars[ijs[[1]][ij]]]*df[,mvars.d[ijs[[2]][ij]]]
-} 
+}
 bvars.c <- c("workplaces.L14","retail.L14","grocery.L14","transit.L14")
-bvars.d <- c("workplaces.L21","retail.L21","grocery.L21","transit.L21")  
+bvars.d <- c("workplaces.L21","retail.L21","grocery.L21","transit.L21")
 wvars <- c(svars,mvars.c,msvars.c,"month3","mask_percent","logvote","dlogtests")
 wvars.d <- c(svars,mvars.d,msvars.d,"month3","mask_percent","logvote")
 xvars <- c(bvars.c,"dlogdc.L14","logdc.L14")
 xvars.national <- c(bvars.c,"dlogdc.L14","logdc.L14","dlogdc.national.L14","logdc.national.L14")
 xvars.d <- c(bvars.d,"dlogdd.L21","logdd.L21")
-xvars.national.d <- c(bvars.d,"dlogdd.L21","logdd.L21","dlogdd.national.L21","logdd.national.L21") 
+xvars.national.d <- c(bvars.d,"dlogdd.L21","logdd.L21","dlogdd.national.L21","logdd.national.L21")
 pols.L14 <- c("pmaskbus.L14","pk12.L14","pshelter.L14","pindex.L14")
 pols.L21 <- c("pmaskbus.L21","pk12.L21","pshelter.L21","pindex.L21")
- 
+
 df <- pdata.frame(df, index=c("state","t"), stringsAsFactors=FALSE)

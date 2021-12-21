@@ -1,5 +1,5 @@
 ---
-title       : ""
+title       : "Data"
 subtitle    : "Data description and summary statistics"
 author      : Paul Schrimpf, Hiro Kasahara, Victor Chernozhukov
 job         :

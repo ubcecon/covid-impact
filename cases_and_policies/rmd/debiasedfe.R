@@ -139,7 +139,6 @@ reg_fe <- function(df, # data
   # return(list(reg = whole, nobc = coef_nobc, bc = coef_cbc, bc2 = coef_cbc2, peff=peff, acbc = coef_acbc))
 }
 
-　
 data_rg <- function(data, mle) {
   n <- length(unique(data$state))
   t <- length(unique(data$date))
@@ -166,11 +165,10 @@ data_wb <- function(data, mle) {
   return(data)
 }
 
-　
 # # Call boot command to conduct bootstrap
 # set.seed(88) # seed for replication
 # num_boot <- 99 # number of bootstraps
-# ncores <- 1 # number of cpus (speed)　
+# ncores <- 1 # number of cpus (speed)
 # # nonpar will throw warning wrt multiple splitting bias correction
 # result_boot <- boot(data = sdf, statistic = bootstat_fe, sim = "parametric", ran.gen = data_rg,
 #                     mle = 0, parallel = "multicore", ncpus = ncores, R = 5)　
@@ -180,7 +178,7 @@ data_wb <- function(data, mle) {
 #   # Normal scaled IQR
 #   return((quantile(x, .75, na.rm = TRUE) - quantile(x, .25, na.rm = TRUE))/(qnorm(.75) - qnorm(.25)))
 # })
-　
+
 
 
 # The following function extends the function mainregressions

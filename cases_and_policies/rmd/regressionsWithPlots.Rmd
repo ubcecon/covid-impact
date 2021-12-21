@@ -52,7 +52,9 @@ Covid-19 Pandemic in the U.S."
 
 # Data Preparation
 ```{r setup, cache=FALSE, warning=FALSE, include=FALSE}
-
+library(conflicted)
+unloadNamespace("dplyr") 
+unloadNamespace("dotwhisker")
 library(lfe)
 library(stargazer)
 library(knitr)
@@ -71,6 +73,7 @@ library(AER)
 library(hdm)
 library(randomForest)
 library(glmnet)
+
 
 sgtype <- opts_knit$get("rmarkdown.pandoc.to")
 sgstyle <- 'default'
@@ -1039,7 +1042,9 @@ for (j in 1:4){
 }
 
 
-# WARNINGS!  dplyr and dotwhisker seem to interfare with our regression codes --- need to call them only after calling regression codes; otherwise, they will improperly change our regression results
+# WARNINGS!  dplyr and dotwhisker seem to interfare with our
+# regression codes --- need to call them only after calling regression
+# codes; otherwise, they will improperly change our regression results
 library(dplyr)
 library(dotwhisker)
 var.names <- c("(1) baseline    ","(2) excluding NY","(3) mask wearing","(4) Trump's vote ","(5) behavior vars"," (6) all of (2)-(5)  ","(7) Weekly dummy","(8) IV for dlogtest","(9) DML (Lasso)", "(10) DML (RF)  ") #, "(10) FE with BC")
@@ -1178,7 +1183,7 @@ pfigure <- function(df, pol, stlab=1, outcome="dlogdc", L=14) {
   df$p <- panellag(df[,pol],df$state, df$date, L)
   df$p <- ceiling(df$p)
   df$y <- df[,outcome]
-  df$week <- week(df$date)
+  df$week <- data.table::week(df$date)
   m <- lm(y ~ as.factor(date) + as.factor(date):p, data=df)
   adf <- rbind(data.frame(date=m$xlevels$`as.factor(date)`, p=0),
                data.frame(date=m$xlevels$`as.factor(date)`, p=1))
