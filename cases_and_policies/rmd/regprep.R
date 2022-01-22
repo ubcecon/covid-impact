@@ -74,8 +74,12 @@ pvars <- c("pk12", "pshelter", "pmovie", "prestaurant", "pnonessential",
            "pmaskall","pmaskbus", "psoe", "preopenbus", "pgyms")
 for(i in 1:length(pdates)) df[,pvars[i]] <-
                              smoothedpolicy(df,pdates[i],enddatevar=enddates[i],type="ma",bw=6)
+df$pmaskbusonly <- smoothedpolicy(df,
+                                  "Mandate.face.mask.use.by.employees.in.public.facing.businesses",
+                                  "Mandate.face.mask.use.by.all.individuals.in.public.spaces",
+           type="ma", bw=6)
 df$pmaskany <- apply(df[,c("pmaskbus","pmaskall")], 1, max)
-pols <- c("pmaskbus", "pk12","pshelter","pmovie","pgyms","prestaurant","pnonessential")
+pols <- c("pmaskbus","pmaskall", "pk12","pshelter","pmovie","pgyms","prestaurant","pnonessential")
 
 
 df$vote <- df$voteshare
